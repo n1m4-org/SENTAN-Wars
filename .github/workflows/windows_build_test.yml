@@ -1,7 +1,7 @@
 name: windows_build_test
 on: [pull_request]
 env:
-  SOLUTION_FILE_PATH: RhythmActionGame.sln
+  SOLUTION_FILE_PATH: app/app.slnx
 
 jobs:
   build:
@@ -63,7 +63,7 @@ jobs:
 
                 author = @{
                   name = "GitHub Actions"
-                  url = "https://github.com/Souto-Naitou/BEATSLASH/actions"
+                  url = "https://github.com/n1m4-org/TD4_02-assumed-/actions"
                   icon_url = "https://drive.google.com/uc?id=1Qp-YcNpbMzaXENi8c7wvss6CzZ5-J4rG"
                 }
 
