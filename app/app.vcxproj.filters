@@ -3,8 +3,10 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="src\Character\Player\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
+    <ClInclude Include="src\Character\Player\Player.h" />
   </ItemGroup>
 </Project>
