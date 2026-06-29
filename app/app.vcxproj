@@ -47,18 +47,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)bin\build_artifact\</IntDir>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\</OutDir>
     <IntDir>$(ProjectDir)bin\build_artifact\</IntDir>
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;USE_IMGUI;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -122,9 +122,23 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\debug\DebugEntry.cpp" />
+    <ClCompile Include="src\debug\DebugEntryManager.cpp" />
+    <ClCompile Include="src\framework\SentanWars.cpp" />
     <ClCompile Include="src\Character\Player\Player.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math\Color.cpp" />
+    <ClCompile Include="src\utility\strutl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\debug\DebugEntry.h" />
+    <ClInclude Include="src\debug\DebugEntryManager.h" />
+    <ClInclude Include="src\debug\GameParameter.h" />
+    <ClInclude Include="src\framework\SentanWars.h" />
+    <ClInclude Include="src\math\Color.h" />
+    <ClInclude Include="src\utility\strutl.h" />
+    <ClInclude Include="src\utility\ViewportUnits.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character\Player\Player.h" />
