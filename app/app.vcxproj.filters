@@ -24,6 +24,7 @@
       <Filter>src\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
+    <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -83,6 +84,5 @@
     <ClInclude Include="src\logic\wave\IWave.h" />
     <ClInclude Include="src\logic\wave\GeneralWave.h" />
     <ClInclude Include="src\logic\wave\BossWave.h" />
-    <ClInclude Include="src\logic\wave\WaveFactory.h" />
   </ItemGroup>
 </Project>
