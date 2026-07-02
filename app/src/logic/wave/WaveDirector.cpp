@@ -5,7 +5,6 @@
 
 void WaveDirector::Initialize()
 {
-
 }
 
 void WaveDirector::Update()
@@ -24,5 +23,7 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
         return nullptr; // TODO: Implement BossWave
         break;
     default:
+        return nullptr;
+        break;
     }
 }

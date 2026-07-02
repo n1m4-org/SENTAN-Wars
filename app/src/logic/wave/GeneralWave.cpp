@@ -2,17 +2,24 @@
 
 
 
-void GeneralWave::Enter()
+void GeneralWave::Enter(const WaveContext& ctx)
 {
-    throw std::logic_error("The method or operation is not implemented.");
 }
 
 void GeneralWave::Exit()
 {
-    throw std::logic_error("The method or operation is not implemented.");
 }
 
 void GeneralWave::Update()
 {
-    throw std::logic_error("The method or operation is not implemented.");
+}
+
+bool GeneralWave::IsWaveFinished() const
+{
+    return false;
+}
+
+bool GeneralWave::IsEnemyBudgetExhausted() const
+{
+    return false;
 }

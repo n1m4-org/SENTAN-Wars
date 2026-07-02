@@ -2,6 +2,7 @@
 #include <debug/GameParameter.h>
 #include <memory>
 #include "IWave.h"
+#include <cstdint>
 
 enum class WaveType
 {
@@ -23,5 +24,5 @@ private:
 
     /// パラメータ
     EnableDebug("WaveDirector");
-    GameParameter(uint32_t, waveIndex_, 0u);
+    GameParameter(int, waveIndex_, 0);
 };

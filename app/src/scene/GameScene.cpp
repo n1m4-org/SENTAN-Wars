@@ -19,6 +19,9 @@ void GameScene::Initialize() {
         spriteManager_->DrawAll();
         objectManager_->Draw(vp);
     });
+
+    pWaveDirector_ = std::make_unique<WaveDirector>();
+    pWaveDirector_->Initialize();
 }
 
 void GameScene::Finalize() {

@@ -19,6 +19,12 @@ public:
 
     uint32_t GetWaveIndex() const override { return waveIndex_; }
 
+
+    bool IsWaveFinished() const override;
+
+
+    bool IsEnemyBudgetExhausted() const override;
+
 private:
     uint32_t waveIndex_;
 };

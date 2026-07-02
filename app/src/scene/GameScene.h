@@ -1,12 +1,14 @@
 #pragma once
 #include "BaseScene.h"
+#include <logic/wave/WaveDirector.h>
 
 /// <summary>
 /// テストシーンのクラス
 /// シーンの設定などを確認するシーン
 /// </summary>
-class GameScene : public Hagine::BaseScene {
-  public:
+class GameScene : public Hagine::BaseScene
+{
+public:
     /// ===================================================
     /// public method
     /// ===================================================
@@ -51,7 +53,7 @@ class GameScene : public Hagine::BaseScene {
     /// </summary>
     void AddParticleSetting() override;
 
-  private:
+private:
     /// ===================================================
     /// private method
     /// ===================================================
@@ -66,8 +68,9 @@ class GameScene : public Hagine::BaseScene {
     /// </summary>
     void ChangeScene();
 
-  private:
+private:
     /// ===================================================
     /// private variants
     /// ===================================================
+    std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
 };
