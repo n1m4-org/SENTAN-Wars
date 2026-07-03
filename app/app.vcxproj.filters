@@ -41,14 +41,18 @@
     <ClCompile Include="src\math\Color.cpp">
       <Filter>src\math</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\CameraInput.cpp">
+      <Filter>src\presentation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\FollowCamera.cpp">
+      <Filter>src\presentation</Filter>
+    </ClCompile>
     <ClCompile Include="src\scene\GameScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\presentation\FollowCamera.cpp" />
-    <ClCompile Include="src\presentation\CameraInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -69,8 +73,14 @@
     <Filter Include="src\math">
       <UniqueIdentifier>{06bc2b22-0749-4bf7-9d78-8b7c29392f7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\presentation">
+      <UniqueIdentifier>{430cdde4-0456-4989-9b58-f351d95067f2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\scene">
       <UniqueIdentifier>{d3f15c00-973d-4e48-ba54-a09988d106de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\system">
+      <UniqueIdentifier>{6599ec27-5028-4116-b16f-2324f182ab2d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\utility">
       <UniqueIdentifier>{7caa8714-9aa2-4d76-99c1-5dd523fcc406}</UniqueIdentifier>
@@ -131,13 +141,25 @@
     <ClInclude Include="src\math\Color.h">
       <Filter>src\math</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\CameraInput.h">
+      <Filter>src\presentation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\FollowCamera.h">
+      <Filter>src\presentation</Filter>
+    </ClInclude>
     <ClInclude Include="src\scene\GameScene.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\ScopedCursorHidden.h">
+      <Filter>src\system</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\strutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\wndutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Player\Player.h">
@@ -152,9 +174,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\presentation\FollowCamera.h" />
-    <ClInclude Include="src\presentation\CameraInput.h" />
-    <ClInclude Include="src\system\ScopedCursorHidden.h" />
-    <ClInclude Include="src\utility\wndutl.h" />
   </ItemGroup>
 </Project>
