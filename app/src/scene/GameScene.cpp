@@ -1,6 +1,7 @@
 #include "Utility/Scene/SceneManager.h"
 #include "GameScene.h"
 #include"Utility/Scene/SceneRegistry.h"
+#include <src/Character/Enemy/EnemyManager.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -19,12 +20,16 @@ void GameScene::Initialize() {
         spriteManager_->DrawAll();
         objectManager_->Draw(vp);
     });
+
+    enemyManager_ = std::make_unique<EnemyManager>();
+    enemyManager_->Init();
 }
 
 void GameScene::Finalize() {
     /// ===================================================
     /// 終了処理
     /// ===================================================
+    enemyManager_->Finalize();
     BaseScene::Finalize();
 }
 

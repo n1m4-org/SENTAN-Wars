@@ -7,6 +7,7 @@ struct EnemyStatus
 	float hp = 0.0f;
 	float power = 0.0f;
 	float movementSpeed = 0.0f;
+	float attackRange = 0.0f;
 };
 
 class BaseEnemy
@@ -15,6 +16,9 @@ class BaseEnemy
 public:
 	void Init(const std::string className) override;
 
+	void Update() override;
+
+	void SetTarget(const Hagine::Vector3& target) { target_ = target; }
 
 protected:
 	/// <summary>
@@ -22,8 +26,13 @@ protected:
 	/// </summary>
 	virtual void UniqueInit() {};
 
+	/// <summary>
+	/// 固有更新処理
+	/// </summary>
+	virtual void UniqueUpdate() {};
 
-private:
 	EnemyStatus status_;
+
+	Hagine::Vector3 target_ = {};
 };
 

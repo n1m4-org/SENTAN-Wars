@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseScene.h"
 
+class EnemyManager;
+
 /// <summary>
 /// テストシーンのクラス
 /// シーンの設定などを確認するシーン
@@ -70,4 +72,5 @@ class GameScene : public Hagine::BaseScene {
     /// ===================================================
     /// private variants
     /// ===================================================
+	  std::unique_ptr<EnemyManager> enemyManager_;
 };

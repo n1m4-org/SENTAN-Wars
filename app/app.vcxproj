@@ -122,6 +122,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp" />
+    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp" />
     <ClCompile Include="src\debug\DebugEntry.cpp" />
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
@@ -132,6 +134,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Character\Enemy\EnemyManager.h" />
+    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h" />
     <ClInclude Include="src\debug\DebugEntry.h" />
     <ClInclude Include="src\debug\DebugEntryManager.h" />
     <ClInclude Include="src\debug\GameParameter.h" />

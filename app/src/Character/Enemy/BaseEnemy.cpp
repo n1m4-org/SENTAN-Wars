@@ -11,3 +11,10 @@ void BaseEnemy::Init(const std::string className)
 
 	UniqueInit();
 }
+
+void BaseEnemy::Update()
+{
+	UniqueUpdate();
+
+	BaseObject::Update();
+}
