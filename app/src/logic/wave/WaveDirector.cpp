@@ -5,13 +5,16 @@
 
 void WaveDirector::Initialize()
 {
+    // デバッグ用のパラメータの変更コールバックを登録
+    this->RegisterOnChange();
+
     // 初期ウェーブを作成
-    pCurrentWave_ = this->CreateWave(WaveType::General);
+    this->ChangeToNextWave();
 }
 
 void WaveDirector::Update()
 {
-
+    
 }
 
 WaveType WaveDirector::GetWaveType(uint32_t waveIndex) const
@@ -32,7 +35,7 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
         return std::make_unique<GeneralWave>();
         break;
     case WaveType::Boss:
-        return nullptr; // TODO: Implement BossWave
+        return nullptr;
         break;
     default:
         return nullptr;

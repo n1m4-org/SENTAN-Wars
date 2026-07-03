@@ -78,7 +78,5 @@ private:
     
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
-
-
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
 };
