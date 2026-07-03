@@ -10,9 +10,9 @@
 void FollowCamera::Initialize()
 {
 #ifdef _DEBUG
-    shiftDirection_.SetOnChange([&](const Hagine::Vector3&)
+    debug_shiftDirection_.SetOnChange([&](const Hagine::Vector3&)
     {
-        shiftDirection_ = shiftDirection_->Normalize();
+        shiftDirection_ = shiftDirection_.Normalize();
     });
 #else
     isActive_ = true; // デバッグモード以外では常にカメラ制御を有効にする
@@ -62,14 +62,14 @@ void FollowCamera::CameraDataUpdate(const CameraInput::Command& command)
     if (command.isCameraActivationTriggered) return;
 
     // 入力を反映
-    kRotation_->x += command.delta.pitch;
-    kRotation_->y += command.delta.yaw;
+    kRotation_.x += command.delta.pitch;
+    kRotation_.y += command.delta.yaw;
 
     // ピッチを制限する
-    this->PitchClamp(kRotation_->x);
+    this->PitchClamp(kRotation_.x);
 
     // 方向を計算
-    Hagine::Vector3 rotate = { kRotation_->x, kRotation_->y, 0.0f };
+    Hagine::Vector3 rotate = { kRotation_.x, kRotation_.y, 0.0f };
     Hagine::Matrix4x4 rotMatrix = Hagine::MakeRotateXYZMatrix(rotate);
     Hagine::Vector3 direction = Hagine::TransformNormal(shiftDirection_, rotMatrix);
 
@@ -95,7 +95,7 @@ void FollowCamera::CursorFixUpdate()
     SetCursorPos(center.x, center.y);
 }
 
-void FollowCamera::PitchClamp(float& pitch)
+void FollowCamera::PitchClamp(float& pitch) const
 {
-    pitch = std::clamp(pitch, kMinPitch_.Get(), kMaxPitch_.Get());
+    pitch = std::clamp(pitch, kMinPitch_, kMaxPitch_);
 }
