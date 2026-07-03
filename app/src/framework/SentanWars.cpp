@@ -74,4 +74,8 @@ void SentanWars::Draw() {
 #endif // _DEBUG
 
     dxCommon_->PostDraw();
+#ifdef _DEBUG
+    // メインの Present 後に、独立OSウィンドウへ切り離したImGuiウィンドウを描画する
+    imGuiManager_->RenderMultiViewport();
+#endif // _DEBUG
 }
