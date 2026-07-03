@@ -24,7 +24,7 @@ private:
     void CameraActivationUpdate(const CameraInput::Command& command);
     void CameraDataUpdate(const CameraInput::Command& command);
     void CursorFixUpdate();
-    void PitchClamp(float& pitch);
+    void PitchClamp(float& pitch) const;
 
 
     const Hagine::WorldTransform* pTarget_ = nullptr;
