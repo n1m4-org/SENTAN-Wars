@@ -71,18 +71,4 @@
 
     #define EnableDebug(category)
 
-    template <typename ValueType>
-    class GameParameterData
-    {
-    public:
-        GameParameterData(const std::string& id, const std::string& name, ValueType& value) : v_(value) {};
-        GameParameterData(const GameParameterData&) = delete;
-        GameParameterData& operator=(const GameParameterData&) = delete;
-
-        void SetOnChange(OnChangeCallback) { return; }
-
-    private:
-        ValueType& v_ = {};
-    };
-
 #endif

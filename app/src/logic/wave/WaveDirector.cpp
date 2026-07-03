@@ -45,6 +45,7 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
 
 void WaveDirector::RegisterOnChange()
 {
+#ifdef _DEBUG
     debug_goNextWave_.SetOnChange([this](const bool& value)
     {
         if (value)
@@ -53,6 +54,7 @@ void WaveDirector::RegisterOnChange()
             goNextWave_ = false;
         }
     });
+#endif // _DEBUG
 }
 
 void WaveDirector::ChangeToNextWave()
