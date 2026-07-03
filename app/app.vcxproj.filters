@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp">
+      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp">
+      <Filter>src\Character\Enemy\DashEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\NormalEnemy\NormalEnemy.cpp">
+      <Filter>src\Character\Enemy\NormalEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp">
+      <Filter>src\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\TankEnemy\TankEnemy.cpp">
+      <Filter>src\Character\Enemy\TankEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp">
+      <Filter>src\Character\Enemy\TestEnemy</Filter>
+    </ClCompile>
     <ClCompile Include="src\debug\DebugEntry.cpp">
       <Filter>src\debug</Filter>
     </ClCompile>
@@ -22,6 +40,12 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Color.cpp">
       <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\CameraInput.cpp">
+      <Filter>src\presentation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\FollowCamera.cpp">
+      <Filter>src\presentation</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\GameScene.cpp">
       <Filter>src\scene</Filter>
@@ -51,8 +75,14 @@
     <Filter Include="src\math">
       <UniqueIdentifier>{06bc2b22-0749-4bf7-9d78-8b7c29392f7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\presentation">
+      <UniqueIdentifier>{430cdde4-0456-4989-9b58-f351d95067f2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\scene">
       <UniqueIdentifier>{d3f15c00-973d-4e48-ba54-a09988d106de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\system">
+      <UniqueIdentifier>{6599ec27-5028-4116-b16f-2324f182ab2d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\utility">
       <UniqueIdentifier>{7caa8714-9aa2-4d76-99c1-5dd523fcc406}</UniqueIdentifier>
@@ -63,8 +93,41 @@
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Character\Enemy\AssaultEnemy">
+      <UniqueIdentifier>{e666df59-ab44-4e89-968c-34a03f620cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\DashEnemy">
+      <UniqueIdentifier>{b1c95b26-835f-4e84-8178-5a4fb8033164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\NormalEnemy">
+      <UniqueIdentifier>{f6e4efb5-58f2-4230-b3e7-34c390d0c3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\TankEnemy">
+      <UniqueIdentifier>{250f28ee-15e5-44d7-9123-0118cf994efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\TestEnemy">
+      <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h">
+      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\DashEnemy\DashEnemy.h">
+      <Filter>src\Character\Enemy\DashEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\NormalEnemy\NormalEnemy.h">
+      <Filter>src\Character\Enemy\NormalEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\EnemyManager.h">
+      <Filter>src\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\TankEnemy\TankEnemy.h">
+      <Filter>src\Character\Enemy\TankEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h">
+      <Filter>src\Character\Enemy\TestEnemy</Filter>
+    </ClInclude>
     <ClInclude Include="src\debug\DebugEntry.h">
       <Filter>src\debug</Filter>
     </ClInclude>
@@ -80,13 +143,25 @@
     <ClInclude Include="src\math\Color.h">
       <Filter>src\math</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\CameraInput.h">
+      <Filter>src\presentation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\FollowCamera.h">
+      <Filter>src\presentation</Filter>
+    </ClInclude>
     <ClInclude Include="src\scene\GameScene.h">
       <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\ScopedCursorHidden.h">
+      <Filter>src\system</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\strutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\wndutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Player\Player.h">
