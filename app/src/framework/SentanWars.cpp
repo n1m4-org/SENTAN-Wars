@@ -13,7 +13,7 @@ void SentanWars::Initialize() {
    
     // 最初のシーンを予約（シーンは REGISTER_SCENE で自己登録済み）
 #ifdef _DEBUG
-    sceneManager_->NextSceneReservation("TEST");
+    sceneManager_->NextSceneReservation("GAME");
 #else
     sceneManager_->NextSceneReservation("TITLE");
 #endif // _DEBUG
