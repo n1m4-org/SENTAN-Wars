@@ -10,6 +10,12 @@
     <ClCompile Include="src\framework\SentanWars.cpp">
       <Filter>src\framework</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Player\Player.cpp">
+      <Filter>src\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\MoveComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
     </ClCompile>
@@ -33,6 +39,9 @@
     <Filter Include="src\Character">
       <UniqueIdentifier>{c63410bc-b825-4444-86ba-2b82293d5378}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Component">
+      <UniqueIdentifier>{fbb2221b-24cc-46c6-94a9-7f756ff0e340}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\debug">
       <UniqueIdentifier>{18c9de68-3d73-4c72-9556-4717c97b6e91}</UniqueIdentifier>
     </Filter>
@@ -50,6 +59,9 @@
     </Filter>
     <Filter Include="src\Character\Enemy">
       <UniqueIdentifier>{894de092-6fa1-4837-bed9-c072db4f2496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Player">
+      <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">
       <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Player\Player.h">
+      <Filter>src\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Component.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\MoveComponent.h">
+      <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>

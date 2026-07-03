@@ -2,6 +2,9 @@
 #include "BaseScene.h"
 #include <logic/wave/WaveDirector.h>
 
+// application
+#include "Character/Player/Player.h"
+
 /// <summary>
 /// テストシーンのクラス
 /// シーンの設定などを確認するシーン
@@ -72,5 +75,10 @@ private:
     /// ===================================================
     /// private variants
     /// ===================================================
+    
+    // playerの宣言
+	std::unique_ptr<Player> player_ = nullptr;
+
+
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
 };
