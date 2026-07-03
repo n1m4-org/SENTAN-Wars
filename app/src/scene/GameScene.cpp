@@ -29,6 +29,10 @@ void GameScene::Initialize() {
 
     pWaveDirector_ = std::make_unique<WaveDirector>();
     pWaveDirector_->Initialize();
+
+    pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
+    pFollowCamera_->Initialize();
+    pFollowCamera_->SetTarget(player_->GetWorldTransform());
 }
 
 void GameScene::Finalize() {
@@ -42,6 +46,8 @@ void GameScene::Update() {
     /// ===================================================
     /// 更新処理
     /// ===================================================
+
+    pFollowCamera_->Update();
 
     // カメラの更新
     CameraUpdate();

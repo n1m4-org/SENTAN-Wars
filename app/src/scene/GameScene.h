@@ -4,6 +4,7 @@
 
 // application
 #include "Character/Player/Player.h"
+#include <presentation/FollowCamera.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -79,4 +80,5 @@ private:
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
+    std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 };
