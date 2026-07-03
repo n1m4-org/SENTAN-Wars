@@ -23,6 +23,8 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\FollowCamera.cpp" />
+    <ClCompile Include="src\presentation\CameraInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -78,5 +80,9 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\FollowCamera.h" />
+    <ClInclude Include="src\presentation\CameraInput.h" />
+    <ClInclude Include="src\system\ScopedCursorHidden.h" />
+    <ClInclude Include="src\utility\wndutl.h" />
   </ItemGroup>
 </Project>

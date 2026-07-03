@@ -128,6 +128,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Color.cpp" />
+    <ClCompile Include="src\presentation\CameraInput.cpp" />
+    <ClCompile Include="src\presentation\FollowCamera.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
@@ -137,9 +139,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\debug\GameParameter.h" />
     <ClInclude Include="src\framework\SentanWars.h" />
     <ClInclude Include="src\math\Color.h" />
+    <ClInclude Include="src\presentation\CameraInput.h" />
+    <ClInclude Include="src\presentation\FollowCamera.h" />
     <ClInclude Include="src\scene\GameScene.h" />
+    <ClInclude Include="src\system\ScopedCursorHidden.h" />
     <ClInclude Include="src\utility\strutl.h" />
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
+    <ClInclude Include="src\utility\wndutl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
