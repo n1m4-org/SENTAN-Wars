@@ -21,12 +21,12 @@ void MoveComponent::Update() {
     }
 
     // 移動
-    transform_->translation_ += direction * moveSpeed_.Get();
+    transform_->translation_ += direction * moveSpeed_;
 
     // 進行方向へ体を向ける
-    if (faceMoveDirection_.Get()) {
+    if (faceMoveDirection_) {
         const Quaternion target = Quaternion::FromLookRotation(direction, {0.0f, 1.0f, 0.0f});
-        transform_->quateRotation_ = Quaternion::Slerp(transform_->quateRotation_, target, turnLerpRate_.Get());
+        transform_->quateRotation_ = Quaternion::Slerp(transform_->quateRotation_, target, turnLerpRate_);
     }
 }
 
