@@ -15,7 +15,7 @@ void SentanWars::Initialize() {
 #ifdef _DEBUG
     sceneManager_->NextSceneReservation("GAME");
 #else
-    sceneManager_->NextSceneReservation("TITLE");
+    sceneManager_->NextSceneReservation("GAME");
 #endif // _DEBUG
     // -----------------------
 
