@@ -9,6 +9,8 @@ void BaseEnemy::Init(const std::string className)
 	// 仮モデル
 	CreatePrimitiveModel(PrimitiveType::Sphere);
 
+	SetTexture("debug/white1x1.png");
+
 	UniqueInit();
 }
 
