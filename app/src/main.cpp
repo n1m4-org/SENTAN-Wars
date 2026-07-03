@@ -1,14 +1,14 @@
-#include "Core/MyGame.h"
-#include "d3dx12.h"
+#include <imgui.h>
+#include <framework/SentanWars.h>
 
 using namespace Hagine;
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     //_CrtSetBreakAlloc(152);
 
-    std::unique_ptr<Framework> game = std::make_unique<MyGame>();
+    std::unique_ptr<Framework> pGame = std::make_unique<SentanWars>();
 
-    game->Run();
+    pGame->Run();
 
     return 0;
 }

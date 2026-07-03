@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\debug\DebugEntry.cpp">
+      <Filter>src\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debug\DebugEntryManager.cpp">
+      <Filter>src\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\framework\SentanWars.cpp">
+      <Filter>src\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
+      <Filter>src\Character\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="src\math\Color.cpp">
+      <Filter>src\math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\GameScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\strutl.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
+    <Filter Include="src">
+      <UniqueIdentifier>{111b6f8b-783b-4d6e-b9ba-901b8bed7d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character">
+      <UniqueIdentifier>{c63410bc-b825-4444-86ba-2b82293d5378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\debug">
+      <UniqueIdentifier>{18c9de68-3d73-4c72-9556-4717c97b6e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\framework">
+      <UniqueIdentifier>{6be6bdb0-cdf8-44c6-ac5d-2ad3fb64e65e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\math">
+      <UniqueIdentifier>{06bc2b22-0749-4bf7-9d78-8b7c29392f7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\scene">
+      <UniqueIdentifier>{d3f15c00-973d-4e48-ba54-a09988d106de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{7caa8714-9aa2-4d76-99c1-5dd523fcc406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy">
+      <UniqueIdentifier>{894de092-6fa1-4837-bed9-c072db4f2496}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\debug\DebugEntry.h">
+      <Filter>src\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug\DebugEntryManager.h">
+      <Filter>src\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug\GameParameter.h">
+      <Filter>src\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\framework\SentanWars.h">
+      <Filter>src\framework</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\Color.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\GameScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\strutl.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\ViewportUnits.hpp">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
+      <Filter>src\Character\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
