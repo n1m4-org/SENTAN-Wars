@@ -125,6 +125,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\debug\DebugEntry.cpp" />
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
+    <ClCompile Include="src\Character\Player\Player.cpp" />
+    <ClCompile Include="src\Component\MoveComponent.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Color.cpp" />
@@ -142,6 +144,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Character\Player\Player.h" />
+    <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\MoveComponent.h" />
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
