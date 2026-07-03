@@ -11,7 +11,7 @@
     "showAssetBrowserView": false,
     "showDrawSystemView": false,
     "showFPSView": true,
-    "showGizmoView": false,
+    "showGizmoView": true,
     "showHierarchyView": false,
     "showLightView": false,
     "showMotionEditorView": false,

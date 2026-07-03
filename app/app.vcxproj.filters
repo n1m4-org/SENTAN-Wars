@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp">
+      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp">
+      <Filter>src\Character\Enemy\DashEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\NormalEnemy\NormalEnemy.cpp">
+      <Filter>src\Character\Enemy\NormalEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp">
+      <Filter>src\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\TankEnemy\TankEnemy.cpp">
+      <Filter>src\Character\Enemy\TankEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp">
+      <Filter>src\Character\Enemy\TestEnemy</Filter>
+    </ClCompile>
     <ClCompile Include="src\debug\DebugEntry.cpp">
       <Filter>src\debug</Filter>
     </ClCompile>
@@ -9,6 +27,12 @@
     </ClCompile>
     <ClCompile Include="src\framework\SentanWars.cpp">
       <Filter>src\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Player\Player.cpp">
+      <Filter>src\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\MoveComponent.cpp">
+      <Filter>src\Component</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
@@ -31,6 +55,9 @@
     <Filter Include="src\Character">
       <UniqueIdentifier>{c63410bc-b825-4444-86ba-2b82293d5378}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Component">
+      <UniqueIdentifier>{fbb2221b-24cc-46c6-94a9-7f756ff0e340}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\debug">
       <UniqueIdentifier>{18c9de68-3d73-4c72-9556-4717c97b6e91}</UniqueIdentifier>
     </Filter>
@@ -49,8 +76,44 @@
     <Filter Include="src\Character\Enemy">
       <UniqueIdentifier>{894de092-6fa1-4837-bed9-c072db4f2496}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Character\Player">
+      <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\AssaultEnemy">
+      <UniqueIdentifier>{e666df59-ab44-4e89-968c-34a03f620cc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\DashEnemy">
+      <UniqueIdentifier>{b1c95b26-835f-4e84-8178-5a4fb8033164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\NormalEnemy">
+      <UniqueIdentifier>{f6e4efb5-58f2-4230-b3e7-34c390d0c3c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\TankEnemy">
+      <UniqueIdentifier>{250f28ee-15e5-44d7-9123-0118cf994efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Enemy\TestEnemy">
+      <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h">
+      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\DashEnemy\DashEnemy.h">
+      <Filter>src\Character\Enemy\DashEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\NormalEnemy\NormalEnemy.h">
+      <Filter>src\Character\Enemy\NormalEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\EnemyManager.h">
+      <Filter>src\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\TankEnemy\TankEnemy.h">
+      <Filter>src\Character\Enemy\TankEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h">
+      <Filter>src\Character\Enemy\TestEnemy</Filter>
+    </ClInclude>
     <ClInclude Include="src\debug\DebugEntry.h">
       <Filter>src\debug</Filter>
     </ClInclude>
@@ -74,6 +137,15 @@
     </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">
       <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Player\Player.h">
+      <Filter>src\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Component.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\MoveComponent.h">
+      <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
