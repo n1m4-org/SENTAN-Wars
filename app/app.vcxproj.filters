@@ -29,6 +29,12 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp" />
+    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\NormalEnemy\NormalEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\TankEnemy\TankEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -99,5 +105,11 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\Character\Enemy\EnemyManager.h" />
+    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\NormalEnemy\NormalEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\DashEnemy\DashEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\TankEnemy\TankEnemy.h" />
   </ItemGroup>
 </Project>
