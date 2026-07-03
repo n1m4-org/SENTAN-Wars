@@ -16,20 +16,24 @@ void GameScene::Initialize() {
     debugCamera_ = std::make_unique<DebugCamera>();
     debugCamera_->Initialize(&vp_);
 
+    // playerの初期化
+	player_ = std::make_unique<Player>();
+    player_->Init("Player");
+	
+    objectManager_->RegisterExternal(player_.get());
+
     drawSystem_->Register("Test_PreDraw", DrawLayer::kPreEffect, [this](const ViewProjection &vp) {
         spriteManager_->DrawAll();
         objectManager_->Draw(vp);
     });
 
-    enemyManager_ = std::make_unique<EnemyManager>();
-    enemyManager_->Init();
+
 }
 
 void GameScene::Finalize() {
     /// ===================================================
     /// 終了処理
     /// ===================================================
-    enemyManager_->Finalize();
     BaseScene::Finalize();
 }
 
