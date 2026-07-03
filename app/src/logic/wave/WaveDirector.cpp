@@ -5,11 +5,23 @@
 
 void WaveDirector::Initialize()
 {
+    // 初期ウェーブを作成
+    pCurrentWave_ = this->CreateWave(WaveType::General);
 }
 
 void WaveDirector::Update()
 {
 
+}
+
+WaveType WaveDirector::GetWaveType(uint32_t waveIndex) const
+{
+    const uint32_t kBossWaveIndexPerLap = numGeneralWavePerLap_;
+    if (waveIndex % kBossWaveIndexPerLap == 0 && waveIndex != 0)
+    {
+        return WaveType::Boss;
+    }
+    return WaveType::General;
 }
 
 std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
@@ -26,4 +38,23 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
         return nullptr;
         break;
     }
+}
+
+void WaveDirector::RegisterOnChange()
+{
+    debug_goNextWave_.SetOnChange([this](const bool& value)
+    {
+        if (value)
+        {
+            this->ChangeToNextWave();
+            goNextWave_ = false;
+        }
+    });
+}
+
+void WaveDirector::ChangeToNextWave()
+{
+    ++waveIndex_;
+    WaveType nextWaveType = this->GetWaveType(waveIndex_);
+    pCurrentWave_ = this->CreateWave(nextWaveType);
 }
