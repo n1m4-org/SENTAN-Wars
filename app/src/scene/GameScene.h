@@ -1,16 +1,19 @@
 #pragma once
 #include "BaseScene.h"
+#include <logic/wave/WaveDirector.h>
 
 // application
 #include "Character/Player/Player.h"
+#include <presentation/FollowCamera.h>
 #include "Character/Enemy/EnemyManager.h"
 
 /// <summary>
 /// テストシーンのクラス
 /// シーンの設定などを確認するシーン
 /// </summary>
-class GameScene : public Hagine::BaseScene {
-  public:
+class GameScene : public Hagine::BaseScene
+{
+public:
     /// ===================================================
     /// public method
     /// ===================================================
@@ -55,7 +58,7 @@ class GameScene : public Hagine::BaseScene {
     /// </summary>
     void AddParticleSetting() override;
 
-  private:
+private:
     /// ===================================================
     /// private method
     /// ===================================================
@@ -70,13 +73,15 @@ class GameScene : public Hagine::BaseScene {
     /// </summary>
     void ChangeScene();
 
-  private:
+private:
     /// ===================================================
     /// private variants
     /// ===================================================
     
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
+    std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
+    std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 
 	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
 };
