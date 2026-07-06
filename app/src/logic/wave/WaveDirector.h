@@ -35,7 +35,7 @@ public:
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
-    void ChangeToNextWave();
+    void ChangeWaveByIndex(uint32_t index);
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;
