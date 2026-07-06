@@ -22,7 +22,6 @@ void EnemyManager::Init()
 
 void EnemyManager::Update()
 {
-
 }
 
 void EnemyManager::Finalize()
