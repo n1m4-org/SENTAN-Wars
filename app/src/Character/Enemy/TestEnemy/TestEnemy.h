@@ -9,9 +9,4 @@ public:
 
 private:
 	void UniqueInit() override;
-
-	void Move();
-
-	void Attack();
 };
-

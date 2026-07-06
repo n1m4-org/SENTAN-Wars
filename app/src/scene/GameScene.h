@@ -5,6 +5,7 @@
 // application
 #include "Character/Player/Player.h"
 #include <presentation/FollowCamera.h>
+#include "Character/Enemy/EnemyManager.h"
 
 /// <summary>
 /// テストシーンのクラス
@@ -81,4 +82,6 @@ private:
 	std::unique_ptr<Player> player_ = nullptr;
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
     std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
+
+	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
 };
