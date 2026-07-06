@@ -10,7 +10,7 @@ void EnemyManager::Init()
 {
 	EnemyParameterManager::GetInstance(); // 敵パラメータの初期化（1度だけ）
 
-	SetTarget(&testTarget_.Get());
+	SetTarget(&testTarget_);
 
 	std::unique_ptr<BaseEnemy> enemy = std::make_unique<TestEnemy>();
 	enemy->SetTarget(target_);
