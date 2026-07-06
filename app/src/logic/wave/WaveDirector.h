@@ -1,13 +1,9 @@
 #pragma once
+#include "IWave.h"
+#include "WaveType.h"
 #include <debug/GameParameter.h>
 #include <memory>
-#include "IWave.h"
 
-enum class WaveType
-{
-    General,
-    Boss,
-};
 
 /// <summary>
 /// ウェーブの保持し、ウェーブの切り替えを行うクラス
