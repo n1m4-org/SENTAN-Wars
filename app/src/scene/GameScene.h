@@ -3,6 +3,7 @@
 
 // application
 #include "Character/Player/Player.h"
+#include "Character/Enemy/EnemyManager.h"
 
 /// <summary>
 /// テストシーンのクラス
@@ -77,5 +78,5 @@ class GameScene : public Hagine::BaseScene {
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
 
-
+	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
 };

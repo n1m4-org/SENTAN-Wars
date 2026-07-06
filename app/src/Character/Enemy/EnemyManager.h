@@ -1,6 +1,7 @@
 #pragma once
 #include "Camera/ViewProjection/ViewProjection.h"
 #include "BaseEnemy.h"
+#include "Character/Enemy/EnemyParameterManager.h"
 #include <memory>
 #include <list>
 
@@ -21,11 +22,15 @@ public:
 
 	void Finalize();
 
-	void SetTarget(const Hagine::Vector3& target) { target_ = target; }
+	void SetTarget(Hagine::Vector3* target) { target_ = target; }
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemies_;
 
-	Hagine::Vector3 target_ = {};
+	Hagine::Vector3* target_ = nullptr;
+
+	EnableDebug("EnemyTestTarget");
+
+	GameParameter(Hagine::Vector3, testTarget_, 0.1f);
 };
 

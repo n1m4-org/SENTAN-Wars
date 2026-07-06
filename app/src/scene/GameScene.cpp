@@ -27,13 +27,15 @@ void GameScene::Initialize() {
         objectManager_->Draw(vp);
     });
 
-
+	enemyManager_ = std::make_unique<EnemyManager>();
+    enemyManager_->Init();
 }
 
 void GameScene::Finalize() {
     /// ===================================================
     /// 終了処理
     /// ===================================================
+    enemyManager_->Finalize();
     BaseScene::Finalize();
 }
 
@@ -41,6 +43,8 @@ void GameScene::Update() {
     /// ===================================================
     /// 更新処理
     /// ===================================================
+
+    enemyManager_->Update();
 
     // カメラの更新
     CameraUpdate();
