@@ -14,7 +14,7 @@ void WaveDirector::Initialize()
 
 void WaveDirector::Update()
 {
-    
+    pCurrentWave_->Update();
 }
 
 WaveType WaveDirector::GetWaveType(uint32_t waveIndex) const
@@ -50,7 +50,7 @@ void WaveDirector::RegisterOnChange()
     {
         if (value)
         {
-            this->ChangeWaveByIndex(TODO);
+            this->ChangeWaveByIndex(waveIndex_ + 1);
             goNextWave_ = false;
         }
     });
@@ -59,7 +59,13 @@ void WaveDirector::RegisterOnChange()
 
 void WaveDirector::ChangeWaveByIndex(uint32_t index)
 {
+    if (pCurrentWave_)
+    {
+        pCurrentWave_->Exit();
+    }
+
     waveIndex_ = index;
     WaveType nextWaveType = this->GetWaveType(index);
     pCurrentWave_ = this->CreateWave(nextWaveType);
+    pCurrentWave_->Enter(WaveContext{});
 }

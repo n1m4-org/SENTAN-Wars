@@ -1,6 +1,6 @@
 #pragma once
 
-class PhaseChangePresentation
+class PhaseTransitionPresenter
 {
 public:
     void Update();

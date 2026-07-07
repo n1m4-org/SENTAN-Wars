@@ -60,6 +60,7 @@
       <Filter>src\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
+    <ClCompile Include="src\logic\wave\BossWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -203,6 +204,10 @@
     <ClInclude Include="src\logic\phase\IPhase.h" />
     <ClInclude Include="src\logic\phase\PhaseType.h" />
     <ClInclude Include="src\logic\wave\WaveType.h" />
-    <ClInclude Include="src\logic\phase\PhaseChangePresentation.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h" />
+    <ClInclude Include="src\logic\phase\BattlePhase.h" />
+    <ClInclude Include="src\logic\phase\SetupPhase.h" />
+    <ClInclude Include="src\logic\phase\BossPhase.h" />
   </ItemGroup>
 </Project>

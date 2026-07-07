@@ -28,10 +28,14 @@ public:
     /// <returns>ウェーブ基底クラス</returns>
     IWave* GetCurrentWave() const { return pCurrentWave_.get(); }
 
+    /// <summary>
+    /// ウェーブをインデックス指定で切り替え
+    /// </summary>
+    void ChangeWaveByIndex(uint32_t index);
+
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
-    void ChangeWaveByIndex(uint32_t index);
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;

@@ -2,7 +2,8 @@
 
 enum class PhaseType
 {
+    None,
+    Battle,
     Setup,
-    Buttle,
     Boss,
 };
