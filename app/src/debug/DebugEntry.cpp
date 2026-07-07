@@ -25,10 +25,11 @@ void DebugEntry::ImGui()
     {
         // カスタム GUI 関数の呼び出し
         // BeginChild で子ウィンドウを作成し、その中でカスタム GUI を描画する
-        ImGui::SeparatorText(name.c_str());
-        ImGui::BeginChild(name.c_str(), ImVec2(0, 0), true);
-        func();
-        ImGui::EndChild();
+        if (ImGui::TreeNode(name.c_str()))
+        {
+            func();
+            ImGui::TreePop();
+        }
     }
 
     for (auto& [name, data] : parameters_)

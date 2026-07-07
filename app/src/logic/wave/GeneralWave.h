@@ -2,6 +2,8 @@
 
 #include "IWave.h"
 #include <cstdint>
+#include <logic/phase/PhaseDirector.h>
+#include <memory>
 
 class GeneralWave : public IWave
 {
@@ -17,6 +19,9 @@ public:
     void Update() override;
 
 
+    void Draw() override;
+
+
     uint32_t GetWaveIndex() const override { return waveIndex_; }
 
 
@@ -27,4 +32,5 @@ public:
 
 private:
     uint32_t waveIndex_;
+    std::unique_ptr<PhaseDirector> pPhaseDirector_;
 };
