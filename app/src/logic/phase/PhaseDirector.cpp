@@ -71,6 +71,8 @@ std::unique_ptr<IPhase> PhaseDirector::CreatePhase(PhaseType type)
 
 void PhaseDirector::RegisterOnChange()
 {
+#ifdef _DEBUG
+
     debug_goSetupPhase.SetOnChange([this](const bool& value)
     {
         if (value)
@@ -97,10 +99,14 @@ void PhaseDirector::RegisterOnChange()
             goBossPhase = false;
         }
     });
+
+#endif // _DEBUG
 }
 
 void PhaseDirector::RegisterCustomGuiFunctions()
 {
+#ifdef _DEBUG
+
     auto funcTransitionValidator = [this]()
     {
         bool bypass = pTransitionValidator_->IsBypass();
@@ -108,4 +114,6 @@ void PhaseDirector::RegisterCustomGuiFunctions()
         pTransitionValidator_->Bypass(bypass);
     };
     debugEntry.RegisterCustomGuiFunction("Transition Validator", funcTransitionValidator);
+
+#endif // _DEBUG
 }
