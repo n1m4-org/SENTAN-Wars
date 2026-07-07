@@ -40,6 +40,12 @@
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="src\logic\phase\PhaseDirector.cpp">
+      <Filter>src\logic\phase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logic\wave\BossWave.cpp">
+      <Filter>src\logic\wave</Filter>
+    </ClCompile>
     <ClCompile Include="src\logic\wave\GeneralWave.cpp">
       <Filter>src\logic\wave</Filter>
     </ClCompile>
@@ -62,8 +68,6 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
-    <ClCompile Include="src\logic\wave\BossWave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -104,6 +108,9 @@
     </Filter>
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\logic\phase">
+      <UniqueIdentifier>{44b82193-5152-4ae5-b59b-363cd7a46438}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\logic\wave">
       <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
@@ -161,6 +168,30 @@
     <ClInclude Include="src\framework\SentanWars.h">
       <Filter>src\framework</Filter>
     </ClInclude>
+    <ClInclude Include="src\logic\phase\BattlePhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\BossPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\IPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseDirector.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseType.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\SetupPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
     <ClInclude Include="src\logic\wave\BossWave.h">
       <Filter>src\logic\wave</Filter>
     </ClInclude>
@@ -171,6 +202,9 @@
       <Filter>src\logic\wave</Filter>
     </ClInclude>
     <ClInclude Include="src\logic\wave\WaveDirector.h">
+      <Filter>src\logic\wave</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\wave\WaveType.h">
       <Filter>src\logic\wave</Filter>
     </ClInclude>
     <ClInclude Include="src\math\Color.h">
@@ -209,14 +243,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\logic\phase\PhaseDirector.h" />
-    <ClInclude Include="src\logic\phase\IPhase.h" />
-    <ClInclude Include="src\logic\phase\PhaseType.h" />
-    <ClInclude Include="src\logic\wave\WaveType.h" />
-    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h" />
-    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h" />
-    <ClInclude Include="src\logic\phase\BattlePhase.h" />
-    <ClInclude Include="src\logic\phase\SetupPhase.h" />
-    <ClInclude Include="src\logic\phase\BossPhase.h" />
   </ItemGroup>
 </Project>
