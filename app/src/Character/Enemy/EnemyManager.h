@@ -22,15 +22,21 @@ public:
 
 	void Finalize();
 
-	void SetTarget(Hagine::Vector3* target) { target_ = target; }
+	void SetTarget(Hagine::Vector3* target, float* radius)
+	{ 
+		target_ = target;
+		targetRadius_ = radius;
+	}
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemies_;
 
 	Hagine::Vector3* target_ = nullptr;
+	float* targetRadius_ = nullptr;
 
 	EnableDebug("EnemyTestTarget");
 
-	GameParameter(Hagine::Vector3, testTarget_, 0.1f);
+	GameParameter(Hagine::Vector3, testTarget_, Hagine::Vector3(5.0f, 0.0f, 5.0f));
+	GameParameter(float, testTargetRadius_, 1.0f);
 };
 

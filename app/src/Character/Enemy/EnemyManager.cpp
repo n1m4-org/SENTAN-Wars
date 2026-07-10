@@ -10,14 +10,13 @@ void EnemyManager::Init()
 {
 	EnemyParameterManager::GetInstance(); // 敵パラメータの初期化（1度だけ）
 
-	SetTarget(&testTarget_);
+	SetTarget(&testTarget_, &testTargetRadius_);
 
 	std::unique_ptr<BaseEnemy> enemy = std::make_unique<TestEnemy>();
-	enemy->SetTarget(target_);
+	enemy->SetTarget(target_, targetRadius_);
 	enemy->Init("TestEnemy");
 	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
 	enemies_.push_back(std::move(enemy));
-
 }
 
 void EnemyManager::Update()
