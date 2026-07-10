@@ -1,6 +1,7 @@
 #include "Utility/Scene/SceneManager.h"
 #include "GameScene.h"
 #include"Utility/Scene/SceneRegistry.h"
+#include "Character/Enemy/EnemyManager.h"
 
 REGISTER_SCENE("GAME", GameScene)
 
