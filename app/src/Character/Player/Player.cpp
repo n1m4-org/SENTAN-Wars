@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Component/JumpComponent.h"
 #include "Component/MoveComponent.h"
 #include "Component/SentanComponent.h"
 using namespace Hagine;
@@ -13,6 +14,9 @@ void Player::Init(const std::string className) {
     // --- コンポーネントの登録 ---
     // 移動コンポーネント
     AddComponent<MoveComponent>(GetWorldTransform());
+
+    // ジャンプコンポーネント
+    AddComponent<JumpComponent>(GetWorldTransform());
 
     // SENTANコンポーネント
     AddComponent<SentanComponent>(this);
