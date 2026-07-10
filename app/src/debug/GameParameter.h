@@ -5,14 +5,15 @@
 #include <functional>
 #include <string>
 
-#define GameParameter(type, name, value)\
-    GameParameterData<type> name{std::source_location::current().file_name(), #name, value}
-
 #ifdef _DEBUG
+
+#define GameParameter(type, name, value)\
+    type name = value; \
+    GameParameterData<type> debug_##name{std::source_location::current().file_name(), #name, name}
 
 #define GameParameterView(type, name, value) \
     type name = value; \
-    GameParameterViewData<type> view_##name{std::source_location::current().file_name(), #name, &name}
+    GameParameterViewData<type> debug_view_##name{std::source_location::current().file_name(), #name, &name}
 
     #define EnableDebug(category) DebugEntry debugEntry{ std::source_location::current().file_name(), category }
 
@@ -25,8 +26,8 @@
         GameParameterData(
             const std::string& id,
             const std::string& name,
-            ValueType&& value = {})
-            : v_(std::move(value))
+            ValueType& value)
+            : v_(value)
         {
             DebugEntryManager::GetInstance()->HandleParameter(id, name, &v_, [this]()
             {
@@ -40,24 +41,10 @@
         GameParameterData(const GameParameterData&) = delete;
         GameParameterData& operator=(const GameParameterData&) = delete;
 
-        ValueType& operator=(const ValueType& newValue)
-        {
-            v_ = newValue;
-            return v_;
-        }
-        operator ValueType& () { return v_; }
-        operator const ValueType& () const { return v_; }
-        ValueType* operator-> () { return &v_; }    
-        const ValueType* operator-> () const { return &v_; }
-
-        ValueType* GetPtr() { return &v_; }
-        ValueType& Get() { return v_; }
-        const ValueType& Get() const { return v_; }
-
         void SetOnChange(OnChangeCallback cb) { onChange_ = std::move(cb); }
 
     private:
-        ValueType v_ = {};
+        ValueType& v_ = {};
         OnChangeCallback onChange_;
     };
 
@@ -76,31 +63,12 @@
 
 
 #else
+    #define GameParameter(type, name, value)\
+        type name = value;
+
     #define GameParameterView(type, name, value) \
         type name = value;
-    #define EnableDebug(category)
 
-    template <typename ValueType>
-    class GameParameterData
-    {
-    public:
-        GameParameterData(const std::string&, const std::string&, ValueType&& value = {}) : v_(std::move(value)) {}
-        GameParameterData(const GameParameterData&) = delete;
-        GameParameterData& operator=(const GameParameterData&) = delete;
-        ValueType& operator=(const ValueType& newValue)
-        {
-            v_ = newValue;
-            return v_;
-        }
-        operator ValueType& () { return v_; }
-        operator const ValueType& () const { return v_; }
-        ValueType* operator-> () { return &v_; }
-        const ValueType* operator-> () const { return &v_; }
-        ValueType* GetPtr() { return &v_; }
-        ValueType& Get() { return v_; }
-        const ValueType& Get() const { return v_; }
-    private:
-        ValueType v_ = {};
-    };
+    #define EnableDebug(category)
 
 #endif

@@ -1,14 +1,9 @@
 #pragma once
 #include <3d/Object/Base/BaseObject.h>
+#include "debug/GameParameter.h"
+#include "Component/EnemyMoveComponent.h"
+#include "Character/Enemy/EnemyParameterManager.h"
 
-struct EnemyStatus
-{
-	int cost = 0;
-	float hp = 0.0f;
-	float power = 0.0f;
-	float movementSpeed = 0.0f;
-	float attackRange = 0.0f;
-};
 
 class BaseEnemy
 	: public Hagine::BaseObject
@@ -18,9 +13,11 @@ public:
 
 	void Update() override;
 
-	void SetTarget(const Hagine::Vector3& target) { target_ = target; }
+	void SetTarget(Hagine::Vector3* target) { target_ = target; }
 
 protected:
+	void SetTypeParameter(EnemyType type);
+
 	/// <summary>
 	/// 固有初期化処理
 	/// </summary>
@@ -31,8 +28,14 @@ protected:
 	/// </summary>
 	virtual void UniqueUpdate() {};
 
-	EnemyStatus status_;
+	// 敵のステータス
+	EnemyParameter parameter_ = {};
 
-	Hagine::Vector3 target_ = {};
+	EnemyType type_ = EnemyType::Normal;
+
+	Hagine::Vector3* target_ = nullptr;
+
+	// 敵の移動コンポーネント
+	std::unique_ptr<EnemyMoveComponent> moveComponent_ = nullptr;
 };
 

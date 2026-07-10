@@ -1,7 +1,6 @@
 #include "Utility/Scene/SceneManager.h"
 #include "GameScene.h"
 #include"Utility/Scene/SceneRegistry.h"
-#include <src/Character/Enemy/EnemyManager.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -27,13 +26,21 @@ void GameScene::Initialize() {
         objectManager_->Draw(vp);
     });
 
+	enemyManager_ = std::make_unique<EnemyManager>();
+    enemyManager_->Init();
+    pWaveDirector_ = std::make_unique<WaveDirector>();
+    pWaveDirector_->Initialize();
 
+    pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
+    pFollowCamera_->Initialize(winApp_);
+    pFollowCamera_->SetTarget(player_->GetWorldTransform());
 }
 
 void GameScene::Finalize() {
     /// ===================================================
     /// 終了処理
     /// ===================================================
+    enemyManager_->Finalize();
     BaseScene::Finalize();
 }
 
@@ -41,6 +48,10 @@ void GameScene::Update() {
     /// ===================================================
     /// 更新処理
     /// ===================================================
+
+    pFollowCamera_->Update();
+
+    enemyManager_->Update();
 
     // カメラの更新
     CameraUpdate();
