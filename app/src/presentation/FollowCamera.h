@@ -8,11 +8,14 @@
 #include <type/Vector3.h>
 #include <type/Vector2.h>
 
+namespace Hagine { class WinApp; }
+
 class FollowCamera
 {
 public:
     FollowCamera(Hagine::ViewProjection& vp) : vp_(vp) {}
-    void Initialize();
+    // winApp: Framework が所有するウィンドウ（DI で受け取る）
+    void Initialize(Hagine::WinApp* winApp);
     void Update();
 
     void SetTarget(const Hagine::WorldTransform* pTarget) { pTarget_ = pTarget; }
@@ -32,6 +35,9 @@ private:
     /// Components
     std::unique_ptr<CameraInput> pCameraInput_ = nullptr;
     std::unique_ptr<ScopedCursorHidden> pCursorHidden_ = nullptr;
+
+    // 所有せず参照のみ（Framework が所有）
+    Hagine::WinApp* pWinApp_ = nullptr;
 
     
     EnableDebug("Follow Camera");
