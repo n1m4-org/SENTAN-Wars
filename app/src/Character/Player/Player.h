@@ -6,8 +6,8 @@
 #include <utility>
 #include <vector>
 
-/// 本体は機能を持たず、振る舞いは汎用Component派生に分割する（コンポーネント指向）
-/// 各コンポーネントには「必要な物だけ」を注入する
+/// 本体は機能を持たず、振る舞いは汎用Component派生に分割する
+/// 各コンポーネントには「必要な物だけ」を挿入するイメージ
 class Player : public Hagine::BaseObject {
   public:
     void Init(const std::string className) override;
@@ -19,7 +19,7 @@ class Player : public Hagine::BaseObject {
   private:
     /// コンポーネントを生成して登録する
     /// 生成時の必須依存はそのまま args として派生コンポーネントのコンストラクタへ渡す
-    /// 生成したコンポーネント（所有権はPlayerが保持。呼び出し側は参照だけ使う）
+    /// 生成したコンポーネント（所有権はPlayerが保持しており、呼び出し側は参照だけ使う）
     template <class T, class... Args>
     T *AddComponent(Args &&...args) {
         static_assert(std::is_base_of_v<Component, T>, "T must derive from Component");

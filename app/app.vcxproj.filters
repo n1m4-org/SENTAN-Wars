@@ -34,7 +34,13 @@
     <ClCompile Include="src\Character\Player\Player.cpp">
       <Filter>src\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\MoveComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\SentanComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
@@ -102,6 +108,9 @@
     </Filter>
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Player\Sentan">
+      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\logic\wave">
       <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
@@ -198,10 +207,19 @@
     <ClInclude Include="src\Character\Player\Player.h">
       <Filter>src\Character\Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\Component.h">
       <Filter>src\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\AttributeComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\MoveComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\SentanComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">

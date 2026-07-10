@@ -133,7 +133,9 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
     <ClCompile Include="src\Character\Player\Player.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp" />
     <ClCompile Include="src\Component\MoveComponent.cpp" />
+    <ClCompile Include="src\Component\SentanComponent.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
     <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
@@ -172,8 +174,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character\Player\Player.h" />
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h" />
     <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\AttributeComponent.h" />
     <ClInclude Include="src\Component\MoveComponent.h" />
+    <ClInclude Include="src\Component\SentanComponent.h" />
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
