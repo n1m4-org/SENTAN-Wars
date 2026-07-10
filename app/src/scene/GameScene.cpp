@@ -33,7 +33,7 @@ void GameScene::Initialize() {
     pWaveDirector_->Initialize();
 
     pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
-    pFollowCamera_->Initialize();
+    pFollowCamera_->Initialize(winApp_);
     pFollowCamera_->SetTarget(player_->GetWorldTransform());
 }
 

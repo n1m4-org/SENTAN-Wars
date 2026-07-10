@@ -1,13 +1,9 @@
 #pragma once
+#include "IWave.h"
+#include "WaveType.h"
 #include <debug/GameParameter.h>
 #include <memory>
-#include "IWave.h"
 
-enum class WaveType
-{
-    General,
-    Boss,
-};
 
 /// <summary>
 /// ウェーブの保持し、ウェーブの切り替えを行うクラス
@@ -32,10 +28,14 @@ public:
     /// <returns>ウェーブ基底クラス</returns>
     IWave* GetCurrentWave() const { return pCurrentWave_.get(); }
 
+    /// <summary>
+    /// ウェーブをインデックス指定で切り替え
+    /// </summary>
+    void ChangeWaveByIndex(uint32_t index);
+
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
-    void ChangeToNextWave();
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;

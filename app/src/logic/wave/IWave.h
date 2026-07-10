@@ -13,6 +13,7 @@ public:
     virtual void Enter(const WaveContext& ctx) = 0;
     virtual void Exit() = 0;
     virtual void Update() = 0;
+    virtual void Draw() = 0;
 
     /// ウェーブのインデックス (カウントなどに使える)
     virtual uint32_t GetWaveIndex() const = 0;
