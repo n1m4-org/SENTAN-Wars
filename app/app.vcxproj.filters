@@ -65,10 +65,12 @@
     <ClCompile Include="src\scene\GameScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\scene\TitleScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -220,6 +222,9 @@
     <ClInclude Include="src\scene\GameScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\scene\TitleScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\system\ScopedCursorHidden.h">
       <Filter>src\system</Filter>
     </ClInclude>
@@ -244,6 +249,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\scene\TitleScene.h" />
   </ItemGroup>
 </Project>
