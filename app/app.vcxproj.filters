@@ -118,9 +118,6 @@
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Character\Player\Sentan">
-      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\logic\phase">
       <UniqueIdentifier>{44b82193-5152-4ae5-b59b-363cd7a46438}</UniqueIdentifier>
     </Filter>
@@ -141,6 +138,9 @@
     </Filter>
     <Filter Include="src\Character\Enemy\TestEnemy">
       <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character\Player\Sentan">
+      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
