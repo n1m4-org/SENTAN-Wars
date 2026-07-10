@@ -7,8 +7,10 @@
 #include <type/Matrix4x4.h>
 #include <Math/MyMath.h>
 
-void FollowCamera::Initialize()
+void FollowCamera::Initialize(Hagine::WinApp* winApp)
 {
+    pWinApp_ = winApp;
+
 #ifdef _DEBUG
     debug_shiftDirection_.SetOnChange([&](const Hagine::Vector3&)
     {
@@ -18,7 +20,7 @@ void FollowCamera::Initialize()
     isActive_ = true; // デバッグモード以外では常にカメラ制御を有効にする
 #endif // _DEBUG
 
-    pCameraInput_ = std::make_unique<CameraInput>();
+    pCameraInput_ = std::make_unique<CameraInput>(pWinApp_);
 }
 
 void FollowCamera::Update()
@@ -89,9 +91,9 @@ void FollowCamera::CursorFixUpdate()
 {
     if (!pCursorHidden_ || !isActive_) return;
 
-    auto center = utl::window::GetCenterOfWindow();
+    auto center = utl::window::GetCenterOfWindow(pWinApp_->GetHwnd());
 
-    ClientToScreen(Hagine::WinApp::GetInstance()->GetHwnd(), &center);
+    ClientToScreen(pWinApp_->GetHwnd(), &center);
     SetCursorPos(center.x, center.y);
 }
 
