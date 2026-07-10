@@ -77,6 +77,9 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component\JumpComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -266,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\JumpComponent.h">
+      <Filter>src\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
