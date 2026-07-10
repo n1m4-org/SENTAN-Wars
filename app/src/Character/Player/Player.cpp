@@ -8,7 +8,7 @@ void Player::Init(const std::string className) {
 
     // モデルの読み込み
     CreatePrimitiveModel(PrimitiveType::Cube);
-	SetTexture("Debug/white1x1.png");
+	SetTexture("debug/white1x1.png");
 
     // --- コンポーネントの登録 ---
     // 移動コンポーネント

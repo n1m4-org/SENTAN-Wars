@@ -6,7 +6,7 @@ void Sentan::Init(const std::string className) {
 
     // モデルの読み込み
     CreateModel("Character/player/Sentan/Fork.obj");
-    SetTexture("Debug/white1x1.png");
+    SetTexture("debug/white1x1.png");
 
     // --- コンポーネントの登録 ---
     // SENTANのType(属性)コンポーネント
