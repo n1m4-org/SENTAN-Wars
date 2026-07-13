@@ -1,6 +1,6 @@
 #pragma once
 #include "../BaseEnemy.h"
-#include "Component/RamAttackComponent.h"
+#include "Component/AssaultAttackComponent.h"
 
 #include <memory>
 
@@ -14,5 +14,8 @@ private:
 	void UniqueInit() override;
 
 	// 敵の攻撃コンポーネント
-	std::unique_ptr<RamAttackComponent> attackComponent_ = nullptr;
+	std::unique_ptr<AssaultAttackComponent> attackComponent_ = nullptr;
+
+	//
+	std::unique_ptr<Hagine::BaseObject> bulletObject_ = nullptr;
 };

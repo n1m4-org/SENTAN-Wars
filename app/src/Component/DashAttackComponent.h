@@ -9,9 +9,7 @@ namespace Hagine
     class ViewProjection;
 } // namespace Hagine
 
-//  TODO: 攻撃中は押し戻し処理をオフにする
-
-class LeapAttackComponent : public Component
+class DashAttackComponent : public Component
 {
 public:
     /// 必要な物はコンストラクタで受け取る
@@ -23,7 +21,7 @@ public:
     /// <param name="attackRange">所有者の攻撃範囲</param>
     /// <param name="target">ターゲットの座標</param>
     /// <param name="radius">ターゲットの半径</param>
-    explicit LeapAttackComponent(Hagine::WorldTransform* transform, float* attackRange, Hagine::Vector3* target, float* radius)
+    explicit DashAttackComponent(Hagine::WorldTransform* transform, float* attackRange, Hagine::Vector3* target, float* radius)
         : transform_(transform), attackRange_(attackRange), target_(target), radius_(radius)
     {}
 
@@ -31,7 +29,7 @@ public:
 
 private:
     // GameParameterの登録先となるデバッグエントリ
-    EnableDebug("LeapAttack");
+    EnableDebug("DashAttack");
 
     // ==== 注入された依存（所有はしない・参照するだけ） ====
     Hagine::WorldTransform* transform_ = nullptr;
@@ -46,6 +44,7 @@ private:
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
     GameParameter(float, attackTimer_, 0.0f);
-    GameParameter(float, attackTime_, 1.0f);
-    GameParameter(float, coolTime_, 3.5f);
+    GameParameter(float, attackTime_, 0.5f);
+    GameParameter(float, coolTime_, 2.5f);
 };
+

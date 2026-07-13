@@ -17,7 +17,7 @@ void RamAttackComponent::Update()
 			// イージング
 			auto easeInOutCubic = [&]()
 				{
-					progress = progress < 0.5f ? 4.0f * progress * progress * progress : 1.0f - std::pow(-2.0f * progress + 2.0f, 3) / 2.0f;
+					progress = progress < 0.5f ? 4.0f * progress * progress * progress : 1.0f - std::pow(-2.0f * progress + 2.0f, 3.0f) / 2.0f;
 				};
 
 			easeInOutCubic();

@@ -29,6 +29,7 @@ public:
 	}
 
 private:
+
 	std::list<std::unique_ptr<BaseEnemy>> enemies_;
 
 	Hagine::Vector3* target_ = nullptr;

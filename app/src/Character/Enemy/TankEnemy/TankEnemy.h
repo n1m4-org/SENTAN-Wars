@@ -13,4 +13,3 @@ private:
 	// 敵の攻撃コンポーネント
 	std::unique_ptr<LeapAttackComponent> attackComponent_ = nullptr;
 };
-
