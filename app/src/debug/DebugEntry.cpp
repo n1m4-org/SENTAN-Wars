@@ -24,7 +24,6 @@ void DebugEntry::ImGui()
     for (auto& [name, func] : customGuiFunctions_)
     {
         // カスタム GUI 関数の呼び出し
-        // BeginChild で子ウィンドウを作成し、その中でカスタム GUI を描画する
         if (ImGui::TreeNode(name.c_str()))
         {
             func();
@@ -187,4 +186,14 @@ void DebugEntry::ImGui()
     }
 
 #endif // _DEBUG
+}
+
+void DebugEntry::SetCategory(const std::string& category)
+{
+    // カテゴリが変更された場合のみ
+    if (category_ == category) return;
+
+    // カテゴリ変更を通知
+    DebugEntryManager::GetInstance()->MoveCategory(this, category, category_);
+    category_ = category;
 }

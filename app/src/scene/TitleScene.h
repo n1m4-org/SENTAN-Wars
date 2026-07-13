@@ -1,6 +1,8 @@
 #pragma once
 #include "BaseScene.h"
-
+#include <array>
+#include <memory>
+#include <Sprite.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -54,22 +56,9 @@ public:
     void AddParticleSetting() override;
 
 private:
-    /// ===================================================
-    /// private method
-    /// ===================================================
+    enum class SpriteName { Logo, Prompt, kSize };
+    std::unique_ptr<Hagine::Sprite>& GetSprite(SpriteName name) { return sprites_[static_cast<size_t>(name)]; }
+    void SpriteInitialize();
 
-    /// <summary>
-    /// カメラを更新
-    /// </summary>
-    void CameraUpdate();
-
-    /// <summary>
-    /// シーン遷移を実行
-    /// </summary>
-    void ChangeScene();
-
-private:
-    /// ===================================================
-    /// private variants
-    /// ===================================================
+    std::array<std::unique_ptr<Hagine::Sprite>, static_cast<size_t>(SpriteName::kSize)> sprites_;
 };

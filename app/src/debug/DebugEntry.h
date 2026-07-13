@@ -60,6 +60,7 @@ public:
 
 
     const std::string& GetCategory() const { return category_; }
+    void SetCategory(const std::string& category);
 
 private:
     std::unordered_map<std::string, ParameterData> parameters_;
