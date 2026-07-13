@@ -15,7 +15,7 @@ private:
 	// 敵の攻撃コンポーネント
 	std::unique_ptr<AssaultAttackComponent> attackComponent_ = nullptr;
 
-	//
+	// 弾オブジェクト
 	std::unique_ptr<Hagine::BaseObject> bulletObject_ = nullptr;
 };
 
