@@ -1,7 +1,7 @@
 #include "Utility/Scene/SceneManager.h"
 #include "GameScene.h"
 #include"Utility/Scene/SceneRegistry.h"
-#include <src/Character/Enemy/EnemyManager.h>
+#include "Character/Enemy/EnemyManager.h"
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -33,7 +33,7 @@ void GameScene::Initialize() {
     pWaveDirector_->Initialize();
 
     pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
-    pFollowCamera_->Initialize();
+    pFollowCamera_->Initialize(winApp_);
     pFollowCamera_->SetTarget(player_->GetWorldTransform());
 }
 

@@ -42,5 +42,6 @@ protected:
 
 	// 敵の移動コンポーネント
 	std::unique_ptr<EnemyMoveComponent> moveComponent_ = nullptr;
+
 };
 

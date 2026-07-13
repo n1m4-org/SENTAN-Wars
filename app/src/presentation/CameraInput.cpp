@@ -7,7 +7,7 @@
 
 void CameraInput::Update()
 {
-    POINT pointCenter = utl::window::GetCenterOfWindow();
+    POINT pointCenter = utl::window::GetCenterOfWindow(pWinApp_->GetHwnd());
     Hagine::Vector2 center = { static_cast<float>(pointCenter.x), static_cast<float>(pointCenter.y) };
 
     /// パッド入力 

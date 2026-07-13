@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\Component\JumpComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\EnemyMoveComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
@@ -34,11 +37,23 @@
     <ClCompile Include="src\Character\Player\Player.cpp">
       <Filter>src\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\MoveComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\SentanComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logic\phase\PhaseDirector.cpp">
+      <Filter>src\logic\phase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\logic\wave\BossWave.cpp">
+      <Filter>src\logic\wave</Filter>
     </ClCompile>
     <ClCompile Include="src\logic\wave\GeneralWave.cpp">
       <Filter>src\logic\wave</Filter>
@@ -57,6 +72,9 @@
       <Filter>src\presentation</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\GameScene.cpp">
+      <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\TitleScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\strutl.cpp">
@@ -107,6 +125,9 @@
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\logic\phase">
+      <UniqueIdentifier>{44b82193-5152-4ae5-b59b-363cd7a46438}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\logic\wave">
       <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
     </Filter>
@@ -125,8 +146,14 @@
     <Filter Include="src\Character\Enemy\TestEnemy">
       <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Character\Player\Sentan">
+      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\JumpComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
     <ClInclude Include="src\Character\Enemy\EnemyParameterManager.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
@@ -163,6 +190,30 @@
     <ClInclude Include="src\framework\SentanWars.h">
       <Filter>src\framework</Filter>
     </ClInclude>
+    <ClInclude Include="src\logic\phase\BattlePhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\BossPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\IPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseDirector.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\PhaseType.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\phase\SetupPhase.h">
+      <Filter>src\logic\phase</Filter>
+    </ClInclude>
     <ClInclude Include="src\logic\wave\BossWave.h">
       <Filter>src\logic\wave</Filter>
     </ClInclude>
@@ -175,6 +226,9 @@
     <ClInclude Include="src\logic\wave\WaveDirector.h">
       <Filter>src\logic\wave</Filter>
     </ClInclude>
+    <ClInclude Include="src\logic\wave\WaveType.h">
+      <Filter>src\logic\wave</Filter>
+    </ClInclude>
     <ClInclude Include="src\math\Color.h">
       <Filter>src\math</Filter>
     </ClInclude>
@@ -185,6 +239,9 @@
       <Filter>src\presentation</Filter>
     </ClInclude>
     <ClInclude Include="src\scene\GameScene.h">
+      <Filter>src\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\TitleScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="src\system\ScopedCursorHidden.h">
@@ -202,10 +259,19 @@
     <ClInclude Include="src\Character\Player\Player.h">
       <Filter>src\Character\Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\Component.h">
       <Filter>src\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\AttributeComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\MoveComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\SentanComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">

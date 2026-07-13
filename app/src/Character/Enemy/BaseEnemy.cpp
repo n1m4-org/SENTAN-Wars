@@ -15,6 +15,7 @@ void BaseEnemy::Init(const std::string className)
 
 	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed, targetRadius_);
 	moveComponent_->Init();
+
 }
 
 void BaseEnemy::Update()

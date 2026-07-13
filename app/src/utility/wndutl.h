@@ -1,13 +1,13 @@
 #pragma once
 #include <Windows.h>
-#include <WinApp.h>
 
 namespace utl::window
 {
-    inline POINT GetCenterOfWindow()
+    // ウィンドウのクライアント中心座標（クライアント座標系）を返す
+    inline POINT GetCenterOfWindow(HWND hwnd)
     {
         RECT windowRect;
-        GetClientRect(Hagine::WinApp::GetInstance()->GetHwnd(), &windowRect);
+        GetClientRect(hwnd, &windowRect);
         POINT center = {
             (windowRect.left + windowRect.right) / 2,
             (windowRect.top + windowRect.bottom) / 2

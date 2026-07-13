@@ -122,6 +122,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Component\JumpComponent.cpp" />
     <ClCompile Include="src\Component\AssaultAttackComponent.cpp" />
     <ClCompile Include="src\Component\DashAttackComponent.cpp" />
     <ClCompile Include="src\Component\LeapAttackComponent.cpp" />
@@ -137,8 +138,12 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
     <ClCompile Include="src\Character\Player\Player.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp" />
     <ClCompile Include="src\Component\MoveComponent.cpp" />
+    <ClCompile Include="src\Component\SentanComponent.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
+    <ClCompile Include="src\logic\wave\BossWave.cpp" />
     <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
     <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -146,9 +151,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\presentation\CameraInput.cpp" />
     <ClCompile Include="src\presentation\FollowCamera.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
+    <ClCompile Include="src\scene\TitleScene.cpp" />
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\JumpComponent.h" />
     <ClInclude Include="src\Component\AssaultAttackComponent.h" />
     <ClInclude Include="src\Component\DashAttackComponent.h" />
     <ClInclude Include="src\Component\LeapAttackComponent.h" />
@@ -165,14 +172,24 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\debug\DebugEntryManager.h" />
     <ClInclude Include="src\debug\GameParameter.h" />
     <ClInclude Include="src\framework\SentanWars.h" />
+    <ClInclude Include="src\logic\phase\BattlePhase.h" />
+    <ClInclude Include="src\logic\phase\BossPhase.h" />
+    <ClInclude Include="src\logic\phase\IPhase.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h" />
+    <ClInclude Include="src\logic\phase\PhaseDirector.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h" />
+    <ClInclude Include="src\logic\phase\PhaseType.h" />
+    <ClInclude Include="src\logic\phase\SetupPhase.h" />
     <ClInclude Include="src\logic\wave\BossWave.h" />
     <ClInclude Include="src\logic\wave\GeneralWave.h" />
     <ClInclude Include="src\logic\wave\IWave.h" />
     <ClInclude Include="src\logic\wave\WaveDirector.h" />
+    <ClInclude Include="src\logic\wave\WaveType.h" />
     <ClInclude Include="src\math\Color.h" />
     <ClInclude Include="src\presentation\CameraInput.h" />
     <ClInclude Include="src\presentation\FollowCamera.h" />
     <ClInclude Include="src\scene\GameScene.h" />
+    <ClInclude Include="src\scene\TitleScene.h" />
     <ClInclude Include="src\system\ScopedCursorHidden.h" />
     <ClInclude Include="src\utility\strutl.h" />
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
@@ -180,8 +197,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Character\Player\Player.h" />
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h" />
     <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\AttributeComponent.h" />
     <ClInclude Include="src\Component\MoveComponent.h" />
+    <ClInclude Include="src\Component\SentanComponent.h" />
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
