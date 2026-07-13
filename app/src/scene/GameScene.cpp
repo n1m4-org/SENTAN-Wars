@@ -27,8 +27,8 @@ void GameScene::Initialize() {
         objectManager_->Draw(vp);
     });
 
-	enemyManager_ = std::make_unique<EnemyManager>();
-    enemyManager_->Init();
+	pEnemyManager_ = std::make_unique<EnemyManager>();
+    pEnemyManager_->Init();
     pWaveDirector_ = std::make_unique<WaveDirector>();
     pWaveDirector_->Initialize();
 
@@ -41,7 +41,7 @@ void GameScene::Finalize() {
     /// ===================================================
     /// 終了処理
     /// ===================================================
-    enemyManager_->Finalize();
+    pEnemyManager_->Finalize();
     BaseScene::Finalize();
 }
 
@@ -52,7 +52,7 @@ void GameScene::Update() {
 
     pFollowCamera_->Update();
 
-    enemyManager_->Update();
+    pEnemyManager_->Update();
 
     // カメラの更新
     CameraUpdate();

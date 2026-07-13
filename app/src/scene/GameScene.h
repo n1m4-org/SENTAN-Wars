@@ -83,5 +83,5 @@ private:
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
     std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 
-	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
+	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
 };

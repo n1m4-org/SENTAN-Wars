@@ -123,6 +123,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Component\JumpComponent.cpp" />
+    <ClCompile Include="src\Component\AssaultAttackComponent.cpp" />
+    <ClCompile Include="src\Component\DashAttackComponent.cpp" />
+    <ClCompile Include="src\Component\LeapAttackComponent.cpp" />
+    <ClCompile Include="src\Component\RamAttackComponent.cpp" />
     <ClCompile Include="src\Component\EnemyMoveComponent.cpp" />
     <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp" />
     <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp" />
@@ -152,6 +156,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\JumpComponent.h" />
+    <ClInclude Include="src\Component\AssaultAttackComponent.h" />
+    <ClInclude Include="src\Component\DashAttackComponent.h" />
+    <ClInclude Include="src\Component\LeapAttackComponent.h" />
+    <ClInclude Include="src\Component\RamAttackComponent.h" />
     <ClInclude Include="src\Character\Enemy\EnemyParameterManager.h" />
     <ClInclude Include="src\Component\EnemyMoveComponent.h" />
     <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h" />
