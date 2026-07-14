@@ -60,13 +60,15 @@ public:
 
 
     const std::string& GetCategory() const { return category_; }
-    void SetCategory(const std::string& category);
+    const std::string& GetName() const { return name_; }
+    void SetName(const std::string& name);
 
 private:
     std::unordered_map<std::string, ParameterData> parameters_;
     std::unordered_map<std::string, ConstAvailableType> parametersConstant_;
     std::unordered_map<std::string, std::function<void()>> customGuiFunctions_;
     std::string category_;
+    std::string name_;
 };
 
 template <typename T>

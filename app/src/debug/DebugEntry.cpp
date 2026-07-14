@@ -21,9 +21,16 @@ void DebugEntry::ImGui()
 {
 #ifdef _DEBUG
 
+    /// カスタム GUI 関数の呼び出し
     for (auto& [name, func] : customGuiFunctions_)
     {
-        // カスタム GUI 関数の呼び出し
+        // 名前が空の場合は、ツリーノードを作らずに直接関数を呼び出す
+        if (name.empty())
+        {
+            func();
+            continue;
+        }
+
         if (ImGui::TreeNode(name.c_str()))
         {
             func();
@@ -188,12 +195,11 @@ void DebugEntry::ImGui()
 #endif // _DEBUG
 }
 
-void DebugEntry::SetCategory(const std::string& category)
+void DebugEntry::SetName(const std::string& name)
 {
     // カテゴリが変更された場合のみ
-    if (category_ == category) return;
+    if (name_ == name) return;
 
     // カテゴリ変更を通知
-    DebugEntryManager::GetInstance()->MoveCategory(this, category, category_);
-    category_ = category;
+    name_= name;
 }

@@ -99,7 +99,16 @@ void DebugEntryManager::ImGui()
             for (size_t i = 0; i < entryList.size(); ++i)
             {
                 auto& entry = entryList[i];
-                std::string label = isSoloEntry ? entry->GetCategory() : entry->GetCategory() + " - " + std::to_string(i + 1);
+                std::string label;
+                if (entry->GetName().empty())
+                {
+                    label = isSoloEntry ? entry->GetCategory() : entry->GetCategory() + " - " + std::to_string(i + 1);
+                }
+                else
+                {
+                    label = entry->GetName();
+                }
+
                 bool isOpen = ImGui::TreeNode(label.c_str());
                 if (isOpen)
                 {
@@ -126,40 +135,40 @@ void DebugEntryManager::ImGui()
     #endif // _DEBUG
 }
 
-void DebugEntryManager::MoveCategory(const DebugEntry* pEntry, const std::string& oldCategory, const std::string& newCategory)
-{
-    auto srcEntryListIt = entries_.find(oldCategory);
-    assert(srcEntryListIt != entries_.end() && "oldCategory not found in entries_");
-
-    auto srcEntryIt = std::find(srcEntryListIt->second.begin(), srcEntryListIt->second.end(), pEntry);
-    assert(srcEntryIt != srcEntryListIt->second.end() && "pEntry not found in oldCategory list");
-
-    /// 宛先カテゴリのエントリリストを探す
-    auto destEntryListIt = entries_.find(newCategory);
-    if (destEntryListIt == entries_.end())
-    {
-        // 新しいカテゴリが見つからないとき、新しくカテゴリを作成する
-        // イテレータも更新する
-        destEntryListIt = entries_.emplace(newCategory, std::vector<DebugEntry*>{}).first;
-    }
-
-    /// pEntryを新しいカテゴリに移動する
-    destEntryListIt->second.push_back(const_cast<DebugEntry*>(pEntry));
-    srcEntryListIt->second.erase(srcEntryIt);
-
-
-    /// もし古いカテゴリが空になったら、削除する
-    if (srcEntryListIt->second.empty())
-    {
-        entries_.erase(srcEntryListIt);
-    }
-
-
-    /// カテゴリカラーの古いキャッシュを削除しておく
-    // ImGui()でカテゴリカラーを計算するため、当該関数が実行される前の場合はキャッシュがないことに注意
-    auto colorCacheIt = categoryColorCache_.find(oldCategory);
-    if (colorCacheIt != categoryColorCache_.end())
-    {
-        categoryColorCache_.erase(colorCacheIt);
-    }
-}
+//void DebugEntryManager::MoveCategory(const DebugEntry* pEntry, const std::string& oldCategory, const std::string& newCategory)
+//{
+//    auto srcEntryListIt = entries_.find(oldCategory);
+//    assert(srcEntryListIt != entries_.end() && "oldCategory not found in entries_");
+//
+//    auto srcEntryIt = std::find(srcEntryListIt->second.begin(), srcEntryListIt->second.end(), pEntry);
+//    assert(srcEntryIt != srcEntryListIt->second.end() && "pEntry not found in oldCategory list");
+//
+//    /// 宛先カテゴリのエントリリストを探す
+//    auto destEntryListIt = entries_.find(newCategory);
+//    if (destEntryListIt == entries_.end())
+//    {
+//        // 新しいカテゴリが見つからないとき、新しくカテゴリを作成する
+//        // イテレータも更新する
+//        destEntryListIt = entries_.emplace(newCategory, std::vector<DebugEntry*>{}).first;
+//    }
+//
+//    /// pEntryを新しいカテゴリに移動する
+//    destEntryListIt->second.push_back(const_cast<DebugEntry*>(pEntry));
+//    srcEntryListIt->second.erase(srcEntryIt);
+//
+//
+//    /// もし古いカテゴリが空になったら、削除する
+//    if (srcEntryListIt->second.empty())
+//    {
+//        entries_.erase(srcEntryListIt);
+//    }
+//
+//
+//    /// カテゴリカラーの古いキャッシュを削除しておく
+//    // ImGui()でカテゴリカラーを計算するため、当該関数が実行される前の場合はキャッシュがないことに注意
+//    auto colorCacheIt = categoryColorCache_.find(oldCategory);
+//    if (colorCacheIt != categoryColorCache_.end())
+//    {
+//        categoryColorCache_.erase(colorCacheIt);
+//    }
+//}

@@ -15,6 +15,7 @@ public:
         static DebugEntryManager instance;
         return &instance;
     }
+
     DebugEntryManager& operator=(const DebugEntryManager&) = delete;
     DebugEntryManager(const DebugEntryManager&) = delete;
     DebugEntryManager& operator=(DebugEntryManager&&) = delete;
@@ -23,7 +24,7 @@ public:
     void Initialize();
     void Finalize();
 
-    void RegisterEntry(const std::string& id, DebugEntry* pDebugEntry);
+    void RegisterEntry(const std::string& category, DebugEntry* pDebugEntry);
     void UnregisterEntry(DebugEntry* pDebugEntry);
 
     void ImGui();
@@ -42,7 +43,7 @@ public:
         const T* ptr);
 
     // カテゴリが変更されたときに呼び出される関数
-    void MoveCategory(const DebugEntry* pEntry, const std::string& oldCategory, const std::string& newCategory);
+    //void MoveCategory(const DebugEntry* pEntry, const std::string& oldCategory, const std::string& newCategory);
 
 private:
     DebugEntryManager() = default;

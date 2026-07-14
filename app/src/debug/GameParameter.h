@@ -8,14 +8,14 @@
 #ifdef _DEBUG
 
 #define GameParameter(type, name, value)\
-    type name = value; \
-    GameParameterData<type> debug_##name{std::source_location::current().file_name(), #name, name}
+        type name = value; \
+        GameParameterData<type> debug_##name{std::source_location::current().file_name(), #name, name}
 
 #define GameParameterView(type, name, value) \
-    type name = value; \
-    GameParameterViewData<type> debug_view_##name{std::source_location::current().file_name(), #name, &name}
+        type name = value; \
+        GameParameterViewData<type> debug_view_##name{std::source_location::current().file_name(), #name, &name}
 
-    #define EnableDebug(category) DebugEntry debugEntry{ std::source_location::current().file_name(), category }
+#define EnableDebug(category) DebugEntry debugEntry{ std::source_location::current().file_name(), category }
 
     template <typename ValueType>
     class GameParameterData
@@ -60,7 +60,6 @@
             DebugEntryManager::GetInstance()->HandleParameter(id, name, pValue);
         }
     };
-
 
 #else
     #define GameParameter(type, name, value)\
