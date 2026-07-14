@@ -2,15 +2,16 @@
 #include <vector>
 #include <Sprite.h>
 #include "debug/GameParameter.h"
+#include <math/Color.h>
 
 class SpriteFrameGroup
 {
 public:
+    SpriteFrameGroup();
+
     struct FrameProperty
     {
-        Hagine::Vector2 anchorPoint = {};
-        Hagine::Vector2 position = {};
-        Hagine::Vector2 scale = { 1.0f, 1.0f };
+        Hagine::Vector2 standard = {};
     };
 
     struct FrameData
@@ -21,6 +22,7 @@ public:
 
     struct Entry
     {
+        std::string name;
         Hagine::Sprite* sprite = nullptr;
         Hagine::Vector2 localPosition = {};
         Hagine::Vector2 anchorPoint = {};
@@ -35,6 +37,8 @@ public:
     {
         entries_.push_back(entry);
     }
+
+    void DrawArea();
 
     /// <summary>
     /// グループのサイズを計算し、各スプライトの位置を調整する
@@ -52,5 +56,7 @@ private:
     /// |   Debug   |
     /// +-----------+
 
+    std::unique_ptr<Hagine::Sprite> pPoint_ = nullptr;
+    HSV debugAreaColor_ = { 1.0f, 0.65f, 0.85f };
     EnableDebug("SpriteFrameGroup");
 };

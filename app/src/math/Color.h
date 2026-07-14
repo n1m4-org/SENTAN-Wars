@@ -150,10 +150,10 @@ public:
     const float& s() const { return s_; }
     const float& v() const { return v_; }
 
-    RGB to_RGB() const;
+    RGB to_RGB();
 
 private:
-    float h_ = 0.0f; // Hue [0, 360)
+    float h_ = 0.0f; // Hue [0, 1]
     float s_ = 1.0f; // Saturation [0, 1]
     float v_ = 1.0f; // Value [0, 1]
 };

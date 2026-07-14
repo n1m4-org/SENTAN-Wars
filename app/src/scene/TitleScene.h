@@ -3,6 +3,7 @@
 #include <array>
 #include <memory>
 #include <Sprite.h>
+#include <utility/SpriteFrameGroup.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -56,9 +57,15 @@ public:
     void AddParticleSetting() override;
 
 private:
-    enum class SpriteName { Logo, Prompt, kSize };
+    enum class SpriteName { Logo, Prompt, StartKey, kSize };
+    static constexpr float kPromptScale_ = 0.5f;
+    static constexpr float kStartKeyScale_ = 0.3f;
+
     std::unique_ptr<Hagine::Sprite>& GetSprite(SpriteName name) { return sprites_[static_cast<size_t>(name)]; }
     void SpriteInitialize();
+    void SpritePressedUpdate();
 
     std::array<std::unique_ptr<Hagine::Sprite>, static_cast<size_t>(SpriteName::kSize)> sprites_;
+    std::unique_ptr<SpriteFrameGroup> pSpriteFrameGroup_;
+
 };

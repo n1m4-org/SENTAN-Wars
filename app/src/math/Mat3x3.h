@@ -50,5 +50,5 @@ namespace Ni
         Matrix3x3 operator *(float f) const;
     };
 
-    static Hagine::Vector2 Transform(const Hagine::Vector2& v, const Matrix3x3& m);
+    Hagine::Vector2 Transform(const Hagine::Vector2& v, const Matrix3x3& m);
 }

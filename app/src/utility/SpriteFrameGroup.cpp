@@ -2,18 +2,70 @@
 #include <type/Vector2.h>
 #include <algorithm>
 #include <math/Mat3x3.h>
+#include <random.h>
+#include <SpriteManager.h>
 
 using namespace Hagine;
 
 #undef min
 #undef max
 
+SpriteFrameGroup::SpriteFrameGroup()
+{
+    #ifdef _DEBUG
+    pPoint_ = std::make_unique<Hagine::Sprite>();
+    float hueRandom = Hagine::Random::Range(0.0f, 1.0f);
+    pPoint_->Initialize("debug/white1x1.png", {}, HSV(hueRandom, 0.45f, 0.85f).to_RGB().to_Vector4(0.5f));
+    Hagine::SpriteManager::GetInstance()->RegisterExternal(pPoint_.get());
+
+    auto pFunc = [this]()
+    {
+        if (ImGui::TreeNodeEx("Frame Property", ImGuiTreeNodeFlags_CollapsingHeader))
+        {
+            ImGui::DragFloat2("Position", &property_.standard.x, 0.1f);
+        }
+
+        if (entries_.empty())
+        {
+            ImGui::Text("No entries.");
+            return;
+        }
+
+        std::string label = "Entries (" + std::to_string(entries_.size()) + ")";
+        if (ImGui::TreeNodeEx(label.c_str(), ImGuiTreeNodeFlags_CollapsingHeader))
+        {
+            for (size_t i = 0; i < entries_.size(); ++i)
+            {
+                auto& entry = entries_[i];
+                std::string entryLabel = "Entry " + std::to_string(i) + ": " + entry.name;
+                if (ImGui::TreeNodeEx(entryLabel.c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+                {
+                    ImGui::DragFloat2("Local Position", &entry.localPosition.x, 0.1f);
+                    ImGui::SliderFloat2("Anchor Point", &entry.anchorPoint.x, 0.0f, 1.0f);
+
+                    ImGui::TreePop();
+                }
+            }
+        }
+    };
+
+    debugEntry.RegisterCustomGuiFunction("", pFunc);
+    #endif // _DEBUG
+}
+
+void SpriteFrameGroup::DrawArea()
+{
+#ifdef _DEBUG
+    pPoint_->Draw();
+#endif // _DEBUG
+}
+
 void SpriteFrameGroup::ComputeAndApply()
 {
     Ni::Matrix3x3 worldMatrix =
-        Ni::Matrix3x3::ScaleMatrix(property_.scale) *
+        Ni::Matrix3x3::ScaleMatrix({1.0f, 1.0f}) *
         Ni::Matrix3x3::RotateMatrix({}) *
-        Ni::Matrix3x3::TranslateMatrix(property_.position);
+        Ni::Matrix3x3::TranslateMatrix(property_.standard);
 
     for (auto& entry : entries_)
     {
@@ -26,30 +78,10 @@ void SpriteFrameGroup::ComputeAndApply()
             entry.sprite->SetPosition(worldPosition);
         }
     }
-}
 
-Vector2 SpriteFrameGroup::ComputeGroupSize()
-{
-    Vector2 groupSize = { 0.0f, 0.0f };
-    Vector2 minPosition = {};
-    Vector2 maxPosition = {};
-    for (const auto& entry : entries_)
-    {
-        if (entry.sprite)
-        {
-            Vector2 spriteSize = entry.sprite->GetSize();
-            Vector2 spritePosition = this->CalculateLeftTop(entry);
-            minPosition.x = std::min(minPosition.x, spritePosition.x);
-            minPosition.y = std::min(minPosition.y, spritePosition.y);
-            maxPosition.x = std::max(maxPosition.x, spritePosition.x + spriteSize.x);
-            maxPosition.y = std::max(maxPosition.y, spritePosition.y + spriteSize.y);
-        }
-    }
-
-    // グループのサイズを計算
-    groupSize.x = maxPosition.x - minPosition.x;
-    groupSize.y = maxPosition.y - minPosition.y;
-    return groupSize;
+#ifdef _DEBUG
+    pPoint_->SetPosition(property_.standard);
+#endif // _DEBUG
 }
 
 Hagine::Vector2 SpriteFrameGroup::CalculateLeftTop(const Entry& entry)

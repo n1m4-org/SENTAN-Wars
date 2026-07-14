@@ -2,6 +2,7 @@
 #include <array>
 #include <sstream>
 #include <algorithm>
+#include <cmath>
 
 RGBA RGB::to_RGBA(uint8_t a) const
 {
@@ -119,33 +120,36 @@ RGBA color::RGBAToRGBA(const std::string& rgbastr)
     return result;
 }
 
-RGB HSV::to_RGB() const
+RGB HSV::to_RGB()
 {
     float r, g, b;
-    float h = h_ / 360.0f;
-    float s = s_ / 100.0f;
-    float v = v_ / 100.0f;
 
-    if (s == 0.0f)
+    if (h_ < 0.0f || h_ >= 1.0f)
     {
-        r = g = b = v; // achromatic
+        h_ = h_ - std::floor(h_);
+    }
+
+    if (s_ == 0.0f)
+    {
+        r = g = b = v_; // achromatic
     }
     else
     {
-        int i = static_cast<int>(h * 6);
-        float f = h * 6 - i;
-        float p = v * (1 - s);
-        float q = v * (1 - f * s);
-        float t = v * (1 - (1 - f) * s);
+        int i = static_cast<int>(h_ * 6);
+        float f = h_ * 6 - i;
+        float p = v_ * (1 - s_);
+        float q = v_ * (1 - f * s_);
+        float t = v_ * (1 - (1 - f) * s_);
         i %= 6;
         switch (i)
         {
-        case 0: r = v; g = t; b = p; break;
-        case 1: r = q; g = v; b = p; break;
-        case 2: r = p; g = v; b = t; break;
-        case 3: r = p; g = q; b = v; break;
-        case 4: r = t; g = p; b = v; break;
-        case 5: r = v; g = p; b = q; break;
+        case 0: r = v_; g = t; b = p; break;
+        case 1: r = q; g = v_; b = p; break;
+        case 2: r = p; g = v_; b = t; break;
+        case 3: r = p; g = q; b = v_; break;
+        case 4: r = t; g = p; b = v_; break;
+        case 5: r = v_; g = p; b = q; break;
+        default: r = g = b = 0.0f; break;
         }
     }
 
@@ -153,7 +157,12 @@ RGB HSV::to_RGB() const
     g = std::clamp(g, 0.0f, 1.0f);
     b = std::clamp(b, 0.0f, 1.0f);
 
-    return RGB{ static_cast<uint8_t>(r * 255), static_cast<uint8_t>(g * 255), static_cast<uint8_t>(b * 255) };
+    return RGB
+    { 
+        static_cast<uint8_t>(std::round(r * 255.0f)),
+        static_cast<uint8_t>(std::round(g * 255.0f)),
+        static_cast<uint8_t>(std::round(b * 255.0f))
+    };
 }
 
 HSV RGBA::to_HSV() const

@@ -12,7 +12,7 @@ namespace Math::Viewport::Unit
     public:
         explicit vw(long double v)
             : value(static_cast<float>(
-                static_cast<long double>(Tako::WinApp::clientWidth)* v / 100.0l))
+                static_cast<long double>(Hagine::WinApp::kClientWidth)* v / 100.0l))
         {
         }
 
@@ -27,7 +27,7 @@ namespace Math::Viewport::Unit
     public:
         explicit vh(long double v)
             : value(static_cast<float>
-                (static_cast<long double>(Tako::WinApp::clientHeight)* v / 100.0l))
+                (static_cast<long double>(Hagine::WinApp::kClientHeight)* v / 100.0l))
         {
         }
 
