@@ -1,8 +1,0 @@
-{
-    "blendMode": 2,
-    "groupName": "smoke",
-    "maxParticleCount": 100,
-    "modelfilePath": "Particle/cloud.obj",
-    "primitiveType": 0,
-    "textureName": "debug/white1x1.png"
-}

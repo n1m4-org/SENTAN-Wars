@@ -1,8 +1,0 @@
-{
-    "blendMode": 2,
-    "groupName": "dash",
-    "maxParticleCount": 10000,
-    "modelfilePath": "",
-    "primitiveType": 1,
-    "textureName": "debug/circle2.png"
-}
