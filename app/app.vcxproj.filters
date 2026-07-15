@@ -77,6 +77,9 @@
     <ClCompile Include="src\math\Color.cpp">
       <Filter>src\math</Filter>
     </ClCompile>
+    <ClCompile Include="src\math\Mat3x3.cpp">
+      <Filter>src\math</Filter>
+    </ClCompile>
     <ClCompile Include="src\presentation\CameraInput.cpp">
       <Filter>src\presentation</Filter>
     </ClCompile>
@@ -89,11 +92,12 @@
     <ClCompile Include="src\scene\TitleScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\SpriteFrameGroup.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\SpriteFrameGroup.cpp" />
-    <ClCompile Include="src\math\Mat3x3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -254,6 +258,9 @@
     <ClInclude Include="src\math\Color.h">
       <Filter>src\math</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\Mat3x3.h">
+      <Filter>src\math</Filter>
+    </ClInclude>
     <ClInclude Include="src\presentation\CameraInput.h">
       <Filter>src\presentation</Filter>
     </ClInclude>
@@ -268,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="src\system\ScopedCursorHidden.h">
       <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\SpriteFrameGroup.h">
+      <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\strutl.h">
       <Filter>src\utility</Filter>
@@ -299,7 +309,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\SpriteFrameGroup.h" />
-    <ClInclude Include="src\math\Mat3x3.h" />
   </ItemGroup>
 </Project>
