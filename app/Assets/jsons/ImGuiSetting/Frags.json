@@ -12,16 +12,21 @@
     "showDrawSystemView": true,
     "showFPSView": false,
     "showGameParamView": false,
+<<<<<<< HEAD
+    "showGizmoView": false,
+    "showHierarchyView": false,
+=======
     "showGizmoView": true,
     "showHierarchyView": true,
+>>>>>>> main
     "showLightView": false,
     "showMotionEditorView": false,
-    "showObjectView": false,
+    "showObjectView": true,
     "showOfScreenView": false,
     "showParticlePreviewView": false,
     "showParticleView": false,
     "showSceneView": false,
     "showShadowMapView": false,
     "showShortcutWindow": false,
-    "showSpriteManagerView": false
+    "showSpriteManagerView": true
 }

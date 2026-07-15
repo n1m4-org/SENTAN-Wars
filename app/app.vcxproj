@@ -148,10 +148,12 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Color.cpp" />
+    <ClCompile Include="src\math\Mat3x3.cpp" />
     <ClCompile Include="src\presentation\CameraInput.cpp" />
     <ClCompile Include="src\presentation\FollowCamera.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\scene\TitleScene.cpp" />
+    <ClCompile Include="src\utility\SpriteFrameGroup.cpp" />
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,11 +188,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\logic\wave\WaveDirector.h" />
     <ClInclude Include="src\logic\wave\WaveType.h" />
     <ClInclude Include="src\math\Color.h" />
+    <ClInclude Include="src\math\Mat3x3.h" />
     <ClInclude Include="src\presentation\CameraInput.h" />
     <ClInclude Include="src\presentation\FollowCamera.h" />
     <ClInclude Include="src\scene\GameScene.h" />
     <ClInclude Include="src\scene\TitleScene.h" />
     <ClInclude Include="src\system\ScopedCursorHidden.h" />
+    <ClInclude Include="src\utility\SpriteFrameGroup.h" />
     <ClInclude Include="src\utility\strutl.h" />
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
     <ClInclude Include="src\utility\wndutl.h" />
