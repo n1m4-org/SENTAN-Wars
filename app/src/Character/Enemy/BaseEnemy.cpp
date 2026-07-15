@@ -13,21 +13,24 @@ void BaseEnemy::Init(const std::string className)
 
 	UniqueInit();
 
-	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed);
+	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed, targetRadius_);
 	moveComponent_->Init();
+
 }
 
 void BaseEnemy::Update()
 {
 	UniqueUpdate();
-
-	if ((transform_->translation_ - *target_).Length() <= parameter_.attackRange)
+	if (target_)
 	{
-		// 攻撃範囲内に入ったら攻撃する
-	}
-	else
-	{
-		moveComponent_->Update();
+		if ((transform_->translation_ - *target_).Length() <= parameter_.attackRange + *targetRadius_)
+		{
+			// 攻撃範囲内に入ったら攻撃する
+		}
+		else
+		{
+			moveComponent_->Update();
+		}
 	}
 
 	BaseObject::Update();

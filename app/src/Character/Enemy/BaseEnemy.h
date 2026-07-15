@@ -13,7 +13,11 @@ public:
 
 	void Update() override;
 
-	void SetTarget(Hagine::Vector3* target) { target_ = target; }
+	void SetTarget(Hagine::Vector3* target, float* radius)
+	{
+		target_ = target;
+		targetRadius_ = radius;
+	}
 
 protected:
 	void SetTypeParameter(EnemyType type);
@@ -34,8 +38,10 @@ protected:
 	EnemyType type_ = EnemyType::Normal;
 
 	Hagine::Vector3* target_ = nullptr;
+	float* targetRadius_ = nullptr;
 
 	// 敵の移動コンポーネント
 	std::unique_ptr<EnemyMoveComponent> moveComponent_ = nullptr;
+
 };
 

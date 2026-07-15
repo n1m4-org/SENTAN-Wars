@@ -8,7 +8,7 @@
 using namespace Hagine;
 
 void MoveComponent::Update() {
-    // 必須依存が無ければ何もしない（防御的チェック）
+    // 必須依存が無ければ何もしない
     if (!transform_) {
         return;
     }

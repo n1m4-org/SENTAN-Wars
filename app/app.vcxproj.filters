@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\Component\JumpComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\AssaultAttackComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\DashAttackComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\LeapAttackComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\RamAttackComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\EnemyMoveComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
@@ -34,7 +49,13 @@
     <ClCompile Include="src\Character\Player\Player.cpp">
       <Filter>src\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\MoveComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\SentanComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
@@ -135,8 +156,26 @@
     <Filter Include="src\Character\Enemy\TestEnemy">
       <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Character\Player\Sentan">
+      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\JumpComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\AssaultAttackComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\DashAttackComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\LeapAttackComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\RamAttackComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
     <ClInclude Include="src\Character\Enemy\EnemyParameterManager.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
@@ -242,10 +281,19 @@
     <ClInclude Include="src\Character\Player\Player.h">
       <Filter>src\Character\Player</Filter>
     </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\Component.h">
       <Filter>src\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\AttributeComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\MoveComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\SentanComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">

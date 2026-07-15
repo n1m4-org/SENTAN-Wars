@@ -9,11 +9,16 @@
     },
     "isEditorMode": true,
     "showAssetBrowserView": false,
-    "showDrawSystemView": false,
-    "showFPSView": true,
+    "showDrawSystemView": true,
+    "showFPSView": false,
     "showGameParamView": false,
+<<<<<<< HEAD
     "showGizmoView": false,
     "showHierarchyView": false,
+=======
+    "showGizmoView": true,
+    "showHierarchyView": true,
+>>>>>>> main
     "showLightView": false,
     "showMotionEditorView": false,
     "showObjectView": true,
