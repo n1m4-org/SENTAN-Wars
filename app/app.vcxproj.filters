@@ -102,6 +102,7 @@
       <Filter>src\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
+    <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -324,5 +325,8 @@
     </ClInclude>
     <ClInclude Include="src\utility\DeltaTimeManager.h" />
     <ClInclude Include="src\utility\DeltaTimeStopWatch.h" />
+    <ClInclude Include="src\presentation\ui\HpHudView.h" />
+    <ClInclude Include="src\common\ResourcePath.h" />
+    <ClInclude Include="src\presentation\HudManager.h" />
   </ItemGroup>
 </Project>

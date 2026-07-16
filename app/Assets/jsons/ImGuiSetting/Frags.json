@@ -23,5 +23,5 @@
     "showSceneView": true,
     "showShadowMapView": false,
     "showShortcutWindow": false,
-    "showSpriteManagerView": false
+    "showSpriteManagerView": true
 }
