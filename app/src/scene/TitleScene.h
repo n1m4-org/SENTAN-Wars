@@ -64,11 +64,13 @@ private:
     static constexpr float kStartKeyScale_ = 0.3f;
 
     std::unique_ptr<Hagine::Sprite>& GetSprite(SpriteName name) { return sprites_[static_cast<size_t>(name)]; }
-    void SpriteInitialize();
-    void SpritePressedUpdate();
-    void FlexItemsUpdate();
+    void InitializeSprites();
+    void InitializeFlexContainer();
+    void UpdateStartKeyColor();
 
     std::array<std::unique_ptr<Hagine::Sprite>, static_cast<size_t>(SpriteName::kSize)> sprites_;
+
+    // スプライトの配置を計算するためのクラス
     std::unique_ptr<FlexContainer> pFlexContainer_;
 
     EnableDebug("TitleScene");

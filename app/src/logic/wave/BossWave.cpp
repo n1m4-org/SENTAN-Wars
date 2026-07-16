@@ -24,11 +24,6 @@ void BossWave::Draw()
     pPhaseDirector_->Draw();
 }
 
-uint32_t BossWave::GetWaveIndex() const
-{
-    throw std::logic_error("The method or operation is not implemented.");
-}
-
 bool BossWave::IsWaveFinished() const
 {
     throw std::logic_error("The method or operation is not implemented.");
