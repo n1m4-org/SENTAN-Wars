@@ -16,12 +16,6 @@ void EnemyManager::Init()
 
 	SetTarget(&testTarget_, &testTargetRadius_);
 
-	/*std::unique_ptr<BaseEnemy> enemy = std::make_unique<TestEnemy>();
-	enemy->SetTarget(target_, targetRadius_);
-	enemy->Init("TestEnemy");
-	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
-	enemies_.push_back(std::move(enemy));*/
-
 	std::unique_ptr<BaseEnemy> enemy = std::make_unique<NormalEnemy>();
 	enemy->SetTarget(target_, targetRadius_);
 	enemy->Init("NormalEnemy");
