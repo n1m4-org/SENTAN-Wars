@@ -92,13 +92,15 @@
     <ClCompile Include="src\scene\TitleScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\layout\FlexContainer.cpp">
+      <Filter>src\utility\layout</Filter>
+    </ClCompile>
     <ClCompile Include="src\utility\SpriteFrameGroup.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\utility\layout\FlexContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -145,6 +147,9 @@
     </Filter>
     <Filter Include="src\logic\wave">
       <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility\layout">
+      <UniqueIdentifier>{c224ddde-38c7-4a02-ac6d-32b899fd2e83}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Character\Enemy\AssaultEnemy">
       <UniqueIdentifier>{e666df59-ab44-4e89-968c-34a03f620cc1}</UniqueIdentifier>
@@ -277,6 +282,12 @@
     <ClInclude Include="src\system\ScopedCursorHidden.h">
       <Filter>src\system</Filter>
     </ClInclude>
+    <ClInclude Include="src\utility\layout\FlexContainer.h">
+      <Filter>src\utility\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\layout\FlexTypes.h">
+      <Filter>src\utility\layout</Filter>
+    </ClInclude>
     <ClInclude Include="src\utility\SpriteFrameGroup.h">
       <Filter>src\utility</Filter>
     </ClInclude>
@@ -310,7 +321,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\layout\FlexContainer.h" />
-    <ClInclude Include="src\utility\layout\FlexTypes.h" />
   </ItemGroup>
 </Project>
