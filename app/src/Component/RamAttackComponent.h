@@ -26,6 +26,8 @@ public:
 
     void Update() override;
 
+	bool IsActive() const { return isActive_; }
+
 private:
     // GameParameterの登録先となるデバッグエントリ
     EnableDebug("RamAttack");
@@ -40,6 +42,7 @@ private:
     Hagine::Vector3 startPos_{ 0.0f, 0.0f, 0.0f };
     Hagine::Vector3 endPos_{ 0.0f, 0.0f, 0.0f };
     Hagine::Vector3 scale_{ 1.0f, 1.0f, 1.0f };
+	bool isActive_ = false;
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
     GameParameter(float, attackTimer_, 0.0f);

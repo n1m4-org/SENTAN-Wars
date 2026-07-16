@@ -33,6 +33,8 @@ void BaseEnemy::Update()
 		}
 	}
 
+	transform_->translation_.y = (std::max)(transform_->translation_.y, 0.0f); // 地面より下に行かないようにする
+
 	BaseObject::Update();
 }
 

@@ -19,6 +19,11 @@ public:
 		targetRadius_ = radius;
 	}
 
+	void SetPos(const Hagine::Vector3& pos)
+	{
+		transform_->translation_ = pos;
+	}
+
 protected:
 	void SetTypeParameter(EnemyType type);
 

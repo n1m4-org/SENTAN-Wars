@@ -10,4 +10,14 @@ void DashEnemy::UniqueInit()
 void DashEnemy::UniqueUpdate()
 {
 	attackComponent_->Update();
+	if (attackComponent_->IsActive())
+	{
+		SetResolveCollision(false);
+		GetColliders()[0]->SetTag("EnemyBullet");
+	}
+	else
+	{
+		SetResolveCollision(true);
+		GetColliders()[0]->SetTag("Enemy");
+	}
 }
