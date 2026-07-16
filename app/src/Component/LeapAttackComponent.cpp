@@ -8,53 +8,59 @@ void LeapAttackComponent::Update()
 	// 1. 攻撃中 または クールタイム中の処理
 	if (attackTimer_ != 0.0f)
 	{
+		float prevTimer = attackTimer_;
 		attackTimer_ += Frame::DeltaTime();
-		if (attackTimer_ <= attackTime_)
-		{
-			// 全体の進行度
-			float progress = attackTimer_ / attackTime_;
 
-			// イージング
-			auto easeInOutCubic = [&](float& num)
+		if (prevTimer < attackTime_)
+		{
+			float currentClampedTimer = (std::min)(attackTimer_, attackTime_);
+
+			// 指定した時間における想定座標を計算するラムダ
+			auto calcPos = [&](float timer) -> Vector3
 				{
-					num = num < 0.5f ? 4.0f * num * num * num : 1.0f - std::pow(-2.0f * num + 2.0f, 3.0f) / 2.0f;
+					float progress = timer / attackTime_;
+					float lerpFactor = 0.0f;
+
+					if (progress <= 0.33f)
+					{
+						lerpFactor = progress * 3.0f;
+						lerpFactor = lerpFactor < 0.5f ? 4.0f * lerpFactor * lerpFactor * lerpFactor : 1.0f - std::pow(-2.0f * lerpFactor + 2.0f, 3.0f) / 2.0f;
+					}
+					else if (progress <= 0.66f)
+					{
+						lerpFactor = 1.0f;
+					}
+					else
+					{
+						lerpFactor = (1.0f - progress) * 3.0f;
+					}
+
+					// Y軸の円弧運動を含めた絶対座標を算出
+					Vector3 pos = startPos_ + (endPos_ - startPos_) * lerpFactor;
+					float baseY = startPos_.y + (endPos_.y - startPos_.y) * lerpFactor;
+					float arcY = std::sin(lerpFactor * std::numbers::pi_v<float>) * 3.0f;
+					pos.y = baseY + arcY;
+					return pos;
 				};
 
+			Vector3 prevPos = calcPos(prevTimer);
+			Vector3 currentPos = calcPos(currentClampedTimer);
 
-			// Lerpに渡す割合
-			float lerpFactor = 0.0f;
-
-			if (progress <= 0.33f)
-			{
-				// 前半：ターゲットへ向かう
-				lerpFactor = progress * 3.0f;
-				easeInOutCubic(lerpFactor);
-			}
-			else if (progress <= 0.66f)
-			{
-				// 停止
-				lerpFactor = 1.0f;
-			}
-			else
-			{
-				// 後半：元の場所へ戻る
-				lerpFactor = (1.0f - progress) * 3.0f;
-			}
-
-			// 攻撃処理を実行
-			transform_->translation_ = Lerp(startPos_, endPos_, lerpFactor);
-			float baseY = std::lerp(startPos_.y, endPos_.y, lerpFactor);
-			float arcY = std::sin(lerpFactor * std::numbers::pi_v<float>) * 3.0f;
-			transform_->translation_.y = baseY + arcY;
+			// Lerpではなく、計算された前回フレームからの差分ベクトルを加算
+			transform_->translation_ += (currentPos - prevPos);
+		}
+		else
+		{
+			isActive_ = false;
 		}
 
 		if (attackTimer_ >= coolTime_)
 		{
-			transform_->translation_ = startPos_;
-			attackTimer_ = 0.0f; // タイマーをリセット
+			transform_->translation_ = startPos_; // クールタイム終了時の初期位置リセット
+			attackTimer_ = 0.0f;
 		}
 
-		return; // 攻撃・クールタイム中はここで処理を終え、以下の距離判定をスキップする
+		return;
 	}
 
 	// 2. 待機中の距離判定
@@ -62,7 +68,7 @@ void LeapAttackComponent::Update()
 	{
 		startPos_ = transform_->translation_;
 		endPos_ = *target_;
+		isActive_ = true;
 		attackTimer_ += Frame::DeltaTime();
 	}
 }
-

@@ -50,15 +50,20 @@ void AssaultAttackComponent::Update()
 
 		return; // 攻撃・クールタイム中はここで処理を終え、以下の距離判定をスキップする
 	}
+	else
+	{
+		isActive_ = false;
+	}
 
 	// 2. 待機中の距離判定
 	if ((transform_->translation_ - *target_).Length() <= *attackRange_ + *radius_)
 	{
 		startPos_ = transform_->translation_;
 		endPos_ = *target_;
-		attackTimer_ += Frame::DeltaTime();
 		AoEObject_->SetIsModelDraw(true);
 		AoEObject_->GetWorldTransform()->translation_ = endPos_;
 		AoEObject_->GetWorldTransform()->translation_.y -= *radius_;
+		isActive_ = true;
+		attackTimer_ += Frame::DeltaTime();
 	}
 }

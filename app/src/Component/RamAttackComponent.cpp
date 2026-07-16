@@ -8,36 +8,38 @@ void RamAttackComponent::Update()
 	// 1. 攻撃中 または クールタイム中の処理
 	if (attackTimer_ != 0.0f)
 	{
+		float prevTimer = attackTimer_;
 		attackTimer_ += Frame::DeltaTime();
-		if (attackTimer_ <= attackTime_)
-		{
-			// 全体の進行度
-			float progress = attackTimer_ / attackTime_;
 
-			// イージング
-			auto easeInOutCubic = [&]()
+		if (prevTimer < attackTime_)
+		{
+			float currentClampedTimer = (std::min)(attackTimer_, attackTime_);
+
+			// 任意の時間における往復運動の移動割合を計算するラムダ
+			auto calcFactor = [](float timer, float maxTime)
 				{
+					float progress = timer / maxTime;
 					progress = progress < 0.5f ? 4.0f * progress * progress * progress : 1.0f - std::pow(-2.0f * progress + 2.0f, 3.0f) / 2.0f;
+
+					if (progress <= 0.5f)
+					{
+						return progress * 2.0f; // 前半：ターゲットへ向かう
+					}
+					else
+					{
+						return (1.0f - progress) * 2.0f; // 後半：元の場所へ戻る
+					}
 				};
 
-			easeInOutCubic();
+			float prevFactor = calcFactor(prevTimer, attackTime_);
+			float currentFactor = calcFactor(currentClampedTimer, attackTime_);
 
-			// Lerpに渡す割合
-			float lerpFactor = 0.0f;
-
-			if (progress <= 0.5f)
-			{
-				// 前半：ターゲットへ向かう
-				lerpFactor = progress * 2.0f;
-			}
-			else
-			{
-				// 後半：元の場所へ戻る
-				lerpFactor = (1.0f - progress) * 2.0f;
-			}
-
-			// 攻撃処理を実行
-			transform_->translation_ = Lerp(startPos_, endPos_, lerpFactor);
+			// 前フレームからの差分（速度ベクトル）を座標に加算
+			transform_->translation_ += (endPos_ - startPos_) * (currentFactor - prevFactor);
+		}
+		else
+		{
+			isActive_ = false;
 		}
 
 		if (attackTimer_ >= coolTime_)
@@ -45,7 +47,7 @@ void RamAttackComponent::Update()
 			attackTimer_ = 0.0f; // タイマーをリセット
 		}
 
-		return; // 攻撃・クールタイム中はここで処理を終え、以下の距離判定をスキップする
+		return;
 	}
 
 	// 2. 待機中の距離判定
@@ -53,6 +55,7 @@ void RamAttackComponent::Update()
 	{
 		startPos_ = transform_->translation_;
 		endPos_ = *target_;
+		isActive_ = true;
 		attackTimer_ += Frame::DeltaTime();
 	}
 }
