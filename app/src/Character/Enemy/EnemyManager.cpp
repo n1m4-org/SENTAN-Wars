@@ -16,13 +16,13 @@ void EnemyManager::Init()
 
 	SetTarget(&testTarget_, &testTargetRadius_);
 
-	std::unique_ptr<BaseEnemy> enemy = std::make_unique<TestEnemy>();
+	/*std::unique_ptr<BaseEnemy> enemy = std::make_unique<TestEnemy>();
 	enemy->SetTarget(target_, targetRadius_);
 	enemy->Init("TestEnemy");
 	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
-	enemies_.push_back(std::move(enemy));
+	enemies_.push_back(std::move(enemy));*/
 
-	enemy = std::make_unique<NormalEnemy>();
+	std::unique_ptr<BaseEnemy> enemy = std::make_unique<NormalEnemy>();
 	enemy->SetTarget(target_, targetRadius_);
 	enemy->Init("NormalEnemy");
 	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
@@ -40,11 +40,11 @@ void EnemyManager::Init()
 	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
 	enemies_.push_back(std::move(enemy));
 
-	/*enemy = std::make_unique<AssaultEnemy>();
+	enemy = std::make_unique<AssaultEnemy>();
 	enemy->SetTarget(target_, targetRadius_);
 	enemy->Init("AssaultEnemy");
 	BaseObjectManager::GetInstance()->RegisterExternal(enemy.get());
-	enemies_.push_back(std::move(enemy));*/
+	enemies_.push_back(std::move(enemy));
 }
 
 void EnemyManager::Update()

@@ -1,0 +1,63 @@
+{
+    "Lighting": true,
+    "PrimitiveType": 2,
+    "blendMode": 1,
+    "childrenNames": [],
+    "colliderCount": 1,
+    "collider_0_collisionMask": [
+        "Player",
+        "Enemy"
+    ],
+    "collider_0_isEnabled": true,
+    "collider_0_isVisible": true,
+    "collider_0_name": "AssaultEnemy_SphereCollider",
+    "collider_0_offset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "collider_0_radius": 1.0,
+    "collider_0_tag": "Enemy",
+    "collider_0_type": 0,
+    "color_0": {
+        "w": 1.0,
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "isLighting": true,
+    "isModelDraw": true,
+    "modelName": "",
+    "objectName": "AssaultEnemy",
+    "parentName": "",
+    "rb_enabled": false,
+    "rb_friction": 0.30000001192092896,
+    "rb_gravity": {
+        "x": 0.0,
+        "y": -9.800000190734863,
+        "z": 0.0
+    },
+    "rb_linearDamping": 0.05000000074505806,
+    "rb_mass": 1.0,
+    "rb_restitution": 0.0,
+    "rb_useGravity": true,
+    "resolveCollision": true,
+    "rotation": {
+        "w": 1.0,
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "skeletonDraw": false,
+    "textureName_0": "debug/white1x1.png",
+    "translation": {
+        "x": -4.2668986320495605,
+        "y": 0.7757276892662048,
+        "z": 0.0
+    }
+}
