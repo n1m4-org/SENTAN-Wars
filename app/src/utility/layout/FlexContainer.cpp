@@ -4,9 +4,37 @@
 
 
 
+FlexContainer::FlexContainer()
+{
+#ifdef _DEBUG
+    debugEntry.RegisterCustomGuiFunction("", [this]()
+    {
+        static constexpr const char* kDirectionNames[static_cast<size_t>(FlexDirection::Count)] = { "Row", "Column", "RowReverse", "ColumnReverse" };
+        static constexpr const char* kJustifyNames[static_cast<size_t>(JustifyContent::Count)] = { "FlexStart", "FlexEnd", "Center", "SpaceBetween", "SpaceAround", "SpaceEvenly" };
+        static constexpr const char* kAlignNames[static_cast<size_t>(AlignItems::Count)] = { "FlexStart", "FlexEnd", "Center", "Stretch" };
+
+        int32_t directionIndex = static_cast<uint32_t>(direction_);
+        ImGui::Combo("Direction", &directionIndex, kDirectionNames, static_cast<int32_t>(FlexDirection::Count));
+
+        int32_t justifyIndex = static_cast<uint32_t>(justifyContent_);
+        ImGui::Combo("Justify Content", &justifyIndex, kJustifyNames, static_cast<int32_t>(JustifyContent::Count));
+
+        int32_t alignIndex = static_cast<uint32_t>(alignItems_);
+        ImGui::Combo("Align Items", &alignIndex, kAlignNames, static_cast<int32_t>(AlignItems::Count));
+
+        direction_ = static_cast<FlexDirection>(directionIndex);
+        justifyContent_ = static_cast<JustifyContent>(justifyIndex);
+        alignItems_ = static_cast<AlignItems>(alignIndex);
+
+        ImGui::DragFloat("Gap", &gap_, 0.1f);
+    });
+#endif // _DEBUG
+}
+
 std::vector<FlexResult> FlexContainer::Calculate(const Hagine::Vector2& containerSize, std::span<const FlexItem> items) const
 {
     std::vector<FlexResult> results;
+    results.resize(items.size());
 
     // 1. 各アイテムのメイン軸サイズとクロス軸サイズを計算
     std::vector<float> itemMainSizes, itemCrossSizes;
@@ -15,9 +43,6 @@ std::vector<FlexResult> FlexContainer::Calculate(const Hagine::Vector2& containe
     {
         float mainSize = MainOf(item.preferredSize);
         float crossSize = CrossOf(item.preferredSize);
-        /// サイズの制約を適用
-        mainSize = std::clamp(mainSize, MainOf(item.minSize), MainOf(item.maxSize));
-        crossSize = std::clamp(crossSize, CrossOf(item.minSize), CrossOf(item.maxSize));
         itemMainSizes.push_back(mainSize);
         itemCrossSizes.push_back(crossSize);
     }
@@ -63,16 +88,16 @@ float FlexContainer::CrossOf(const Hagine::Vector2& v) const
 
 Hagine::Vector2 FlexContainer::ToVec2(float main, float cross) const
 {
-    return Hagine::Vector2(main, cross);
+    if (direction_ == FlexDirection::Row || direction_ == FlexDirection::RowReverse)
+        return Hagine::Vector2{ main, cross };
+    else
+        return Hagine::Vector2{ cross, main };
 }
 
 void FlexContainer::ApplyJustify(float freeSpace, std::span<const float> itemMainSizes, std::vector<float>& outPosition) const
 {
     // 要素が空の場合は何もしない
     if (itemMainSizes.empty()) return;
-
-    // 配列のサイズを確保
-    outPosition.resize(itemMainSizes.size());
 
     // ref: https://developer.mozilla.org/ja/docs/Learn_web_development/Core/CSS_layout/Flexbox
     //      https://developer.mozilla.org/ja/docs/Web/CSS/Reference/Properties/justify-content
@@ -154,4 +179,5 @@ CrossAlignResult FlexContainer::ApplyCrossAlign(float itemCross, float container
     {
         return { (containerCross - itemCross) / 2.0f, itemCross };
     }
+    return { 0.0f, itemCross };
 }

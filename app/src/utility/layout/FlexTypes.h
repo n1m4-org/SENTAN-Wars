@@ -1,15 +1,13 @@
 #pragma once
 #include <type/Vector2.h>
 
-enum class FlexDirection { Row, Column, RowReverse, ColumnReverse };
-enum class JustifyContent { FlexStart, FlexEnd, Center, SpaceBetween, SpaceAround, SpaceEvenly };
-enum class AlignItems { FlexStart, FlexEnd, Center, Stretch };
+enum class FlexDirection { Row, Column, RowReverse, ColumnReverse, Count };
+enum class JustifyContent { FlexStart, FlexEnd, Center, SpaceBetween, SpaceAround, SpaceEvenly, Count };
+enum class AlignItems { FlexStart, FlexEnd, Center, Stretch, Count };
 
 struct FlexItem
 {
     Hagine::Vector2 preferredSize;
-    Hagine::Vector2 minSize;
-    Hagine::Vector2 maxSize;
 };
 
 struct FlexResult
