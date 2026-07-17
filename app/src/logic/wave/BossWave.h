@@ -5,8 +5,6 @@
 
 class BossWave : public IWave
 {
-    
-
 public:
     void Enter(const WaveContext& ctx) override;
 
@@ -20,9 +18,6 @@ public:
     void Draw() override;
 
 
-    uint32_t GetWaveIndex() const override;
-
-
     bool IsWaveFinished() const override;
 
 
@@ -30,6 +25,4 @@ public:
 
 private:
     std::unique_ptr<PhaseDirector> pPhaseDirector_;
-    uint32_t waveIndex_;
-
 };

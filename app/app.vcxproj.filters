@@ -101,6 +101,9 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
+    <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
+    <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -321,5 +324,11 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\utility\DeltaTimeManager.h" />
+    <ClInclude Include="src\utility\DeltaTimeStopWatch.h" />
+    <ClInclude Include="src\presentation\ui\HpHudView.h" />
+    <ClInclude Include="src\common\ResourcePath.h" />
+    <ClInclude Include="src\presentation\HudManager.h" />
+    <ClInclude Include="src\presentation\ui\Bar2d.h" />
   </ItemGroup>
 </Project>
