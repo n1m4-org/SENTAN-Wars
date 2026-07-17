@@ -151,6 +151,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\math\Mat3x3.cpp" />
     <ClCompile Include="src\presentation\CameraInput.cpp" />
     <ClCompile Include="src\presentation\FollowCamera.cpp" />
+    <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
     <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\scene\TitleScene.cpp" />
@@ -196,6 +197,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\presentation\CameraInput.h" />
     <ClInclude Include="src\presentation\FollowCamera.h" />
     <ClInclude Include="src\presentation\HudManager.h" />
+    <ClInclude Include="src\presentation\ui\Bar2d.h" />
     <ClInclude Include="src\presentation\ui\HpHudView.h" />
     <ClInclude Include="src\scene\GameScene.h" />
     <ClInclude Include="src\scene\TitleScene.h" />

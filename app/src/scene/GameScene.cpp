@@ -60,6 +60,8 @@ void GameScene::Update() {
 
     pEnemyManager_->Update();
 
+    pHpHudView_->Update(70.0f, 100.0f);
+
     // カメラの更新
     UpdateCamera();
 
