@@ -32,7 +32,8 @@ void Bar2d::Update(float value, float valueMax)
     float clampedValue = std::clamp(currentValue_, 0.0f, valueMax);
 
     // HPバーのサイズを更新
-    pSpriteBar_->SetSize({ sizeMax.x * (clampedValue / valueMax), sizeMax.y });
+    // テクスチャサイズを変更してバーの長さを変える方法
+    pSpriteBar_->SetTexSize({ sizeMax.x * (clampedValue / valueMax), sizeMax.y });
 
     // 警告色の適用
     if (config_.warnColor.has_value())

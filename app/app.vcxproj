@@ -136,6 +136,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp" />
     <ClCompile Include="src\debug\DebugEntry.cpp" />
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
+    <ClCompile Include="src\font\FontLayout.cpp" />
+    <ClCompile Include="src\font\NumericView.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
     <ClCompile Include="src\Character\Player\Player.cpp" />
     <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp" />
@@ -182,6 +184,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\debug\DebugEntry.h" />
     <ClInclude Include="src\debug\DebugEntryManager.h" />
     <ClInclude Include="src\debug\GameParameter.h" />
+    <ClInclude Include="src\font\FontLayout.h" />
+    <ClInclude Include="src\font\NumericView.h" />
     <ClInclude Include="src\framework\SentanWars.h" />
     <ClInclude Include="src\logic\phase\BattlePhase.h" />
     <ClInclude Include="src\logic\phase\BossPhase.h" />
