@@ -52,6 +52,12 @@
     <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp">
       <Filter>src\Character\Player\Sentan</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Player\Sentan\Fork.cpp">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\MoveComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
@@ -60,12 +66,6 @@
     </ClCompile>
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Sentan\Fork.cpp">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp">
-      <Filter>src\Character\Player\Sentan</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
@@ -163,6 +163,9 @@
     <Filter Include="src\Character\Player">
       <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Component\Attack">
+      <UniqueIdentifier>{6f1c9a84-2b53-4e17-9d6a-5c0e83f7b219}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\logic\phase">
       <UniqueIdentifier>{44b82193-5152-4ae5-b59b-363cd7a46438}</UniqueIdentifier>
     </Filter>
@@ -192,9 +195,6 @@
     </Filter>
     <Filter Include="src\Character\Player\Sentan">
       <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Component\Attack">
-      <UniqueIdentifier>{6f1c9a84-2b53-4e17-9d6a-5c0e83f7b219}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -351,7 +351,16 @@
     <ClInclude Include="src\Character\Player\Sentan\Sentan.h">
       <Filter>src\Character\Player\Sentan</Filter>
     </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\SentanDefinition.h">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\Fork.h">
+      <Filter>src\Character\Player\Sentan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\Component.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\ComponentContainer.h">
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Component\AttributeComponent.h">
@@ -363,9 +372,6 @@
     <ClInclude Include="src\Component\WeaponComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
-    <ClInclude Include="src\Component\ComponentContainer.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
     <ClInclude Include="src\Component\Attack\AttackContext.h">
       <Filter>src\Component\Attack</Filter>
     </ClInclude>
@@ -374,12 +380,6 @@
     </ClInclude>
     <ClInclude Include="src\Component\Attack\NormalAttack.h">
       <Filter>src\Component\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\SentanDefinition.h">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\Fork.h">
-      <Filter>src\Character\Player\Sentan</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
