@@ -20,7 +20,7 @@
     "showOfScreenView": false,
     "showParticlePreviewView": false,
     "showParticleView": false,
-    "showSceneView": true,
+    "showSceneView": false,
     "showShadowMapView": false,
     "showShortcutWindow": false,
     "showSpriteManagerView": false
