@@ -11,10 +11,10 @@ using namespace Hagine;
 
 void TitleScene::Initialize()
 {
-    drawSystem_->Register("Test_PreDraw", DrawLayer::kPreEffect, [this](const ViewProjection& vp)
+    pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
     {
-        spriteManager_->DrawAll();
-        objectManager_->Draw(vp);
+        pSpriteManager_->DrawAll();
+        pObjectManager_->Draw(vp);
     });
 
     // シーン共通の初期化処理
@@ -103,7 +103,7 @@ void TitleScene::InitializeFlexContainer()
 
 void TitleScene::UpdateStartKeyColor()
 {
-    if (input_->PushKey(DIK_SPACE))
+    if (pInput_->PushKey(DIK_SPACE))
     {
         this->GetSprite(SpriteName::StartKey)->SetColor({ 0.7f, 0.7f, 0.7f });
     }
