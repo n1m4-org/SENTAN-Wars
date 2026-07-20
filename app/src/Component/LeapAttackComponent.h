@@ -50,5 +50,5 @@ private:
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
     GameParameter(float, attackTimer_, 0.0f);
     GameParameter(float, attackTime_, 1.0f);
-    GameParameter(float, coolTime_, 3.5f);
+    GameParameter(float, coolTime_, 4.5f);
 };
