@@ -64,6 +64,9 @@
     <ClCompile Include="src\Component\WeaponComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component\DoubleJumpComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
@@ -372,6 +375,14 @@
     <ClInclude Include="src\Component\WeaponComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\ComponentContainer.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\DoubleJumpComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Player\Sentan\SentanContext.h">
+      <Filter>src\Character\Player\Sentan</Filter>
     <ClInclude Include="src\Component\Attack\AttackContext.h">
       <Filter>src\Component\Attack</Filter>
     </ClInclude>

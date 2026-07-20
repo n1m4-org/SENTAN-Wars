@@ -1,16 +1,16 @@
 #include "SentanDefinition.h"
-#include "Component/Attack/AttackContext.h"
+#include "Character/Player/Sentan/SentanContext.h"
+#include "Component/DoubleJumpComponent.h"
 
 namespace {
 
 /// SENTANの定義テーブル
-/// ここが「どのSENTANでどの攻撃が使えるか」の置き場所
-/// createAttack が nullptr のSENTANは、まだ攻撃が実装されていないもの
+/// ここが「どのSENTANで何が解禁されるか」の置き場所
+/// createComponent が nullptr のSENTANは、まだ振る舞いが実装されていないもの
 constexpr SentanDefinition kSentanDefinitions[] = {
-    // id                 modelPath  createAttack
-    {SentanId::Sentan1,   nullptr,   nullptr}, // 溜め攻撃（未実装）
-    {SentanId::Sentan2,   nullptr,   nullptr}, // 突進（未実装）
-    {SentanId::Sentan3,   nullptr,   nullptr}, // 吸い込み（未実装）
+    // id                 modelPath  createComponent
+    {SentanId::Sentan1, nullptr, nullptr},                                     // 溜め攻撃（未実装）
+    {SentanId::Sentan2, nullptr, &CreateSentanComponent<DoubleJumpComponent>}, // 二段ジャンプ
 };
 
 } // namespace

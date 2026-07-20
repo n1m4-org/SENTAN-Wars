@@ -2,25 +2,24 @@
 #include <memory>
 
 class Component;
-struct AttackContext;
+struct SentanContext;
 
 /// 準備フェーズで取得できるSENTANの種類
 enum class SentanId {
     Sentan1, // 溜め攻撃
-    Sentan2, // 突進
-    Sentan3, // 吸い込み
+    Sentan2, // 二段ジャンプ
 };
 
-/// SENTANが解禁する攻撃コンポーネントの生成関数
-using CreateAttackFunc = std::unique_ptr<Component> (*)(const AttackContext &);
+/// SENTANが解禁するコンポーネントの生成関数
+using CreateComponentFunc = std::unique_ptr<Component> (*)(const SentanContext &);
 
 /// SENTAN1種類分の定義
-/// SENTANを増やすときは「攻撃コンポーネントを1つ作る」＋「定義テーブルに1行足す」だけでよい
-/// Player も Fork も攻撃の種類を一切知らないままでいられる
+/// SENTANを増やすときは「コンポーネントを1つ作る」＋「定義テーブルに1行足す」だけでよい
+/// Player も Fork も、解禁される振る舞いの種類を一切知らないままでいられる
 struct SentanDefinition {
-    SentanId id;                   // 種類
-    const char *modelPath;         // Forkにくっつけるモデル
-    CreateAttackFunc createAttack; // このSENTANを装備したときだけ使えるようになる攻撃
+    SentanId id;                        // 種類
+    const char *modelPath;              // Forkにくっつけるモデル
+    CreateComponentFunc createComponent; // このSENTANを装備したときだけ増える振る舞い
 };
 
 /// 定義テーブルからSENTANの定義を引く
