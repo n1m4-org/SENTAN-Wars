@@ -20,21 +20,27 @@ void GameScene::Initialize() {
 	player_ = std::make_unique<Player>();
     player_->Init("Player");
 	
-    objectManager_->RegisterExternal(player_.get());
+    pObjectManager_->RegisterExternal(player_.get());
 
-    drawSystem_->Register("Test_PreDraw", DrawLayer::kPreEffect, [this](const ViewProjection &vp) {
-        spriteManager_->DrawAll();
-        objectManager_->Draw(vp);
+    pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection &vp) {
+        pSpriteManager_->DrawAll();
+        pObjectManager_->Draw(vp);
     });
 
+    // 敵マネージャの初期化
 	pEnemyManager_ = std::make_unique<EnemyManager>();
     pEnemyManager_->Init();
+
+    // ウェーブディレクターの初期化
     pWaveDirector_ = std::make_unique<WaveDirector>();
     pWaveDirector_->Initialize();
 
-    pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
-    pFollowCamera_->Initialize(winApp_);
-    pFollowCamera_->SetTarget(player_->GetWorldTransform());
+    // フォローカメラの初期化
+    this->InitializeFollowCamera(player_->GetWorldTransform());
+
+    // HP HUDの初期化
+    pHpHudView_ = std::make_unique<HpHudView>();
+    pHpHudView_->Initialize();
 }
 
 void GameScene::Finalize() {
@@ -54,8 +60,10 @@ void GameScene::Update() {
 
     pEnemyManager_->Update();
 
+    pHpHudView_->Update(70.0f, 100.0f);
+
     // カメラの更新
-    CameraUpdate();
+    UpdateCamera();
 
     // シーン切り替えの更新
     ChangeScene();
@@ -92,7 +100,14 @@ void GameScene::AddParticleSetting() {
     /// ===================================================
 }
 
-void GameScene::CameraUpdate() {
+void GameScene::InitializeFollowCamera(const Hagine::WorldTransform* pTarget)
+{
+    pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
+    pFollowCamera_->Initialize(pWinApp_);
+    pFollowCamera_->SetTarget(pTarget);
+}
+
+void GameScene::UpdateCamera() {
     /// ===================================================
     /// カメラ更新
     /// ===================================================

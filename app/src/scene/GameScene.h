@@ -6,6 +6,7 @@
 #include "Character/Player/Player.h"
 #include <presentation/FollowCamera.h>
 #include "Character/Enemy/EnemyManager.h"
+#include <presentation/ui/HpHudView.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -64,9 +65,15 @@ private:
     /// ===================================================
 
     /// <summary>
+    /// フォローカメラを初期化
+    /// </summary>
+    /// <param name="pTarget"></param>
+    void InitializeFollowCamera(const Hagine::WorldTransform* pTarget);
+
+    /// <summary>
     /// カメラを更新
     /// </summary>
-    void CameraUpdate();
+    void UpdateCamera();
 
     /// <summary>
     /// シーン遷移を実行
@@ -77,11 +84,12 @@ private:
     /// ===================================================
     /// private variants
     /// ===================================================
-    
+
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
     std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 
 	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
+	std::unique_ptr<HpHudView> pHpHudView_ = nullptr;
 };

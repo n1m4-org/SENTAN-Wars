@@ -3,7 +3,7 @@
 #include <debug/GameParameter.h>
 #include <system/ScopedCursorHidden.h>
 #include "CameraInput.h"
-#include <Camera/ViewProjection/ViewProjection.h>
+#include <Camera/projection/ViewProjection.h>
 #include <Transform/WorldTransform.h>
 #include <type/Vector3.h>
 #include <type/Vector2.h>

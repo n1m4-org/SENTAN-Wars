@@ -86,11 +86,23 @@
     <ClCompile Include="src\presentation\FollowCamera.cpp">
       <Filter>src\presentation</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\ui\Bar2d.cpp">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\ui\HpHudView.cpp">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
     <ClCompile Include="src\scene\GameScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\TitleScene.cpp">
       <Filter>src\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility\layout\FlexContainer.cpp">
+      <Filter>src\utility\layout</Filter>
     </ClCompile>
     <ClCompile Include="src\utility\SpriteFrameGroup.cpp">
       <Filter>src\utility</Filter>
@@ -105,6 +117,9 @@
     </Filter>
     <Filter Include="src\Character">
       <UniqueIdentifier>{c63410bc-b825-4444-86ba-2b82293d5378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{b898a267-4ef9-41f7-969d-698e82c5470b}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Component">
       <UniqueIdentifier>{fbb2221b-24cc-46c6-94a9-7f756ff0e340}</UniqueIdentifier>
@@ -145,6 +160,12 @@
     <Filter Include="src\logic\wave">
       <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\presentation\ui">
+      <UniqueIdentifier>{9c4d8e74-6df2-472a-887f-723fbe147dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility\layout">
+      <UniqueIdentifier>{c224ddde-38c7-4a02-ac6d-32b899fd2e83}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Character\Enemy\AssaultEnemy">
       <UniqueIdentifier>{e666df59-ab44-4e89-968c-34a03f620cc1}</UniqueIdentifier>
     </Filter>
@@ -165,6 +186,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\ResourcePath.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\JumpComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
@@ -267,6 +291,15 @@
     <ClInclude Include="src\presentation\FollowCamera.h">
       <Filter>src\presentation</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\HudManager.h">
+      <Filter>src\presentation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\ui\Bar2d.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\ui\HpHudView.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClInclude>
     <ClInclude Include="src\scene\GameScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
@@ -275,6 +308,18 @@
     </ClInclude>
     <ClInclude Include="src\system\ScopedCursorHidden.h">
       <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\DeltaTimeManager.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\DeltaTimeStopWatch.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\layout\FlexContainer.h">
+      <Filter>src\utility\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\layout\FlexTypes.h">
+      <Filter>src\utility\layout</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\SpriteFrameGroup.h">
       <Filter>src\utility</Filter>
