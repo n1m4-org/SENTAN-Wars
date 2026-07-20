@@ -13,6 +13,8 @@ void BaseEnemy::Init(const std::string className)
 
 	UniqueInit();
 
+	parameter_.attackRange += *targetRadius_; // 攻撃範囲にターゲットの半径を加算しておく
+
 	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed, targetRadius_);
 	moveComponent_->Init();
 
