@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cassert>
 #include <Graphics/Texture/TextureManager.h>
+#include <SpriteManager.h>
 
 #ifdef _DEBUG
 #include <imgui.h>
@@ -37,7 +38,7 @@ void NumericView::Update()
     /// スプライトの数を確認
     uint32_t number = currentNumber_;
     /// 桁数を計算
-    uint32_t digitCount = this->GetDigitCount();
+    const uint32_t digitCount = this->GetDigitCount();
 
     /// 桁が多くなり、スプライトが足りない場合は追加する
     if (numberSprites_.size() < digitCount)
@@ -50,19 +51,20 @@ void NumericView::Update()
     }
 
     /// 各スプライトに数字を割り当てる
-    glyphInfos_.clear();
+    /// スプライト・サイズともに「左端(最上位桁)=index 0」の並びで格納し、
+    /// FontLayout::Compute の並び順(左→右)と一致させる
+    glyphInfos_.assign(digitCount, GlyphInfo{});
     for (uint32_t i = 0; i < digitCount; ++i)
     {
         uint32_t digit = number % 10;
+        const uint32_t spriteIndex = digitCount - i - 1;
         TextureHandleType handle = numberTextureHandles_[digit];
-        numberSprites_[digitCount - i - 1]->SetTexturePath(handle);
+        numberSprites_[spriteIndex]->SetTexturePath(handle);
         /// サイズを設定
         const auto& metadata = Hagine::TextureManager::GetInstance()->GetMetaData(handle);
         const float aspect = static_cast<float>(metadata.width) / static_cast<float>(metadata.height);
         Hagine::Vector2 size = { fontSizeY_ * aspect, static_cast<float>(fontSizeY_) };
-        GlyphInfo glyphInfo;
-        glyphInfo.size = size;
-        glyphInfos_.emplace_back(glyphInfo);
+        glyphInfos_[spriteIndex].size = size;
         number /= 10;
     }
 
@@ -74,15 +76,20 @@ void NumericView::Update()
         numberSprites_[i]->SetPosition(layoutResults[i].leftTop);
         numberSprites_[i]->SetSize(glyphInfos_[i].size);
     }
-}
 
-void NumericView::Draw()
-{
-    uint32_t digitCount = this->GetDigitCount();
-    for (uint32_t i = 0; i < digitCount; ++i)
+    auto sm = Hagine::SpriteManager::GetInstance();
+    for (uint32_t i = 0; i < numberSprites_.size(); ++i)
     {
-        auto& sprite = numberSprites_[i];
-        sprite->Draw();
+        if (i >= digitCount)
+        {
+            auto& sprite = numberSprites_[i];
+            sm->UnregisterExternal(sprite.get());
+        }
+        else
+        {
+            auto& sprite = numberSprites_[i];
+            sm->RegisterExternal(sprite.get());
+        }
     }
 }
 

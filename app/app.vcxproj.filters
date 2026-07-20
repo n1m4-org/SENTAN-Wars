@@ -119,6 +119,7 @@
     <ClCompile Include="src\font\FontLayout.cpp" />
     <ClCompile Include="src\font\NumericView.cpp" />
     <ClCompile Include="src\presentation\ui\BarMovable.cpp" />
+    <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

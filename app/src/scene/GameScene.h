@@ -8,6 +8,7 @@
 #include <Character/Enemy/EnemyManager.h>
 #include <presentation/ui/HpHudView.h>
 #include <presentation/HudManager.h>
+#include <presentation/ui/WaveCountHudView.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -99,4 +100,5 @@ private:
     std::unique_ptr<HudManager> pHudManager_ = nullptr;
 	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
 	HpHudView* pHpHudView_ = nullptr;
+    WaveCountHudView* pWaveCountHudView_ = nullptr;
 };

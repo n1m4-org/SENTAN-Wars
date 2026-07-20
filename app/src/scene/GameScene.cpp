@@ -127,4 +127,5 @@ void GameScene::InitializeHudManager()
 {
     pHudManager_ = std::make_unique<HudManager>();
     pHpHudView_ = pHudManager_->CreateView<HpHudView>();
+    pWaveCountHudView_ = pHudManager_->CreateView<WaveCountHudView>();
 }
