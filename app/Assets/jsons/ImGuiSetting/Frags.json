@@ -12,7 +12,7 @@
     "showDrawSystemView": false,
     "showFPSView": false,
     "showGameParamView": false,
-    "showGizmoView": false,
+    "showGizmoView": true,
     "showHierarchyView": false,
     "showLightView": false,
     "showMotionEditorView": false,
@@ -23,5 +23,5 @@
     "showSceneView": true,
     "showShadowMapView": false,
     "showShortcutWindow": false,
-    "showSpriteManagerView": true
+    "showSpriteManagerView": false
 }
