@@ -25,11 +25,7 @@ void BaseEnemy::Update()
 	UniqueUpdate();
 	if (target_)
 	{
-		if ((transform_->translation_ - *target_).Length() <= parameter_.attackRange + *targetRadius_)
-		{
-			// 攻撃範囲内に入ったら攻撃する
-		}
-		else
+		if ((transform_->translation_ - *target_).Length() > parameter_.attackRange + *targetRadius_)
 		{
 			moveComponent_->Update();
 		}
