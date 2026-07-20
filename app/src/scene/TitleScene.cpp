@@ -3,6 +3,7 @@
 #include <type/Vector4.h>
 #include <utility/ViewportUnits.hpp>
 #include <SpriteManager.h>
+#include <utility/SpriteUnregisterer.h>
 
 
 REGISTER_SCENE("TITLE", TitleScene)
@@ -25,6 +26,11 @@ void TitleScene::Initialize()
 
     // フレックスコンテナの初期化
     this->InitializeFlexContainer();
+}
+
+void TitleScene::Finalize()
+{
+    utl::sprite::Unregister(sprites_);
 }
 
 void TitleScene::Update()
