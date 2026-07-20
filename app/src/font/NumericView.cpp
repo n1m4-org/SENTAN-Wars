@@ -1,14 +1,12 @@
 #include "NumericView.h"
 #include <cmath>
 #include <cassert>
-#include <Graphics/Texture/TextureManager.h>
-#include <SpriteManager.h>
 
 #ifdef _DEBUG
 #include <imgui.h>
 #endif // _DEBUG
 
-void NumericView::Initialize(std::span<TextureHandleType> textureHandles, const std::string& name)
+void NumericView::Initialize(std::span<TexHandleType> textureHandles, const std::string& name)
 {
     assert(textureHandles.size() == kRadix_);
 
@@ -37,6 +35,7 @@ void NumericView::Update()
 {
     /// スプライトの数を確認
     uint32_t number = currentNumber_;
+
     /// 桁数を計算
     const uint32_t digitCount = this->GetDigitCount();
 
@@ -58,12 +57,13 @@ void NumericView::Update()
     {
         uint32_t digit = number % 10;
         const uint32_t spriteIndex = digitCount - i - 1;
-        TextureHandleType handle = numberTextureHandles_[digit];
+        TexHandleType handle = numberTextureHandles_[digit];
         numberSprites_[spriteIndex]->SetTexturePath(handle);
+
         /// サイズを設定
-        const auto& metadata = Hagine::TextureManager::GetInstance()->GetMetaData(handle);
+        const auto& metadata = TexMgr::GetInstance()->GetMetaData(handle);
         const float aspect = static_cast<float>(metadata.width) / static_cast<float>(metadata.height);
-        Hagine::Vector2 size = { fontSizeY_ * aspect, static_cast<float>(fontSizeY_) };
+        Vec2 size = { fontSizeY_ * aspect, static_cast<float>(fontSizeY_) };
         glyphInfos_[spriteIndex].size = size;
         number /= 10;
     }
@@ -77,7 +77,8 @@ void NumericView::Update()
         numberSprites_[i]->SetSize(glyphInfos_[i].size);
     }
 
-    auto sm = Hagine::SpriteManager::GetInstance();
+    /// 描画対象のスプライトを登録・解除する
+    auto sm = SpriteMgr::GetInstance();
     for (uint32_t i = 0; i < numberSprites_.size(); ++i)
     {
         if (i >= digitCount)
@@ -111,14 +112,14 @@ void NumericView::SetFontSize(float sizeY)
     fontSizeY_ = sizeY;
 }
 
-void NumericView::SetColor(const Hagine::Vector4& color)
+void NumericView::SetColor(const Vec4& color)
 {
     color_ = color;
 }
 
 void NumericView::AddSprite()
 {
-    auto sprite = std::make_unique<Hagine::Sprite>();
+    auto sprite = std::make_unique<Sprite>();
     sprite->Initialize("debug/white1x1.png", {});
     numberSprites_.emplace_back(std::move(sprite));
 }

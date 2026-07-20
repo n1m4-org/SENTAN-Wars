@@ -2,6 +2,7 @@
 
 namespace Path::Image
 {
+    inline constexpr const char* kDebugMeasure = "debug/measure.png";
     inline constexpr const char* kLogo = "common/logo_580x160.png";
     inline constexpr const char* kStartKey = "common/space_485x120.png";
     inline constexpr const char* kPrompt = "prompt/start_163x53.png";
@@ -20,4 +21,5 @@ namespace Path::Image
         "common/8_25x25.png",
         "common/9_25x25.png"
     };
+    inline constexpr const char* Wave = "common/wave_100x25.png";
 }

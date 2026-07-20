@@ -1,384 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\Component\JumpComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\AssaultAttackComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\DashAttackComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\LeapAttackComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\RamAttackComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\EnemyMoveComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp">
-      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp">
-      <Filter>src\Character\Enemy\DashEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\NormalEnemy\NormalEnemy.cpp">
-      <Filter>src\Character\Enemy\NormalEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp">
-      <Filter>src\Character\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\TankEnemy\TankEnemy.cpp">
-      <Filter>src\Character\Enemy\TankEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp">
-      <Filter>src\Character\Enemy\TestEnemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\debug\DebugEntry.cpp">
-      <Filter>src\debug</Filter>
-    </ClCompile>
-    <ClCompile Include="src\debug\DebugEntryManager.cpp">
-      <Filter>src\debug</Filter>
-    </ClCompile>
-    <ClCompile Include="src\framework\SentanWars.cpp">
-      <Filter>src\framework</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Player.cpp">
-      <Filter>src\Character\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Sentan\Fork.cpp">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\MoveComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\WeaponComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\DoubleJumpComponent.cpp">
-      <Filter>src\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
-      <Filter>src\Component\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
-      <Filter>src\Character\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logic\phase\PhaseDirector.cpp">
-      <Filter>src\logic\phase</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logic\wave\BossWave.cpp">
-      <Filter>src\logic\wave</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logic\wave\GeneralWave.cpp">
-      <Filter>src\logic\wave</Filter>
-    </ClCompile>
-    <ClCompile Include="src\logic\wave\WaveDirector.cpp">
-      <Filter>src\logic\wave</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\math\Color.cpp">
-      <Filter>src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\math\Mat3x3.cpp">
-      <Filter>src\math</Filter>
-    </ClCompile>
-    <ClCompile Include="src\presentation\CameraInput.cpp">
-      <Filter>src\presentation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\presentation\FollowCamera.cpp">
-      <Filter>src\presentation</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\GameScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\TitleScene.cpp">
-      <Filter>src\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\layout\FlexContainer.cpp">
-      <Filter>src\utility\layout</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\SpriteFrameGroup.cpp">
-      <Filter>src\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\strutl.cpp">
-      <Filter>src\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
-    <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
-    <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
+    <ClCompile Include="src\Component\JumpComponent.cpp" />
+    <ClCompile Include="src\Component\AssaultAttackComponent.cpp" />
+    <ClCompile Include="src\Component\DashAttackComponent.cpp" />
+    <ClCompile Include="src\Component\LeapAttackComponent.cpp" />
+    <ClCompile Include="src\Component\RamAttackComponent.cpp" />
+    <ClCompile Include="src\Component\EnemyMoveComponent.cpp" />
+    <ClCompile Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\DashEnemy\DashEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\NormalEnemy\NormalEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\EnemyManager.cpp" />
+    <ClCompile Include="src\Character\Enemy\TankEnemy\TankEnemy.cpp" />
+    <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp" />
+    <ClCompile Include="src\debug\DebugEntry.cpp" />
+    <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\font\FontLayout.cpp" />
     <ClCompile Include="src\font\NumericView.cpp" />
+    <ClCompile Include="src\framework\SentanWars.cpp" />
+    <ClCompile Include="src\Character\Player\Player.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\Fork.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp" />
+    <ClCompile Include="src\Component\MoveComponent.cpp" />
+    <ClCompile Include="src\Component\WeaponComponent.cpp" />
+    <ClCompile Include="src\Component\DoubleJumpComponent.cpp" />
+    <ClCompile Include="src\Component\Attack\NormalAttack.cpp" />
+    <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
+    <ClCompile Include="src\logic\wave\BossWave.cpp" />
+    <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
+    <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\math\Color.cpp" />
+    <ClCompile Include="src\math\Mat3x3.cpp" />
+    <ClCompile Include="src\presentation\CameraInput.cpp" />
+    <ClCompile Include="src\presentation\FollowCamera.cpp" />
+    <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
     <ClCompile Include="src\presentation\ui\BarMovable.cpp" />
+    <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp" />
+    <ClCompile Include="src\scene\GameScene.cpp" />
+    <ClCompile Include="src\scene\TitleScene.cpp" />
+    <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
+    <ClCompile Include="src\utility\layout\FlexContainer.cpp" />
+    <ClCompile Include="src\utility\SpriteFrameGroup.cpp" />
+    <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{111b6f8b-783b-4d6e-b9ba-901b8bed7d05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character">
-      <UniqueIdentifier>{c63410bc-b825-4444-86ba-2b82293d5378}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Component">
-      <UniqueIdentifier>{fbb2221b-24cc-46c6-94a9-7f756ff0e340}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\debug">
-      <UniqueIdentifier>{18c9de68-3d73-4c72-9556-4717c97b6e91}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\framework">
-      <UniqueIdentifier>{6be6bdb0-cdf8-44c6-ac5d-2ad3fb64e65e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\logic">
-      <UniqueIdentifier>{6a76ac1a-266a-4fc4-a855-1070bd3b0cae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\math">
-      <UniqueIdentifier>{06bc2b22-0749-4bf7-9d78-8b7c29392f7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\presentation">
-      <UniqueIdentifier>{430cdde4-0456-4989-9b58-f351d95067f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene">
-      <UniqueIdentifier>{d3f15c00-973d-4e48-ba54-a09988d106de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\system">
-      <UniqueIdentifier>{6599ec27-5028-4116-b16f-2324f182ab2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\utility">
-      <UniqueIdentifier>{7caa8714-9aa2-4d76-99c1-5dd523fcc406}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy">
-      <UniqueIdentifier>{894de092-6fa1-4837-bed9-c072db4f2496}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Player">
-      <UniqueIdentifier>{2f6a4c1d-6b7e-4c2a-9f0b-1d8e5a7c3b41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Component\Attack">
-      <UniqueIdentifier>{6f1c9a84-2b53-4e17-9d6a-5c0e83f7b219}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\logic\phase">
-      <UniqueIdentifier>{44b82193-5152-4ae5-b59b-363cd7a46438}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\logic\wave">
-      <UniqueIdentifier>{9b0bba09-2cbd-4703-aa84-23e706d6e46f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\utility\layout">
-      <UniqueIdentifier>{c224ddde-38c7-4a02-ac6d-32b899fd2e83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy\AssaultEnemy">
-      <UniqueIdentifier>{e666df59-ab44-4e89-968c-34a03f620cc1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy\DashEnemy">
-      <UniqueIdentifier>{b1c95b26-835f-4e84-8178-5a4fb8033164}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy\NormalEnemy">
-      <UniqueIdentifier>{f6e4efb5-58f2-4230-b3e7-34c390d0c3c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy\TankEnemy">
-      <UniqueIdentifier>{250f28ee-15e5-44d7-9123-0118cf994efe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Enemy\TestEnemy">
-      <UniqueIdentifier>{067e5076-af7f-4625-8e8a-87a652cc0f4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Character\Player\Sentan">
-      <UniqueIdentifier>{3a7b5d2e-7c8f-4d3b-a01c-2e9f6b8d4c52}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Component\JumpComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\AssaultAttackComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\DashAttackComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\LeapAttackComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\RamAttackComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\EnemyParameterManager.h">
-      <Filter>src\Character\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\EnemyMoveComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h">
-      <Filter>src\Character\Enemy\AssaultEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\DashEnemy\DashEnemy.h">
-      <Filter>src\Character\Enemy\DashEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\NormalEnemy\NormalEnemy.h">
-      <Filter>src\Character\Enemy\NormalEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\EnemyManager.h">
-      <Filter>src\Character\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\TankEnemy\TankEnemy.h">
-      <Filter>src\Character\Enemy\TankEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h">
-      <Filter>src\Character\Enemy\TestEnemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\debug\DebugEntry.h">
-      <Filter>src\debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\debug\DebugEntryManager.h">
-      <Filter>src\debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\debug\GameParameter.h">
-      <Filter>src\debug</Filter>
-    </ClInclude>
-    <ClInclude Include="src\framework\SentanWars.h">
-      <Filter>src\framework</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\BattlePhase.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\BossPhase.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\IPhase.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\PhaseDirector.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\PhaseType.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\phase\SetupPhase.h">
-      <Filter>src\logic\phase</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\wave\BossWave.h">
-      <Filter>src\logic\wave</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\wave\GeneralWave.h">
-      <Filter>src\logic\wave</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\wave\IWave.h">
-      <Filter>src\logic\wave</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\wave\WaveDirector.h">
-      <Filter>src\logic\wave</Filter>
-    </ClInclude>
-    <ClInclude Include="src\logic\wave\WaveType.h">
-      <Filter>src\logic\wave</Filter>
-    </ClInclude>
-    <ClInclude Include="src\math\Color.h">
-      <Filter>src\math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\math\Mat3x3.h">
-      <Filter>src\math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\presentation\CameraInput.h">
-      <Filter>src\presentation</Filter>
-    </ClInclude>
-    <ClInclude Include="src\presentation\FollowCamera.h">
-      <Filter>src\presentation</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\GameScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\TitleScene.h">
-      <Filter>src\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="src\system\ScopedCursorHidden.h">
-      <Filter>src\system</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\layout\FlexContainer.h">
-      <Filter>src\utility\layout</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\layout\FlexTypes.h">
-      <Filter>src\utility\layout</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\SpriteFrameGroup.h">
-      <Filter>src\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\strutl.h">
-      <Filter>src\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\ViewportUnits.hpp">
-      <Filter>src\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\wndutl.h">
-      <Filter>src\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Player.h">
-      <Filter>src\Character\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\Sentan.h">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\SentanDefinition.h">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\Fork.h">
-      <Filter>src\Character\Player\Sentan</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\Component.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\ComponentContainer.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\AttributeComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\MoveComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\WeaponComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\ComponentContainer.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\DoubleJumpComponent.h">
-      <Filter>src\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Player\Sentan\SentanContext.h">
-      <Filter>src\Character\Player\Sentan</Filter>
-    <ClInclude Include="src\Component\Attack\AttackContext.h">
-      <Filter>src\Component\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\Attack\AttackStateComponent.h">
-      <Filter>src\Component\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Component\Attack\NormalAttack.h">
-      <Filter>src\Component\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
-      <Filter>src\Character\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utility\DeltaTimeManager.h" />
-    <ClInclude Include="src\utility\DeltaTimeStopWatch.h" />
-    <ClInclude Include="src\presentation\ui\HpHudView.h" />
     <ClInclude Include="src\common\ResourcePath.h" />
-    <ClInclude Include="src\presentation\HudManager.h" />
-    <ClInclude Include="src\presentation\ui\Bar2d.h" />
+    <ClInclude Include="src\Component\JumpComponent.h" />
+    <ClInclude Include="src\Component\AssaultAttackComponent.h" />
+    <ClInclude Include="src\Component\DashAttackComponent.h" />
+    <ClInclude Include="src\Component\LeapAttackComponent.h" />
+    <ClInclude Include="src\Component\RamAttackComponent.h" />
+    <ClInclude Include="src\Character\Enemy\EnemyParameterManager.h" />
+    <ClInclude Include="src\Component\EnemyMoveComponent.h" />
+    <ClInclude Include="src\Character\Enemy\AssaultEnemy\AssaultEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\DashEnemy\DashEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\NormalEnemy\NormalEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\EnemyManager.h" />
+    <ClInclude Include="src\Character\Enemy\TankEnemy\TankEnemy.h" />
+    <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h" />
+    <ClInclude Include="src\debug\DebugEntry.h" />
+    <ClInclude Include="src\debug\DebugEntryManager.h" />
+    <ClInclude Include="src\debug\GameParameter.h" />
     <ClInclude Include="src\font\FontLayout.h" />
     <ClInclude Include="src\font\NumericView.h" />
-    <ClInclude Include="src\presentation\ui\WaveCountHudView.h" />
-    <ClInclude Include="src\presentation\ui\IHudView.h" />
+    <ClInclude Include="src\framework\SentanWars.h" />
+    <ClInclude Include="src\logic\phase\BattlePhase.h" />
+    <ClInclude Include="src\logic\phase\BossPhase.h" />
+    <ClInclude Include="src\logic\phase\IPhase.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionPresenter.h" />
+    <ClInclude Include="src\logic\phase\PhaseDirector.h" />
+    <ClInclude Include="src\logic\phase\PhaseTransitionValidator.h" />
+    <ClInclude Include="src\logic\phase\PhaseType.h" />
+    <ClInclude Include="src\logic\phase\SetupPhase.h" />
+    <ClInclude Include="src\logic\wave\BossWave.h" />
+    <ClInclude Include="src\logic\wave\GeneralWave.h" />
+    <ClInclude Include="src\logic\wave\IWave.h" />
+    <ClInclude Include="src\logic\wave\WaveDirector.h" />
+    <ClInclude Include="src\logic\wave\WaveType.h" />
+    <ClInclude Include="src\math\Color.h" />
+    <ClInclude Include="src\math\Mat3x3.h" />
+    <ClInclude Include="src\presentation\CameraInput.h" />
+    <ClInclude Include="src\presentation\FollowCamera.h" />
+    <ClInclude Include="src\presentation\HudManager.h" />
+    <ClInclude Include="src\presentation\ui\Bar2d.h" />
     <ClInclude Include="src\presentation\ui\BarMovable.h" />
+    <ClInclude Include="src\presentation\ui\HpHudView.h" />
+    <ClInclude Include="src\presentation\ui\IHudView.h" />
+    <ClInclude Include="src\presentation\ui\WaveCountHudView.h" />
+    <ClInclude Include="src\scene\GameScene.h" />
+    <ClInclude Include="src\scene\TitleScene.h" />
+    <ClInclude Include="src\system\ScopedCursorHidden.h" />
+    <ClInclude Include="src\utility\DeltaTimeManager.h" />
+    <ClInclude Include="src\utility\DeltaTimeStopWatch.h" />
+    <ClInclude Include="src\utility\layout\FlexContainer.h" />
+    <ClInclude Include="src\utility\layout\FlexTypes.h" />
+    <ClInclude Include="src\utility\SpriteFrameGroup.h" />
+    <ClInclude Include="src\utility\strutl.h" />
+    <ClInclude Include="src\utility\ViewportUnits.hpp" />
+    <ClInclude Include="src\utility\wndutl.h" />
+    <ClInclude Include="src\Character\Player\Player.h" />
+    <ClInclude Include="src\Character\Player\Sentan\Sentan.h" />
+    <ClInclude Include="src\Character\Player\Sentan\SentanDefinition.h" />
+    <ClInclude Include="src\Character\Player\Sentan\Fork.h" />
+    <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\ComponentContainer.h" />
+    <ClInclude Include="src\Component\AttributeComponent.h" />
+    <ClInclude Include="src\Component\MoveComponent.h" />
+    <ClInclude Include="src\Component\WeaponComponent.h" />
+    <ClInclude Include="src\Component\DoubleJumpComponent.h" />
+    <ClInclude Include="src\Character\Player\Sentan\SentanContext.h" />
+    <ClInclude Include="src\Component\Attack\AttackStateComponent.h" />
+    <ClInclude Include="src\Component\Attack\NormalAttack.h" />
+    <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
   </ItemGroup>
 </Project>
