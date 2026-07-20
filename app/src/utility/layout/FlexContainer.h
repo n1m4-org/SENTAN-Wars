@@ -21,6 +21,13 @@ public:
 
     std::vector<FlexResult> Calculate(const FlexBox& containerBox, std::span<const FlexItem> items) const;
 
+    void SetName(const std::string& name)
+    { 
+        #ifdef _DEBUG
+        debugEntry.SetName(name);
+        #endif // _DEBUG
+    }
+
 private:
     float MainOf(const Vec2& v) const;
     float CrossOf(const Vec2& v) const;

@@ -22,6 +22,7 @@ void HpHudView::InitializeSprites()
     pSpriteHp_ = std::make_unique<Hagine::Sprite>();
     pSpriteHp_->Initialize(Path::Image::Hp, {});
 
+    /// HPバーの初期化
     Bar2d::Config cfg;
     cfg.colorWarn = 0xffff00ff;
     cfg.interpolationRatio = 0.1f;
@@ -44,14 +45,18 @@ void HpHudView::InitializeFlexContainer()
     pFlexContainer_->justifyContent_ = JustifyContent::Center;
     pFlexContainer_->alignItems_ = AlignItems::Center;
     pFlexContainer_->gap_ = 32.0f;
+
+    // デバッグ用の名前を設定
+    pFlexContainer_->SetName("HpHud");
+
+    // コンテナの位置とサイズを設定
+    containerBox_.position = Hagine::Vector2(0.0f, 860.0f);
+    containerBox_.size = Hagine::Vector2(500.0f, 100.0f);
 }
 
 void HpHudView::ApplyFlexLayout()
 {
-    auto result = pFlexContainer_->Calculate(containerSize_, flexItems_);
-
-    result[0].position += containerPosition_;
-    result[1].position += containerPosition_;
+    auto result = pFlexContainer_->Calculate(containerBox_, flexItems_);
 
     pSpriteHp_->SetPosition(result[0].position);
     pSpriteHp_->SetSize(result[0].size);

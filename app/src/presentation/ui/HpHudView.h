@@ -44,8 +44,7 @@ private:
     std::vector<FlexItem> flexItems_;
 
     EnableDebug("HpHudView");
-    GameParameter(Hagine::Vector2, containerPosition_, Hagine::Vector2(0.0f, 860.0f));
-    GameParameter(Hagine::Vector2, containerSize_, Hagine::Vector2(500.0f, 100.0f));
+    GameParameter(FlexBox, containerBox_, FlexBox());
 
     float currentHp_ = 100.0f;
     float maxHp_ = 100.0f;

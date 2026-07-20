@@ -42,20 +42,31 @@ void WaveCountHudView::InitializeFlexContainer()
     pFlexContainer_->justifyContent_ = JustifyContent::Center;
     pFlexContainer_->alignItems_ = AlignItems::Center;
     pFlexContainer_->gap_ = 32.0f;
+
+    // デバッグ用の名前を設定
+    pFlexContainer_->SetName("WaveCount");
 }
 
 void WaveCountHudView::InitializeNumericView()
 {
     pNumericView_ = std::make_unique<NumericView>();
+
+    // 数字のテクスチャハンドルを設定
     std::vector<std::string> textureHandles;
     for (const auto& path : Path::Image::Numbers)
     {
         textureHandles.emplace_back(path);
     }
-    pNumericView_->Initialize(textureHandles, "WaveCount");
 
+    // NumericViewを初期化
+    pNumericView_->Initialize(textureHandles, "WaveCount");
+    pNumericView_->GetFontLayoutProperties().letterSpacing = 4.0f;
+
+    // 文字スプライト「WAVE」を初期化
     pWaveSprite_ = std::make_unique<Hagine::Sprite>();
     pWaveSprite_->Initialize(Path::Image::Wave, {});
+
+    // スプライトマネージャに登録
     Hagine::SpriteManager::GetInstance()->RegisterExternal(pWaveSprite_.get());
 }
 
