@@ -31,6 +31,7 @@ void EnemyManager::Init()
 
 	// テストとしてウェーブ0を開始
 	StartWave(wavePresets_[0]);
+
 }
 
 void EnemyManager::StartWave(const WaveData& waveData)
