@@ -118,6 +118,7 @@
     <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
     <ClCompile Include="src\font\FontLayout.cpp" />
     <ClCompile Include="src\font\NumericView.cpp" />
+    <ClCompile Include="src\presentation\ui\BarMovable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -375,5 +376,8 @@
     <ClInclude Include="src\presentation\ui\Bar2d.h" />
     <ClInclude Include="src\font\FontLayout.h" />
     <ClInclude Include="src\font\NumericView.h" />
+    <ClInclude Include="src\presentation\ui\WaveCountHudView.h" />
+    <ClInclude Include="src\presentation\ui\IHudView.h" />
+    <ClInclude Include="src\presentation\ui\BarMovable.h" />
   </ItemGroup>
 </Project>

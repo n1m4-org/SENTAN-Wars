@@ -38,9 +38,8 @@ void GameScene::Initialize() {
     // フォローカメラの初期化
     this->InitializeFollowCamera(player_->GetWorldTransform());
 
-    // HP HUDの初期化
-    pHpHudView_ = std::make_unique<HpHudView>();
-    pHpHudView_->Initialize();
+    // HUDの初期化
+    this->InitializeHudManager();
 }
 
 void GameScene::Finalize() {
@@ -60,7 +59,7 @@ void GameScene::Update() {
 
     pEnemyManager_->Update();
 
-    pHpHudView_->Update(70.0f, 100.0f);
+    pHudManager_->Update();
 
     // カメラの更新
     UpdateCamera();
@@ -122,4 +121,10 @@ void GameScene::ChangeScene() {
     /// ===================================================
     /// シーン切り替え
     /// ===================================================
+}
+
+void GameScene::InitializeHudManager()
+{
+    pHudManager_ = std::make_unique<HudManager>();
+    pHpHudView_ = pHudManager_->CreateView<HpHudView>();
 }

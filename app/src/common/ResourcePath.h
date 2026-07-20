@@ -7,4 +7,5 @@ namespace Path::Image
     inline constexpr const char* kPrompt = "prompt/start_163x53.png";
     inline constexpr const char* Hp = "hud/HP_53x25.png";
     inline constexpr const char* Bar = "hud/Bar_296x16.png";
+    inline constexpr const char* BarRed = "hud/BarRed_296x16.png";
 }

@@ -1,16 +1,23 @@
 #pragma once
-#include <SpriteManager.h>
+#include "IHudView.h"
 #include <utility/layout/FlexContainer.h>
 #include "Bar2d.h"
 #include <Sprite.h>
 #include <memory>
 #include <vector>
+#include <debug/GameParameter.h>
 
-class HpHudView
+class HpHudView : public IHudView
 {
 public:
-    void Initialize();
-    void Update(float hp, float hpMax);
+    HpHudView();
+    void Update() override;
+
+    // HPの設定
+    void SetHP(float hp) { currentHp_ = hp; }
+
+    // 最大HPの設定
+    void SetMaxHP(float maxHp) { maxHp_ = maxHp; }
 
 private:
     // スプライトの初期化
@@ -41,4 +48,5 @@ private:
     GameParameter(Hagine::Vector2, containerSize_, Hagine::Vector2(500.0f, 100.0f));
 
     float currentHp_ = 100.0f;
+    float maxHp_ = 100.0f;
 };

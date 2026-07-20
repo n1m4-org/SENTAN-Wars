@@ -1,8 +1,9 @@
 #include "HpHudView.h"
 #include <common/ResourcePath.h>
+#include <SpriteManager.h>
 
 
-void HpHudView::Initialize()
+HpHudView::HpHudView()
 {
     this->InitializeSprites();
     this->InitializeFlexContainer();
@@ -10,10 +11,10 @@ void HpHudView::Initialize()
     this->RegisterCustomGui();
 }
 
-void HpHudView::Update(float hp, float hpMax)
+void HpHudView::Update()
 {
     this->ApplyFlexLayout();
-    bar_.Update(currentHp_, hpMax);
+    bar_.Update(currentHp_, maxHp_);
 }
 
 void HpHudView::InitializeSprites()
@@ -22,8 +23,9 @@ void HpHudView::InitializeSprites()
     pSpriteHp_->Initialize(Path::Image::Hp, {});
 
     Bar2d::Config cfg;
-    cfg.warnColor = 0xffff00ff;
+    cfg.colorWarn = 0xffff00ff;
     cfg.interpolationRatio = 0.1f;
+    cfg.maxSize = { 296.0f, 16.0f };
     bar_.Initialize(cfg);
 
     /// スプライトマネージャに登録
