@@ -1,7 +1,10 @@
 #include "Player.h"
+#include "Component/Attack/AttackContext.h"
+#include "Component/Attack/AttackStateComponent.h"
+#include "Component/Attack/NormalAttack.h"
 #include "Component/JumpComponent.h"
 #include "Component/MoveComponent.h"
-#include "Component/SentanComponent.h"
+#include "Component/WeaponComponent.h"
 using namespace Hagine;
 
 void Player::Init(const std::string className) {
@@ -9,25 +12,51 @@ void Player::Init(const std::string className) {
 
     // モデルの読み込み
     CreatePrimitiveModel(PrimitiveType::Cube);
-	SetTexture("debug/white1x1.png");
+    SetTexture("debug/white1x1.png");
 
     // --- コンポーネントの登録 ---
+    // 攻撃コンポーネントが共有する状態（攻撃の同時発動を防ぐ）
+    AttackStateComponent *attackState = AddComponent<AttackStateComponent>();
+
     // 移動コンポーネント
     AddComponent<MoveComponent>(GetWorldTransform());
 
     // ジャンプコンポーネント
     AddComponent<JumpComponent>(GetWorldTransform());
 
-    // SENTANコンポーネント
-    AddComponent<SentanComponent>(this);
+    // 武器コンポーネント（Forkを持ち、装備したSENTANの攻撃を追加する）
+    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState);
 
-    // 登録済みコンポーネントの初期化
-    for (auto &component : components_) {
-        component->Init();
+    // 通常攻撃コンポーネント（SENTANが無くても常に使えるので最初から持つ）
+    const AttackContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState};
+    AddComponent<NormalAttack>(normalAttackContext);
+
+    FlushPendingComponents();
+}
+
+Component *Player::AddComponent(std::unique_ptr<Component> component) {
+    if (!component) {
+        return nullptr;
     }
+
+    component->Init();
+
+    Component *raw = component.get();
+    pendingComponents_.emplace_back(std::move(component));
+    return raw;
+}
+
+void Player::FlushPendingComponents() {
+    for (auto &component : pendingComponents_) {
+        components_.emplace_back(std::move(component));
+    }
+    pendingComponents_.clear();
 }
 
 void Player::Update() {
+    // 前フレームまでに追加されたコンポーネントをここで登録する
+    FlushPendingComponents();
+
     // 各コンポーネントの更新
     for (auto &component : components_) {
         component->Update();

@@ -139,8 +139,11 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\framework\SentanWars.cpp" />
     <ClCompile Include="src\Character\Player\Player.cpp" />
     <ClCompile Include="src\Character\Player\Sentan\Sentan.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\Fork.cpp" />
+    <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp" />
     <ClCompile Include="src\Component\MoveComponent.cpp" />
-    <ClCompile Include="src\Component\SentanComponent.cpp" />
+    <ClCompile Include="src\Component\WeaponComponent.cpp" />
+    <ClCompile Include="src\Component\Attack\NormalAttack.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
     <ClCompile Include="src\logic\wave\BossWave.cpp" />
@@ -214,10 +217,16 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   <ItemGroup>
     <ClInclude Include="src\Character\Player\Player.h" />
     <ClInclude Include="src\Character\Player\Sentan\Sentan.h" />
+    <ClInclude Include="src\Character\Player\Sentan\SentanDefinition.h" />
+    <ClInclude Include="src\Character\Player\Sentan\Fork.h" />
     <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\ComponentContainer.h" />
     <ClInclude Include="src\Component\AttributeComponent.h" />
     <ClInclude Include="src\Component\MoveComponent.h" />
-    <ClInclude Include="src\Component\SentanComponent.h" />
+    <ClInclude Include="src\Component\WeaponComponent.h" />
+    <ClInclude Include="src\Component\Attack\AttackContext.h" />
+    <ClInclude Include="src\Component\Attack\AttackStateComponent.h" />
+    <ClInclude Include="src\Component\Attack\NormalAttack.h" />
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
