@@ -31,7 +31,7 @@ FlexContainer::FlexContainer()
 #endif // _DEBUG
 }
 
-std::vector<FlexResult> FlexContainer::Calculate(const Hagine::Vector2& containerSize, std::span<const FlexItem> items) const
+std::vector<FlexResult> FlexContainer::Calculate(const FlexBox& containerBox, std::span<const FlexItem> items) const
 {
     std::vector<FlexResult> results;
     results.resize(items.size());
@@ -51,7 +51,7 @@ std::vector<FlexResult> FlexContainer::Calculate(const Hagine::Vector2& containe
     float itemMainSums_ = std::accumulate(itemMainSizes.begin(), itemMainSizes.end(), 0.0f);
 
     // 3. コンテナのメイン軸サイズからアイテムの合計サイズとギャップを引いて、余白を計算
-    float freeSpace = MainOf(containerSize) - itemMainSums_ - gap_ * (items.size() - 1);
+    float freeSpace = MainOf(containerBox.size) - itemMainSums_ - gap_ * (items.size() - 1);
 
     // 4. Justify-Content
     std::vector<float> itemPositions;
@@ -61,16 +61,22 @@ std::vector<FlexResult> FlexContainer::Calculate(const Hagine::Vector2& containe
     for (size_t i = 0; i < itemMainSizes.size(); ++i)
     {
         float itemCrossSize = itemCrossSizes[i];
-        float containerCrossSize = CrossOf(containerSize);
+        float containerCrossSize = CrossOf(containerBox.size);
         auto crossAlignResult = ApplyCrossAlign(itemCrossSize, containerCrossSize, items[i]);
         results[i].position = ToVec2(itemPositions[i], crossAlignResult.position);
         results[i].size = ToVec2(itemMainSizes[i], crossAlignResult.size);
     }
 
+    // 6. コンテナの位置を加算
+    for (auto& result : results)
+    {
+        result.position += containerBox.position;
+    }
+
     return results;
 }
 
-float FlexContainer::MainOf(const Hagine::Vector2& v) const
+float FlexContainer::MainOf(const Vec2& v) const
 {
     if (direction_ == FlexDirection::Row || direction_ == FlexDirection::RowReverse)
         return v.x;
@@ -78,7 +84,7 @@ float FlexContainer::MainOf(const Hagine::Vector2& v) const
         return v.y;
 }
 
-float FlexContainer::CrossOf(const Hagine::Vector2& v) const
+float FlexContainer::CrossOf(const Vec2& v) const
 {
     if (direction_ == FlexDirection::Row || direction_ == FlexDirection::RowReverse)
         return v.y;
@@ -86,12 +92,12 @@ float FlexContainer::CrossOf(const Hagine::Vector2& v) const
         return v.x;
 }
 
-Hagine::Vector2 FlexContainer::ToVec2(float main, float cross) const
+FlexContainer::Vec2 FlexContainer::ToVec2(float main, float cross) const
 {
     if (direction_ == FlexDirection::Row || direction_ == FlexDirection::RowReverse)
-        return Hagine::Vector2{ main, cross };
+        return Vec2{ main, cross };
     else
-        return Hagine::Vector2{ cross, main };
+        return Vec2{ cross, main };
 }
 
 void FlexContainer::ApplyJustify(float freeSpace, std::span<const float> itemMainSizes, std::vector<float>& outPosition) const

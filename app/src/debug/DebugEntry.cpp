@@ -140,8 +140,28 @@ void DebugEntry::ImGui()
                         data.onChange();
                     }
                 }
-            } 
+            }
+            else if constexpr (std::is_same_v<T, FlexBox*>)
+            {
+                std::string label = name + " Position";
+                if (ImGui::DragFloat2(label.c_str(), &arg->position.x, 0.01f))
+                {
+                    if (data.onChange)
+                    {
+                        data.onChange();
+                    }
+                }
+                label = name + " Size";
+                if (ImGui::DragFloat2(label.c_str(), &arg->size.x, 0.01f))
+                {
+                    if (data.onChange)
+                    {
+                        data.onChange();
+                    }
+                }
+            }
         }, data.ptr);
+        ImGui::Spacing();
     }
 
     /// 定数パラメータの表示
@@ -189,7 +209,13 @@ void DebugEntry::ImGui()
             {
                 ImGui::Text("%s: (R: %d, G: %d, B: %d, A: %d)", name.c_str(), arg->r, arg->g, arg->b, arg->a);
             }
+            else if constexpr (std::is_same_v<T, FlexBox*>)
+            {
+                ImGui::Text("%s Position: (%.2f, %.2f)", name.c_str(), arg->position.x, arg->position.y);
+                ImGui::Text("%s Size: (%.2f, %.2f)", name.c_str(), arg->size.x, arg->size.y);
+            }
         }, data);
+        ImGui::Spacing();
     }
 
 #endif // _DEBUG

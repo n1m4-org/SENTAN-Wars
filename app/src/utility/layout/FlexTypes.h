@@ -10,6 +10,12 @@ struct FlexItem
     Hagine::Vector2 preferredSize;
 };
 
+struct FlexBox
+{
+    Hagine::Vector2 position;
+    Hagine::Vector2 size;
+};
+
 struct FlexResult
 {
     Hagine::Vector2 position;

@@ -29,17 +29,17 @@ void TitleScene::Initialize()
 
 void TitleScene::Update()
 {
-    auto result = pFlexContainer_->Calculate(containerSize_, flexItems_);
+    auto result = pFlexContainer_->Calculate(containerBox_, flexItems_);
     
     for (size_t i = 0; i < result.size(); ++i)
     {
         auto& sprite = sprites_[i + 1]; // Logoは除外するため+1
-        sprite->SetPosition(result[i].position + containerPosition);
+        sprite->SetPosition(result[i].position);
         sprite->SetSize(result[i].size);
     }
 
-    pContainerArea_->SetPosition(containerPosition);
-    pContainerArea_->SetSize(containerSize_);
+    pContainerArea_->SetPosition(containerBox_.position);
+    pContainerArea_->SetSize(containerBox_.size);
 
     this->UpdateStartKeyColor();
 }
@@ -99,6 +99,9 @@ void TitleScene::InitializeFlexContainer()
     pFlexContainer_->justifyContent_ = JustifyContent::Center;
     pFlexContainer_->alignItems_ = AlignItems::Center;
     pFlexContainer_->gap_ = 16.0f;
+
+    containerBox_.position = Hagine::Vector2(0.0f, 650.0f);
+    containerBox_.size = Hagine::Vector2(1760.0f, 80.0f);
 }
 
 void TitleScene::UpdateStartKeyColor()
