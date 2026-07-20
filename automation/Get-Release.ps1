@@ -8,8 +8,8 @@ if (-Not (Test-Path $Destination)) {
     New-Item -ItemType Directory -Path $Destination | Out-Null
 }
 
-Set-Variable -Name "SolutionRoot" -Value (Resolve-Path $PSScriptRoot\..).Path -Option Constant
-Set-Variable -Name "GameRoot" -Value (Resolve-Path "$SolutionRoot\app").Path -Option Constant
+Set-Variable -Name "SolutionRoot" -Value (Resolve-Path $PSScriptRoot\..\app).Path -Option Constant
+Set-Variable -Name "GameRoot" -Value (Resolve-Path "$SolutionRoot").Path -Option Constant
 Set-Variable -Name "EngineRoot" -Value (Resolve-Path "$SolutionRoot\module\TakoEngine\project\engine").Path -Option Constant
 Set-Variable -Name "BinPath" -Value (Resolve-Path "$SolutionRoot\app\bin").Path -Option Constant
 

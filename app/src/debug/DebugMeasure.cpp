@@ -20,6 +20,7 @@ void DebugMeasure::InitializeSprite()
 
 void DebugMeasure::RegisterOnChange()
 {
+#ifdef _DEBUG
     debug_enable_.SetOnChange([this](const bool& flag)
     {
         if (flag)
@@ -31,4 +32,5 @@ void DebugMeasure::RegisterOnChange()
             Hagine::SpriteManager::GetInstance()->UnregisterExternal(pSprite_.get());
         }
     });
+#endif // _DEBUG
 }
