@@ -59,6 +59,7 @@ void HpHudView::ApplyFlexLayout()
 
 void HpHudView::RegisterCustomGui()
 {
+#ifdef _DEBUG
     auto pFunc = [this]()
     {
         if (ImGui::Button("Sub 1HP"))
@@ -103,4 +104,5 @@ void HpHudView::RegisterCustomGui()
     };
 
     debugEntry.RegisterCustomGuiFunction("", pFunc);
+#endif //_DEBUG
 }

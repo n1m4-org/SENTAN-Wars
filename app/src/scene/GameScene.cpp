@@ -20,11 +20,11 @@ void GameScene::Initialize() {
 	player_ = std::make_unique<Player>();
     player_->Init("Player");
 	
-    objectManager_->RegisterExternal(player_.get());
+    pObjectManager_->RegisterExternal(player_.get());
 
-    drawSystem_->Register("Test_PreDraw", DrawLayer::kPreEffect, [this](const ViewProjection &vp) {
-        spriteManager_->DrawAll();
-        objectManager_->Draw(vp);
+    pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection &vp) {
+        pSpriteManager_->DrawAll();
+        pObjectManager_->Draw(vp);
     });
 
     // 敵マネージャの初期化
@@ -103,7 +103,7 @@ void GameScene::AddParticleSetting() {
 void GameScene::InitializeFollowCamera(const Hagine::WorldTransform* pTarget)
 {
     pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
-    pFollowCamera_->Initialize(winApp_);
+    pFollowCamera_->Initialize(pWinApp_);
     pFollowCamera_->SetTarget(pTarget);
 }
 
