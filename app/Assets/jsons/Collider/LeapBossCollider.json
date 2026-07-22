@@ -1,0 +1,7 @@
+{
+    "collideWithAll": false,
+    "collisionMask": [],
+    "isEnabled": true,
+    "isVisible": true,
+    "tag": "Enemy"
+}

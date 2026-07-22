@@ -5,6 +5,8 @@ void TankEnemy::UniqueInit()
 	SetTypeParameter(EnemyType::Tank);
 
 	attackComponent_ = std::make_unique<LeapAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
+
+	AddSphereCollider("TankEnemyCollider");
 }
 
 void TankEnemy::UniqueUpdate()
