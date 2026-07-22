@@ -3,8 +3,7 @@
 #include <Framework.h>
 #include <memory>
 #include <debug/DebugEntryManager.h>
-
-class MotionEditor;
+#include <debug/DebugMeasure.h>
 
 class SentanWars : public Hagine::Framework
 {
@@ -30,6 +29,6 @@ public: // メンバ関数
     void Draw() override;
 
 private:
-    MotionEditor* motionEditor_ = nullptr;
     DebugEntryManager* pDebugEntryManager_ = nullptr;
+    std::unique_ptr<DebugMeasure> pDebugMeasure_ = nullptr;
 };

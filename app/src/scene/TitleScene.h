@@ -1,6 +1,11 @@
 #pragma once
 #include "BaseScene.h"
-
+#include <array>
+#include <memory>
+#include <Sprite.h>
+#include <utility/layout/FlexContainer.h>
+#include <utility/layout/FlexTypes.h>
+#include "debug/GameParameter.h"
 
 /// <summary>
 /// テストシーンのクラス
@@ -31,45 +36,46 @@ public:
     /// <summary>
     /// 描画処理
     /// </summary>
-    void Draw() override;
+    void Draw() override {};
 
     /// <summary>
     /// オフスクリーン描画処理
     /// </summary>
-    void DrawForOffScreen() override;
+    void DrawForOffScreen() override {};
 
     /// <summary>
     /// シーン設定を追加
     /// </summary>
-    void AddSceneSetting() override;
+    void AddSceneSetting() override {};
 
     /// <summary>
     /// オブジェクト設定を追加
     /// </summary>
-    void AddObjectSetting() override;
+    void AddObjectSetting() override {};
 
     /// <summary>
     /// パーティクル設定を追加
     /// </summary>
-    void AddParticleSetting() override;
+    void AddParticleSetting() override {};
 
 private:
-    /// ===================================================
-    /// private method
-    /// ===================================================
+    enum class SpriteName { Logo, StartKey, Prompt, kSize };
+    static constexpr float kPromptScale_ = 0.55f;
+    static constexpr float kStartKeyScale_ = 0.3f;
 
-    /// <summary>
-    /// カメラを更新
-    /// </summary>
-    void CameraUpdate();
+    std::unique_ptr<Hagine::Sprite>& GetSprite(SpriteName name) { return sprites_[static_cast<size_t>(name)]; }
+    void InitializeSprites();
+    void InitializeFlexContainer();
+    void UpdateStartKeyColor();
 
-    /// <summary>
-    /// シーン遷移を実行
-    /// </summary>
-    void ChangeScene();
+    std::array<std::unique_ptr<Hagine::Sprite>, static_cast<size_t>(SpriteName::kSize)> sprites_;
 
-private:
-    /// ===================================================
-    /// private variants
-    /// ===================================================
+    // スプライトの配置を計算するためのクラス
+    std::unique_ptr<FlexContainer> pFlexContainer_;
+
+    EnableDebug("TitleScene");
+    GameParameter(FlexBox, containerBox_, FlexBox());
+
+    std::vector<FlexItem> flexItems_;
+    std::unique_ptr<Hagine::Sprite> pContainerArea_;
 };

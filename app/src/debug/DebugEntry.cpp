@@ -21,10 +21,16 @@ void DebugEntry::ImGui()
 {
 #ifdef _DEBUG
 
+    /// カスタム GUI 関数の呼び出し
     for (auto& [name, func] : customGuiFunctions_)
     {
-        // カスタム GUI 関数の呼び出し
-        // BeginChild で子ウィンドウを作成し、その中でカスタム GUI を描画する
+        // 名前が空の場合は、ツリーノードを作らずに直接関数を呼び出す
+        if (name.empty())
+        {
+            func();
+            continue;
+        }
+
         if (ImGui::TreeNode(name.c_str()))
         {
             func();
@@ -134,8 +140,28 @@ void DebugEntry::ImGui()
                         data.onChange();
                     }
                 }
-            } 
+            }
+            else if constexpr (std::is_same_v<T, FlexBox*>)
+            {
+                std::string label = name + " Position";
+                if (ImGui::DragFloat2(label.c_str(), &arg->position.x, 0.01f))
+                {
+                    if (data.onChange)
+                    {
+                        data.onChange();
+                    }
+                }
+                label = name + " Size";
+                if (ImGui::DragFloat2(label.c_str(), &arg->size.x, 0.01f))
+                {
+                    if (data.onChange)
+                    {
+                        data.onChange();
+                    }
+                }
+            }
         }, data.ptr);
+        ImGui::Spacing();
     }
 
     /// 定数パラメータの表示
@@ -183,8 +209,23 @@ void DebugEntry::ImGui()
             {
                 ImGui::Text("%s: (R: %d, G: %d, B: %d, A: %d)", name.c_str(), arg->r, arg->g, arg->b, arg->a);
             }
+            else if constexpr (std::is_same_v<T, FlexBox*>)
+            {
+                ImGui::Text("%s Position: (%.2f, %.2f)", name.c_str(), arg->position.x, arg->position.y);
+                ImGui::Text("%s Size: (%.2f, %.2f)", name.c_str(), arg->size.x, arg->size.y);
+            }
         }, data);
+        ImGui::Spacing();
     }
 
 #endif // _DEBUG
+}
+
+void DebugEntry::SetName(const std::string& name)
+{
+    // カテゴリが変更された場合のみ
+    if (name_ == name) return;
+
+    // カテゴリ変更を通知
+    name_= name;
 }

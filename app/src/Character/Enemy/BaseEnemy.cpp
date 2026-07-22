@@ -13,22 +13,29 @@ void BaseEnemy::Init(const std::string className)
 
 	UniqueInit();
 
-	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed);
+	parameter_.attackRange += *targetRadius_; // 攻撃範囲にターゲットの半径を加算しておく
+
+	moveComponent_ = std::make_unique<EnemyMoveComponent>(transform_.get(), target_, &parameter_.movementSpeed, targetRadius_);
 	moveComponent_->Init();
+
 }
 
 void BaseEnemy::Update()
 {
 	UniqueUpdate();
+	if (target_)
+	{
+		if ((transform_->translation_ - *target_).Length() <= parameter_.attackRange + *targetRadius_)
+		{
+			// 攻撃範囲内に入ったら攻撃する
+		}
+		else
+		{
+			moveComponent_->Update();
+		}
+	}
 
-	if ((transform_->translation_ - *target_).Length() <= parameter_.attackRange)
-	{
-		// 攻撃範囲内に入ったら攻撃する
-	}
-	else
-	{
-		moveComponent_->Update();
-	}
+	transform_->translation_.y = (std::max)(transform_->translation_.y, 0.0f); // 地面より下に行かないようにする
 
 	BaseObject::Update();
 }

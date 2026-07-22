@@ -61,11 +61,9 @@ private:
 	EnemyParameterManager() = default;
 	~EnemyParameterManager() = default;
 	// 各種族の初期パラメータ（プログラム起動時に1度だけImGuiに登録される）
-	REGISTER_ENEMY_PARAMETERS(normal, "Enemy: Normal", 100, 10.0f, 10.0f, 1.0f, 1.0f);
-
-	REGISTER_ENEMY_PARAMETERS(dash, "Enemy: Dash", 120, 8.0f, 12.0f, 1.5f, 1.2f);
-
-	REGISTER_ENEMY_PARAMETERS(tank, "Enemy: Tank", 200, 50.0f, 5.0f, 0.5f, 1.0f);
-
-    REGISTER_ENEMY_PARAMETERS(assault, "Enemy: Assault", 100, 8.0f, 5.0f, 0.5f, 10.0f);
+	// prefix, categoryName, cost, hp, power, speed, range
+	REGISTER_ENEMY_PARAMETERS(normal,  "Enemy: Normal",  100, 20.0f, 10.0f, 2.5f,  1.0f);
+	REGISTER_ENEMY_PARAMETERS(dash,    "Enemy: Dash",    120, 10.0f, 10.0f, 0.01f, 22.0f);
+	REGISTER_ENEMY_PARAMETERS(tank,    "Enemy: Tank",    200, 50.0f, 10.0f, 1.5f,  1.0f);
+	REGISTER_ENEMY_PARAMETERS(assault, "Enemy: Assault", 100, 10.0f, 5.0f,  2.5f,  25.0f);
 };

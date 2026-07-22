@@ -3,9 +3,12 @@
 #include <logic/wave/WaveDirector.h>
 
 // application
-#include "Character/Player/Player.h"
+#include <Character/Player/Player.h>
 #include <presentation/FollowCamera.h>
-#include "Character/Enemy/EnemyManager.h"
+#include <Character/Enemy/EnemyManager.h>
+#include <presentation/ui/HpHudView.h>
+#include <presentation/HudManager.h>
+#include <presentation/ui/WaveCountHudView.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -64,24 +67,38 @@ private:
     /// ===================================================
 
     /// <summary>
+    /// フォローカメラを初期化
+    /// </summary>
+    /// <param name="pTarget"></param>
+    void InitializeFollowCamera(const Hagine::WorldTransform* pTarget);
+
+    /// <summary>
     /// カメラを更新
     /// </summary>
-    void CameraUpdate();
+    void UpdateCamera();
 
     /// <summary>
     /// シーン遷移を実行
     /// </summary>
     void ChangeScene();
 
+    /// <summary>
+    /// HUDマネージャを初期化
+    /// </summary>
+    void InitializeHudManager();
+
 private:
     /// ===================================================
     /// private variants
     /// ===================================================
-    
+
     // playerの宣言
 	std::unique_ptr<Player> player_ = nullptr;
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
     std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 
-	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
+    std::unique_ptr<HudManager> pHudManager_ = nullptr;
+	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
+	HpHudView* pHpHudView_ = nullptr;
+    WaveCountHudView* pWaveCountHudView_ = nullptr;
 };

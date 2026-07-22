@@ -262,7 +262,13 @@ function Get-ExistingFilterIds {
         return $existingFilterIds
     }
 
-    [xml]$existingFiltersXml = Get-Content -LiteralPath $OutputPath -Raw
+    try {
+        [xml]$existingFiltersXml = Get-Content -LiteralPath $OutputPath -Raw
+    }
+    catch {
+        Write-Warning ("Existing filters file is not valid XML; regenerating all filter GUIDs. ({0}): {1}" -f $OutputPath, $_.Exception.Message)
+        return $existingFilterIds
+    }
     $namespaceManager = New-Object System.Xml.XmlNamespaceManager($existingFiltersXml.NameTable)
     $namespaceManager.AddNamespace("msb", $script:VcxprojFiltersNamespaceUri)
     $existingFilters = $existingFiltersXml.SelectNodes("/msb:Project/msb:ItemGroup/msb:Filter[@Include]", $namespaceManager)

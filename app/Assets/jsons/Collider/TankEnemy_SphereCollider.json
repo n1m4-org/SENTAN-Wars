@@ -1,0 +1,16 @@
+{
+    "collideWithAll": false,
+    "collisionMask": [
+        "Player",
+        "Enemy"
+    ],
+    "isEnabled": true,
+    "isVisible": true,
+    "offset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "radius": 1.0,
+    "tag": "Enemy"
+}

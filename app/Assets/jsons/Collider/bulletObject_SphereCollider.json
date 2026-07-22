@@ -1,0 +1,15 @@
+{
+    "collideWithAll": false,
+    "collisionMask": [
+        "Player"
+    ],
+    "isEnabled": true,
+    "isVisible": true,
+    "offset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "radius": 0.6000000238418579,
+    "tag": "EnemyBullet"
+}

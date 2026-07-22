@@ -10,3 +10,7 @@
 Generated
 **/imgui.ini
 *.dat
+**/imgui_editor.ini
+**/imgui_game.ini
+/app/Assets/Config/imgui_editor.ini
+/app/Assets/Config/imgui_game.ini

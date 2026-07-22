@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <debug/DebugEntry.h>
 #include <functional>
+#include <array>
 
 class DebugEntryManager
 {
@@ -14,6 +15,7 @@ public:
         static DebugEntryManager instance;
         return &instance;
     }
+
     DebugEntryManager& operator=(const DebugEntryManager&) = delete;
     DebugEntryManager(const DebugEntryManager&) = delete;
     DebugEntryManager& operator=(DebugEntryManager&&) = delete;
@@ -22,7 +24,7 @@ public:
     void Initialize();
     void Finalize();
 
-    void RegisterEntry(const std::string& id, DebugEntry* pDebugEntry);
+    void RegisterEntry(const std::string& category, DebugEntry* pDebugEntry);
     void UnregisterEntry(DebugEntry* pDebugEntry);
 
     void ImGui();
@@ -40,11 +42,15 @@ public:
         const std::string& name,
         const T* ptr);
 
+    // カテゴリが変更されたときに呼び出される関数
+    //void MoveCategory(const DebugEntry* pEntry, const std::string& oldCategory, const std::string& newCategory);
+
 private:
     DebugEntryManager() = default;
     ~DebugEntryManager() = default;
 
     std::unordered_map<std::string, std::vector<DebugEntry*>> entries_;
+    std::unordered_map<std::string, std::array<float, 4>> categoryColorCache_;
 };
 
 template <typename T>

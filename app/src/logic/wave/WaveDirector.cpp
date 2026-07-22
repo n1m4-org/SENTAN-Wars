@@ -1,5 +1,6 @@
 #include "WaveDirector.h"
 #include "GeneralWave.h"
+#include "BossWave.h"
 
 
 
@@ -35,7 +36,7 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
         return std::make_unique<GeneralWave>();
         break;
     case WaveType::Boss:
-        return nullptr;
+        return std::make_unique<BossWave>();
         break;
     default:
         return nullptr;
