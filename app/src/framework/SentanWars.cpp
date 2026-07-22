@@ -22,6 +22,8 @@ void SentanWars::Initialize() {
     /// デバッグエントリマネージャの初期化
     pDebugEntryManager_ = DebugEntryManager::GetInstance();
     pDebugEntryManager_->Initialize();
+    
+    pDebugMeasure_ = std::make_unique<DebugMeasure>();
 }
 
 void SentanWars::Finalize() {

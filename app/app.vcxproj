@@ -136,6 +136,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Character\Enemy\TestEnemy\TestEnemy.cpp" />
     <ClCompile Include="src\debug\DebugEntry.cpp" />
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
+    <ClCompile Include="src\debug\DebugMeasure.cpp" />
     <ClCompile Include="src\font\FontLayout.cpp" />
     <ClCompile Include="src\font\NumericView.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
@@ -166,6 +167,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
     <ClCompile Include="src\utility\layout\FlexContainer.cpp" />
     <ClCompile Include="src\utility\SpriteFrameGroup.cpp" />
+    <ClCompile Include="src\utility\SpriteUnregisterer.cpp" />
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +187,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\Character\Enemy\TestEnemy\TestEnemy.h" />
     <ClInclude Include="src\debug\DebugEntry.h" />
     <ClInclude Include="src\debug\DebugEntryManager.h" />
+    <ClInclude Include="src\debug\DebugMeasure.h" />
     <ClInclude Include="src\debug\GameParameter.h" />
     <ClInclude Include="src\font\FontLayout.h" />
     <ClInclude Include="src\font\NumericView.h" />
@@ -220,6 +223,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\utility\layout\FlexContainer.h" />
     <ClInclude Include="src\utility\layout\FlexTypes.h" />
     <ClInclude Include="src\utility\SpriteFrameGroup.h" />
+    <ClInclude Include="src\utility\SpriteUnregisterer.h" />
     <ClInclude Include="src\utility\strutl.h" />
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
     <ClInclude Include="src\utility\wndutl.h" />

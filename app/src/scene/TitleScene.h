@@ -26,7 +26,7 @@ public:
     /// <summary>
     /// 終了処理
     /// </summary>
-    void Finalize() override {};
+    void Finalize() override;
 
     /// <summary>
     /// 更新処理
