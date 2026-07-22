@@ -171,6 +171,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\scene\TitleScene.cpp" />
+    <ClCompile Include="src\system\EventListener.cpp" />
+    <ClCompile Include="src\system\EventSubscription.cpp" />
     <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp" />
     <ClCompile Include="src\utility\layout\FlexContainer.cpp" />
     <ClCompile Include="src\utility\SpriteFrameGroup.cpp" />
@@ -229,6 +231,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\presentation\ui\WaveCountHudView.h" />
     <ClInclude Include="src\scene\GameScene.h" />
     <ClInclude Include="src\scene\TitleScene.h" />
+    <ClInclude Include="src\system\EventListener.h" />
+    <ClInclude Include="src\system\EventSubscription.h" />
     <ClInclude Include="src\system\ScopedCursorHidden.h" />
     <ClInclude Include="src\utility\DeltaTimeManager.h" />
     <ClInclude Include="src\utility\DeltaTimeStopWatch.h" />
