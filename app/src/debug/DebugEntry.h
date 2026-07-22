@@ -7,6 +7,7 @@
 #include <math/Color.h>
 #include <unordered_map>
 #include <transform/WorldTransform.h>
+#include <utility/layout/FlexTypes.h>
 #include <functional>
 
 class DebugEntry
@@ -21,7 +22,8 @@ public:
         Hagine::Vector4*,
         Hagine::Vector3*,
         Hagine::Vector2*,
-        RGBA*
+        RGBA*,
+        FlexBox*
     >;
 
     using ConstAvailableType = std::variant<
@@ -33,7 +35,8 @@ public:
         const Hagine::Vector4*,
         const Hagine::Vector3*,
         const Hagine::Vector2*,
-        const RGBA*
+        const RGBA*,
+        FlexBox*
     >;
 
     struct ParameterData

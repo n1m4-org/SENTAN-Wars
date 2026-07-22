@@ -1,6 +1,6 @@
 {
     "IsShowMainUI": true,
-    "ShowGrid": true,
+    "ShowGrid": false,
     "gridColor": {
         "w": 1.0,
         "x": 0.5,
@@ -12,7 +12,7 @@
     "showDrawSystemView": false,
     "showFPSView": false,
     "showGameParamView": false,
-    "showGizmoView": true,
+    "showGizmoView": false,
     "showHierarchyView": false,
     "showLightView": false,
     "showMotionEditorView": false,

@@ -26,15 +26,17 @@ void JumpComponent::Update() {
 			transform_->translation_.y = groundY_;
 			velocityY_ = 0.0f;
 			isGrounded_ = true;
+			jumpsUsed_ = 0;
 		}
 	}
 }
 
 void JumpComponent::StartJump() {
-	// 接地しているときだけジャンプできる（多段ジャンプはしない）
-	if (!isGrounded_) {
+	// 接地からの1回に加えて、装備で増えた回数だけ空中でも跳べる
+	if (jumpsUsed_ >= 1 + extraJumpCount_) {
 		return;
 	}
 	velocityY_ = jumpStrength_;
 	isGrounded_ = false;
+	++jumpsUsed_;
 }

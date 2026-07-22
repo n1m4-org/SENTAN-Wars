@@ -1,5 +1,5 @@
 #pragma once
-#include "Component/Attack/AttackContext.h"
+#include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Component.h"
 #include "debug/GameParameter.h"
 #include "type/Vector3.h"
@@ -13,7 +13,7 @@ class AttackStateComponent;
 class NormalAttack : public Component {
   public:
     /// 攻撃に必要な物はまとめて受け取る
-    explicit NormalAttack(const AttackContext &context)
+    explicit NormalAttack(const SentanContext &context)
         : weapon_(context.weapon), attackState_(context.attackState) {}
 
     void Update() override;

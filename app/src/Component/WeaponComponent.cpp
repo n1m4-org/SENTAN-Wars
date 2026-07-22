@@ -1,6 +1,6 @@
 #include "WeaponComponent.h"
 #include "3d/Object/Base/BaseObject.h"
-#include "Component/Attack/AttackContext.h"
+#include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Attack/AttackStateComponent.h"
 #include "Component/ComponentContainer.h"
 
@@ -33,16 +33,17 @@ bool WeaponComponent::EquipSentan(SentanId id) {
         return false;
     }
 
-    // このSENTANが解禁する攻撃を、所有者の振る舞いとして追加する
-    // 攻撃が未実装のSENTANは createAttack が nullptr なので、何も増えない
+    // このSENTANが解禁する振る舞いを、所有者のコンポーネントとして追加する
+    // 振る舞いが未実装のSENTANは createComponent が nullptr なので、何も増えない
     const SentanDefinition &definition = sentan->GetDefinition();
-    if (definition.createAttack && container_) {
-        const AttackContext context{
+    if (definition.createComponent && container_) {
+        const SentanContext context{
             owner_ ? owner_->GetWorldTransform() : nullptr,
             fork_.get(),
             attackState_,
+            jump_,
         };
-        container_->AddComponent(definition.createAttack(context));
+        container_->AddComponent(definition.createComponent(context));
     }
 
     return true;

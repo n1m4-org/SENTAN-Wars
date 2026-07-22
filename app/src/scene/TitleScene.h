@@ -4,8 +4,8 @@
 #include <memory>
 #include <Sprite.h>
 #include <utility/layout/FlexContainer.h>
+#include <utility/layout/FlexTypes.h>
 #include "debug/GameParameter.h"
-#include <type/Vector2.h>
 
 /// <summary>
 /// テストシーンのクラス
@@ -26,7 +26,7 @@ public:
     /// <summary>
     /// 終了処理
     /// </summary>
-    void Finalize() override {};
+    void Finalize() override;
 
     /// <summary>
     /// 更新処理
@@ -74,8 +74,8 @@ private:
     std::unique_ptr<FlexContainer> pFlexContainer_;
 
     EnableDebug("TitleScene");
-    GameParameter(Hagine::Vector2, containerPosition, Hagine::Vector2(0.0f, 650.0f));
-    GameParameter(Hagine::Vector2, containerSize_, Hagine::Vector2(1760.0f, 80.0f));
+    GameParameter(FlexBox, containerBox_, FlexBox());
+
     std::vector<FlexItem> flexItems_;
     std::unique_ptr<Hagine::Sprite> pContainerArea_;
 };

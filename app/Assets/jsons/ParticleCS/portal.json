@@ -1,0 +1,258 @@
+{
+    "billboardEmitter": false,
+    "drawGroup": "3D",
+    "emitFromSurface": 0,
+    "emitOnlyOnFieldContact": false,
+    "fieldGroupId": -1,
+    "frequency": 0.0010000000474974513,
+    "frequencyTime": 1064.744384765625,
+    "group_0_acceleration": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_alphaCurveCount": 2,
+    "group_0_alphaCurve_0_x": 0.0,
+    "group_0_alphaCurve_0_y": 1.0,
+    "group_0_alphaCurve_1_x": 1.0,
+    "group_0_alphaCurve_1_y": 1.0,
+    "group_0_angularVelocityMax": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_angularVelocityMin": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_audioAttackSharpness": 1.7999999523162842,
+    "group_0_audioReleaseRate": 10.0,
+    "group_0_audioVibrationFrequency": 22.0,
+    "group_0_audioVibrationSensitivity": 4.0,
+    "group_0_audioVibrationStrength": 12.0,
+    "group_0_blendMode": 2,
+    "group_0_colorStopCount": 4,
+    "group_0_colorStop_0_color": {
+        "w": 1.0,
+        "x": 0.06301341950893402,
+        "y": 0.0447835698723793,
+        "z": 0.8924731016159058
+    },
+    "group_0_colorStop_0_pos": 0.0,
+    "group_0_colorStop_1_color": {
+        "w": 0.8980392217636108,
+        "x": 0.359347939491272,
+        "y": 0.0,
+        "z": 0.7956989407539368
+    },
+    "group_0_colorStop_1_pos": 0.28857123851776123,
+    "group_0_colorStop_2_color": {
+        "w": 0.7607843279838562,
+        "x": 0.25143536925315857,
+        "y": 0.0,
+        "z": 0.8351254463195801
+    },
+    "group_0_colorStop_2_pos": 0.6171430349349976,
+    "group_0_colorStop_3_color": {
+        "w": 0.0,
+        "x": 0.04313725605607033,
+        "y": 0.0,
+        "z": 0.16862745583057404
+    },
+    "group_0_colorStop_3_pos": 0.9942857027053833,
+    "group_0_curlNoiseAttractCenter": {
+        "x": 0.0,
+        "y": 43.29999923706055,
+        "z": 0.0
+    },
+    "group_0_curlNoiseAttractStrength": 8.229999542236328,
+    "group_0_curlNoiseBlendMode": 1,
+    "group_0_curlNoiseOctaves": 1,
+    "group_0_curlNoisePosRandomStrength": 0.0,
+    "group_0_curlNoiseScale": 11.84000015258789,
+    "group_0_curlNoiseStrength": 131.5,
+    "group_0_curlNoiseTimeScale": 9.890000343322754,
+    "group_0_distanceCullEnd": 0.0,
+    "group_0_distanceCullStart": 0.0,
+    "group_0_effectSpace": 2,
+    "group_0_emitConeAngle": 0.0,
+    "group_0_emitCount": 6,
+    "group_0_emitShape": 0,
+    "group_0_emitSphereRadius": 0.0,
+    "group_0_enableAcceleration": 0,
+    "group_0_enableAlphaCurve": 0,
+    "group_0_enableAudioVibration": 0,
+    "group_0_enableBillboard": 1,
+    "group_0_enableColorGradient": 1,
+    "group_0_enableCurlNoise": 0,
+    "group_0_enableDistanceCull": 0,
+    "group_0_enableEndScale": 0,
+    "group_0_enableGather": 1,
+    "group_0_enableGatherForTrail": 0,
+    "group_0_enableGravity": 0,
+    "group_0_enableLifetimeScale": 1,
+    "group_0_enableLifetimeVelocityDamping": 0,
+    "group_0_enableMidColor": 0,
+    "group_0_enableRadialVelocity": 0,
+    "group_0_enableRandomAngularVelocity": 0,
+    "group_0_enableRandomColor": 0,
+    "group_0_enableRandomRotation": 0,
+    "group_0_enableSinScale": 0,
+    "group_0_enableSizeClamp": 0,
+    "group_0_enableSizeCurve": 0,
+    "group_0_enableTrail": 1,
+    "group_0_enableTurbulence": 0,
+    "group_0_enableVelocityDamping": 0,
+    "group_0_enableVelocityStretch": 0,
+    "group_0_enableVortex": 1,
+    "group_0_enableVortexForTrail": 0,
+    "group_0_endColor": {
+        "w": 0.0,
+        "x": 0.32258081436157227,
+        "y": 0.0,
+        "z": 1.0
+    },
+    "group_0_endScaleValue": {
+        "x": 0.20000000298023224,
+        "y": 0.20000000298023224,
+        "z": 0.20000000298023224
+    },
+    "group_0_gatherStartRatio": -0.009999999776482582,
+    "group_0_gatherStrength": 20.0,
+    "group_0_gatherTarget": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 0.0
+    },
+    "group_0_gatherTargetOffset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_gravity": {
+        "x": 0.0,
+        "y": -9.800000190734863,
+        "z": 0.0
+    },
+    "group_0_lifetimeVelocityDampingStart": 0.6000000238418579,
+    "group_0_maxLifetime": 2.0,
+    "group_0_maxScale": 0.25,
+    "group_0_maxScreenHeight": 0.0,
+    "group_0_maxTrailPerParticle": 374,
+    "group_0_maxVelocity": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "group_0_midColor": {
+        "w": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_midColorRatio": 0.0,
+    "group_0_minLifetime": 1.0,
+    "group_0_minScale": 0.10000000149011612,
+    "group_0_minScreenHeight": 0.0,
+    "group_0_minVelocity": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": -1.0
+    },
+    "group_0_name": "portal",
+    "group_0_radialVelocityCenter": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_radialVelocityRandomness": 0.20000000298023224,
+    "group_0_radialVelocityStrength": 1.0,
+    "group_0_rotationMax": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_rotationMin": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "group_0_sinScaleAmplitude": 0.30000001192092896,
+    "group_0_sinScaleFrequency": 5.0,
+    "group_0_sizeCurveCount": 2,
+    "group_0_sizeCurve_0_x": 0.0,
+    "group_0_sizeCurve_0_y": 1.0,
+    "group_0_sizeCurve_1_x": 1.0,
+    "group_0_sizeCurve_1_y": 1.0,
+    "group_0_startColor": {
+        "w": 1.0,
+        "x": 0.1657993495464325,
+        "y": 0.0,
+        "z": 0.856630802154541
+    },
+    "group_0_texture": "debug/circle2.png",
+    "group_0_trailColorMultiplier": {
+        "w": 0.699999988079071,
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "group_0_trailInheritVelocity": 0,
+    "group_0_trailLifeTimeScale": 0.05000000074505806,
+    "group_0_trailMinLifeTime": 0.20000000298023224,
+    "group_0_trailScaleMultiplier": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    },
+    "group_0_trailSpawnDistance": 0.009999999776482582,
+    "group_0_trailVelocityScale": 0.12999999523162842,
+    "group_0_turbulenceFrequency": 0.0,
+    "group_0_turbulenceStrength": 0.0,
+    "group_0_velocityDampingFactor": 1.0,
+    "group_0_velocityStretchFactor": 0.0,
+    "group_0_vortexAxis": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0
+    },
+    "group_0_vortexStrength": 30.0,
+    "group_0_vortexTarget": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 0.0
+    },
+    "group_0_vortexTargetOffset": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "isAuto": true,
+    "isGizmoSelectable": true,
+    "isVisible": true,
+    "modelPath": "",
+    "particleGroupCount": 1,
+    "primitiveDivide": 32,
+    "primitiveHeightDivide": 1,
+    "primitiveRingInner": 0.5,
+    "primitiveRingOuter": 1.0,
+    "primitiveType": 1,
+    "receiveFields": false,
+    "rotation": {
+        "w": 1.0,
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "scale": {
+        "x": 3.5,
+        "y": 3.5,
+        "z": 1.0
+    },
+    "translate": {
+        "x": 0.0,
+        "y": 3.0,
+        "z": 0.0
+    }
+}

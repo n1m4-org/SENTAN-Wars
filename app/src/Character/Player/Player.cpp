@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "Component/Attack/AttackContext.h"
+#include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Attack/AttackStateComponent.h"
 #include "Component/Attack/NormalAttack.h"
 #include "Component/JumpComponent.h"
@@ -21,14 +21,14 @@ void Player::Init(const std::string className) {
     // 移動コンポーネント
     AddComponent<MoveComponent>(GetWorldTransform());
 
-    // ジャンプコンポーネント
-    AddComponent<JumpComponent>(GetWorldTransform());
+    // ジャンプコンポーネント（SENTANで跳べる回数が増えることがある）
+    JumpComponent *jump = AddComponent<JumpComponent>(GetWorldTransform());
 
-    // 武器コンポーネント（Forkを持ち、装備したSENTANの攻撃を追加する）
-    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState);
+    // 武器コンポーネント（Forkを持ち、装備したSENTANの振る舞いを追加する）
+    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState, jump);
 
     // 通常攻撃コンポーネント（SENTANが無くても常に使えるので最初から持つ）
-    const AttackContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState};
+    const SentanContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState, jump};
     AddComponent<NormalAttack>(normalAttackContext);
 
     FlushPendingComponents();
