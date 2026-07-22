@@ -122,6 +122,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Component\BossLeapAttackComponent.cpp" />
+    <ClCompile Include="src\Character\Enemy\LeapBoss\LeapBoss.cpp" />
     <ClCompile Include="src\Component\JumpComponent.cpp" />
     <ClCompile Include="src\Component\AssaultAttackComponent.cpp" />
     <ClCompile Include="src\Component\DashAttackComponent.cpp" />
@@ -164,6 +166,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\BossLeapAttackComponent.h" />
+    <ClInclude Include="src\Character\Enemy\LeapBoss\LeapBoss.h" />
     <ClInclude Include="src\common\ResourcePath.h" />
     <ClInclude Include="src\Component\JumpComponent.h" />
     <ClInclude Include="src\Component\AssaultAttackComponent.h" />

@@ -2,6 +2,7 @@
 #include <3d/Object/Base/BaseObject.h>
 #include "debug/GameParameter.h"
 #include "Component/EnemyMoveComponent.h"
+#include "Component/AttributeComponent.h"
 #include "Character/Enemy/EnemyParameterManager.h"
 
 
@@ -24,6 +25,23 @@ public:
 		transform_->translation_ = pos;
 	}
 
+	void SetAttributeType(AttributeType type)
+	{
+		if (attributeComponent_)
+		{
+			attributeComponent_->SetType(type);
+		}
+	}
+
+	const AttributeType GetAttributeType() const
+	{
+		if (attributeComponent_)
+		{
+			return attributeComponent_->GetType();
+		}
+		return AttributeType::Red; // デフォルト値
+	}
+
 protected:
 	void SetTypeParameter(EnemyType type);
 
@@ -37,6 +55,11 @@ protected:
 	/// </summary>
 	virtual void UniqueUpdate() {};
 
+	/// <summary>
+	/// 固有更新処理
+	/// </summary>
+	virtual void UniqueUpdateEnd() {};
+
 	// 敵のステータス
 	EnemyParameter parameter_ = {};
 
@@ -47,6 +70,9 @@ protected:
 
 	// 敵の移動コンポーネント
 	std::unique_ptr<EnemyMoveComponent> moveComponent_ = nullptr;
+
+	// 敵の移動コンポーネント
+	std::unique_ptr<AttributeComponent> attributeComponent_ = nullptr;
 
 };
 
