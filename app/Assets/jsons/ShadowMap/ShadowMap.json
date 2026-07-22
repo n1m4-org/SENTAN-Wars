@@ -1,0 +1,17 @@
+{
+    "bias": 0.009999999776482582,
+    "enabled": 1,
+    "farZ": 200.0,
+    "lightDirX": -0.3714302182197571,
+    "lightDirY": -0.9237830638885498,
+    "lightDirZ": 0.09308277070522308,
+    "lightDistance": 80.0,
+    "lightTargetX": 0.0,
+    "lightTargetY": 0.0,
+    "lightTargetZ": 0.0,
+    "nearZ": 0.009999999776482582,
+    "orthoHeight": 120.0,
+    "orthoWidth": 120.0,
+    "strength": 0.699999988079071,
+    "syncWithDirectionalLight": 1
+}

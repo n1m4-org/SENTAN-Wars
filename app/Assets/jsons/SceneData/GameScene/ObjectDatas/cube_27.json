@@ -1,0 +1,65 @@
+{
+    "Lighting": true,
+    "PrimitiveType": 3,
+    "blendMode": 1,
+    "childrenNames": [],
+    "colliderCount": 0,
+    "color_0": {
+        "w": 1.0,
+        "x": 0.8839515447616577,
+        "y": 0.7887324094772339,
+        "z": 1.0
+    },
+    "isGizmoSelectable": true,
+    "isLighting": true,
+    "isModelDraw": true,
+    "isRainbow": false,
+    "isWireframe": false,
+    "material_0_enableNormalMap": true,
+    "material_0_enableProceduralNormal": false,
+    "material_0_normalMapPath": "normalMap/TileMap.png",
+    "material_0_normalStrength": 1.0,
+    "material_0_proceduralScale": 3.0,
+    "material_0_uvPosition": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "material_0_uvRotate": 0.0,
+    "material_0_uvSize": {
+        "x": 1.0,
+        "y": 1.0
+    },
+    "modelName": "",
+    "objectName": "cube_27",
+    "parentName": "",
+    "rb_enabled": false,
+    "rb_friction": 0.30000001192092896,
+    "rb_gravity": {
+        "x": 0.0,
+        "y": -9.800000190734863,
+        "z": 0.0
+    },
+    "rb_linearDamping": 0.05000000074505806,
+    "rb_mass": 1.0,
+    "rb_restitution": 0.0,
+    "rb_useGravity": true,
+    "resolveCollision": false,
+    "rotation": {
+        "w": 0.7071068286895752,
+        "x": 0.0,
+        "y": 0.7071067690849304,
+        "z": 0.0
+    },
+    "scale": {
+        "x": 10.0,
+        "y": 100.0,
+        "z": 30.0
+    },
+    "skeletonDraw": false,
+    "textureName_0": "debug/white1x1.png",
+    "translation": {
+        "x": -48.29999923706055,
+        "y": 0.6000000238418579,
+        "z": 156.5
+    }
+}
