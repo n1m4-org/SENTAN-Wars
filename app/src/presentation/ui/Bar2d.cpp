@@ -12,8 +12,14 @@ void Bar2d::Update(float value, float valueMax)
 {
     // 背景スプライトの位置を更新
     pSpriteBarBg_->SetPosition(leftTop_);
-    pMainBar_->SetPosition(leftTop_);
 
+    if (config_.diff.has_value())
+    {
+        pBar2dDiff_->SetPosition(leftTop_);
+        pBar2dDiff_->Update(value, valueMax);
+    }
+
+    pMainBar_->SetPosition(leftTop_);
     pMainBar_->Update(value, valueMax);
 }
 
@@ -37,6 +43,17 @@ void Bar2d::InitializeSprites()
     pSpriteBarBg_->SetColor(config_.colorBg.to_Vector3());
     pSpriteBarBg_->SetSize(config_.maxSize);
     sm->RegisterExternal(pSpriteBarBg_.get());
+
+    /// 差分バーの初期化
+    BarMovable::Config diffBarCfg = {};
+    if (config_.diff.has_value())
+    {
+        ApplyConfig(diffBarCfg, &config_.diff.value());
+    }
+    else ApplyConfig(diffBarCfg, nullptr);
+
+    pBar2dDiff_ = std::make_unique<BarMovable>();
+    pBar2dDiff_->Initialize(diffBarCfg);
 
     /// メインバーの初期化
     BarMovable::Config mainBarCfg = {};

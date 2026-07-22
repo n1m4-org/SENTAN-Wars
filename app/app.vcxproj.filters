@@ -432,5 +432,6 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\entity\WarpHole.h" />
   </ItemGroup>
 </Project>

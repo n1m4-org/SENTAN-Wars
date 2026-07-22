@@ -189,6 +189,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\debug\DebugEntryManager.h" />
     <ClInclude Include="src\debug\DebugMeasure.h" />
     <ClInclude Include="src\debug\GameParameter.h" />
+    <ClInclude Include="src\entity\WarpHole.h" />
     <ClInclude Include="src\font\FontLayout.h" />
     <ClInclude Include="src\font\NumericView.h" />
     <ClInclude Include="src\framework\SentanWars.h" />

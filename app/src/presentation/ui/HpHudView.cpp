@@ -25,8 +25,16 @@ void HpHudView::InitializeSprites()
     /// HPバーの初期化
     Bar2d::Config cfg;
     cfg.colorWarn = 0xffff00ff;
-    cfg.interpolationRatio = 0.1f;
+    cfg.interpolationRatio = 1.0f;
     cfg.maxSize = { 296.0f, 16.0f };
+
+    BarMovable::Config diff = {};
+    diff.color = RGBA(0xcdcdcdff);
+    diff.interpolationRatio = 0.03f;
+    diff.maxSize = cfg.maxSize;
+
+    cfg.diff = diff;
+
     bar_.Initialize(cfg);
 
     /// スプライトマネージャに登録
