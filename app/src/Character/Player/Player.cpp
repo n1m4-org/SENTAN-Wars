@@ -2,6 +2,7 @@
 #include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Attack/AttackStateComponent.h"
 #include "Component/Attack/NormalAttack.h"
+#include "Component/BodyColliderComponent.h"
 #include "Component/JumpComponent.h"
 #include "Component/MoveComponent.h"
 #include "Component/WeaponComponent.h"
@@ -15,6 +16,14 @@ void Player::Init(const std::string className) {
     SetTexture("debug/white1x1.png");
 
     // --- コンポーネントの登録 ---
+    // 本体の当たり判定（敵と、敵の攻撃に当たる）
+    // 当たったときに何をするかは持たないので、必要になったらAddHitCallbackで受け取る
+    AddComponent<BodyColliderComponent>(this, ColliderTag::Type::Player,
+                                        std::vector<ColliderTag::Type>{
+                                            ColliderTag::Type::Enemy,
+                                            ColliderTag::Type::EnemyBullet,
+                                        });
+
     // 攻撃コンポーネントが共有する状態（攻撃の同時発動を防ぐ）
     AttackStateComponent *attackState = AddComponent<AttackStateComponent>();
 
