@@ -1,5 +1,8 @@
 #include "SentanDefinition.h"
 #include "Character/Player/Sentan/SentanContext.h"
+#include "Component/Attack/ComboAttack.h"
+#include "Component/Attack/DrillRushAttack.h"
+#include "Component/Attack/SlashFlurryAttack.h"
 #include "Component/DoubleJumpComponent.h"
 
 namespace {
@@ -9,8 +12,10 @@ namespace {
 /// createComponent が nullptr のSENTANは、まだ振る舞いが実装されていないもの
 constexpr SentanDefinition kSentanDefinitions[] = {
     // id                 modelPath  createComponent
-    {SentanId::Sentan1, nullptr, nullptr},                                     // 溜め攻撃（未実装）
+    {SentanId::Sentan1, nullptr, &CreateSentanComponent<DrillRushAttack>},     // 突進
     {SentanId::Sentan2, nullptr, &CreateSentanComponent<DoubleJumpComponent>}, // 二段ジャンプ
+    {SentanId::Sentan3, nullptr, &CreateSentanComponent<ComboAttack>},         // 3段コンボ
+    {SentanId::Sentan4, nullptr, &CreateSentanComponent<SlashFlurryAttack>},   // 連続斬撃
 };
 
 } // namespace

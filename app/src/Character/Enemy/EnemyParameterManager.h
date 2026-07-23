@@ -18,7 +18,8 @@ enum class EnemyType
 	Normal,
 	Dash,
 	Tank,
-	Assault
+	Assault,
+	LeapBoss
 };
 
 struct EnemyParameter
@@ -52,6 +53,8 @@ public:
 			return { tank_cost, tank_hp, tank_power, tank_movementSpeed, tank_attackRange };
 		case EnemyType::Assault:
 			return { assault_cost, assault_hp, assault_power, assault_movementSpeed, assault_attackRange };
+		case EnemyType::LeapBoss:
+			return { leapBoss_cost, leapBoss_hp, leapBoss_power, leapBoss_movementSpeed, leapBoss_attackRange };
 		default:
 			return {};
 		}
@@ -62,8 +65,9 @@ private:
 	~EnemyParameterManager() = default;
 	// 各種族の初期パラメータ（プログラム起動時に1度だけImGuiに登録される）
 	// prefix, categoryName, cost, hp, power, speed, range
-	REGISTER_ENEMY_PARAMETERS(normal,  "Enemy: Normal",  100, 20.0f, 10.0f, 2.5f,  1.0f);
-	REGISTER_ENEMY_PARAMETERS(dash,    "Enemy: Dash",    120, 10.0f, 10.0f, 0.01f, 22.0f);
-	REGISTER_ENEMY_PARAMETERS(tank,    "Enemy: Tank",    200, 50.0f, 10.0f, 1.5f,  1.0f);
-	REGISTER_ENEMY_PARAMETERS(assault, "Enemy: Assault", 100, 10.0f, 5.0f,  2.5f,  25.0f);
+	REGISTER_ENEMY_PARAMETERS(normal,   "Enemy: Normal",   100, 20.0f,  10.0f, 2.5f,  1.0f);
+	REGISTER_ENEMY_PARAMETERS(dash,     "Enemy: Dash",     120, 10.0f,  10.0f, 0.01f, 22.0f);
+	REGISTER_ENEMY_PARAMETERS(tank,     "Enemy: Tank",     200, 50.0f,  10.0f, 1.5f,  1.0f);
+	REGISTER_ENEMY_PARAMETERS(assault,  "Enemy: Assault",  100, 10.0f,  5.0f,  2.5f,  25.0f);
+	REGISTER_ENEMY_PARAMETERS(leapBoss, "Enemy: LeapBoss", 500, 500.0f, 20.0f, 0.01f, 100.0f);
 };

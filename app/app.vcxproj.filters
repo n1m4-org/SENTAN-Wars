@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\Component\BossLeapAttackComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Character\Enemy\LeapBoss\LeapBoss.cpp">
+      <Filter>src\Character\Enemy\LeapBoss</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\JumpComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
@@ -75,6 +81,15 @@
     </ClCompile>
     <ClCompile Include="src\Component\DoubleJumpComponent.cpp">
       <Filter>src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\ComboAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\SlashFlurryAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
     </ClCompile>
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
@@ -210,6 +225,9 @@
     <Filter Include="src\Character\Enemy\DashEnemy">
       <UniqueIdentifier>{04dd2022-cb0b-4e9c-8022-4539db587f6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Character\Enemy\LeapBoss">
+      <UniqueIdentifier>{249dce60-9368-411c-81b1-919e2e8aeddf}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Character\Enemy\NormalEnemy">
       <UniqueIdentifier>{ffef2281-3e5b-4807-8690-f3c2afa140c2}</UniqueIdentifier>
     </Filter>
@@ -224,6 +242,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\Attack\AttackInfo.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\BossLeapAttackComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Enemy\LeapBoss\LeapBoss.h">
+      <Filter>src\Character\Enemy\LeapBoss</Filter>
+    </ClInclude>
     <ClInclude Include="src\common\ResourcePath.h">
       <Filter>src\common</Filter>
     </ClInclude>
@@ -421,6 +448,15 @@
     </ClInclude>
     <ClInclude Include="src\Component\DoubleJumpComponent.h">
       <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\DrillRushAttack.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\ComboAttack.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\SlashFlurryAttack.h">
+      <Filter>src\Component\Attack</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Player\Sentan\SentanContext.h">
       <Filter>src\Character\Player\Sentan</Filter>

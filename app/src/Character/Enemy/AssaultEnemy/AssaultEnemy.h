@@ -7,6 +7,9 @@
 class AssaultEnemy
 	: public BaseEnemy
 {
+public:
+	virtual ~AssaultEnemy();
+
 private:
 	void UniqueInit() override;
 

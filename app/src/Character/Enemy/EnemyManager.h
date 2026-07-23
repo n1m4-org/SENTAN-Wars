@@ -9,6 +9,7 @@
 #include <random>
 
 class BaseEnemy;
+enum class AttributeType;
 
 // ウェーブのコスト・出現傾向を定義する構造体
 struct WaveData
@@ -19,6 +20,9 @@ struct WaveData
 	float tankWeight;      // Tankの出現割合
 	float assaultWeight;   // Assaultの出現割合
 	float spawnInterval;   // このウェーブでの敵の出現間隔（秒）
+	AttributeType attributeType; // このウェーブでの敵の属性タイプ
+	bool isBossWave;       // ボスウェーブかどうか
+	EnemyType bossType;    // ボスウェーブの際に出現するボスのタイプ
 };
 
 class EnemyManager
