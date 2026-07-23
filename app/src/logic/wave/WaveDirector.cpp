@@ -28,9 +28,27 @@ void WaveDirector::Update()
     {
         pCurrentWave_->Update();
 
-        // ウェーブが終了（敵が全滅等）したら次のウェーブへ
+        // ウェーブが終了（敵が全滅等）したら
         if (pCurrentWave_->IsWaveFinished())
         {
+            // ボスウェーブが完了した場合、ボス討伐カウントをインクリメント
+            if (this->GetWaveType(waveIndex_) == WaveType::Boss)
+            {
+                bossDefeatCount_++;
+
+                // 目標のボス討伐数に達した場合、ゲームクリア
+                if (targetBossDefeatCount_ > 0 && bossDefeatCount_ >= targetBossDefeatCount_)
+                {
+                    isGameCleared_ = true;
+                    if (pCurrentWave_)
+                    {
+                        pCurrentWave_->Exit();
+                        pCurrentWave_.reset();
+                    }
+                    return;
+                }
+            }
+
             this->ChangeToNextWave();
         }
     }
