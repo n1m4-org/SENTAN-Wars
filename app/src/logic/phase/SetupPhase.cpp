@@ -11,6 +11,8 @@ void SetupPhase::Enter()
         // ここで次ウェーブに移行するイベントを呼び出す
         EventListener::GetInstance()->Publish<Event::WarpConfirm>();
     });
+
+
 }
 
 void SetupPhase::Exit()

@@ -26,6 +26,8 @@ private:
     void OnCollisionEnter(Hagine::ColliderBase* other);
     void OnCollisionExit(Hagine::ColliderBase* other);
 
+    static constexpr float kMinHeight_ = 2.0f; // ワープホールの高さの最小値
+
     // ワープホールの位置（不変）
     const Hagine::Vector3 kPosition_;
 

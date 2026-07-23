@@ -4,9 +4,10 @@
 #include <Particle/gpu/ParticleCSSpawner.h>
 #include <common/ColliderTag.h>
 #include <Input.h>
+#include <utility/vecutl.h>
 
 
-WarpHole::WarpHole(const Hagine::Vector3& pos) : kPosition_(pos)
+WarpHole::WarpHole(const Hagine::Vector3& pos) : kPosition_(utl::vec::ClampY(pos, kMinHeight_))
 {
     this->InitializeCollider();
     this->InitializeParticleEmitter();

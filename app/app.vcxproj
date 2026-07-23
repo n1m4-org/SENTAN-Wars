@@ -169,6 +169,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
     <ClCompile Include="src\presentation\ui\BarMovable.cpp" />
     <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
+    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.cpp" />
+    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h" />
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\scene\TitleScene.cpp" />
