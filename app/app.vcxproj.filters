@@ -146,6 +146,12 @@
     <ClCompile Include="src\scene\TitleScene.cpp">
       <Filter>src\scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\system\EventListener.cpp">
+      <Filter>src\system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\system\EventSubscription.cpp">
+      <Filter>src\system</Filter>
+    </ClCompile>
     <ClCompile Include="src\utility\DeltaTimeStopWatch.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
@@ -161,8 +167,6 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\system\EventListener.cpp" />
-    <ClCompile Include="src\system\EventSubscription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -182,6 +186,9 @@
     </Filter>
     <Filter Include="src\entity">
       <UniqueIdentifier>{60d55373-7af6-48c3-b58a-f10fae0ec9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\events">
+      <UniqueIdentifier>{f4570b23-84fd-42f0-8b21-990bab1569ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\font">
       <UniqueIdentifier>{d25a4751-ae68-4f9d-8eeb-bd1b58689455}</UniqueIdentifier>
@@ -320,6 +327,9 @@
     <ClInclude Include="src\entity\WarpHole.h">
       <Filter>src\entity</Filter>
     </ClInclude>
+    <ClInclude Include="src\events\WaveEvent.h">
+      <Filter>src\events</Filter>
+    </ClInclude>
     <ClInclude Include="src\font\FontLayout.h">
       <Filter>src\font</Filter>
     </ClInclude>
@@ -404,6 +414,12 @@
     <ClInclude Include="src\scene\TitleScene.h">
       <Filter>src\scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\system\EventListener.h">
+      <Filter>src\system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\system\EventSubscription.h">
+      <Filter>src\system</Filter>
+    </ClInclude>
     <ClInclude Include="src\system\ScopedCursorHidden.h">
       <Filter>src\system</Filter>
     </ClInclude>
@@ -485,8 +501,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\system\EventListener.h" />
-    <ClInclude Include="src\system\EventSubscription.h" />
-    <ClInclude Include="src\events\WaveEvent.h" />
   </ItemGroup>
 </Project>
