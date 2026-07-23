@@ -20,10 +20,10 @@ public:
     {
         Hagine::Vector2 center = {};                                    // 枠の中心座標
         Hagine::Vector2 size = {};                                      // 展開後の枠サイズ
-        float borderThickness = 4.0f;                                   // 縁取りの太さ
-        float lineThickness = 6.0f;                                     // 横展開時の線の太さ
-        float horizontalDuration = 0.75f;                              // 横展開にかける時間
-        float verticalDuration = 0.75f;                                // 縦展開にかける時間
+        float borderThickness = 6.0f;                                   // 縁取りの太さ
+        float lineThickness = 10.0f;                                     // 横展開時の線の太さ
+        float horizontalDuration = 1.0f;                              // 横展開にかける時間
+        float verticalDuration = 1.0f;                                // 縦展開にかける時間
         Hagine::Vector4 borderColor = { 0.55f, 0.55f, 0.55f, 1.0f };    // 縁取り色（灰）
         Hagine::Vector4 innerColor = { 0.0f, 0.0f, 0.0f, 0.55f };       // 内側色（半透明の黒）
         Hagine::EasingType horizontalEasing = Hagine::EasingType::OutCubic;

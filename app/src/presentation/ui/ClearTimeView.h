@@ -7,8 +7,8 @@
 #include <type/Vector4.h>
 
 /// <summary>
-/// クリアタイムを "MM:SS" 形式で描画するビュー。
-/// 数字スプライトとコロンスプライトを左詰めで並べる。
+/// クリアタイムを "MM:SS:CC" 形式（分:秒:1/100秒）で描画するビュー。
+/// 区切りはすべてコロン。数字とコロンのスプライトを左詰めで並べる。
 /// フォントサイズ（高さ）で拡大縮小の演出に対応する。
 /// </summary>
 class ClearTimeView
@@ -61,9 +61,9 @@ public:
 
 private:
     /// <summary>
-    /// 描画するスロット（MM:SS の 5 文字）
+    /// 描画するスロット（MM:SS:CC の 8 文字）
     /// </summary>
-    enum class Slot { MinTens, MinOnes, Colon, SecTens, SecOnes, kSize };
+    enum class Slot { MinTens, MinOnes, Colon1, SecTens, SecOnes, Colon2, CentiTens, CentiOnes, kSize };
 
     static constexpr size_t kSlotCount_ = static_cast<size_t>(Slot::kSize);
     static constexpr uint32_t kColonGlyph_ = 10u; // 0-9 が数字、10 がコロン
@@ -83,8 +83,8 @@ private:
     float GetGlyphAspect(uint32_t glyph) const;
 
     std::array<std::unique_ptr<Hagine::Sprite>, kSlotCount_> sprites_ = {};
-    std::array<uint32_t, kSlotCount_> glyphs_ = { 0u, 0u, kColonGlyph_, 0u, 0u };  // 初期 "00:00"
-    std::array<uint32_t, kSlotCount_> appliedGlyphs_ = {};                          // 反映済みグリフ
+    std::array<uint32_t, kSlotCount_> glyphs_ = { 0u, 0u, kColonGlyph_, 0u, 0u, kColonGlyph_, 0u, 0u };  // 初期 "00:00:00"
+    std::array<uint32_t, kSlotCount_> appliedGlyphs_ = {};                                                // 反映済みグリフ
 
     Hagine::Vector2 origin_ = {};                       // 左上原点
     Hagine::Vector2 overallSize_ = {};                  // 全体サイズ

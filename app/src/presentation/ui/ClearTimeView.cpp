@@ -71,16 +71,22 @@ void ClearTimeView::Update()
 
 void ClearTimeView::SetSeconds(float seconds)
 {
-    // 負値をクランプし、MM:SS に分解する
-    const int totalSeconds = static_cast<int>(std::floor((std::max)(0.0f, seconds)));
-    const int minutes = (totalSeconds / 60) % 100; // 分は 2 桁まで
-    const int secondsPart = totalSeconds % 60;
+    // 負値をクランプし、MM:SS:CC（分 / 秒 / 1/100 秒）に分解する
+    const float clamped = (std::max)(0.0f, seconds);
+    const int totalHundredths = static_cast<int>(std::floor(clamped * 100.0f + 0.5f)); // 1/100 秒単位に丸める
+
+    const int minutes = (totalHundredths / 6000) % 100; // 分は 2 桁まで
+    const int secondsPart = (totalHundredths / 100) % 60;
+    const int hundredths = totalHundredths % 100;
 
     glyphs_[static_cast<size_t>(Slot::MinTens)] = static_cast<uint32_t>(minutes / 10);
     glyphs_[static_cast<size_t>(Slot::MinOnes)] = static_cast<uint32_t>(minutes % 10);
-    glyphs_[static_cast<size_t>(Slot::Colon)] = kColonGlyph_;
+    glyphs_[static_cast<size_t>(Slot::Colon1)] = kColonGlyph_;
     glyphs_[static_cast<size_t>(Slot::SecTens)] = static_cast<uint32_t>(secondsPart / 10);
     glyphs_[static_cast<size_t>(Slot::SecOnes)] = static_cast<uint32_t>(secondsPart % 10);
+    glyphs_[static_cast<size_t>(Slot::Colon2)] = kColonGlyph_;
+    glyphs_[static_cast<size_t>(Slot::CentiTens)] = static_cast<uint32_t>(hundredths / 10);
+    glyphs_[static_cast<size_t>(Slot::CentiOnes)] = static_cast<uint32_t>(hundredths % 10);
 }
 
 const char* ClearTimeView::GetGlyphPath(uint32_t glyph) const
@@ -89,7 +95,7 @@ const char* ClearTimeView::GetGlyphPath(uint32_t glyph) const
     {
         return Path::Image::Colon;
     }
-    return Path::Image::Numbers[glyph];
+    return Path::Image::RankingNumbers[glyph];
 }
 
 float ClearTimeView::GetGlyphAspect(uint32_t glyph) const

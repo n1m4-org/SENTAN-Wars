@@ -1,10 +1,13 @@
 #pragma once
 #include <cstdint>
 
+class EnemyManager;
+
 struct WaveContext
 {
     // ウェーブのインデックス (UIで表示するときに使える)
     uint32_t waveIndex = 0;
+    EnemyManager* enemyManager = nullptr;
 };
 
 class IWave

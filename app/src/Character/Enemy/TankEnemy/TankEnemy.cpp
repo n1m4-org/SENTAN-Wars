@@ -11,7 +11,8 @@ void TankEnemy::UniqueInit()
 
 	attackComponent_ = std::make_unique<LeapAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddSphereCollider(GetName() + "_TankEnemyCollider");
+	auto* col = AddSphereCollider(GetName() + "_TankEnemyCollider");
+	col->AddCollisionMask("Player");
 }
 
 void TankEnemy::UniqueUpdate()
@@ -21,12 +22,10 @@ void TankEnemy::UniqueUpdate()
 	{
 		if (attackComponent_->IsActive())
 		{
-			SetResolveCollision(false);
 			GetColliders()[0]->SetTag("EnemyBullet");
 		}
 		else
 		{
-			SetResolveCollision(true);
 			GetColliders()[0]->SetTag("Enemy");
 		}
 	}

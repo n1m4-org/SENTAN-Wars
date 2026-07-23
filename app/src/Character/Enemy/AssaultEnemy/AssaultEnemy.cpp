@@ -37,7 +37,9 @@ void AssaultEnemy::UniqueInit()
 	attackComponent_ = std::make_unique<AssaultAttackComponent>(transform_.get(), &parameter_.attackRange, bulletObject_->GetWorldTransform(), target_, targetRadius_);
 	attackComponent_->Init(GetName());
 
-	AddSphereCollider(GetName() + "_Collider");
+	auto* col = AddCylinderCollider(GetName() + "_Collider");
+	col->AddCollisionMask("Player");
+	SetResolveCollision(true);
 }
 
 void AssaultEnemy::UniqueUpdate()
