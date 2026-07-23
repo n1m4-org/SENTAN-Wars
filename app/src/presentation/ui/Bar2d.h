@@ -52,7 +52,7 @@ private:
     std::unique_ptr<BarMovable> pMainBar_ = nullptr;
 
     // 差分バーのスプライト
-    std::unique_ptr<Hagine::Sprite> pSpriteDiffBar_ = nullptr;
+    std::unique_ptr<BarMovable> pSpriteDiffBar_ = nullptr;
 
     // HPバーの背景スプライト
     std::unique_ptr<Hagine::Sprite> pSpriteBarBg_ = nullptr;
