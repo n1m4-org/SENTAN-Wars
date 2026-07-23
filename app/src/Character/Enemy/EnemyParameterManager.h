@@ -69,5 +69,5 @@ private:
 	REGISTER_ENEMY_PARAMETERS(dash,     "Enemy: Dash",     120, 10.0f,  1.0f, 0.01f, 22.0f);
 	REGISTER_ENEMY_PARAMETERS(tank,     "Enemy: Tank",     200, 50.0f,  1.0f, 1.5f,  1.0f);
 	REGISTER_ENEMY_PARAMETERS(assault,  "Enemy: Assault",  100, 10.0f,  1.0f,  2.5f,  25.0f);
-	REGISTER_ENEMY_PARAMETERS(leapBoss, "Enemy: LeapBoss", 500, 500.0f, 10.0f, 0.01f, 100.0f);
+	REGISTER_ENEMY_PARAMETERS(leapBoss, "Enemy: LeapBoss", 500, 150.0f, 10.0f, 0.01f, 100.0f);
 };
