@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include"Utility/Scene/SceneRegistry.h"
 #include "Character/Enemy/EnemyManager.h"
+#include <Frame.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -46,12 +47,17 @@ void GameScene::Initialize() {
 
 	// HUDの初期化
 	this->InitializeHudManager();
+
+	// クリアタイムの計測を開始
+	clearTimer_ = 0.0f;
+	isTimerRunning_ = true;
 }
 
 void GameScene::Finalize() {
 	/// ===================================================
 	/// 終了処理
 	/// ===================================================
+	this->StopClearTime();
 	pEnemyManager_->Finalize();
 	BaseScene::Finalize();
 }
@@ -60,6 +66,11 @@ void GameScene::Update() {
 	/// ===================================================
 	/// 更新処理
 	/// ===================================================
+
+	// クリアタイムの計測
+	if (isTimerRunning_) {
+		clearTimer_ += Frame::DeltaTime();
+	}
 
 	pFollowCamera_->Update();
 
@@ -91,6 +102,16 @@ void GameScene::AddSceneSetting() {
 	/// シーン設定（デバッグ）
 	/// ===================================================
 	debugCamera_->imgui();
+
+#ifdef _DEBUG
+	// クリアタイムの計測確認用（本番のクリア判定が入るまでの動作確認用ボタン）
+	ImGui::Text("Play Time: %.2f s", clearTimer_);
+	ImGui::Text("Timer Running: %s", isTimerRunning_ ? "true" : "false");
+	if (ImGui::Button("Clear -> CLEAR Scene")) {
+		this->StopClearTime();
+		pSceneManager_->NextSceneReservation("CLEAR");
+	}
+#endif // _DEBUG
 }
 
 void GameScene::AddObjectSetting() {
@@ -134,4 +155,16 @@ void GameScene::InitializeHudManager()
 	pHudManager_ = std::make_unique<HudManager>();
 	pHpHudView_ = pHudManager_->CreateView<HpHudView>();
 	pWaveCountHudView_ = pHudManager_->CreateView<WaveCountHudView>();
+}
+
+void GameScene::StopClearTime() {
+	/// ===================================================
+	/// クリアタイムの計測を停止し、SceneManager に記録する
+	/// ===================================================
+	if (!isTimerRunning_) {
+		// すでに停止済みなら二重に記録しない
+		return;
+	}
+	isTimerRunning_ = false;
+	pSceneManager_->SetClearTime(clearTimer_);
 }

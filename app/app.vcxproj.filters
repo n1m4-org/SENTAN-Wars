@@ -140,11 +140,20 @@
     <ClCompile Include="src\presentation\ui\BarMovable.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\ui\ClearTimeView.cpp">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
     <ClCompile Include="src\presentation\ui\HpHudView.cpp">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\ui\ResultFrame.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp">
       <Filter>src\presentation\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\ClearScene.cpp">
+      <Filter>src\scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\GameScene.cpp">
       <Filter>src\scene</Filter>
@@ -405,14 +414,23 @@
     <ClInclude Include="src\presentation\ui\BarMovable.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\ui\ClearTimeView.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClInclude>
     <ClInclude Include="src\presentation\ui\HpHudView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
     <ClInclude Include="src\presentation\ui\IHudView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\ui\ResultFrame.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClInclude>
     <ClInclude Include="src\presentation\ui\WaveCountHudView.h">
       <Filter>src\presentation\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\ClearScene.h">
+      <Filter>src\scene</Filter>
     </ClInclude>
     <ClInclude Include="src\scene\GameScene.h">
       <Filter>src\scene</Filter>
