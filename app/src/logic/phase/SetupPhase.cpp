@@ -12,3 +12,18 @@ void SetupPhase::Enter()
         EventListener::GetInstance()->Publish<Event::WarpConfirm>();
     });
 }
+
+void SetupPhase::Exit()
+{
+
+}
+
+void SetupPhase::Update()
+{
+
+}
+
+void SetupPhase::Draw()
+{
+
+}
