@@ -75,7 +75,7 @@ void NormalAttack::UpdateMotion() {
             timer_ = 0.0f;
 
             // ここから穂先が前へ出るので、当たり判定を開ける
-            attackState_->BeginHit();
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }

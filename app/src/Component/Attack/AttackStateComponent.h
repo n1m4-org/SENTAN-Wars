@@ -4,6 +4,13 @@
 #include <utility>
 #include <vector>
 
+/// 判定を開けている間の中身
+/// 攻撃ごと（同じ攻撃でも段ごと）に変えられる
+struct HitWindow {
+    float damage = 0.0f;    // 当てたときの攻撃力
+    float sizeScale = 1.0f; // 武器の当たり判定を何倍に広げるか（1.0で武器の形そのまま）
+};
+
 /// 攻撃系コンポーネントが共有する状態
 /// 攻撃コンポーネント同士は互いを知らないので、「今どれか攻撃中か」はここに集める
 ///
@@ -12,8 +19,9 @@
 /// 判定を開けている間は刃が実際に動いている区間だけで、こちらが当たり判定の有効区間になる
 class AttackStateComponent : public Component {
   public:
-    /// 当たり判定の開閉を受け取るコールバック（trueで開く）
-    using HitWindowCallback = std::function<void(bool)>;
+    /// 当たり判定の開閉を受け取るコールバック
+    /// isOpen が true で開く。hit はその一撃の中身（閉じるときは既定値）
+    using HitWindowCallback = std::function<void(bool isOpen, const HitWindow &hit)>;
 
     /// 新しく攻撃を始められるか（他の攻撃が出ていないか）
     bool CanAttack() const { return !isAttacking_; }
@@ -35,12 +43,13 @@ class AttackStateComponent : public Component {
     bool IsHitting() const { return isHitting_; }
 
     /// 当たり判定を開ける（攻撃コンポーネントが刃を振り始めるときに呼ぶ）
-    void BeginHit() {
+    void BeginHit(const HitWindow &hit) {
         if (isHitting_) {
             return;
         }
         isHitting_ = true;
-        NotifyHitWindow(true);
+        hit_ = hit;
+        NotifyHitWindow(true, hit_);
     }
 
     /// 当たり判定を閉じる（攻撃コンポーネントが刃を振り終えたときに呼ぶ）
@@ -49,8 +58,12 @@ class AttackStateComponent : public Component {
             return;
         }
         isHitting_ = false;
-        NotifyHitWindow(false);
+        hit_ = {};
+        NotifyHitWindow(false, hit_);
     }
+
+    /// 今開けている判定の中身（閉じているときは既定値）
+    const HitWindow &GetHitWindow() const { return hit_; }
 
     /// 判定の開閉を知りたい相手を追加する
     /// 攻撃側は誰が聞いているかを知らないままでいられる
@@ -62,9 +75,9 @@ class AttackStateComponent : public Component {
 
   private:
     /// 判定の開閉を知りたい相手へ配る
-    void NotifyHitWindow(bool isOpen) {
+    void NotifyHitWindow(bool isOpen, const HitWindow &hit) {
         for (const HitWindowCallback &callback : hitWindowCallbacks_) {
-            callback(isOpen);
+            callback(isOpen, hit);
         }
     }
 
@@ -74,6 +87,9 @@ class AttackStateComponent : public Component {
 
     // 当たり判定を開けている最中か
     bool isHitting_ = false;
+
+    // 今開けている判定の中身
+    HitWindow hit_{};
 
     // 判定の開閉を知りたい相手
     std::vector<HitWindowCallback> hitWindowCallbacks_;

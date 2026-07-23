@@ -26,8 +26,9 @@ public:
 
 private:
     EnableDebug("Camera Input");
-    GameParameter(float, sensitivityX, 0.01f);
-    GameParameter(float, sensitivityY, 0.01f);
+    // 感度（カーソルが画面中央から1ピクセル離れたときに回る角度・ラジアン）
+    GameParameter(float, sensitivityX, 0.005f);
+    GameParameter(float, sensitivityY, 0.005f);
 
     Command command_ = {};
     Hagine::Input* pInput_ = Hagine::Input::GetInstance();

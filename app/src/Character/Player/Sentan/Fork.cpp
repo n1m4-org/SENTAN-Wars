@@ -1,7 +1,13 @@
 #include "Fork.h"
+#include "Component/Attack/AttackInfo.h"
 #include "type/Quaternion.h"
 #include <string>
 using namespace Hagine;
+
+Fork::~Fork() {
+    // 攻撃情報はコライダーのアドレスで引かれるため、消える前に外しておく
+    SetAttackColliderEnabled(false);
+}
 
 void Fork::Init(const std::string className) {
     BaseObject::Init(className);
@@ -21,16 +27,41 @@ void Fork::Init(const std::string className) {
     SetAttackColliderEnabled(false);
 }
 
-void Fork::SetAttackColliderEnabled(bool enabled) {
+void Fork::SetAttackColliderEnabled(bool enabled, const HitWindow &hit) {
     isAttackColliderEnabled_ = enabled;
+    hit_ = hit;
 
-    if (collider_) {
-        collider_->SetEnabled(enabled);
-    }
+    // Fork本体には属性が無いので相性なしの扱いにする
+    ApplyAttackCollider(collider_.get(), colliderSize_, AttributeType::Red);
+
+    // SENTANは自分の属性で当たる（属性相性は当てられた側が見る）
+    // 元の大きさは種類ごとの定義から取るので、モデルが違っても同じ倍率で広がる
     for (auto &sentan : sentans_) {
-        if (BodyColliderComponent *sentanCollider = sentan->GetCollider()) {
-            sentanCollider->SetEnabled(enabled);
-        }
+        ApplyAttackCollider(sentan->GetCollider(), sentan->GetDefinition().colliderSize, sentan->GetType());
+    }
+}
+
+void Fork::ApplyAttackCollider(BodyColliderComponent *collider, const Vector3 &baseSize, AttributeType attribute) {
+    if (!collider) {
+        return;
+    }
+
+    collider->SetEnabled(isAttackColliderEnabled_);
+
+    // 武器の形そのままだと細くて当たらないので、攻撃ごとの倍率で広げる
+    collider->SetSize(baseSize * GetHitSizeScale());
+
+    ColliderBase *raw = collider->GetCollider();
+    if (!raw) {
+        return;
+    }
+
+    // 判定を開けている間だけ攻撃情報を持たせる
+    // 当てられた側は AttackRegistry から引くので、こちらは相手を知らなくてよい
+    if (isAttackColliderEnabled_) {
+        AttackRegistry::Register(raw, AttackInfo{hit_.damage, attribute, attacker_});
+    } else {
+        AttackRegistry::Unregister(raw);
     }
 }
 
@@ -55,9 +86,7 @@ Sentan *Fork::AttachSentan(SentanId id) {
     sentan->SetParent(this);
 
     // 途中でくっついても判定の開閉がずれないよう、今の状態に合わせる
-    if (BodyColliderComponent *sentanCollider = sentan->GetCollider()) {
-        sentanCollider->SetEnabled(isAttackColliderEnabled_);
-    }
+    ApplyAttackCollider(sentan->GetCollider(), definition->colliderSize, sentan->GetType());
 
     Sentan *raw = sentan.get();
     sentans_.emplace_back(std::move(sentan));
@@ -79,8 +108,9 @@ void Fork::Update() {
     }
 
     // 当たり判定の形も毎フレーム合わせる（構え位置と同じく、動かしながら調整できるようにする）
+    // 攻撃中は、その攻撃の倍率で広げた大きさになる
     if (collider_) {
-        collider_->SetSize(colliderSize_);
+        collider_->SetSize(colliderSize_ * GetHitSizeScale());
         collider_->SetCenterOffset(colliderOffset_);
     }
 

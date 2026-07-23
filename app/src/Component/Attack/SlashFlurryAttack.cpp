@@ -77,7 +77,7 @@ void SlashFlurryAttack::UpdateMotion() {
             timer_ = 0.0f;
 
             // ここから斬り抜くので、当たり判定を開ける（1振りごとに開け閉めする）
-            attackState_->BeginHit();
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }
@@ -111,7 +111,7 @@ void SlashFlurryAttack::UpdateMotion() {
             timer_ = 0.0f;
 
             // 次の振りが始まるので、当たり判定を開け直す
-            attackState_->BeginHit();
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }

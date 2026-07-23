@@ -45,6 +45,7 @@ class ComboAttack : public Component {
         float windupFrame;                   // 振りかぶるフレーム数
         float swingFrame;                    // 振り抜くフレーム数
         float holdFrame;                     // 振り抜いた姿勢で止めるフレーム数
+        float damage;                        // その段の攻撃力
     };
 
     /// コンボを開始する
@@ -96,7 +97,12 @@ class ComboAttack : public Component {
     float fromSpin_ = 0.0f;                        // 自転角（ラジアン）
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
-    GameParameter(float, atk_, 8.0f); // 攻撃力（当たり判定ができたらダメージに使う）
+    // 攻撃力は段ごとに持つ（繋げるほど重くなるようにしてある）
+    GameParameter(float, atk1_, 8.0f);
+    GameParameter(float, atk2_, 10.0f);
+    GameParameter(float, atk3_, 18.0f); // 締めなので一番重い
+    // 判定の広さ（武器の形の何倍か）。薙ぐように斬るので広め
+    GameParameter(float, hitScale_, 3.5f);
 
     // 1段目：袈裟斬り（右上から左下へ斜めに斬り下ろす）
     GameParameter(Hagine::Vector3, windupAngles1_, (Hagine::Vector3{-55.0f, 50.0f, -55.0f}));

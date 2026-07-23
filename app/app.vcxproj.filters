@@ -82,6 +82,9 @@
     <ClCompile Include="src\Component\BodyColliderComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component\HealthComponent.cpp">
+      <Filter>src\Component</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\WeaponComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
@@ -481,6 +484,9 @@
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Component\BodyColliderComponent.h">
+      <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\HealthComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
     <ClInclude Include="src\Component\WeaponComponent.h">
