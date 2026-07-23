@@ -22,4 +22,7 @@ namespace Path::Image
         "common/9_25x25.png"
     };
     inline constexpr const char* Wave = "common/wave_100x25.png";
+    inline constexpr const char* Colon = "common/colon_25x25.png";
+    inline constexpr const char* ClearTime = "common/ClearTime_500x90.png";
+    inline constexpr const char* kWhite1x1 = "debug/white1x1.png";
 }

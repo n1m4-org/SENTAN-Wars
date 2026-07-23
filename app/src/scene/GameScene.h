@@ -61,6 +61,18 @@ public:
     /// </summary>
     void AddParticleSetting() override;
 
+    /// <summary>
+    /// クリアタイムの計測を停止し、結果を SceneManager に記録する。
+    /// クリア条件が未確定のため、任意のタイミングで呼び出せる（2回目以降は無視）。
+    /// </summary>
+    void StopClearTime();
+
+    /// <summary>
+    /// 計測中の経過時間（秒）を取得する
+    /// </summary>
+    /// <returns>float: 経過時間（秒）</returns>
+    float GetClearTime() const { return clearTimer_; }
+
 private:
     /// ===================================================
     /// private method
@@ -101,4 +113,8 @@ private:
 	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
 	HpHudView* pHpHudView_ = nullptr;
     WaveCountHudView* pWaveCountHudView_ = nullptr;
+
+    // クリアタイム計測
+    float clearTimer_ = 0.0f;      // 計測中の経過時間（秒）
+    bool isTimerRunning_ = false;  // 計測中フラグ
 };
