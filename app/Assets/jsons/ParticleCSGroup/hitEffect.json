@@ -1,7 +1,7 @@
 {
     "blendMode": 2,
-    "groupName": "portal",
-    "maxParticleCount": 110000,
+    "groupName": "hitEffect",
+    "maxParticleCount": 5000,
     "modelFilePath": "",
     "primitiveType": 1,
     "textureName": "debug/circle2.png"
