@@ -4,6 +4,7 @@
 #include <utility/ViewportUnits.hpp>
 #include <SpriteManager.h>
 #include <utility/SpriteUnregisterer.h>
+#include <Utility/scene/SceneManager.h>
 
 
 REGISTER_SCENE("TITLE", TitleScene)
@@ -49,6 +50,10 @@ void TitleScene::Update()
 	pContainerArea_->SetSize(containerBox_.size);
 
 	this->UpdateStartKeyColor();
+
+    // シーン切り替えのトリガーを更新
+    this->UpdateChangeSceneTrigger();
+
 }
 
 void TitleScene::InitializeSprites()
@@ -119,5 +124,13 @@ void TitleScene::UpdateStartKeyColor()
 	} else
 	{
 		this->GetSprite(SpriteName::StartKey)->SetColor({ 1.0f, 1.0f, 1.0f });
+	}
+}
+
+void TitleScene::UpdateChangeSceneTrigger()
+{
+	if (pInput_->ReleaseMomentKey(DIK_SPACE))
+	{
+		pSceneManager_->NextSceneReservation("GAME");
 	}
 }

@@ -67,6 +67,7 @@ private:
     void InitializeSprites();
     void InitializeFlexContainer();
     void UpdateStartKeyColor();
+    void UpdateChangeSceneTrigger();
 
     std::array<std::unique_ptr<Hagine::Sprite>, static_cast<size_t>(SpriteName::kSize)> sprites_;
 
