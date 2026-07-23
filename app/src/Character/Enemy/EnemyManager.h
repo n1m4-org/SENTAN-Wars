@@ -45,6 +45,16 @@ public:
 		targetRadius_ = radius;
 	}
 
+	void SetTarget(float* radius)
+	{
+		targetRadius_ = radius;
+	}
+
+	void SetTarget(Hagine::Vector3* target)
+	{
+		target_ = target;
+	}
+
 	// 外部からWaveDataを直接受け取って開始するようにする
 	void StartWave(const WaveData& waveData);
 
@@ -87,5 +97,5 @@ private:
 
 	EnableDebug("EnemyTestTarget");
 	GameParameter(Hagine::Vector3, testTarget_, Hagine::Vector3(5.0f, 0.0f, 5.0f));
-	GameParameter(float, testTargetRadius_, 1.0f);
+	GameParameter(float, testTargetRadius_, 2.5f);
 };

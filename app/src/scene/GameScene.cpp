@@ -33,6 +33,7 @@ void GameScene::Initialize() {
 	// 敵マネージャの初期化
 	pEnemyManager_ = std::make_unique<EnemyManager>();
 	pEnemyManager_->Init();
+	pEnemyManager_->SetTarget(&player_->GetWorldTransform()->translation_);
 
 	// ウェーブディレクターの初期化
 	pWaveDirector_ = std::make_unique<WaveDirector>();
