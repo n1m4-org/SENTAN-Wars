@@ -48,6 +48,21 @@ public:
 	// 外部からWaveDataを直接受け取って開始するようにする
 	void StartWave(const WaveData& waveData);
 
+	/// 現在フィールド上に出現して生存している敵の数を取得
+	int GetActiveEnemyCount() const { return static_cast<int>(enemies_.size()); }
+
+	/// これから出現予定のスポーン待機中の敵の数を取得
+	int GetRemainingSpawnCount() const { return static_cast<int>(spawnQueue_.size()); }
+
+	/// フィールド上の敵 ＋ スポーン待機中の敵の合計残り数を取得
+	int GetTotalRemainingEnemyCount() const { return GetActiveEnemyCount() + GetRemainingSpawnCount(); }
+
+	/// 全ての敵が撃破され、かつスポーン待機中の敵もゼロか判定
+	bool IsAllEnemiesDefeated() const { return enemies_.empty() && spawnQueue_.empty(); }
+
+	/// ウェーブプリセットの取得
+	const WaveData& GetWavePreset(size_t index) const { return wavePresets_[index % wavePresets_.size()]; }
+
 private:
 	void SpawnEnemy(EnemyType type);
 
