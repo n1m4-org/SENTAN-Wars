@@ -56,6 +56,7 @@ bool WeaponComponent::EquipSentan(SentanId id) {
             fork_.get(),
             attackState_,
             jump_,
+            move_,
         };
         unlockedComponent = container_->AddComponent(definition.createComponent(context));
     }

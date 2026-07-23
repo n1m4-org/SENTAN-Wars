@@ -100,6 +100,9 @@
     <ClCompile Include="src\Component\Attack\SlashFlurryAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component\Attack\SpinAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
@@ -534,6 +537,9 @@
       <Filter>src\Component\Attack</Filter>
     </ClInclude>
     <ClInclude Include="src\Component\Attack\SlashFlurryAttack.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\SpinAttack.h">
       <Filter>src\Component\Attack</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Player\Sentan\SentanContext.h">

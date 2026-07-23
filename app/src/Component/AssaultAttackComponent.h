@@ -28,6 +28,7 @@ public:
     explicit AssaultAttackComponent(Hagine::WorldTransform* transform, float* attackRange, Hagine::WorldTransform* attackTransform, Hagine::Vector3* target, float* radius)
         : transform_(transform), attackRange_(attackRange), attackTransform_(attackTransform), target_(target), radius_(radius)
     {}
+    ~AssaultAttackComponent() override;
 
     void Init() override { Init("AssaultEnemy"); }
     void Init(const std::string& ownerName);

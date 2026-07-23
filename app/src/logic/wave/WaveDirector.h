@@ -45,6 +45,11 @@ public:
     /// <returns></returns>
     uint32_t GetCurrentWaveIndex() const { return waveIndex_; }
 
+    int GetTargetBossDefeatCount() const { return targetBossDefeatCount_; }
+    void SetTargetBossDefeatCount(int count) { targetBossDefeatCount_ = count; }
+    int GetBossDefeatCount() const { return bossDefeatCount_; }
+    bool IsGameCleared() const { return isGameCleared_; }
+
     /// <summary>
     /// EnemyManagerを設定する
     /// </summary>
@@ -56,6 +61,8 @@ private:
     void RegisterOnChange();
 
     EnemyManager* pEnemyManager_ = nullptr;
+    bool isGameCleared_ = false;
+    int bossDefeatCount_ = 0;
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;
@@ -68,4 +75,5 @@ private:
     GameParameter(int, waveIndex_, 0);
     GameParameter(bool, goNextWave_, false);
     GameParameter(int, numGeneralWavePerLap_, 3);
+	GameParameter(int, targetBossDefeatCount_, 3); // 目標のボス討伐数
 };
