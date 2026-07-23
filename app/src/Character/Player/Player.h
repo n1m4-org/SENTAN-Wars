@@ -11,9 +11,15 @@
 /// 各コンポーネントには「必要な物だけ」を挿入するイメージ
 ///
 /// SENTANの装備で攻撃が増えるため、実行中にもコンポーネントを追加できる
+class MoveComponent;
+
 class Player : public Hagine::BaseObject, public ComponentContainer {
   public:
     void Init(const std::string className) override;
+
+    /// 移動と体の向きの基準にするカメラを設定する
+    /// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
+    void SetReferenceCamera(const Hagine::ViewProjection *camera);
 
     void Update() override;
 
@@ -40,6 +46,9 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     void FlushPendingComponents();
 
   private:
+    // 移動コンポーネント（所有はcomponents_・カメラを後から渡すために覚えておく）
+    MoveComponent *move_ = nullptr;
+
     // 振る舞いコンポーネント群（Playerが所有）
     std::vector<std::unique_ptr<Component>> components_;
 

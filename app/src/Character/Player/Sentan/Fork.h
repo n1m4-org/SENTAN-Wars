@@ -2,6 +2,7 @@
 #include "3d/Object/Base/BaseObject.h"
 #include "Character/Player/Sentan/Sentan.h"
 #include "Character/Player/Sentan/SentanDefinition.h"
+#include "Component/Attack/AttackStateComponent.h"
 #include "Component/BodyColliderComponent.h"
 #include "debug/GameParameter.h"
 #include "type/Vector3.h"
@@ -13,6 +14,8 @@
 /// 装着したSENTANの位置はForkが決めるので、SENTAN側は位置を持たない
 class Fork : public Hagine::BaseObject {
   public:
+    ~Fork();
+
     void Init(const std::string className) override;
 
     void Update() override;
@@ -41,7 +44,11 @@ class Fork : public Hagine::BaseObject {
     /// 攻撃の当たり判定の有効/無効を切り替える
     /// Fork自身と、くっついているSENTAN全部をまとめて扱う
     /// （呼ぶ側はSENTANが何本あるかも、何のSENTANかも知らなくてよい）
-    void SetAttackColliderEnabled(bool enabled);
+    /// hit は開けている間の攻撃力と、判定を広げる倍率
+    void SetAttackColliderEnabled(bool enabled, const HitWindow &hit = {});
+
+    /// 攻撃者（ダメージを与えた相手に伝えるためのもの）
+    void SetAttacker(Hagine::BaseObject *attacker) { attacker_ = attacker; }
 
   private:
     // GameParameterの登録先となるデバッグ
@@ -75,8 +82,22 @@ class Fork : public Hagine::BaseObject {
     Hagine::Vector3 motionRotation_{0.0f, 0.0f, 0.0f}; // 回転
     float motionSpin_ = 0.0f;                          // 自分の軸まわりの自転
 
+    /// 1つの当たり判定に、今の有効/無効と攻撃情報を反映する
+    /// baseSize はその判定の元の大きさ（武器やSENTANの実寸）
+    void ApplyAttackCollider(BodyColliderComponent *collider, const Hagine::Vector3 &baseSize,
+                             AttributeType attribute);
+
+    /// 今の判定の広げ具合（閉じている間は武器の形そのまま）
+    float GetHitSizeScale() const { return isAttackColliderEnabled_ ? hit_.sizeScale : 1.0f; }
+
     // 攻撃の当たり判定の有効/無効（後からくっつくSENTANにも同じ状態を配るため覚えておく）
     bool isAttackColliderEnabled_ = false;
+
+    // 判定を開けている間の中身（どの攻撃が出ているかで変わる）
+    HitWindow hit_{};
+
+    // 攻撃者（所有はしない・当てた相手に伝えるだけ）
+    Hagine::BaseObject *attacker_ = nullptr;
 
     // 攻撃の当たり判定コンポーネント（Forkが所有）
     std::unique_ptr<BodyColliderComponent> collider_ = nullptr;

@@ -1,6 +1,7 @@
 #include "BodyColliderComponent.h"
 #include "3d/Object/Base/BaseObject.h"
 #include "collider/ColliderTagManager.h"
+#include "collider/CollisionManager.h"
 
 using namespace Hagine;
 
@@ -57,9 +58,22 @@ void BodyColliderComponent::AddHitCallback(HitCallback callback) {
 }
 
 void BodyColliderComponent::SetEnabled(bool enabled) {
+    const bool wasEnabled = isEnabled_;
     isEnabled_ = enabled;
-    if (collider_) {
-        collider_->SetEnabled(enabled);
+
+    if (!collider_) {
+        return;
+    }
+    collider_->SetEnabled(enabled);
+
+    // 判定を切っている間、エンジンは当たり状態を更新しない
+    // そのため相手に触れたまま切ると「触れている」が残り、次に開けたときに
+    // 当たり始めが起きず、2回目以降の攻撃が当たらなくなる
+    // 登録し直すと当たり状態が消えるので、開けるたびに当たり始めから取れる
+    if (enabled && !wasEnabled) {
+        CollisionManager *collisionManager = CollisionManager::GetInstance();
+        collisionManager->Unregister(collider_);
+        collisionManager->Register(collider_);
     }
 }
 

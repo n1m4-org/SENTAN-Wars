@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "myMath.h"
 #include "type/Quaternion.h"
+#include "utility/vecutl.h"
 
 using namespace Hagine;
 
@@ -25,9 +26,20 @@ void MoveComponent::Update() {
 
     // 進行方向へ体を向ける
     if (faceMoveDirection_) {
-        const Quaternion target = Quaternion::FromLookRotation(direction, {0.0f, 1.0f, 0.0f});
-        transform_->quateRotation_ = Quaternion::Slerp(transform_->quateRotation_, target, turnLerpRate_);
+        transform_->SetRotationQuaternion(
+            Quaternion::Slerp(transform_->quateRotation_, CalcFacingRotation(direction), turnLerpRate_));
     }
+}
+
+Quaternion MoveComponent::CalcFacingRotation(const Vector3 &direction) const {
+    // 進む向きをY軸まわりの角度に直す（移動方向は水平なのでヨーだけで足りる）
+    //
+    // 符号を反転させているのは、このエンジンの回転の掛かり方に合わせるため
+    // QuaternionToMatrix4x4 は列ベクトル形の行列を返すが、変換は v*M の行ベクトルで行うため、
+    // クォータニオンは逆回転として効く（そのままだと左右だけ反転して、Aを押すと右を向く）
+    const float yaw = utl::vec::VectorToAngle({-direction.x, 0.0f, direction.z});
+
+    return Quaternion::FromEulerAngles({0.0f, yaw, 0.0f});
 }
 
 Vector3 MoveComponent::CalcInputDirection() const {

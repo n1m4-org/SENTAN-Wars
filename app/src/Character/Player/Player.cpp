@@ -1,9 +1,12 @@
 #include "Player.h"
 #include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Attack/AttackStateComponent.h"
+#include "Component/Attack/AttackInfo.h"
 #include "Component/Attack/NormalAttack.h"
 #include "Component/BodyColliderComponent.h"
+#include "Component/HealthComponent.h"
 #include "Component/JumpComponent.h"
+#include "collider/ColliderBase.h"
 #include "Component/MoveComponent.h"
 #include "Component/WeaponComponent.h"
 using namespace Hagine;
@@ -16,19 +19,34 @@ void Player::Init(const std::string className) {
     SetTexture("debug/white1x1.png");
 
     // --- コンポーネントの登録 ---
+    // HPコンポーネント（属性は持たないので相性なしの等倍で受ける）
+    HealthComponent *health = AddComponent<HealthComponent>();
+
     // 本体の当たり判定（敵と、敵の攻撃に当たる）
-    // 当たったときに何をするかは持たないので、必要になったらAddHitCallbackで受け取る
-    AddComponent<BodyColliderComponent>(this, ColliderTag::Type::Player,
-                                        std::vector<ColliderTag::Type>{
-                                            ColliderTag::Type::Enemy,
-                                            ColliderTag::Type::EnemyBullet,
-                                        });
+    BodyColliderComponent *body = AddComponent<BodyColliderComponent>(this, ColliderTag::Type::Player,
+                                                                     std::vector<ColliderTag::Type>{
+                                                                         ColliderTag::Type::Enemy,
+                                                                         ColliderTag::Type::EnemyBullet,
+                                                                     });
+
+    // 当たったらダメージを受ける
+    // 攻撃力はAttackRegistryから引くので、相手が何の敵かは知らなくてよい
+    // 攻撃中でない敵には攻撃情報が無いため、ぶつかっただけでは減らない
+    body->AddHitCallback([health](ColliderBase *other) {
+        if (const AttackInfo *attackInfo = AttackRegistry::Get(other)) {
+            health->TakeDamage(*attackInfo);
+        }
+    });
+
+    // 死んだらこれ以上当たらないようにする
+    // TODO: ゲームオーバーの流れができたら、ここから知らせる
+    health->AddDeathCallback([body]() { body->SetEnabled(false); });
 
     // 攻撃コンポーネントが共有する状態（攻撃の同時発動を防ぐ）
     AttackStateComponent *attackState = AddComponent<AttackStateComponent>();
 
-    // 移動コンポーネント
-    AddComponent<MoveComponent>(GetWorldTransform());
+    // 移動コンポーネント（基準カメラは、カメラができてからSetReferenceCameraで渡される）
+    move_ = AddComponent<MoveComponent>(GetWorldTransform());
 
     // ジャンプコンポーネント（SENTANで跳べる回数が増えることがある）
     JumpComponent *jump = AddComponent<JumpComponent>(GetWorldTransform());
@@ -47,6 +65,12 @@ void Player::Init(const std::string className) {
     weapon->EquipSentan(SentanId::Sentan2);
 
     FlushPendingComponents();
+}
+
+void Player::SetReferenceCamera(const ViewProjection *camera) {
+    if (move_) {
+        move_->SetReferenceCamera(camera);
+    }
 }
 
 Component *Player::AddComponent(std::unique_ptr<Component> component) {
