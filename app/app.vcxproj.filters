@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\Component\BossLeapAttackComponent.cpp">
@@ -205,11 +205,11 @@
     <Filter Include="src">
       <UniqueIdentifier>{364c2752-119b-4ae6-9957-1d00e70254c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Character">
-      <UniqueIdentifier>{09cea8ca-e766-478a-9f9e-b933874bc239}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\audio">
       <UniqueIdentifier>{7c1a5e64-3f0b-4a2d-9c58-2b6d4f8a1e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Character">
+      <UniqueIdentifier>{09cea8ca-e766-478a-9f9e-b933874bc239}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\common">
       <UniqueIdentifier>{06f010d0-bd57-4bb4-a798-e938dae368b0}</UniqueIdentifier>
