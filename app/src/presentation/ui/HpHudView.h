@@ -29,6 +29,7 @@ private:
     // FlexBoxの計算と適用
     void ApplyFlexLayout();
 
+    // デバッグ用のカスタムGUIを登録
     void RegisterCustomGui();
 
     // 「HP」という文字列のスプライト

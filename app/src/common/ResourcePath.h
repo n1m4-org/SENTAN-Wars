@@ -9,6 +9,8 @@ namespace Path::Image
     inline constexpr const char* Hp = "hud/HP_53x25.png";
     inline constexpr const char* Bar = "hud/Bar_296x16.png";
     inline constexpr const char* BarRed = "hud/BarRed_296x16.png";
+    inline constexpr const char* Remaining = "hud/remaining.png";
+    inline constexpr const char* EnemyUnit = "hud/enemy_unit.png";
     inline constexpr const char* Numbers[10] = {
         "common/0_25x25.png",
         "common/1_10x25.png",

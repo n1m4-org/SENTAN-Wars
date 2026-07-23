@@ -11,7 +11,7 @@ FlexContainer::FlexContainer()
     {
         static constexpr const char* kDirectionNames[static_cast<size_t>(FlexDirection::Count)] = { "Row", "Column", "RowReverse", "ColumnReverse" };
         static constexpr const char* kJustifyNames[static_cast<size_t>(JustifyContent::Count)] = { "FlexStart", "FlexEnd", "Center", "SpaceBetween", "SpaceAround", "SpaceEvenly" };
-        static constexpr const char* kAlignNames[static_cast<size_t>(AlignItems::Count)] = { "FlexStart", "FlexEnd", "Center", "Stretch" };
+        static constexpr const char* kAlignNames[static_cast<size_t>(AlignItems::Count)] = { "FlexStart", "FlexEnd", "Center" };
 
         int32_t directionIndex = static_cast<uint32_t>(direction_);
         ImGui::Combo("Direction", &directionIndex, kDirectionNames, static_cast<int32_t>(FlexDirection::Count));
@@ -33,6 +33,9 @@ FlexContainer::FlexContainer()
 
 std::vector<FlexResult> FlexContainer::Calculate(const FlexBox& containerBox, std::span<const FlexItem> items) const
 {
+    // 要素が空の場合は何もしない
+    if (items.empty()) return {};
+
     std::vector<FlexResult> results;
     results.resize(items.size());
 
@@ -74,6 +77,28 @@ std::vector<FlexResult> FlexContainer::Calculate(const FlexBox& containerBox, st
     }
 
     return results;
+}
+
+Hagine::Vector2 FlexContainer::ContainerSize(std::span<FlexItem> items) const
+{
+    if (items.empty()) return Hagine::Vector2();
+
+    // メイン軸サイズの合計とクロス軸サイズの最大値を初期化
+    float mainSizeSum = 0.0f;
+    float crossSizeMax = 0.0f;
+
+    // 各アイテムのメイン軸サイズの合計とクロス軸サイズの最大値を計算
+    for (auto& item : items)
+    {
+        mainSizeSum += this->MainOf(item.preferredSize);
+        crossSizeMax = std::max(crossSizeMax, this->CrossOf(item.preferredSize));
+    }
+
+    // ギャップを加算
+    mainSizeSum += gap_ * (items.size() - 1);
+
+    // メイン軸サイズとクロス軸サイズをVec2に変換して返す
+    return this->ToVec2(mainSizeSum, crossSizeMax);
 }
 
 float FlexContainer::MainOf(const Vec2& v) const
@@ -169,11 +194,7 @@ void FlexContainer::ApplyJustify(float freeSpace, std::span<const float> itemMai
 
 CrossAlignResult FlexContainer::ApplyCrossAlign(float itemCross, float containerCross, const FlexItem& item) const
 {
-    if (alignItems_ == AlignItems::Stretch)
-    {
-        return { 0.0f, containerCross };
-    }
-    else if (alignItems_ == AlignItems::FlexStart)
+    if (alignItems_ == AlignItems::FlexStart)
     {
         return { 0.0f, itemCross };
     }

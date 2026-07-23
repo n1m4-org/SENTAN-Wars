@@ -3,7 +3,7 @@
 
 enum class FlexDirection { Row, Column, RowReverse, ColumnReverse, Count };
 enum class JustifyContent { FlexStart, FlexEnd, Center, SpaceBetween, SpaceAround, SpaceEvenly, Count };
-enum class AlignItems { FlexStart, FlexEnd, Center, Stretch, Count };
+enum class AlignItems { FlexStart, FlexEnd, Center, Count };
 
 struct FlexItem
 {

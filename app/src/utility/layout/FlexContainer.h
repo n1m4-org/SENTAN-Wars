@@ -16,10 +16,12 @@ public:
 
     FlexDirection   direction_      = FlexDirection::Row;
     JustifyContent  justifyContent_ = JustifyContent::FlexStart;
-    AlignItems      alignItems_     = AlignItems::Stretch;
+    AlignItems      alignItems_     = AlignItems::FlexStart;
     float           gap_            = 0.0f;
 
     std::vector<FlexResult> Calculate(const FlexBox& containerBox, std::span<const FlexItem> items) const;
+
+    Hagine::Vector2 ContainerSize(std::span<FlexItem> items) const;
 
     void SetName(const std::string& name)
     { 
