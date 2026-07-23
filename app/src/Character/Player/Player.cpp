@@ -28,6 +28,7 @@ void Player::Init(const std::string className) {
                                                                          ColliderTag::Type::Enemy,
                                                                          ColliderTag::Type::EnemyBullet,
                                                                      });
+    body->SetEnabled(true);
 
     // 当たったらダメージを受ける
     // 攻撃力はAttackRegistryから引くので、相手が何の敵かは知らなくてよい

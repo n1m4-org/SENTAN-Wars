@@ -49,6 +49,14 @@ void BaseEnemy::Init(const std::string className)
 	currentHp_ = maxHp_;
 	isDead_ = false;
 
+	// 衝突判定タグの事前登録
+	auto* tagMgr = Hagine::ColliderTagManager::GetInstance();
+	tagMgr->AddTag("Player");
+	tagMgr->AddTag("Enemy");
+	tagMgr->AddTag("EnemyBullet");
+	tagMgr->AddTag("PlayerAttack");
+	tagMgr->AddTag("PlayerBullet");
+
 	if (!GetColliders().empty())
 	{
 		GetColliders()[0]->AddCollisionMask("Player");

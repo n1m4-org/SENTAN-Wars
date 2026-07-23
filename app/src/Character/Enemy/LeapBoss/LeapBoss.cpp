@@ -13,7 +13,8 @@ void LeapBoss::UniqueInit()
 
 	attackComponent_ = std::make_unique<BossLeapAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddCylinderCollider(GetName() + "_LeapBossCollider");
+	auto* col = AddCylinderCollider(GetName() + "_LeapBossCollider");
+	col->AddCollisionMask("Player");
 	SetResolveCollision(true);
 }
 
@@ -24,12 +25,10 @@ void LeapBoss::UniqueUpdate()
 	{
 		if (attackComponent_->IsActive())
 		{
-			SetResolveCollision(false);
 			GetColliders()[0]->SetTag("EnemyBullet");
 		}
 		else
 		{
-			SetResolveCollision(true);
 			GetColliders()[0]->SetTag("Enemy");
 		}
 	}
