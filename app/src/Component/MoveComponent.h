@@ -1,6 +1,7 @@
 #pragma once
 #include "Component/Component.h"
 #include "debug/GameParameter.h"
+#include "type/Quaternion.h"
 #include "type/Vector3.h"
 
 namespace Hagine {
@@ -23,6 +24,9 @@ class MoveComponent : public Component {
   private:
     /// 入力から移動方向を求める
     Hagine::Vector3 CalcInputDirection() const;
+
+    /// 進む向きへ体を向けるための回転を求める
+    Hagine::Quaternion CalcFacingRotation(const Hagine::Vector3 &direction) const;
 
   private:
     // GameParameterの登録先となるデバッグ
