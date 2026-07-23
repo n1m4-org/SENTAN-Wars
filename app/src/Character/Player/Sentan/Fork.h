@@ -22,6 +22,9 @@ class Fork : public Hagine::BaseObject {
 
     void Draw(const Hagine::ViewProjection &viewProjection) override;
 
+    /// SENTANは最大2つまで（選ばせる側が上限を知るため公開する）
+    static constexpr size_t kMaxSentanCount = 2;
+
     /// SENTANをくっつける（最大2つまで）
     Sentan *AttachSentan(SentanId id);
 
@@ -72,9 +75,6 @@ class Fork : public Hagine::BaseObject {
     // 柄で殴っても当たらないよう、穂先の範囲(Y=1.3〜3.5)だけを覆う
     GameParameter(Hagine::Vector3, colliderSize_, (Hagine::Vector3{0.47f, 1.1f, 0.2f}));
     GameParameter(Hagine::Vector3, colliderOffset_, (Hagine::Vector3{0.0f, 2.4f, 0.08f}));
-
-    // SENTANは最大2つまで
-    static constexpr size_t kMaxSentanCount = 2;
 
     // ==== 状態 ====
     // 攻撃モーションによる構えからのズレ（攻撃コンポーネントが設定する）

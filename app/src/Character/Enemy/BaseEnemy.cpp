@@ -1,5 +1,7 @@
 #include "BaseEnemy.h"
 #include <3d/Object/Base/BaseObjectManager.h>
+#include <3d/Particle/gpu/ParticleCSSpawner.h>
+#include <Debug/log/Logger.h>
 #include "Frame/Frame.h"
 #ifdef _DEBUG
 #include <debug/imgui/ImGuizmoManager.h>
@@ -201,15 +203,36 @@ void BaseEnemy::OnHit(ColliderBase* other)
 	if (!other || isDead_) return;
 
 	const std::string& tag = other->GetTag();
+	// [調査用ログ] OnHitが呼ばれているか・どのタグと当たったか
+	Hagine::Logger::Info("BaseEnemy::OnHit tag=" + tag);
+
 	// プレイヤーの攻撃タグに対してのみダメージ処理を行う
 	if (tag == "PlayerAttack" || tag == "PlayerBullet") // プレイヤーの攻撃タグを入れる
 	{
 		// AttackRegistry に登録された攻撃情報を検索
 		if (const AttackInfo* info = AttackRegistry::Get(other))
 		{
+			// 当たった位置にヒットエフェクトを出す
+			SpawnHitEffect(transform_->translation_);
 			TakeDamage(*info);
 			return;
 		}
+	}
+}
+
+void BaseEnemy::SpawnHitEffect(const Vector3& position)
+{
+	// ポインタは持たず、粒子が消えたら勝手に片付く
+	ParticleCSSpawner* spawner = ParticleCSSpawner::GetInstance();
+	hitEffect_ = spawner->Spawn("hitEffect");
+	if (hitEffect_)
+	{
+		// 敵の中心に埋もれて見えないことがあるので、少し上に・大きめに出して確認する
+		hitEffect_->SetTranslate(position);
+		//effect->SetScale({1.0f, 1.0f, 1.0f});
+		hitEffect_->SetAuto(true);
+		//effect->EmitOnce();
+		spawner->DespawnWhenFinished(hitEffect_);
 	}
 }
 
