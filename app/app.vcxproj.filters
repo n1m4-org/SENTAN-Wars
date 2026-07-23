@@ -240,6 +240,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\Attack\AttackInfo.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
     <ClInclude Include="src\Component\BossLeapAttackComponent.h">
       <Filter>src\Component</Filter>
     </ClInclude>
@@ -465,6 +468,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\Component\Attack\AttackInfo.h" />
   </ItemGroup>
 </Project>
