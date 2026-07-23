@@ -149,10 +149,10 @@
     <ClCompile Include="src\presentation\ui\HpHudView.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
-    <ClCompile Include="src\presentation\ui\ResultFrame.cpp">
+    <ClCompile Include="src\presentation\ui\RankingView.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
-    <ClCompile Include="src\presentation\ui\RankingView.cpp">
+    <ClCompile Include="src\presentation\ui\ResultFrame.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp">
@@ -247,11 +247,11 @@
     <Filter Include="src\logic\phase">
       <UniqueIdentifier>{e57a8c0f-334b-4a83-9176-5d79dbe28514}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\logic\wave">
-      <UniqueIdentifier>{292f6df2-2e11-45e6-ad5a-91a777ad61c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\logic\ranking">
       <UniqueIdentifier>{9a5f1c3d-7b42-4e18-8c6a-2f0d9b4e7c11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\logic\wave">
+      <UniqueIdentifier>{292f6df2-2e11-45e6-ad5a-91a777ad61c6}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\presentation\ui">
       <UniqueIdentifier>{6ecd069e-525e-497e-a3a4-aa3d7ec99b6f}</UniqueIdentifier>
@@ -435,10 +435,10 @@
     <ClInclude Include="src\presentation\ui\IHudView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
-    <ClInclude Include="src\presentation\ui\ResultFrame.h">
+    <ClInclude Include="src\presentation\ui\RankingView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
-    <ClInclude Include="src\presentation\ui\RankingView.h">
+    <ClInclude Include="src\presentation\ui\ResultFrame.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
     <ClInclude Include="src\presentation\ui\WaveCountHudView.h">
