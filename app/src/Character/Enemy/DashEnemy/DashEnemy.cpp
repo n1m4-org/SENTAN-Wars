@@ -1,12 +1,17 @@
 #include "DashEnemy.h"
 
+bool DashEnemy::IsAttacking() const
+{
+	return attackComponent_ ? attackComponent_->IsActive() : false;
+}
+
 void DashEnemy::UniqueInit()
 {
 	SetTypeParameter(EnemyType::Dash);
 
 	attackComponent_ = std::make_unique<DashAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddSphereCollider("DashEnemyCollider");
+	AddSphereCollider(GetName() + "_DashEnemyCollider");
 }
 
 void DashEnemy::UniqueUpdate()

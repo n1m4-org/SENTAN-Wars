@@ -9,6 +9,9 @@
 #include "Character/Enemy/EnemyParameterManager.h" 
 #include "Frame/Frame.h"
 #include <cmath>
+#ifdef _DEBUG
+#include <debug/imgui/ImGuizmoManager.h>
+#endif
 
 using namespace Hagine;
 
@@ -33,7 +36,7 @@ void EnemyManager::Init()
 	wavePresets_.push_back(WaveData{ 0,    0.0f,  0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss });
 
 	// テストとしてウェーブ0を開始
-	StartWave(wavePresets_[3]);
+	StartWave(wavePresets_[2]);
 
 }
 
@@ -127,9 +130,37 @@ void EnemyManager::Update()
 		enemy->Update();
 	}
 
-	// 死亡した敵（HPが0または生存フラグがfalseの敵）を要素から削除
-	std::erase_if(enemies_, [](const std::unique_ptr<BaseEnemy>& enemy) {
-		return !enemy || !enemy->GetIsAlive() || enemy->IsDead();
+	// 1. 死亡した敵（HPが0または生存フラグがfalseの敵）を遅延削除キューへ移動
+	for (auto it = enemies_.begin(); it != enemies_.end(); )
+	{
+		if (!(*it) || !(*it)->GetIsAlive() || (*it)->IsDead())
+		{
+			if (*it)
+			{
+				(*it)->SetIsModelDraw(false); // 描画を確実に停止
+				if (!(*it)->GetColliders().empty())
+				{
+					(*it)->GetColliders()[0]->SetEnabled(false); // 衝突判定を無効化
+				}
+				// BaseObjectManagerの描画・更新対象から即座に登録解除
+#ifdef _DEBUG
+				ImGuizmoManager::GetInstance()->RemoveTarget((*it)->GetName());
+#endif
+				BaseObjectManager::GetInstance()->UnregisterExternal((*it).get());
+			}
+			pendingDeletes_.push_back(PendingDeleteEnemy{ std::move(*it), 3 });
+			it = enemies_.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	// 2. 遅延削除キューのカウント減算と、GPU描画完了後の安全解放
+	std::erase_if(pendingDeletes_, [](PendingDeleteEnemy& pending) {
+		pending.delayFrames--;
+		return pending.delayFrames <= 0;
 	});
 }
 
@@ -229,5 +260,21 @@ void EnemyManager::SpawnEnemy(EnemyType type)
 
 void EnemyManager::Finalize()
 {
+	for (auto& enemy : enemies_)
+	{
+		if (enemy)
+		{
+			enemy->SetIsModelDraw(false);
+			if (!enemy->GetColliders().empty())
+			{
+				enemy->GetColliders()[0]->SetEnabled(false);
+			}
+#ifdef _DEBUG
+			ImGuizmoManager::GetInstance()->RemoveTarget(enemy->GetName());
+#endif
+			BaseObjectManager::GetInstance()->UnregisterExternal(enemy.get());
+		}
+	}
 	enemies_.clear();
+	pendingDeletes_.clear();
 }

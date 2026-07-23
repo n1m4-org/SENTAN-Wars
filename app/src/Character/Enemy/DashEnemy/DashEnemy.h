@@ -5,6 +5,9 @@
 class DashEnemy
 	: public BaseEnemy
 {
+public:
+	bool IsAttacking() const override;
+
 private:
 	void UniqueInit() override;
 
