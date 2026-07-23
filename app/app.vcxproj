@@ -242,6 +242,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\utility\SpriteFrameGroup.h" />
     <ClInclude Include="src\utility\SpriteUnregisterer.h" />
     <ClInclude Include="src\utility\strutl.h" />
+    <ClInclude Include="src\utility\vecutl.h" />
     <ClInclude Include="src\utility\ViewportUnits.hpp" />
     <ClInclude Include="src\utility\wndutl.h" />
   </ItemGroup>
