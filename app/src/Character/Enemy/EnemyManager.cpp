@@ -42,11 +42,11 @@ WaveData EnemyManager::GetWavePreset(size_t index) const
 	// スポーン間隔: 初期4.0秒から徐々に短縮（最短1.0秒まで）
 	float spawnInterval = (std::max)(1.0f, 4.0f - waveCount * 0.2f);
 
-	// 敵の種族比率（ウェーブが進むとTankやAssaultの比率が徐々にアップ）
+	// 敵の種族比率（ウェーブが進むとTankの比率が徐々にアップ、Assaultは無効化）
 	float normalWeight  = (std::max)(2.0f, 10.0f - waveCount * 0.5f);
 	float dashWeight    = 2.0f + waveCount * 0.4f;
 	float tankWeight    = 1.0f + waveCount * 0.3f;
-	float assaultWeight = (waveCount >= 2) ? (1.0f + waveCount * 0.5f) : 0.0f;
+	float assaultWeight = 0.0f; // アサルトエネミーは無効化
 
 	// 属性タイプを巡回（Red -> Green -> Blue -> Red...）
 	AttributeType attr = static_cast<AttributeType>(waveCount % 3);
@@ -102,7 +102,7 @@ void EnemyManager::StartWave(const WaveData& waveData)
 		checkAndAdd(EnemyType::Normal, waveData.normalWeight);
 		checkAndAdd(EnemyType::Dash, waveData.dashWeight);
 		checkAndAdd(EnemyType::Tank, waveData.tankWeight);
-		checkAndAdd(EnemyType::Assault, waveData.assaultWeight);
+		// checkAndAdd(EnemyType::Assault, waveData.assaultWeight); // AssaultEnemyを無効化
 
 		if (affordableTypes.empty()) break;
 
@@ -172,7 +172,7 @@ void EnemyManager::Update()
 #endif
 				BaseObjectManager::GetInstance()->UnregisterExternal((*it).get());
 			}
-			pendingDeletes_.push_back(PendingDeleteEnemy{ std::move(*it), 3 });
+			pendingDeletes_.push_back(PendingDeleteEnemy{ std::move(*it), 15 });
 			it = enemies_.erase(it);
 		}
 		else
@@ -190,6 +190,11 @@ void EnemyManager::Update()
 
 void EnemyManager::SpawnEnemy(EnemyType type)
 {
+	if (type == EnemyType::Assault)
+	{
+		type = EnemyType::Normal;
+	}
+
 	std::unique_ptr<BaseEnemy> enemy = nullptr;
 	std::string className = "";
 
@@ -211,8 +216,8 @@ void EnemyManager::SpawnEnemy(EnemyType type)
 		className = "DashEnemy_" + std::to_string(totalSpawnCount_);
 		break;
 	case EnemyType::Assault:
-		enemy = std::make_unique<AssaultEnemy>();
-		className = "AssaultEnemy_" + std::to_string(totalSpawnCount_);
+		enemy = std::make_unique<NormalEnemy>();
+		className = "NormalEnemy_" + std::to_string(totalSpawnCount_);
 		break;
 	case EnemyType::LeapBoss:
 		enemy = std::make_unique<LeapBoss>();
