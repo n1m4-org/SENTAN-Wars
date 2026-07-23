@@ -97,5 +97,5 @@ private:
 
 	EnableDebug("EnemyTestTarget");
 	GameParameter(Hagine::Vector3, testTarget_, Hagine::Vector3(5.0f, 0.0f, 5.0f));
-	GameParameter(float, testTargetRadius_, 2.5f);
+	GameParameter(float, testTargetRadius_, 1.5f);
 };
