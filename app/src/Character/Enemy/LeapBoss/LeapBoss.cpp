@@ -1,5 +1,10 @@
 #include "LeapBoss.h"
 
+bool LeapBoss::IsAttacking() const
+{
+	return attackComponent_ ? attackComponent_->IsActive() : false;
+}
+
 void LeapBoss::UniqueInit()
 {
 	SetTypeParameter(EnemyType::LeapBoss);
@@ -8,7 +13,7 @@ void LeapBoss::UniqueInit()
 
 	attackComponent_ = std::make_unique<BossLeapAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddCylinderCollider("LeapBossCollider");
+	AddCylinderCollider(GetName() + "_LeapBossCollider");
 	SetResolveCollision(true);
 }
 

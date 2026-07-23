@@ -148,6 +148,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Character\Player\Sentan\Fork.cpp" />
     <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp" />
     <ClCompile Include="src\Component\MoveComponent.cpp" />
+    <ClCompile Include="src\Component\BodyColliderComponent.cpp" />
     <ClCompile Include="src\Component\WeaponComponent.cpp" />
     <ClCompile Include="src\Component\DoubleJumpComponent.cpp" />
     <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp" />
@@ -255,6 +256,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\Component\ComponentContainer.h" />
     <ClInclude Include="src\Component\AttributeComponent.h" />
     <ClInclude Include="src\Component\MoveComponent.h" />
+    <ClInclude Include="src\Component\BodyColliderComponent.h" />
     <ClInclude Include="src\Component\WeaponComponent.h" />
     <ClInclude Include="src\Component\DoubleJumpComponent.h" />
     <ClInclude Include="src\Component\Attack\DrillRushAttack.h" />

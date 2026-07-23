@@ -1,12 +1,17 @@
 #include "NormalEnemy.h"
 
+bool NormalEnemy::IsAttacking() const
+{
+	return attackComponent_ ? attackComponent_->IsActive() : false;
+}
+
 void NormalEnemy::UniqueInit()
 {
 	SetTypeParameter(EnemyType::Normal);
 
 	attackComponent_ = std::make_unique<RamAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddSphereCollider("NormalEnemyCollider");
+	AddSphereCollider(GetName() + "_NormalEnemyCollider");
 }
 
 void NormalEnemy::UniqueUpdate()

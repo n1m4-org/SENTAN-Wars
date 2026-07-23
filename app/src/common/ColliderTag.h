@@ -12,6 +12,7 @@ namespace ColliderTag
         PlayerAttack,
         EnemyAttack,
         WarpHole,
+        EnemyBullet, 
     };
 
     constexpr const char* ToTagName(Type type)
@@ -30,6 +31,8 @@ namespace ColliderTag
             return "EnemyAttack";
         case Type::WarpHole:
             return "WarpHole";
+        case Type::EnemyBullet:
+            return "EnemyBullet";
         default:
             return "Unknown";
         }

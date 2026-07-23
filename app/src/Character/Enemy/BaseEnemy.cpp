@@ -1,11 +1,17 @@
 #include "BaseEnemy.h"
 #include <3d/Object/Base/BaseObjectManager.h>
 #include "Frame/Frame.h"
+#ifdef _DEBUG
+#include <debug/imgui/ImGuizmoManager.h>
+#endif
 
 using namespace Hagine;
 
 BaseEnemy::~BaseEnemy()
 {
+#ifdef _DEBUG
+	ImGuizmoManager::GetInstance()->RemoveTarget(GetName());
+#endif
 	if (isAttackRegistered_ && !GetColliders().empty())
 	{
 		AttackRegistry::Unregister(GetColliders()[0].get());
@@ -16,6 +22,16 @@ BaseEnemy::~BaseEnemy()
 AttackInfo BaseEnemy::GetAttackInfo() const
 {
 	return AttackInfo{ parameter_.power, GetAttributeType(), const_cast<BaseEnemy*>(this) };
+}
+
+bool BaseEnemy::IsAttacking() const
+{
+	auto* nonConstThis = const_cast<BaseEnemy*>(this);
+	if (!nonConstThis->GetColliders().empty() && nonConstThis->GetColliders()[0]->GetTag() == "EnemyBullet")
+	{
+		return true;
+	}
+	return false;
 }
 
 void BaseEnemy::Init(const std::string className)
@@ -72,6 +88,33 @@ void BaseEnemy::Update()
 	}
 
 	UniqueUpdate();
+
+	// 攻撃中でない場合、プレイヤーの方向に向く
+	if (target_ && !isDead_ && !IsAttacking())
+	{
+		Vector3 toTarget = *target_ - transform_->translation_;
+		toTarget.y = 0.0f; // 水平（XZ平面）方向のみ
+		if (toTarget.LengthSq() > 0.0001f)
+		{
+			// ターゲット方向のYaw角（Y軸周りの回転角）を計算
+			float targetYaw = std::atan2(toTarget.x, toTarget.z);
+
+			// 現在のオイラー角回転を取得
+			Vector3 currentEuler = transform_->eulerRotation_;
+
+			// 最短角度差の補間 (角度ラッピング考慮)
+			float diff = targetYaw - currentEuler.y;
+			while (diff < -std::numbers::pi_v<float>) diff += std::numbers::pi_v<float> * 2.0f;
+			while (diff > std::numbers::pi_v<float>) diff -= std::numbers::pi_v<float> * 2.0f;
+
+			float turnSpeed = 10.0f;
+			float newYaw = currentEuler.y + diff * (std::min)(turnSpeed * deltaTime, 1.0f);
+
+			// eulerRotation_ と quateRotation_ の両方を同期して設定
+			transform_->SetRotationEuler({ 0.0f, newYaw, 0.0f });
+		}
+	}
+
 	if (target_ && !isDead_)
 	{
 		if ((transform_->translation_ - *target_).Length() > parameter_.attackRange + *targetRadius_)
@@ -132,6 +175,11 @@ void BaseEnemy::TakeDamage(float damage, AttributeType attackerAttribute)
 		currentHp_ = 0.0f;
 		isDead_ = true;
 		SetIsAlive(false); // BaseObjectの生存フラグをfalseにする
+		SetIsModelDraw(false); // 描画を無効化
+		if (!GetColliders().empty())
+		{
+			GetColliders()[0]->SetEnabled(false); // 衝突判定を無効化
+		}
 	}
 }
 
@@ -144,18 +192,16 @@ void BaseEnemy::OnHit(ColliderBase* other)
 {
 	if (!other || isDead_) return;
 
-	// AttackRegistry に登録された攻撃情報を検索
-	if (const AttackInfo* info = AttackRegistry::Get(other))
-	{
-		TakeDamage(*info);
-		return;
-	}
-
-	// タグ判定による従来のフォールバック処理
 	const std::string& tag = other->GetTag();
-	if (tag == "PlayerAttack" || tag == "PlayerBullet")
+	// プレイヤーの攻撃タグに対してのみダメージ処理を行う
+	if (tag == "PlayerAttack" || tag == "PlayerBullet") // プレイヤーの攻撃タグを入れる
 	{
-		TakeDamage(10.0f, AttributeType::Red);
+		// AttackRegistry に登録された攻撃情報を検索
+		if (const AttackInfo* info = AttackRegistry::Get(other))
+		{
+			TakeDamage(*info);
+			return;
+		}
 	}
 }
 

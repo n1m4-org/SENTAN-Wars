@@ -4,10 +4,10 @@
 
 using namespace Hagine;
 
-void AssaultAttackComponent::Init()
+void AssaultAttackComponent::Init(const std::string& ownerName)
 {
 	AoEObject_ = std::make_unique<BaseObject>();
-	AoEObject_->Init("AoEObject");
+	AoEObject_->Init(ownerName + "_AoEObject");
 	AoEObject_->CreatePrimitiveModel(PrimitiveType::Sphere);
 	AoEObject_->GetWorldTransform()->scale_ = { 1.0f, 0.0f, 1.0f };
 	AoEObject_->SetColor({ 1.0f, 0.0f, 0.0f, 1.0f });

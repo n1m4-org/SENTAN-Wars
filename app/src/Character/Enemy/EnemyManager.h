@@ -25,6 +25,13 @@ struct WaveData
 	EnemyType bossType;    // ボスウェーブの際に出現するボスのタイプ
 };
 
+/// GPUリソース安全解放用の遅延削除用構造体
+struct PendingDeleteEnemy
+{
+	std::unique_ptr<BaseEnemy> enemy;
+	int delayFrames = 3; // GPU描画待ち（3フレーム）
+};
+
 class EnemyManager
 {
 public:
@@ -46,6 +53,7 @@ private:
 
 private:
 	std::list<std::unique_ptr<BaseEnemy>> enemies_;
+	std::vector<PendingDeleteEnemy> pendingDeletes_;
 
 	Hagine::Vector3* target_ = nullptr;
 	float* targetRadius_ = nullptr;
