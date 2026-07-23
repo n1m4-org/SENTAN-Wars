@@ -3,6 +3,7 @@
 #include "debug/GameParameter.h"
 #include "Component/EnemyMoveComponent.h"
 #include "Component/AttributeComponent.h"
+#include "Component/Attack/AttackInfo.h"
 #include "Character/Enemy/EnemyParameterManager.h"
 
 
@@ -10,9 +11,14 @@ class BaseEnemy
 	: public Hagine::BaseObject
 {
 public:
+	virtual ~BaseEnemy();
+
 	void Init(const std::string className) override;
 
 	void Update() override;
+
+	/// 自身の攻撃情報を取得
+	AttackInfo GetAttackInfo() const;
 
 	void SetTarget(Hagine::Vector3* target, float* radius)
 	{
@@ -42,7 +48,27 @@ public:
 		return AttributeType::Red; // デフォルト値
 	}
 
+	/// <summary>
+	/// ダメージを受ける処理
+	/// </summary>
+	/// <param name="damage">基本ダメージ量</param>
+	/// <param name="attackerAttribute">攻撃側の属性</param>
+	virtual void TakeDamage(float damage, AttributeType attackerAttribute = AttributeType::Red);
+
+	/// <summary>
+	/// 攻撃情報構造体を用いたダメージを受ける処理
+	/// </summary>
+	/// <param name="attackInfo">攻撃情報</param>
+	virtual void TakeDamage(const AttackInfo& attackInfo);
+
+	/// HPゲッター
+	float GetHp() const { return currentHp_; }
+	float GetMaxHp() const { return maxHp_; }
+	bool IsDead() const { return isDead_; }
+
 protected:
+	/// 衝突時のコールバック
+	virtual void OnHit(Hagine::ColliderBase* other);
 	void SetTypeParameter(EnemyType type);
 
 	/// <summary>
@@ -74,5 +100,18 @@ protected:
 	// 敵の移動コンポーネント
 	std::unique_ptr<AttributeComponent> attributeComponent_ = nullptr;
 
+	// HP & 被弾パラメータ
+	float currentHp_ = 0.0f;
+	float maxHp_ = 0.0f;
+	bool isDead_ = false;
+
+	// 無敵時間＆演出用
+	float invincibilityTimer_ = 0.0f;
+	float invincibilityDuration_ = 0.2f; // 無敵時間（秒）
+	float hitFlashTimer_ = 0.0f;         // 赤色フラッシュ演出用タイマー
+	Hagine::Vector4 originalColor_ = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	// 攻撃レジストリ登録トラッキング用
+	bool isAttackRegistered_ = false;
 };
 

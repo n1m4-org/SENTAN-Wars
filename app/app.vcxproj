@@ -176,6 +176,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\Attack\AttackInfo.h" />
     <ClInclude Include="src\Component\BossLeapAttackComponent.h" />
     <ClInclude Include="src\Character\Enemy\LeapBoss\LeapBoss.h" />
     <ClInclude Include="src\common\ResourcePath.h" />
