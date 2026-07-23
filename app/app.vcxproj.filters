@@ -82,9 +82,6 @@
     <ClCompile Include="src\Component\DoubleJumpComponent.cpp">
       <Filter>src\Component</Filter>
     </ClCompile>
-    <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
-      <Filter>src\Component\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
@@ -92,6 +89,9 @@
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
     <ClCompile Include="src\Component\Attack\SlashFlurryAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
