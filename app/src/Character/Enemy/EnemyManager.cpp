@@ -126,6 +126,11 @@ void EnemyManager::Update()
 	{
 		enemy->Update();
 	}
+
+	// 死亡した敵（HPが0または生存フラグがfalseの敵）を要素から削除
+	std::erase_if(enemies_, [](const std::unique_ptr<BaseEnemy>& enemy) {
+		return !enemy || !enemy->GetIsAlive() || enemy->IsDead();
+	});
 }
 
 void EnemyManager::SpawnEnemy(EnemyType type)
