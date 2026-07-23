@@ -11,6 +11,8 @@
 // フェーズの切り替えや、現在のフェーズの取得などを行う
 // GeneralWaveやBossWaveなどのウェーブクラスが使用する
 
+class EnemyManager;
+
 class PhaseDirector
 {
 public:
@@ -33,7 +35,8 @@ public:
     /// <summary>
     /// 現在のフェーズのインスタンスを取得する
     /// </summary>
-    IPhase* GetCurrentPhase() const { return pCurrentPhase_.get(); }
+    void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
+    void SetWaveIndex(uint32_t waveIndex) { waveIndex_ = waveIndex; }
 
 private:
     std::unique_ptr<IPhase> CreatePhase(PhaseType type);
@@ -42,6 +45,8 @@ private:
 
     PhaseType currentPhaseType_;
     std::unique_ptr<IPhase> pCurrentPhase_;
+    EnemyManager* pEnemyManager_ = nullptr;
+    uint32_t waveIndex_ = 0;
 
     std::unique_ptr<PhaseTransitionValidator> pTransitionValidator_;
 

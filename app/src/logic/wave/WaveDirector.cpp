@@ -24,7 +24,16 @@ void WaveDirector::Initialize()
 
 void WaveDirector::Update()
 {
-    pCurrentWave_->Update();
+    if (pCurrentWave_)
+    {
+        pCurrentWave_->Update();
+
+        // ウェーブが終了（敵が全滅等）したら次のウェーブへ
+        if (pCurrentWave_->IsWaveFinished())
+        {
+            this->ChangeToNextWave();
+        }
+    }
 }
 
 WaveType WaveDirector::GetWaveType(uint32_t waveIndex) const
@@ -77,5 +86,9 @@ void WaveDirector::ChangeWaveByIndex(uint32_t index)
     waveIndex_ = index;
     WaveType nextWaveType = this->GetWaveType(index);
     pCurrentWave_ = this->CreateWave(nextWaveType);
-    pCurrentWave_->Enter(WaveContext{});
+
+    WaveContext ctx;
+    ctx.waveIndex = index;
+    ctx.enemyManager = pEnemyManager_;
+    pCurrentWave_->Enter(ctx);
 }

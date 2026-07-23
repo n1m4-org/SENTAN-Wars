@@ -33,8 +33,13 @@ void Player::Init(const std::string className) {
     // 攻撃力はAttackRegistryから引くので、相手が何の敵かは知らなくてよい
     // 攻撃中でない敵には攻撃情報が無いため、ぶつかっただけでは減らない
     body->AddHitCallback([health](ColliderBase *other) {
-        if (const AttackInfo *attackInfo = AttackRegistry::Get(other)) {
-            health->TakeDamage(*attackInfo);
+        const std::string& tag = other->GetTag();
+        if (tag == "EnemyBullet") 
+        {
+            if (const AttackInfo* attackInfo = AttackRegistry::Get(other))
+            {
+                health->TakeDamage(*attackInfo);
+            }
         }
     });
 
