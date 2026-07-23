@@ -33,7 +33,7 @@ void EnemyManager::Init()
 	// Wave 2: 高コスト、高密度
 	wavePresets_.push_back(WaveData{ 5000, 3.0f,  3.0f, 5.0f, 5.0f, 1.5f, AttributeType::Blue, false, EnemyType::LeapBoss });
 	// Wave 3: ボスウェーブ (指定したボス1体のみ)
-	wavePresets_.push_back(WaveData{ 0,    0.0f,  0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss });
+	wavePresets_.push_back(WaveData{ 500,  0.0f,  0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss });
 
 	// テストとしてウェーブ0を開始
 	StartWave(wavePresets_[2]);
