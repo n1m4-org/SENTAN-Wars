@@ -1,5 +1,6 @@
 #include "Fork.h"
 #include "type/Quaternion.h"
+#include <string>
 using namespace Hagine;
 
 void Fork::Init(const std::string className) {
@@ -8,6 +9,29 @@ void Fork::Init(const std::string className) {
     // モデルの読み込み（Forkは1本だけなので、ここでしか読まない）
     CreateModel("Character/player/Sentan/Fork.obj");
     SetTexture("debug/white1x1.png");
+
+    // --- コンポーネントの登録 ---
+    // 攻撃の当たり判定（SENTANが無くても通常攻撃で当たるので、Fork自身も持つ）
+    collider_ = std::make_unique<BodyColliderComponent>(
+        this, ColliderTag::Type::PlayerAttack, std::vector<ColliderTag::Type>{ColliderTag::Type::Enemy},
+        colliderSize_, colliderOffset_);
+    collider_->Init();
+
+    // 振っていない間は当たらない
+    SetAttackColliderEnabled(false);
+}
+
+void Fork::SetAttackColliderEnabled(bool enabled) {
+    isAttackColliderEnabled_ = enabled;
+
+    if (collider_) {
+        collider_->SetEnabled(enabled);
+    }
+    for (auto &sentan : sentans_) {
+        if (BodyColliderComponent *sentanCollider = sentan->GetCollider()) {
+            sentanCollider->SetEnabled(enabled);
+        }
+    }
 }
 
 Sentan *Fork::AttachSentan(SentanId id) {
@@ -22,11 +46,18 @@ Sentan *Fork::AttachSentan(SentanId id) {
         return nullptr;
     }
 
+    // 種類ごとに名前を分ける
+    // 当たり判定などの設定はこの名前で保存されるため、同じ名前だと種類同士で混ざってしまう
     auto sentan = std::make_unique<Sentan>(*definition);
-    sentan->Init("Sentan");
+    sentan->Init("Sentan" + std::to_string(static_cast<int>(id) + 1));
 
     // Forkの子にして追従させる（更新・ワールド変換は親子関係で行われる）
     sentan->SetParent(this);
+
+    // 途中でくっついても判定の開閉がずれないよう、今の状態に合わせる
+    if (BodyColliderComponent *sentanCollider = sentan->GetCollider()) {
+        sentanCollider->SetEnabled(isAttackColliderEnabled_);
+    }
 
     Sentan *raw = sentan.get();
     sentans_.emplace_back(std::move(sentan));
@@ -45,6 +76,12 @@ void Fork::Update() {
         transform_->SetRotationQuaternion(spin * tilt);
 
         transform_->scale_ = baseScale_;
+    }
+
+    // 当たり判定の形も毎フレーム合わせる（構え位置と同じく、動かしながら調整できるようにする）
+    if (collider_) {
+        collider_->SetSize(colliderSize_);
+        collider_->SetCenterOffset(colliderOffset_);
     }
 
     // 装着中のSENTANをスロット位置へ配置する

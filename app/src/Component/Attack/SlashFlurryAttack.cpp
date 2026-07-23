@@ -75,6 +75,9 @@ void SlashFlurryAttack::UpdateMotion() {
         if (rate >= 1.0f) {
             phase_ = Phase::Swing;
             timer_ = 0.0f;
+
+            // ここから斬り抜くので、当たり判定を開ける（1振りごとに開け閉めする）
+            attackState_->BeginHit();
         }
         break;
     }
@@ -88,6 +91,10 @@ void SlashFlurryAttack::UpdateMotion() {
             // 最後まで振ったら斬り終わりを見せる
             phase_ = (swingIndex_ + 1 >= GetSwingCount()) ? Phase::Finish : Phase::Gap;
             timer_ = 0.0f;
+
+            // 斬り終わったので当たり判定を閉じる
+            // 次の振りは改めて開け直すため、1振りごとに判定が切れる
+            attackState_->EndHit();
         }
         break;
     }
@@ -102,6 +109,9 @@ void SlashFlurryAttack::UpdateMotion() {
             ++swingIndex_;
             phase_ = Phase::Swing;
             timer_ = 0.0f;
+
+            // 次の振りが始まるので、当たり判定を開け直す
+            attackState_->BeginHit();
         }
         break;
     }
