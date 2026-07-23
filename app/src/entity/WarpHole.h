@@ -9,22 +9,35 @@
 class WarpHole
 {
 public:
-    WarpHole(const Hagine::Vector3& pos) : kPosition_(pos);
+    WarpHole(const Hagine::Vector3& pos);
     ~WarpHole();
 
     void Update();
 
+    // ワープホールに入ったときのコールバックを設定
+    void SetOnEnterCallback(std::function<void()> callback) { onEnterCallback_ = callback; }
+
+    // プレイヤーがワープホール内にいるかどうかを取得
+    bool IsPlayerInside() const { return isPlayerInsize_; }
+
 private:
     void InitializeCollider();
     void InitializeParticleEmitter();
-    void OnCollision(Hagine::ColliderBase* other);
+    void OnCollisionEnter(Hagine::ColliderBase* other);
+    void OnCollisionExit(Hagine::ColliderBase* other);
 
     // ワープホールの位置（不変）
     const Hagine::Vector3 kPosition_;
-    
+
     // コライダーとパーティクルエミッターのポインタ
     std::unique_ptr<Hagine::SphereCollider> pCollider_ = nullptr;
 
     // パーティクルエミッターのポインタ
     Hagine::ParticleCSEmitter* pPortal_ = nullptr;
+
+    // プレイヤーがワープホール内にいるかどうかのフラグ
+    bool isPlayerInsize_ = false;
+
+    // ワープホールに入ったときのコールバック関数
+    std::function<void()> onEnterCallback_ = nullptr;
 };
