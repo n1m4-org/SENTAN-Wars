@@ -15,11 +15,12 @@ void WeaponComponent::Init() {
     if (owner_) {
         fork_->SetParent(owner_);
     }
+}
 
-    // TODO: 準備フェーズができたら、そこで取得したSENTANをEquipSentanで装備する
-    //       今は動作確認のため仮で装備している
-    EquipSentan(SentanId::Sentan1);
-    EquipSentan(SentanId::Sentan2);
+void WeaponComponent::AddEquipCallback(EquipCallback callback) {
+    if (callback) {
+        equipCallbacks_.emplace_back(std::move(callback));
+    }
 }
 
 bool WeaponComponent::EquipSentan(SentanId id) {
@@ -36,6 +37,7 @@ bool WeaponComponent::EquipSentan(SentanId id) {
     // このSENTANが解禁する振る舞いを、所有者のコンポーネントとして追加する
     // 振る舞いが未実装のSENTANは createComponent が nullptr なので、何も増えない
     const SentanDefinition &definition = sentan->GetDefinition();
+    Component *unlockedComponent = nullptr;
     if (definition.createComponent && container_) {
         const SentanContext context{
             owner_ ? owner_->GetWorldTransform() : nullptr,
@@ -43,7 +45,13 @@ bool WeaponComponent::EquipSentan(SentanId id) {
             attackState_,
             jump_,
         };
-        container_->AddComponent(definition.createComponent(context));
+        unlockedComponent = container_->AddComponent(definition.createComponent(context));
+    }
+
+    // 装備し終えてから知らせる（受け取った側がSentanや解禁された振る舞いを触れる状態にしておく）
+    const SentanEquipEvent event{id, sentan, &definition, fork_->GetSentanCount() - 1, unlockedComponent};
+    for (const EquipCallback &callback : equipCallbacks_) {
+        callback(event);
     }
 
     return true;
