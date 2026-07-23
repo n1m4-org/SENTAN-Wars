@@ -33,7 +33,7 @@ class MoveComponent : public Component {
     const Hagine::ViewProjection *camera_ = nullptr; // 移動の基準カメラ
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
-    GameParameter(float, moveSpeed_, 0.1f);        // 移動速度
+    GameParameter(float, moveSpeed_, 0.4f);        // 移動速度
     GameParameter(bool, faceMoveDirection_, true); // 進行方向へ体を向けるか
     GameParameter(float, turnLerpRate_, 0.2f);     // 進行方向へ向く回転の補間係数（0で回転しない,1で即時）
 };

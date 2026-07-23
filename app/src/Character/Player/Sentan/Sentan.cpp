@@ -16,6 +16,13 @@ void Sentan::Init(const std::string className) {
     // SENTANのType(属性)コンポーネント
     attribute_ = std::make_unique<AttributeComponent>(AttributeType::Red);
     attribute_->Init();
+
+    // 当たり判定コンポーネント
+    // タグはどのSENTANでもPlayerAttackで揃え、大きさだけを種類ごとの定義から取る
+    collider_ = std::make_unique<BodyColliderComponent>(
+        this, ColliderTag::Type::PlayerAttack, std::vector<ColliderTag::Type>{ColliderTag::Type::Enemy},
+        definition_ ? definition_->colliderSize : BodyColliderComponent::kDefaultSize);
+    collider_->Init();
 }
 
 void Sentan::Update() {

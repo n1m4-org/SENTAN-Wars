@@ -2,6 +2,7 @@
 #include "3d/Object/Base/BaseObject.h"
 #include "Character/Player/Sentan/SentanDefinition.h"
 #include "Component/AttributeComponent.h"
+#include "Component/BodyColliderComponent.h"
 #include <memory>
 
 /// Forkにくっつくパーツ（準備フェーズで取得したSENTAN）
@@ -32,10 +33,16 @@ class Sentan : public Hagine::BaseObject {
         return attribute_ ? attribute_->GetType() : AttributeType::Red;
     }
 
+    /// 当たり判定（攻撃中だけ有効にするなど、外から扱いたいとき用）
+    BodyColliderComponent *GetCollider() { return collider_.get(); }
+
   private:
     // 種類ごとの定義（テーブルの要素を指す・所有はしない）
     const SentanDefinition *definition_ = nullptr;
 
     // SENTANのType(属性)を表すコンポーネント（Sentanが所有）
     std::unique_ptr<AttributeComponent> attribute_ = nullptr;
+
+    // 当たり判定のコンポーネント（Sentanが所有）
+    std::unique_ptr<BodyColliderComponent> collider_ = nullptr;
 };

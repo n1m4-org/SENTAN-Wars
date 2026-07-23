@@ -26,10 +26,15 @@ void BodyColliderComponent::Init() {
         RegisterTag(target);
     }
 
-    // 本体の形（Cube）に合わせてOBBにする
+    // 向きを持つ物に付くのでOBBにする
     // 位置・回転はownerのワールド変換から取られるので、追従の処理は要らない
-    // 大きさは既定でCubeと同じ2×2×2。合わなければインスペクタで調整すると保存される
     collider_ = owner_->AddOBBCollider(owner_->GetName() + "_BodyCollider");
+
+    // 形は付ける側から渡された値にする
+    // モデルごとに違うため、既定値をそのまま使うのはCubeのときだけ
+    collider_->SetSize(size_);
+    collider_->SetPositionOffSet(centerOffset_);
+    collider_->SetEnabled(isEnabled_);
 
     collider_->SetTag(ColliderTag::ToTagName(tag_));
     for (const ColliderTag::Type target : hitTargets_) {
@@ -48,5 +53,26 @@ void BodyColliderComponent::Init() {
 void BodyColliderComponent::AddHitCallback(HitCallback callback) {
     if (callback) {
         hitCallbacks_.emplace_back(std::move(callback));
+    }
+}
+
+void BodyColliderComponent::SetEnabled(bool enabled) {
+    isEnabled_ = enabled;
+    if (collider_) {
+        collider_->SetEnabled(enabled);
+    }
+}
+
+void BodyColliderComponent::SetSize(const Vector3 &size) {
+    size_ = size;
+    if (collider_) {
+        collider_->SetSize(size);
+    }
+}
+
+void BodyColliderComponent::SetCenterOffset(const Vector3 &offset) {
+    centerOffset_ = offset;
+    if (collider_) {
+        collider_->SetPositionOffSet(offset);
     }
 }

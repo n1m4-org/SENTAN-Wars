@@ -107,6 +107,9 @@ void ComboAttack::UpdateMotion() {
         if (rate >= 1.0f) {
             phase_ = Phase::Swing;
             timer_ = 0.0f;
+
+            // ここから振り抜くので、当たり判定を開ける（段ごとに開け閉めする）
+            attackState_->BeginHit();
         }
         break;
     }
@@ -121,6 +124,10 @@ void ComboAttack::UpdateMotion() {
         if (rate >= 1.0f) {
             phase_ = Phase::Hold;
             timer_ = 0.0f;
+
+            // 振り切って止まるので、当たり判定を閉じる
+            // 次の段は改めて開け直すため、段の切れ目で判定も切れる
+            attackState_->EndHit();
         }
         break;
     }
