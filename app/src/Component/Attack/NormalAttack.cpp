@@ -1,6 +1,7 @@
 #include "NormalAttack.h"
 #include "Character/Player/Sentan/Fork.h"
 #include "Component/Attack/AttackStateComponent.h"
+#include "Component/MoveComponent.h"
 #include "Easing.h"
 #include "Input.h"
 #include <algorithm>
@@ -27,6 +28,11 @@ constexpr EasingType kThrustEasing = EasingType::OutExpo;
 constexpr EasingType kReturnEasing = EasingType::InOutQuad;
 } // namespace
 
+NormalAttack::~NormalAttack() {
+    // 攻撃中に消えると移動が鈍いままになるので、必ず戻す
+    SetMoveSpeedScale(1.0f);
+}
+
 void NormalAttack::Update() {
     // 必須依存が無ければ何もしない
     if (!weapon_ || !attackState_) {
@@ -51,6 +57,9 @@ void NormalAttack::StartAttack() {
     // まず振りかぶってから突き刺す
     phase_ = Phase::Tilt;
     timer_ = 0.0f;
+
+    // 攻撃中は移動を鈍らせる（止めず、遅くするだけ）
+    SetMoveSpeedScale(moveSpeedScale_);
 }
 
 void NormalAttack::UpdateMotion() {
@@ -118,6 +127,9 @@ void NormalAttack::UpdateMotion() {
             phase_ = Phase::Idle;
             timer_ = 0.0f;
             attackState_->EndAttack();
+
+            // 移動の速度を元に戻す
+            SetMoveSpeedScale(1.0f);
         }
         break;
     }
@@ -138,6 +150,12 @@ void NormalAttack::ApplyTilt(float rate) {
 void NormalAttack::ApplyOffset(const Vector3 &from, const Vector3 &to, float rate) {
     // Forkはプレイヤーの子なので、ローカルZ+がプレイヤーの前方になる
     weapon_->SetMotionOffset(from + (to - from) * rate);
+}
+
+void NormalAttack::SetMoveSpeedScale(float scale) {
+    if (move_) {
+        move_->SetSpeedScale(scale);
+    }
 }
 
 float NormalAttack::CalcPhaseRate(float phaseFrame) const {
