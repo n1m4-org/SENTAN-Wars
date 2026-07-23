@@ -60,8 +60,8 @@ public:
 	/// 全ての敵が撃破され、かつスポーン待機中の敵もゼロか判定
 	bool IsAllEnemiesDefeated() const { return enemies_.empty() && spawnQueue_.empty(); }
 
-	/// ウェーブプリセットの取得
-	const WaveData& GetWavePreset(size_t index) const { return wavePresets_[index % wavePresets_.size()]; }
+	/// ウェーブプリセットの取得 (ウェーブ番号に応じた緩やかな難易度動的スケーリング)
+	WaveData GetWavePreset(size_t index) const;
 
 private:
 	void SpawnEnemy(EnemyType type);

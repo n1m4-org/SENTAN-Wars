@@ -29,4 +29,5 @@ public:
 
 private:
     std::unique_ptr<PhaseDirector> pPhaseDirector_;
+    WaveContext ctx_;
 };

@@ -35,9 +35,44 @@ void EnemyManager::Init()
 	// Wave 3: ボスウェーブ (指定したボス1体のみ)
 	wavePresets_.push_back(WaveData{ 500,  0.0f,  0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss });
 
-	// テストとしてウェーブ0を開始
-	StartWave(wavePresets_[2]);
+}
 
+WaveData EnemyManager::GetWavePreset(size_t index) const
+{
+	// ボスウェーブ（4の倍数でインデックス 3, 7, 11...）の場合
+	if (index % 4 == 3)
+	{
+		return WaveData{ 500, 0.0f, 0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss };
+	}
+
+	int waveCount = static_cast<int>(index);
+
+	// コスト: 初期800からウェーブごとに+450ずつゆるやかに増加
+	int maxCost = 800 + waveCount * 450;
+
+	// スポーン間隔: 初期4.0秒から徐々に短縮（最短1.0秒まで）
+	float spawnInterval = (std::max)(1.0f, 4.0f - waveCount * 0.2f);
+
+	// 敵の種族比率（ウェーブが進むとTankやAssaultの比率が徐々にアップ）
+	float normalWeight  = (std::max)(2.0f, 10.0f - waveCount * 0.5f);
+	float dashWeight    = 2.0f + waveCount * 0.4f;
+	float tankWeight    = 1.0f + waveCount * 0.3f;
+	float assaultWeight = (waveCount >= 2) ? (1.0f + waveCount * 0.5f) : 0.0f;
+
+	// 属性タイプを巡回（Red -> Green -> Blue -> Red...）
+	AttributeType attr = static_cast<AttributeType>(waveCount % 3);
+
+	return WaveData{
+		maxCost,
+		normalWeight,
+		dashWeight,
+		tankWeight,
+		assaultWeight,
+		spawnInterval,
+		attr,
+		false,
+		EnemyType::LeapBoss
+	};
 }
 
 void EnemyManager::StartWave(const WaveData& waveData)

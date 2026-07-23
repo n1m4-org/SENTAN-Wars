@@ -36,6 +36,7 @@ void GameScene::Initialize() {
 
 	// ウェーブディレクターの初期化
 	pWaveDirector_ = std::make_unique<WaveDirector>();
+	pWaveDirector_->SetEnemyManager(pEnemyManager_.get());
 	pWaveDirector_->Initialize();
 
 	// フォローカメラの初期化
@@ -71,6 +72,7 @@ void GameScene::Update() {
 	pFollowCamera_->Update();
 
 	pEnemyManager_->Update();
+	pWaveDirector_->Update();
 
 	pHudManager_->Update();
 
