@@ -144,21 +144,14 @@ void BaseEnemy::OnHit(ColliderBase* other)
 {
 	if (!other || isDead_) return;
 
-	// 1. AttackRegistry に登録された攻撃情報を検索
+	// AttackRegistry に登録された攻撃情報を検索
 	if (const AttackInfo* info = AttackRegistry::Get(other))
 	{
 		TakeDamage(*info);
 		return;
 	}
 
-	// 2. コライダー自身が IAttackProvider を実装している場合の取得
-	if (auto provider = dynamic_cast<IAttackProvider*>(other))
-	{
-		TakeDamage(provider->GetAttackInfo());
-		return;
-	}
-
-	// 3. タグ判定による従来のフォールバック処理
+	// タグ判定による従来のフォールバック処理
 	const std::string& tag = other->GetTag();
 	if (tag == "PlayerAttack" || tag == "PlayerBullet")
 	{
