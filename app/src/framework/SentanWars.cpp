@@ -1,6 +1,7 @@
 #include "SentanWars.h"
 #include <Frame.h>
 #include <Object/Base/BaseObjectManager.h>
+#include <audio/SoundPlayer.h>
 
 using namespace Hagine;
 
@@ -10,7 +11,11 @@ void SentanWars::Initialize() {
     Framework::PlaySounds();
     Framework::RegisterShortcutKey();
     // -----ゲーム固有の処理-----
-   
+
+    /// 音の読み込みとBGMの再生開始（BGMはシーンをまたいで流し続ける）
+    SoundPlayer::GetInstance()->Initialize();
+    SoundPlayer::GetInstance()->PlayBgm();
+
     // 最初のシーンを予約（シーンは REGISTER_SCENE で自己登録済み）
 #ifdef _DEBUG
     pSceneManager_->NextSceneReservation("GAME");
@@ -31,7 +36,9 @@ void SentanWars::Initialize() {
 
 void SentanWars::Finalize() {
     // -----ゲーム固有の処理-----
-    
+
+    SoundPlayer::GetInstance()->StopBgm();
+
     // -----------------------
 
     Framework::Finalize();

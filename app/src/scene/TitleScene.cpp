@@ -4,6 +4,7 @@
 #include <utility/ViewportUnits.hpp>
 #include <SpriteManager.h>
 #include <utility/SpriteUnregisterer.h>
+#include <audio/SoundPlayer.h>
 
 
 REGISTER_SCENE("TITLE", TitleScene)
@@ -120,6 +121,12 @@ void TitleScene::InitializeFlexContainer()
 
 void TitleScene::UpdateStartKeyColor()
 {
+	// 押した瞬間だけ決定音を鳴らす（押しっぱなしで鳴り続けないようトリガーで見る）
+	if (pInput_->TriggerKey(DIK_SPACE))
+	{
+		SoundPlayer::GetInstance()->PlayDecision();
+	}
+
 	if (pInput_->PushKey(DIK_SPACE))
 	{
 		this->GetSprite(SpriteName::StartKey)->SetColor({ 0.7f, 0.7f, 0.7f });

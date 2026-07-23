@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\Component\BossLeapAttackComponent.cpp">
@@ -51,6 +51,9 @@
     </ClCompile>
     <ClCompile Include="src\debug\DebugMeasure.cpp">
       <Filter>src\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\audio\SoundPlayer.cpp">
+      <Filter>src\audio</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\WarpHole.cpp">
       <Filter>src\entity</Filter>
@@ -205,6 +208,9 @@
     <Filter Include="src\Character">
       <UniqueIdentifier>{09cea8ca-e766-478a-9f9e-b933874bc239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\audio">
+      <UniqueIdentifier>{7c1a5e64-3f0b-4a2d-9c58-2b6d4f8a1e93}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\common">
       <UniqueIdentifier>{06f010d0-bd57-4bb4-a798-e938dae368b0}</UniqueIdentifier>
     </Filter>
@@ -356,6 +362,9 @@
     </ClInclude>
     <ClInclude Include="src\debug\GameParameter.h">
       <Filter>src\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\audio\SoundPlayer.h">
+      <Filter>src\audio</Filter>
     </ClInclude>
     <ClInclude Include="src\entity\WarpHole.h">
       <Filter>src\entity</Filter>

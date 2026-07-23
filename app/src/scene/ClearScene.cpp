@@ -1,5 +1,6 @@
 #include "ClearScene.h"
 #include <algorithm>
+#include <audio/SoundPlayer.h>
 #include <common/ResourcePath.h>
 #include <Easing.h>
 #include <Frame.h>
@@ -107,6 +108,7 @@ void ClearScene::UpdateDirection(float deltaTime)
 	// SPACE で演出をスキップする
 	if (phase_ != Phase::Done && pInput_->TriggerKey(DIK_SPACE))
 	{
+		SoundPlayer::GetInstance()->PlayDecision();
 		this->Skip();
 	}
 
