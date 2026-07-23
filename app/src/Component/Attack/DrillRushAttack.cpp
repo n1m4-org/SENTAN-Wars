@@ -89,7 +89,7 @@ void DrillRushAttack::UpdateMotion() {
             StartRush();
 
             // ここから回しながら突っ込むので、当たり判定を開ける
-            attackState_->BeginHit();
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }

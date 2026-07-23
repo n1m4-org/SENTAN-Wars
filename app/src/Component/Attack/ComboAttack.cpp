@@ -109,7 +109,7 @@ void ComboAttack::UpdateMotion() {
             timer_ = 0.0f;
 
             // ここから振り抜くので、当たり判定を開ける（段ごとに開け閉めする）
-            attackState_->BeginHit();
+            attackState_->BeginHit({motion.damage, hitScale_});
         }
         break;
     }
@@ -205,13 +205,13 @@ ComboAttack::StageMotion ComboAttack::GetStageMotion(int32_t stage) const {
     switch (stage) {
     case 0:
         return {windupAngles1_, swingAngles1_, swingOffset1_, spinTurns1_,
-                windupFrame1_,  swingFrame1_,  holdFrame1_};
+                windupFrame1_,  swingFrame1_,  holdFrame1_,   atk1_};
     case 1:
         return {windupAngles2_, swingAngles2_, swingOffset2_, spinTurns2_,
-                windupFrame2_,  swingFrame2_,  holdFrame2_};
+                windupFrame2_,  swingFrame2_,  holdFrame2_,   atk2_};
     default:
         return {windupAngles3_, swingAngles3_, swingOffset3_, spinTurns3_,
-                windupFrame3_,  swingFrame3_,  holdFrame3_};
+                windupFrame3_,  swingFrame3_,  holdFrame3_,   atk3_};
     }
 }
 

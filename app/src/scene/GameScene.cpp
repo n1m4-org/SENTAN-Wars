@@ -41,6 +41,10 @@ void GameScene::Initialize() {
 	// フォローカメラの初期化
 	this->InitializeFollowCamera(player_->GetWorldTransform());
 
+	// 移動と体の向きをカメラ基準にする
+	// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
+	player_->SetReferenceCamera(&pFollowCamera_->GetViewProjection());
+
 	// HUDの初期化
 	this->InitializeHudManager();
 
