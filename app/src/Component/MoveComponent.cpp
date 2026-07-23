@@ -21,8 +21,8 @@ void MoveComponent::Update() {
         return;
     }
 
-    // 移動
-    transform_->translation_ += direction * moveSpeed_;
+    // 移動（速度倍率がかかる。攻撃中に鈍らせたいときは外からSetSpeedScale）
+    transform_->translation_ += direction * (moveSpeed_ * speedScale_);
 
     // 進行方向へ体を向ける
     if (faceMoveDirection_) {

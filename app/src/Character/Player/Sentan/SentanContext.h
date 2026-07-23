@@ -10,6 +10,7 @@ class WorldTransform;
 class Fork;
 class AttackStateComponent;
 class JumpComponent;
+class MoveComponent;
 
 /// SENTANが解禁するコンポーネントを生成するのに必要な依存をまとめたもの
 /// 生成側は個々のコンポーネントの型を知らないため、
@@ -19,6 +20,7 @@ struct SentanContext {
     Fork *weapon = nullptr;                           // 振る武器（Fork）
     AttackStateComponent *attackState = nullptr;      // 攻撃中フラグの共有先
     JumpComponent *jump = nullptr;                    // ジャンプの振る舞い（回数を増やす対象）
+    MoveComponent *move = nullptr;                    // 移動の振る舞い（攻撃中に速度を鈍らせる対象）
 };
 
 /// SENTANが解禁するコンポーネントの生成関数（SENTANの定義テーブルに載せる）

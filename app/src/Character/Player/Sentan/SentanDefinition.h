@@ -11,6 +11,7 @@ enum class SentanId {
     Sentan2, // 二段ジャンプ
     Sentan3, // 3段コンボ
     Sentan4, // 連続斬撃
+    Sentan5, // 回転攻撃
 };
 
 /// SENTANが解禁するコンポーネントの生成関数
