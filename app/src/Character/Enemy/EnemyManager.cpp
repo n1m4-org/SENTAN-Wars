@@ -24,17 +24,6 @@ void EnemyManager::Init()
 	std::random_device rd;
 	randomEngine_.seed(rd());
 
-	// ウェーブごとのパラメータ（コストの上限と、各種族のスポーン比率）をプリセット登録
-	// 例：
-	// Wave 0: 低コスト、Normal主体
-	wavePresets_.push_back(WaveData{ 2000, 10.0f, 2.0f, 1.0f, 0.0f, 4.0f, AttributeType::Red, false, EnemyType::LeapBoss });
-	// Wave 1: 中コスト、DashやTankも混ざり始める
-	wavePresets_.push_back(WaveData{ 3500, 5.0f,  4.0f, 3.0f, 1.0f, 2.5f, AttributeType::Green, false, EnemyType::LeapBoss });
-	// Wave 2: 高コスト、高密度
-	wavePresets_.push_back(WaveData{ 5000, 3.0f,  3.0f, 5.0f, 5.0f, 1.5f, AttributeType::Blue, false, EnemyType::LeapBoss });
-	// Wave 3: ボスウェーブ (指定したボス1体のみ)
-	wavePresets_.push_back(WaveData{ 500,  0.0f,  0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss });
-
 }
 
 WaveData EnemyManager::GetWavePreset(size_t index) const
