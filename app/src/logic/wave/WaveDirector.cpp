@@ -1,6 +1,8 @@
 #include "WaveDirector.h"
 #include "GeneralWave.h"
 #include "BossWave.h"
+#include <events/WaveEvent.h>
+#include <system/EventListener.h>
 
 
 
@@ -11,6 +13,13 @@ void WaveDirector::Initialize()
 
     // 初期ウェーブを作成
     this->ChangeWaveByIndex(0);
+
+    // ワープホールの確認イベントを購読
+    subWarpConfirm_ = EventListener::GetInstance()->Subscribe<Event::WarpConfirm>([this](const Event::WarpConfirm&)
+    {
+        // ワープホールの確認イベントが発生したら、次のウェーブに切り替える
+        this->ChangeToNextWave();
+    });
 }
 
 void WaveDirector::Update()
@@ -46,7 +55,7 @@ std::unique_ptr<IWave> WaveDirector::CreateWave(WaveType type)
 
 void WaveDirector::RegisterOnChange()
 {
-#ifdef _DEBUG
+    #ifdef _DEBUG
     debug_goNextWave_.SetOnChange([this](const bool& value)
     {
         if (value)
@@ -55,7 +64,7 @@ void WaveDirector::RegisterOnChange()
             goNextWave_ = false;
         }
     });
-#endif // _DEBUG
+    #endif // _DEBUG
 }
 
 void WaveDirector::ChangeWaveByIndex(uint32_t index)

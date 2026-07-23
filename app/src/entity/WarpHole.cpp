@@ -3,6 +3,8 @@
 #include <collider/CollisionManager.h>
 #include <Particle/gpu/ParticleCSSpawner.h>
 #include <common/ColliderTag.h>
+#include <Input.h>
+
 
 WarpHole::WarpHole(const Hagine::Vector3& pos) : kPosition_(pos)
 {
@@ -15,6 +17,15 @@ WarpHole::~WarpHole()
     // パーティクルの生成の無効化 (パーティクルが消えたら自動破棄)
     Hagine::ParticleCSSpawner::GetInstance()->DespawnWhenFinished(pPortal_);
     pPortal_ = nullptr;
+}
+
+void WarpHole::Update()
+{
+    // プレイヤーがワープホール内にいる場合、Fキーが押されたらコールバックを呼び出す
+    if (isPlayerInsize_ && Hagine::Input::GetInstance()->TriggerKey(DIK_F))
+    {
+        onEnterCallback_();
+    }
 }
 
 void WarpHole::InitializeCollider()
@@ -36,7 +47,8 @@ void WarpHole::InitializeCollider()
     }
 
     // 衝突時のコールバックを設定
-    pCollider_->SetOnCollision(std::bind(&WarpHole::OnCollision, this, std::placeholders::_1));
+    pCollider_->SetOnCollisionEnter(std::bind(&WarpHole::OnCollisionEnter, this, std::placeholders::_1));
+    pCollider_->SetOnCollisionExit(std::bind(&WarpHole::OnCollisionExit, this, std::placeholders::_1));
 
     // コライダーをColliderManagerに登録
     Hagine::CollisionManager::GetInstance()->Register(pCollider_.get());
@@ -49,7 +61,12 @@ void WarpHole::InitializeParticleEmitter()
     pPortal_->SetAuto(true);
 }
 
-void WarpHole::OnCollision(Hagine::ColliderBase* other)
+void WarpHole::OnCollisionEnter(Hagine::ColliderBase* other)
 {
+    isPlayerInsize_ = true;
+}
 
+void WarpHole::OnCollisionExit(Hagine::ColliderBase* other)
+{
+    isPlayerInsize_ = false;
 }

@@ -161,6 +161,8 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
+    <ClCompile Include="src\system\EventListener.cpp" />
+    <ClCompile Include="src\system\EventSubscription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -483,5 +485,8 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="src\system\EventListener.h" />
+    <ClInclude Include="src\system\EventSubscription.h" />
+    <ClInclude Include="src\events\WaveEvent.h" />
   </ItemGroup>
 </Project>

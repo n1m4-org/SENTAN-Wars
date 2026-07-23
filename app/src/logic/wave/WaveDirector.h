@@ -3,6 +3,7 @@
 #include "WaveType.h"
 #include <debug/GameParameter.h>
 #include <memory>
+#include <system/EventSubscription.h>
 
 
 /// <summary>
@@ -44,6 +45,9 @@ private:
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;
+
+    // ワープホールの確認イベントの購読ハンドル
+    EventSubscription subWarpConfirm_;
 
     /// パラメータ
     EnableDebug("WaveDirector");

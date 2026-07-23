@@ -25,7 +25,7 @@ public:
     }
 
     template <typename T>
-    inline void Publish(const T& data)
+    inline void Publish(const T& data = {})
     {
         const EventID id = GetEventID<T>();
         eventQueue_.emplace_back(id, std::any(data));
