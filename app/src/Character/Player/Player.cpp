@@ -20,7 +20,9 @@ void Player::Init(const std::string className) {
 
     // --- コンポーネントの登録 ---
     // HPコンポーネント（属性は持たないので相性なしの等倍で受ける）
+    // 外からHPを読めるよう、生成したものを覚えておく
     HealthComponent *health = AddComponent<HealthComponent>();
+    health_ = health;
 
     // 本体の当たり判定（敵と、敵の攻撃に当たる）
     BodyColliderComponent *body = AddComponent<BodyColliderComponent>(this, ColliderTag::Type::Player,
@@ -77,6 +79,18 @@ void Player::SetReferenceCamera(const ViewProjection *camera) {
     if (move_) {
         move_->SetReferenceCamera(camera);
     }
+}
+
+float Player::GetHp() const {
+    return health_ ? health_->GetHp() : 0.0f;
+}
+
+float Player::GetMaxHp() const {
+    return health_ ? health_->GetMaxHp() : 0.0f;
+}
+
+bool Player::IsDead() const {
+    return health_ ? health_->IsDead() : false;
 }
 
 Component *Player::AddComponent(std::unique_ptr<Component> component) {

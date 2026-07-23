@@ -12,6 +12,7 @@
 ///
 /// SENTANの装備で攻撃が増えるため、実行中にもコンポーネントを追加できる
 class MoveComponent;
+class HealthComponent;
 
 class Player : public Hagine::BaseObject, public ComponentContainer {
   public:
@@ -20,6 +21,12 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     /// 移動と体の向きの基準にするカメラを設定する
     /// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
     void SetReferenceCamera(const Hagine::ViewProjection *camera);
+
+    /// HPのgetter
+    float GetHp() const;
+    float GetMaxHp() const;
+
+    bool IsDead() const;
 
     void Update() override;
 
@@ -48,6 +55,9 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
   private:
     // 移動コンポーネント（所有はcomponents_・カメラを後から渡すために覚えておく）
     MoveComponent *move_ = nullptr;
+
+    // HPコンポーネント（所有はcomponents_・HPを取り次ぐために覚えておく）
+    HealthComponent *health_ = nullptr;
 
     // 振る舞いコンポーネント群（Playerが所有）
     std::vector<std::unique_ptr<Component>> components_;
