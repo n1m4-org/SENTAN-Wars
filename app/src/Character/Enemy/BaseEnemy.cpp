@@ -3,6 +3,7 @@
 #include <3d/Particle/gpu/ParticleCSSpawner.h>
 #include <Debug/log/Logger.h>
 #include "Frame/Frame.h"
+#include "common/FieldBounds.h"
 #ifdef _DEBUG
 #include <debug/imgui/ImGuizmoManager.h>
 #endif
@@ -134,6 +135,12 @@ void BaseEnemy::Update()
 	}
 
 	transform_->translation_.y = (std::max)(transform_->translation_.y, 0.0f); // 地面より下に行かないようにする
+
+	// フィールドの範囲外に出られないようにする
+	// 位置は体の中心なので、体の半径ぶん内側で止めないと半身がはみ出す
+	// 敵はSphereモデルなので、ワールドスケールがそのまま体の半径になる
+	const Vector3 bodyScale = GetWorldScale();
+	FieldBounds::Clamp(transform_->translation_, (std::max)(bodyScale.x, bodyScale.z));
 
 	UniqueUpdateEnd();
 

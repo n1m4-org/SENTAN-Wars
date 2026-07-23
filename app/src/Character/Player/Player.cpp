@@ -9,6 +9,7 @@
 #include "collider/ColliderBase.h"
 #include "Component/MoveComponent.h"
 #include "Component/WeaponComponent.h"
+#include "common/FieldBounds.h"
 using namespace Hagine;
 
 void Player::Init(const std::string className) {
@@ -132,6 +133,12 @@ void Player::Update() {
     for (auto &component : components_) {
         component->Update();
     }
+
+    // 移動後の位置をフィールドの範囲内に収める（外に出られないようにする）
+    // 位置は体の中心なので、体の半径ぶん内側で止めないと半身がはみ出す
+    // Cubeモデルはスケール1で中心から1の大きさなので、ワールドスケールがそのまま体の大きさになる
+    // 体は移動方向を向いて回るため、角が出ないように対角線を半径として使う
+    FieldBounds::Clamp(GetWorldTransform()->translation_, FieldBounds::HorizontalRadius(GetWorldScale()));
 
     BaseObject::Update();
 }

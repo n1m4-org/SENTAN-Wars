@@ -12,15 +12,20 @@ using namespace Hagine;
 
 void TitleScene::Initialize()
 {
-
-	pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
-		{
-			pSpriteManager_->DrawAll();
-			pObjectManager_->Draw(vp);
-		});
-
 	// シーン共通の初期化処理
 	BaseScene::Initialize();
+	vp_.Initialize("ClearCamera");
+	pLightGroup_->LoadLightData("GameLight");
+	pObjectManager_->LoadAll("GameScene");
+	pDrawSystem_->Register("Title_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
+		{
+			pObjectManager_->Draw(vp);
+		});
+	pDrawSystem_->Register("Title_PostDraw", DrawLayer::PostEffect, [this](const ViewProjection& vp)
+		{
+			pSpriteManager_->DrawAll();
+		});
+
 
 	// スプライトの生成と初期化
 	this->InitializeSprites();
@@ -49,6 +54,8 @@ void TitleScene::Update()
 	pContainerArea_->SetSize(containerBox_.size);
 
 	this->UpdateStartKeyColor();
+
+	vp_.UpdateMatrix();
 }
 
 void TitleScene::InitializeSprites()
@@ -61,7 +68,7 @@ void TitleScene::InitializeSprites()
 
 	pContainerArea_ = std::make_unique<Sprite>();
 	pContainerArea_->Initialize("debug/white1x1.png", {}, { 0.0f, 0.0f, 0.0f, 0.5f }, {});
-
+	
 	/// ロゴ (タイトル)
 	{
 		auto& sprite = GetSprite(SpriteName::Logo);
