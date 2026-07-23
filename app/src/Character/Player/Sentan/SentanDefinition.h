@@ -6,8 +6,10 @@ struct SentanContext;
 
 /// 準備フェーズで取得できるSENTANの種類
 enum class SentanId {
-    Sentan1, // 溜め攻撃
+    Sentan1, // 突進
     Sentan2, // 二段ジャンプ
+    Sentan3, // 3段コンボ
+    Sentan4, // 連続斬撃
 };
 
 /// SENTANが解禁するコンポーネントの生成関数

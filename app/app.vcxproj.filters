@@ -85,6 +85,15 @@
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp">
       <Filter>src\Component\Attack</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\ComboAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Attack\SlashFlurryAttack.cpp">
+      <Filter>src\Component\Attack</Filter>
+    </ClCompile>
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp">
       <Filter>src\Character\Enemy</Filter>
     </ClCompile>
@@ -434,6 +443,15 @@
     </ClInclude>
     <ClInclude Include="src\Component\DoubleJumpComponent.h">
       <Filter>src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\DrillRushAttack.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\ComboAttack.h">
+      <Filter>src\Component\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Attack\SlashFlurryAttack.h">
+      <Filter>src\Component\Attack</Filter>
     </ClInclude>
     <ClInclude Include="src\Character\Player\Sentan\SentanContext.h">
       <Filter>src\Character\Player\Sentan</Filter>

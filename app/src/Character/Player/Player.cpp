@@ -31,6 +31,12 @@ void Player::Init(const std::string className) {
     const SentanContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState, jump};
     AddComponent<NormalAttack>(normalAttackContext);
 
+    // TODO: 準備フェーズができたら、そこで取得したSENTANをEquipSentanで装備する
+    //       今は動作確認のため仮で装備している
+    //       装備を知りたい物は、ここより前に weapon->AddEquipCallback() で登録しておく
+    weapon->EquipSentan(SentanId::Sentan4);
+    weapon->EquipSentan(SentanId::Sentan2);
+
     FlushPendingComponents();
 }
 

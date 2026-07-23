@@ -1,4 +1,5 @@
 #include "Fork.h"
+#include "type/Quaternion.h"
 using namespace Hagine;
 
 void Fork::Init(const std::string className) {
@@ -36,7 +37,13 @@ void Fork::Update() {
     // 構えに攻撃モーションのズレを足したものが、今フレームの位置と回転になる
     if (transform_) {
         transform_->translation_ = basePosition_ + motionOffset_;
-        transform_->SetRotationEuler(baseRotation_ + motionRotation_);
+
+        // 回転は左から順に適用されるため、自転を先に置くと自分の軸まわりに回り、
+        // その結果を倒れが運ぶ（逆にすると親の軸で振り回されてしまう）
+        const Quaternion tilt = Quaternion::FromEulerAngles(baseRotation_ + motionRotation_);
+        const Quaternion spin = Quaternion::FromAxisAngle(spinAxis_.Normalize(), motionSpin_);
+        transform_->SetRotationQuaternion(spin * tilt);
+
         transform_->scale_ = baseScale_;
     }
 
