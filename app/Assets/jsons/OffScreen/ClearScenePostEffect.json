@@ -1,0 +1,22 @@
+{
+    "slot0_enabled": true,
+    "slot0_name": "ClearScene_Blur1",
+    "slot0_occupied": true,
+    "slot0_param_kernelSize": 7,
+    "slot0_param_sigma": 10.0,
+    "slot0_shaderMode": 4,
+    "slot1_enabled": true,
+    "slot1_name": "ClearScene_Blur2",
+    "slot1_occupied": true,
+    "slot1_param_kernelSize": 7,
+    "slot1_param_sigma": 10.0,
+    "slot1_shaderMode": 4,
+    "slot2_occupied": false,
+    "slot3_occupied": false,
+    "slot4_occupied": false,
+    "slot5_occupied": false,
+    "slot6_occupied": false,
+    "slot7_occupied": false,
+    "slot8_occupied": false,
+    "slot9_occupied": false
+}
