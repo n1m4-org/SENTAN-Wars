@@ -95,7 +95,7 @@ const char* ClearTimeView::GetGlyphPath(uint32_t glyph) const
     {
         return Path::Image::Colon;
     }
-    return Path::Image::Numbers[glyph];
+    return Path::Image::RankingNumbers[glyph];
 }
 
 float ClearTimeView::GetGlyphAspect(uint32_t glyph) const

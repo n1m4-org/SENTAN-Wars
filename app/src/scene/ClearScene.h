@@ -150,7 +150,7 @@ private:
 	std::unique_ptr<Hagine::Sprite> pClearTimeLabel_ = nullptr; // 「CLEAR TIME」の文字
 
 	// ランキング
-	static constexpr size_t kRankRowCount_ = RankingBoard::kEntryCount;   // 表示する順位数（上位 3 件）
+	static constexpr size_t kRankRowCount_ = RankingBoard::kEntryCount;   // 表示する順位数（RankingBoard::kEntryCount に追従）
 	static constexpr float kRankFontSize_ = 48.0f;                        // 順位行のタイムの高さ
 	static constexpr float kRankNumberGap_ = 20.0f;                       // 順位番号とタイムの間隔
 	static constexpr float kRankTopGap_ = 52.0f;                          // クリアタイムと順位表の間隔
@@ -160,8 +160,8 @@ private:
 	RankingView rankingView_;
 	int myRank_ = -1;   // 今回のタイムが入った順位。-1 は該当なし（ランク外／デモ）
 	bool insertStarted_ = false;   // 挿入演出を開始済みか
-	std::array<float, kRankRowCount_> oldRankingEntries_ = {};   // 挿入前の上位 3 件
-	std::array<float, kRankRowCount_> newRankingEntries_ = {};   // 挿入後の上位 3 件
+	std::array<float, kRankRowCount_> oldRankingEntries_ = {};   // 挿入前の上位 kRankRowCount_ 件
+	std::array<float, kRankRowCount_> newRankingEntries_ = {};   // 挿入後の上位 kRankRowCount_ 件
 
 	// レイアウト（Initialize で算出）
 	Hagine::Vector2 frameCenter_ = {};      // 枠の中心

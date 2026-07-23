@@ -46,7 +46,7 @@ void ClearScene::Initialize()
 		targetClearSeconds_ = recordedClearTime;
 	}
 
-	// ランキングを読み込み、挿入前の上位 3 件を控える
+	// ランキングを読み込み、挿入前の上位順位を控える
 	ranking_.Load();
 	oldRankingEntries_ = ranking_.GetEntries();
 
@@ -225,13 +225,13 @@ void ClearScene::InitializeRanking()
 	config.rowSpacing = kRankRowSpacing_;
 	rankingView_.Initialize(config);
 
-	// 挿入前（＝現在保存されている）上位 3 件をまず表示しておく
+	// 挿入前（＝現在保存されている）上位順位をまず表示しておく
 	rankingView_.ShowStatic(oldRankingEntries_);
 }
 
 void ClearScene::StartRankingInsert()
 {
-	// 新記録（上位 3 位以内）に入ったときだけ、突き落とし挿入を再生する
+	// 新記録（上位 kRankRowCount_ 位以内）に入ったときだけ、突き落とし挿入を再生する
 	if (myRank_ >= 0 && !insertStarted_)
 	{
 		rankingView_.StartInsert(oldRankingEntries_, newRankingEntries_, myRank_);

@@ -1,5 +1,6 @@
 #include "RankingBoard.h"
 #include <algorithm>
+#include <string>
 #include <vector>
 #include <data/DataHandler.h>
 
@@ -9,19 +10,22 @@ namespace
     constexpr const char* kFolder = "Ranking";
     constexpr const char* kFile = "ClearTime";
 
-    // 各順位のキー
-    constexpr const char* kKeys[RankingBoard::kEntryCount] = { "rank1", "rank2", "rank3" };
+    // 順位ごとの JSON キー（"rank1", "rank2", ...）。件数に依らず生成する
+    std::string RankKey(size_t index)
+    {
+        return "rank" + std::to_string(index + 1);
+    }
 }
 
 void RankingBoard::Load()
 {
     Hagine::DataHandler data(kFolder, kFile);
 
-    // 有効な記録だけ集めて昇順（速い順）に整列し、上位 3 件へ反映する
+    // 有効な記録だけ集めて昇順（速い順）に整列し、上位 kEntryCount 件へ反映する
     std::vector<float> times;
     for (size_t i = 0; i < kEntryCount; ++i)
     {
-        const float time = data.Load<float>(kKeys[i], kEmpty);
+        const float time = data.Load<float>(RankKey(i), kEmpty);
         if (time > 0.0f)
         {
             times.push_back(time);
@@ -55,7 +59,7 @@ int RankingBoard::AddTime(float seconds)
     times.push_back(seconds);
     std::sort(times.begin(), times.end());
 
-    // 上位 3 件へ反映する
+    // 上位 kEntryCount 件へ反映する
     entries_.fill(kEmpty);
     for (size_t i = 0; i < kEntryCount && i < times.size(); ++i)
     {
@@ -82,7 +86,7 @@ void RankingBoard::Save() const
     Hagine::DataHandler data(kFolder, kFile);
     for (size_t i = 0; i < kEntryCount; ++i)
     {
-        data.Save<float>(kKeys[i], entries_[i]);
+        data.Save<float>(RankKey(i), entries_[i]);
     }
     data.Flush();
 }

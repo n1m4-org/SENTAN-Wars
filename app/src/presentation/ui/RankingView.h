@@ -6,27 +6,32 @@
 #include <type/Vector2.h>
 #include <type/Vector4.h>
 #include <presentation/ui/ClearTimeView.h>
+#include <logic/ranking/RankingBoard.h>
 
 /// <summary>
-/// クリアタイムのランキング（上位 3 件）を描画するビュー。
+/// クリアタイムのランキング（上位 RankingBoard::kEntryCount 件）を描画するビュー。
 /// 各行は「順位番号 + ドット + タイム」（例: 1. 00:00:00）で表示する。
-/// 1/2/3 位を金・銀・銅（抑えめ）で色分けし、
+/// 上位 3 位を金・銀・銅（抑えめ）、それ以降も同系色で色分けし、
 /// 新記録が入るときは前の記録を下へ突き落とすスライド演出、
 /// その後に挿入行を拡縮でアピールするパルス演出を行う。
+/// 表示件数は RankingBoard::kEntryCount に追従する。
 /// </summary>
 class RankingView
 {
 public:
+    // 表示する順位数（＝記録件数）。RankingBoard::kEntryCount に追従する
+    static constexpr size_t kRankCount = RankingBoard::kEntryCount;
+
     /// <summary>
     /// レイアウト設定
     /// </summary>
     struct Config
     {
-        float leftX = 0.0f;                       // 左揃えの基準 X
-        std::array<float, 3> slotCenterY = {};    // 各順位行の縦中心
-        float fontSize = 44.0f;                   // タイムの高さ
-        float numberGap = 18.0f;                  // 順位番号とタイムの間隔
-        float rowSpacing = 60.0f;                 // 行間（落下距離に使用）
+        float leftX = 0.0f;                              // 左揃えの基準 X
+        std::array<float, kRankCount> slotCenterY = {};  // 各順位行の縦中心
+        float fontSize = 44.0f;                          // タイムの高さ
+        float numberGap = 18.0f;                         // 順位番号とタイムの間隔
+        float rowSpacing = 60.0f;                        // 行間（落下距離に使用）
     };
 
     /// <summary>初期化（スプライトの生成・登録）</summary>
@@ -41,20 +46,20 @@ public:
     void Update(float deltaTime);
 
     /// <summary>アニメ無しで指定の順位表を表示する</summary>
-    /// <param name="entries">上位 3 件（速い順。空きは負値）</param>
-    void ShowStatic(const std::array<float, 3>& entries);
+    /// <param name="entries">上位 kRankCount 件（速い順。空きは負値）</param>
+    void ShowStatic(const std::array<float, kRankCount>& entries);
 
     /// <summary>
     /// 挿入演出を開始する（old → new へ、insertRank の位置に突き落とし）
     /// </summary>
-    /// <param name="oldEntries">挿入前の上位 3 件</param>
-    /// <param name="newEntries">挿入後の上位 3 件</param>
-    /// <param name="insertRank">今回のタイムが入った順位(0..2)</param>
-    void StartInsert(const std::array<float, 3>& oldEntries, const std::array<float, 3>& newEntries, int insertRank);
+    /// <param name="oldEntries">挿入前の上位 kRankCount 件</param>
+    /// <param name="newEntries">挿入後の上位 kRankCount 件</param>
+    /// <param name="insertRank">今回のタイムが入った順位(0..kRankCount-1)</param>
+    void StartInsert(const std::array<float, kRankCount>& oldEntries, const std::array<float, kRankCount>& newEntries, int insertRank);
 
     /// <summary>演出を即座に最終状態へ飛ばす（スキップ用）</summary>
-    /// <param name="newEntries">最終的な上位 3 件</param>
-    void SkipToEnd(const std::array<float, 3>& newEntries);
+    /// <param name="newEntries">最終的な上位 kRankCount 件</param>
+    void SkipToEnd(const std::array<float, kRankCount>& newEntries);
 
     /// <summary>出現スケール(0..1)を設定する</summary>
     /// <param name="scale">出現スケール</param>
@@ -68,8 +73,8 @@ private:
     /// <summary>演出モード</summary>
     enum class Mode { Static, Sliding, Pulsing, Done };
 
-    static constexpr size_t kSlotCount_ = 3;   // 順位数
-    static constexpr size_t kCardCount_ = 4;   // 同時に存在しうるタイム札（3 スロット + 落下分）
+    static constexpr size_t kSlotCount_ = kRankCount;      // 順位数
+    static constexpr size_t kCardCount_ = kSlotCount_ + 1; // 同時に存在しうるタイム札（全スロット + 落下分）
 
     static constexpr float kSlideDuration_ = 0.45f;   // 突き落としスライドの時間
     static constexpr float kPulseDuration_ = 0.5f;    // パルスの時間
