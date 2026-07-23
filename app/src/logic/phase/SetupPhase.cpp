@@ -11,8 +11,6 @@ void SetupPhase::Enter()
         // ここで次ウェーブに移行するイベントを呼び出す
         EventListener::GetInstance()->Publish<Event::WarpConfirm>();
     });
-
-
 }
 
 void SetupPhase::Exit()
@@ -22,7 +20,7 @@ void SetupPhase::Exit()
 
 void SetupPhase::Update()
 {
-
+    pWarpHole_->Update();
 }
 
 void SetupPhase::Draw()
