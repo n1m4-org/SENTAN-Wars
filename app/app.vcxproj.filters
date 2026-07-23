@@ -465,6 +465,9 @@
     <ClInclude Include="src\utility\strutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
+    <ClInclude Include="src\utility\vecutl.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">
       <Filter>src\utility</Filter>
     </ClInclude>
