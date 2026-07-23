@@ -33,6 +33,11 @@ public:
     /// </summary>
     void ChangeWaveByIndex(uint32_t index);
 
+    /// <summary>
+    /// 次のウェーブに切り替え
+    /// </summary>
+    void ChangeToNextWave() { this->ChangeWaveByIndex(waveIndex_ + 1); }
+
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();

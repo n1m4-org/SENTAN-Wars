@@ -49,5 +49,4 @@ private:
     GameParameter(bool, goSetupPhase, false);
     GameParameter(bool, goBattlePhase, false);
     GameParameter(bool, goBossPhase, false);
-    
 };

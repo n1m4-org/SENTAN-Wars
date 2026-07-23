@@ -137,6 +137,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\debug\DebugEntry.cpp" />
     <ClCompile Include="src\debug\DebugEntryManager.cpp" />
     <ClCompile Include="src\debug\DebugMeasure.cpp" />
+    <ClCompile Include="src\entity\WarpHole.cpp" />
     <ClCompile Include="src\font\FontLayout.cpp" />
     <ClCompile Include="src\font\NumericView.cpp" />
     <ClCompile Include="src\framework\SentanWars.cpp" />
@@ -150,6 +151,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
+    <ClCompile Include="src\logic\phase\SetupPhase.cpp" />
     <ClCompile Include="src\logic\wave\BossWave.cpp" />
     <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
     <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
@@ -171,6 +173,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\utility\strutl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\ColliderTag.h" />
     <ClInclude Include="src\common\ResourcePath.h" />
     <ClInclude Include="src\Component\JumpComponent.h" />
     <ClInclude Include="src\Component\AssaultAttackComponent.h" />

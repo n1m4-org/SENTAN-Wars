@@ -1,28 +1,22 @@
 #pragma once
 
 #include "IPhase.h"
-#include <debugapi.h>
+#include <entity/WarpHole.h>
 
 class SetupPhase : public IPhase
 {
 public:
-    void Enter() override
-    {
-        OutputDebugStringA("SetupPhase::Enter\n");
-    }
+    void Enter() override;
 
-    void Exit() override
-    {
-        OutputDebugStringA("SetupPhase::Exit\n");
-    }
 
-    void Update() override
-    {
-        OutputDebugStringA("SetupPhase::Update\n");
-    }
+    void Exit() override;
 
-    void Draw() override
-    {
-        OutputDebugStringA("SetupPhase::Draw\n");
-    }
+
+    void Update() override;
+
+
+    void Draw() override;
+
+private:
+    std::unique_ptr<WarpHole> pWarpHole_ = nullptr;
 };
