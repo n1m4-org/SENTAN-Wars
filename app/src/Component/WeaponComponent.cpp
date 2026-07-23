@@ -14,6 +14,18 @@ void WeaponComponent::Init() {
     // 装備先に追従させる（更新・ワールド変換は親子関係で行われる）
     if (owner_) {
         fork_->SetParent(owner_);
+        // 当てた相手に「誰の攻撃か」を伝えられるようにする
+        fork_->SetAttacker(owner_);
+    }
+
+    // 攻撃の当たり判定は、刃が動いている間だけ開ける
+    // 攻撃側は誰が聞いているかを知らず、こちらはどの攻撃が出ているかを知らないままで繋がる
+    if (attackState_) {
+        attackState_->AddHitWindowCallback([this](bool isOpen, const HitWindow &hit) {
+            if (fork_) {
+                fork_->SetAttackColliderEnabled(isOpen, hit);
+            }
+        });
     }
 }
 

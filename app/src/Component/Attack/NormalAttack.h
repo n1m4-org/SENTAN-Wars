@@ -58,7 +58,10 @@ class NormalAttack : public Component {
     float timer_ = 0.0f;        // 現在フェーズの経過フレーム
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
-    GameParameter(float, atk_, 10.0f); // 攻撃力（当たり判定ができたらダメージに使う）
+    // 攻撃力。SENTANが無くても常に使えるので控えめ（Normal敵20を2発）
+    GameParameter(float, atk_, 10.0f);
+    // 判定の広さ（武器の形の何倍か）。突きなので、当てやすさは控えめ
+    GameParameter(float, hitScale_, 2.5f);
     // 倒しきったときの各軸の回転角（度）：X=前方へ倒す / Z=軸まわりにひねる
     GameParameter(Hagine::Vector3, tiltAngles_, (Hagine::Vector3{-90.0f, 0.0f, 0.0f}));
     // 引ききったときの構えからのズレ：Z=マイナスで後方へ引く

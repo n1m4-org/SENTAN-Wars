@@ -79,7 +79,10 @@ class DrillRushAttack : public Component {
     Hagine::Vector3 rushDirection_{0.0f, 0.0f, 1.0f};     // 突進する向き（開始時に固定）
 
     // ==== 調整用パラメータ（GameParameterでデバッグ調整） ====
-    GameParameter(float, atk_, 15.0f); // 攻撃力（当たり判定ができたらダメージに使う）
+    // 攻撃力。1発しか当たらない代わりに重い（Normal敵20を一撃、Tank50を2発）
+    GameParameter(float, atk_, 25.0f);
+    // 判定の広さ（武器の形の何倍か）。回しながら突っ込むので一番広い
+    GameParameter(float, hitScale_, 4.0f);
     // 倒しきったときの各軸の回転角（度）：X=前方へ倒す
     GameParameter(Hagine::Vector3, tiltAngles_, (Hagine::Vector3{-90.0f, 0.0f, 0.0f}));
     // 引ききったときの構えからのズレ：Z=マイナスで後方へ引く

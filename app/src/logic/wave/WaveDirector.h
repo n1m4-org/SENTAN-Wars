@@ -34,6 +34,8 @@ public:
     /// </summary>
     void ChangeWaveByIndex(uint32_t index);
 
+    void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
+
     /// <summary>
     /// 次のウェーブに切り替え
     /// </summary>
@@ -42,6 +44,8 @@ public:
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
+
+    EnemyManager* pEnemyManager_ = nullptr;
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;

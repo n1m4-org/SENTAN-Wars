@@ -23,5 +23,23 @@ namespace Path::Image
         "common/8_25x25.png",
         "common/9_25x25.png"
     };
+
+    inline constexpr const char* RankingNumbers[10] = {
+        "common/0_25x25.png",
+        "common/1_25x25.png",
+        "common/2_25x25.png",
+        "common/3_25x25.png",
+        "common/4_25x25.png",
+        "common/5_25x25.png",
+        "common/6_25x25.png",
+        "common/7_25x25.png",
+        "common/8_25x25.png",
+        "common/9_25x25.png"
+    };
+
     inline constexpr const char* Wave = "common/wave_100x25.png";
+    inline constexpr const char* Colon = "common/colon_25x25.png";
+    inline constexpr const char* Dot = "common/dot_25x25.png";
+    inline constexpr const char* ClearTime = "common/ClearTime_500x90.png";
+    inline constexpr const char* kWhite1x1 = "debug/white1x1.png";
 }

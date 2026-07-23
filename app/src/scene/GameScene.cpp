@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "Utility/Scene/SceneRegistry.h"
 #include "Character/Enemy/EnemyManager.h"
+#include <Frame.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -31,28 +32,38 @@ void GameScene::Initialize()
         pObjectManager_->Draw(vp);
     });
 
-    // 敵マネージャの初期化
-    pEnemyManager_ = std::make_unique<EnemyManager>();
-    pEnemyManager_->Init();
+	// 敵マネージャの初期化
+	pEnemyManager_ = std::make_unique<EnemyManager>();
+	pEnemyManager_->Init();
+	pEnemyManager_->SetTarget(&player_->GetWorldTransform()->translation_);
 
-    // ウェーブディレクターの初期化
-    pWaveDirector_ = std::make_unique<WaveDirector>();
-    pWaveDirector_->Initialize();
+	// ウェーブディレクターの初期化
+	pWaveDirector_ = std::make_unique<WaveDirector>();
+	pWaveDirector_->SetEnemyManager(pEnemyManager_.get());
+	pWaveDirector_->Initialize();
 
     // フォローカメラの初期化
     this->InitializeFollowCamera(player_->GetWorldTransform());
 
-    // HUDの初期化
-    this->InitializeHudManager();
+	// 移動と体の向きをカメラ基準にする
+	// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
+	player_->SetReferenceCamera(&pFollowCamera_->GetViewProjection());
+
+	// HUDの初期化
+	this->InitializeHudManager();
+
+	// クリアタイムの計測を開始
+	clearTimer_ = 0.0f;
+	isTimerRunning_ = true;
 }
 
-void GameScene::Finalize()
-{
-    /// ===================================================
-    /// 終了処理
-    /// ===================================================
-    pEnemyManager_->Finalize();
-    BaseScene::Finalize();
+void GameScene::Finalize() {
+	/// ===================================================
+	/// 終了処理
+	/// ===================================================
+	this->StopClearTime();
+	pEnemyManager_->Finalize();
+	BaseScene::Finalize();
 }
 
 void GameScene::Update()
@@ -61,9 +72,15 @@ void GameScene::Update()
     /// 更新処理
     /// ===================================================
 
-    pFollowCamera_->Update();
+	// クリアタイムの計測
+	if (isTimerRunning_) {
+		clearTimer_ += Frame::DeltaTime();
+	}
 
-    pEnemyManager_->Update();
+	pFollowCamera_->Update();
+
+	pEnemyManager_->Update();
+	pWaveDirector_->Update();
 
     pHudManager_->Update();
 
@@ -88,12 +105,21 @@ void GameScene::DrawForOffScreen()
     /// ===================================================
 }
 
-void GameScene::AddSceneSetting()
-{
-    /// ===================================================
-    /// シーン設定（デバッグ）
-    /// ===================================================
-    debugCamera_->imgui();
+void GameScene::AddSceneSetting() {
+	/// ===================================================
+	/// シーン設定（デバッグ）
+	/// ===================================================
+	debugCamera_->imgui();
+
+#ifdef _DEBUG
+	// クリアタイムの計測確認用（本番のクリア判定が入るまでの動作確認用ボタン）
+	ImGui::Text("Play Time: %.2f s", clearTimer_);
+	ImGui::Text("Timer Running: %s", isTimerRunning_ ? "true" : "false");
+	if (ImGui::Button("Clear -> CLEAR Scene")) {
+		this->StopClearTime();
+		pSceneManager_->NextSceneReservation("CLEAR");
+	}
+#endif // _DEBUG
 }
 
 void GameScene::AddObjectSetting()
@@ -149,4 +175,16 @@ void GameScene::InitializeHudManager()
 
 void GameScene::UpdateHud()
 {
+}
+
+void GameScene::StopClearTime() {
+	/// ===================================================
+	/// クリアタイムの計測を停止し、SceneManager に記録する
+	/// ===================================================
+	if (!isTimerRunning_) {
+		// すでに停止済みなら二重に記録しない
+		return;
+	}
+	isTimerRunning_ = false;
+	pSceneManager_->SetClearTime(clearTimer_);
 }

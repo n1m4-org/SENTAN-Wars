@@ -11,7 +11,9 @@ void NormalEnemy::UniqueInit()
 
 	attackComponent_ = std::make_unique<RamAttackComponent>(transform_.get(), &parameter_.attackRange, target_, targetRadius_);
 
-	AddSphereCollider(GetName() + "_NormalEnemyCollider");
+	auto* col = AddSphereCollider(GetName() + "_NormalEnemyCollider");
+	col->AddCollisionMask("Player");
+	SetResolveCollision(true);
 }
 
 void NormalEnemy::UniqueUpdate()
@@ -21,12 +23,10 @@ void NormalEnemy::UniqueUpdate()
 	{
 		if (attackComponent_->IsActive())
 		{
-			SetResolveCollision(false);
 			GetColliders()[0]->SetTag("EnemyBullet");
 		}
 		else
 		{
-			SetResolveCollision(true);
 			GetColliders()[0]->SetTag("Enemy");
 		}
 	}

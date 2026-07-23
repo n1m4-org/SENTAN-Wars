@@ -57,10 +57,18 @@ std::unique_ptr<IPhase> PhaseDirector::CreatePhase(PhaseType type)
         return std::make_unique<SetupPhase>();
         break;
     case PhaseType::Battle:
-        return std::make_unique<BattlePhase>();
+        {
+            auto phase = std::make_unique<BattlePhase>(pEnemyManager_);
+            phase->SetWaveIndex(waveIndex_);
+            return phase;
+        }
         break;
     case PhaseType::Boss:
-        return std::make_unique<BossPhase>();
+        {
+            auto phase = std::make_unique<BossPhase>(pEnemyManager_);
+            phase->SetWaveIndex(waveIndex_);
+            return phase;
+        }
         break;
     default:
         assert(false && "Invalid PhaseType");

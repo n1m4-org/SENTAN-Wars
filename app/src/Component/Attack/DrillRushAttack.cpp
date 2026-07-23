@@ -87,6 +87,9 @@ void DrillRushAttack::UpdateMotion() {
             phase_ = Phase::Rush;
             timer_ = 0.0f;
             StartRush();
+
+            // ここから回しながら突っ込むので、当たり判定を開ける
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }
@@ -100,6 +103,9 @@ void DrillRushAttack::UpdateMotion() {
         if (rate >= 1.0f) {
             phase_ = Phase::Return;
             timer_ = 0.0f;
+
+            // 突進が終わったので、当たり判定を閉じる
+            attackState_->EndHit();
 
             // 自転を途中で切ると見た目が飛ぶので、次に回り切る位置まで回してから止める
             spinStartAngle_ = spinAngle_;

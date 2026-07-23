@@ -149,6 +149,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Character\Player\Sentan\SentanDefinition.cpp" />
     <ClCompile Include="src\Component\MoveComponent.cpp" />
     <ClCompile Include="src\Component\BodyColliderComponent.cpp" />
+    <ClCompile Include="src\Component\HealthComponent.cpp" />
     <ClCompile Include="src\Component\WeaponComponent.cpp" />
     <ClCompile Include="src\Component\DoubleJumpComponent.cpp" />
     <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp" />
@@ -161,6 +162,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\logic\wave\BossWave.cpp" />
     <ClCompile Include="src\logic\wave\GeneralWave.cpp" />
     <ClCompile Include="src\logic\wave\WaveDirector.cpp" />
+    <ClCompile Include="src\logic\ranking\RankingBoard.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\Color.cpp" />
     <ClCompile Include="src\math\Mat3x3.cpp" />
@@ -168,10 +170,14 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\presentation\FollowCamera.cpp" />
     <ClCompile Include="src\presentation\ui\Bar2d.cpp" />
     <ClCompile Include="src\presentation\ui\BarMovable.cpp" />
+    <ClCompile Include="src\presentation\ui\ClearTimeView.cpp" />
     <ClCompile Include="src\presentation\ui\HpHudView.cpp" />
+    <ClCompile Include="src\presentation\ui\RankingView.cpp" />
+    <ClCompile Include="src\presentation\ui\ResultFrame.cpp" />
     <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.cpp" />
     <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h" />
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp" />
+    <ClCompile Include="src\scene\ClearScene.cpp" />
     <ClCompile Include="src\scene\GameScene.cpp" />
     <ClCompile Include="src\scene\TitleScene.cpp" />
     <ClCompile Include="src\system\EventListener.cpp" />
@@ -223,6 +229,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\logic\wave\IWave.h" />
     <ClInclude Include="src\logic\wave\WaveDirector.h" />
     <ClInclude Include="src\logic\wave\WaveType.h" />
+    <ClInclude Include="src\logic\ranking\RankingBoard.h" />
     <ClInclude Include="src\math\Color.h" />
     <ClInclude Include="src\math\Mat3x3.h" />
     <ClInclude Include="src\presentation\CameraInput.h" />
@@ -230,9 +237,13 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\presentation\HudManager.h" />
     <ClInclude Include="src\presentation\ui\Bar2d.h" />
     <ClInclude Include="src\presentation\ui\BarMovable.h" />
+    <ClInclude Include="src\presentation\ui\ClearTimeView.h" />
     <ClInclude Include="src\presentation\ui\HpHudView.h" />
     <ClInclude Include="src\presentation\ui\IHudView.h" />
+    <ClInclude Include="src\presentation\ui\RankingView.h" />
+    <ClInclude Include="src\presentation\ui\ResultFrame.h" />
     <ClInclude Include="src\presentation\ui\WaveCountHudView.h" />
+    <ClInclude Include="src\scene\ClearScene.h" />
     <ClInclude Include="src\scene\GameScene.h" />
     <ClInclude Include="src\scene\TitleScene.h" />
     <ClInclude Include="src\system\EventListener.h" />
@@ -259,6 +270,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\Component\AttributeComponent.h" />
     <ClInclude Include="src\Component\MoveComponent.h" />
     <ClInclude Include="src\Component\BodyColliderComponent.h" />
+    <ClInclude Include="src\Component\HealthComponent.h" />
     <ClInclude Include="src\Component\WeaponComponent.h" />
     <ClInclude Include="src\Component\DoubleJumpComponent.h" />
     <ClInclude Include="src\Component\Attack\DrillRushAttack.h" />

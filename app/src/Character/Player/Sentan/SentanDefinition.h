@@ -1,4 +1,5 @@
 #pragma once
+#include "type/Vector3.h"
 #include <memory>
 
 class Component;
@@ -19,9 +20,12 @@ using CreateComponentFunc = std::unique_ptr<Component> (*)(const SentanContext &
 /// SENTANを増やすときは「コンポーネントを1つ作る」＋「定義テーブルに1行足す」だけでよい
 /// Player も Fork も、解禁される振る舞いの種類を一切知らないままでいられる
 struct SentanDefinition {
-    SentanId id;                        // 種類
-    const char *modelPath;              // Forkにくっつけるモデル
+    SentanId id;                         // 種類
+    const char *modelPath;               // Forkにくっつけるモデル
     CreateComponentFunc createComponent; // このSENTANを装備したときだけ増える振る舞い
+    // 当たり判定の大きさ（中心からの半径）
+    // モデルがSENTANごとに違うので、形に合わせてここで書き換える
+    Hagine::Vector3 colliderSize;
 };
 
 /// 定義テーブルからSENTANの定義を引く

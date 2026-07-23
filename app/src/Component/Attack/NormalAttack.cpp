@@ -73,6 +73,9 @@ void NormalAttack::UpdateMotion() {
         if (timer_ >= chargeFrame_) {
             phase_ = Phase::Thrust;
             timer_ = 0.0f;
+
+            // ここから穂先が前へ出るので、当たり判定を開ける
+            attackState_->BeginHit({atk_, hitScale_});
         }
         break;
     }
@@ -91,6 +94,9 @@ void NormalAttack::UpdateMotion() {
         if (timer_ >= holdFrame_) {
             phase_ = Phase::Return;
             timer_ = 0.0f;
+
+            // 引き戻すだけなので、当たり判定を閉じる
+            attackState_->EndHit();
         }
         break;
     }
