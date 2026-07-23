@@ -6,8 +6,8 @@
     "colliderCount": 0,
     "color_0": {
         "w": 1.0,
-        "x": 0.696620762348175,
-        "y": 0.4178403615951538,
+        "x": 1.0,
+        "y": 1.0,
         "z": 1.0
     },
     "isGizmoSelectable": true,

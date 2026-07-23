@@ -89,6 +89,9 @@ void GameScene::Update()
 
     // シーン切り替えの更新
     ChangeScene();
+
+    // HUDの更新
+    this->UpdateHud();
 }
 
 void GameScene::Draw()
@@ -175,6 +178,8 @@ void GameScene::InitializeHudManager()
 
 void GameScene::UpdateHud()
 {
+    pWaveCountHudView_->SetWaveCount(pWaveDirector_->GetCurrentWaveIndex() + 1);
+    pRemainEnemyCountHudView_->SetRemainingCount(pEnemyManager_->GetTotalRemainingEnemyCount());
 }
 
 void GameScene::StopClearTime() {

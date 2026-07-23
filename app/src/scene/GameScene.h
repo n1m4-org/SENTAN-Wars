@@ -115,13 +115,14 @@ private:
     std::unique_ptr<WaveDirector> pWaveDirector_ = nullptr;
     std::unique_ptr<FollowCamera> pFollowCamera_ = nullptr;
 
+    // HUD関連の宣言
     std::unique_ptr<HudManager> pHudManager_ = nullptr;
 	std::unique_ptr<EnemyManager> pEnemyManager_ = nullptr;
 	HpHudView* pHpHudView_ = nullptr;
     WaveCountHudView* pWaveCountHudView_ = nullptr;
+    RemainingEnemyCountHudView* pRemainEnemyCountHudView_ = nullptr;
 
     // クリアタイム計測
     float clearTimer_ = 0.0f;      // 計測中の経過時間（秒）
     bool isTimerRunning_ = false;  // 計測中フラグ
-    RemainingEnemyCountHudView* pRemainEnemyCountHudView_ = nullptr;
 };

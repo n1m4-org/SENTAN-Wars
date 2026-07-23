@@ -13,7 +13,7 @@
         "y": -1.0,
         "z": 0.0
     },
-    "directional_intensity": 0.30000001192092896,
+    "directional_intensity": 0.0,
     "pointLight_00_BlinnPhong": 0,
     "pointLight_00_HalfLambert": 1,
     "pointLight_00_active": true,
@@ -106,8 +106,8 @@
         "y": 150.0,
         "z": 0.0
     },
-    "spotLight_01_BlinnPhong": 0,
-    "spotLight_01_HalfLambert": 1,
+    "spotLight_01_BlinnPhong": 1,
+    "spotLight_01_HalfLambert": 0,
     "spotLight_01_active": true,
     "spotLight_01_color": {
         "w": 1.0,
@@ -129,8 +129,8 @@
         "y": 40.0,
         "z": 87.0
     },
-    "spotLight_02_BlinnPhong": 0,
-    "spotLight_02_HalfLambert": 1,
+    "spotLight_02_BlinnPhong": 1,
+    "spotLight_02_HalfLambert": 0,
     "spotLight_02_active": true,
     "spotLight_02_color": {
         "w": 1.0,
@@ -152,8 +152,8 @@
         "y": 40.0,
         "z": -102.19999694824219
     },
-    "spotLight_03_BlinnPhong": 0,
-    "spotLight_03_HalfLambert": 1,
+    "spotLight_03_BlinnPhong": 1,
+    "spotLight_03_HalfLambert": 0,
     "spotLight_03_active": true,
     "spotLight_03_color": {
         "w": 1.0,
@@ -175,8 +175,8 @@
         "y": 40.0,
         "z": -89.30000305175781
     },
-    "spotLight_04_BlinnPhong": 0,
-    "spotLight_04_HalfLambert": 1,
+    "spotLight_04_BlinnPhong": 1,
+    "spotLight_04_HalfLambert": 0,
     "spotLight_04_active": true,
     "spotLight_04_color": {
         "w": 1.0,
