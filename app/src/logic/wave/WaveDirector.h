@@ -17,6 +17,16 @@ public:
     void Update();
 
     /// <summary>
+    /// ウェーブをインデックス指定で切り替え
+    /// </summary>
+    void ChangeWaveByIndex(uint32_t index);
+
+    /// <summary>
+    /// 次のウェーブに切り替え
+    /// </summary>
+    void ChangeToNextWave() { this->ChangeWaveByIndex(waveIndex_ + 1); }
+
+    /// <summary>
     /// ウェーブの種類を取得する
     /// </summary>
     /// <param name="waveIndex">ウェーブのインデックス (注：0<=)</param>
@@ -30,11 +40,10 @@ public:
     IWave* GetCurrentWave() const { return pCurrentWave_.get(); }
 
     /// <summary>
-    /// ウェーブをインデックス指定で切り替え
+    /// 現在のウェーブのインデックスを取得する
     /// </summary>
-    void ChangeWaveByIndex(uint32_t index);
-
-    void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
+    /// <returns></returns>
+    uint32_t GetCurrentWaveIndex() const { return waveIndex_; }
 
     int GetTargetBossDefeatCount() const { return targetBossDefeatCount_; }
     void SetTargetBossDefeatCount(int count) { targetBossDefeatCount_ = count; }
@@ -42,9 +51,10 @@ public:
     bool IsGameCleared() const { return isGameCleared_; }
 
     /// <summary>
-    /// 次のウェーブに切り替え
+    /// EnemyManagerを設定する
     /// </summary>
-    void ChangeToNextWave() { this->ChangeWaveByIndex(waveIndex_ + 1); }
+    /// <param name="enemyManager"></param>
+    void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
 
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);

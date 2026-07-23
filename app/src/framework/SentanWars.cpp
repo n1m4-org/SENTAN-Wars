@@ -24,6 +24,9 @@ void SentanWars::Initialize() {
     pDebugEntryManager_->Initialize();
     
     pDebugMeasure_ = std::make_unique<DebugMeasure>();
+
+    /// イベントリスナーの取得
+    pEventListener_ = EventListener::GetInstance();
 }
 
 void SentanWars::Finalize() {
@@ -56,6 +59,9 @@ void SentanWars::Update() {
         imGuiManager_->ShowSceneWindow(offscreen_.get(), pSceneManager_->GetCurrentSceneName());
     }
     imGuiManager_->ShowMainUI(offscreen_.get());
+
+    // イベントのディスパッチ
+    pEventListener_->Dispatch();
 
     pDebugEntryManager_->ImGui();
 

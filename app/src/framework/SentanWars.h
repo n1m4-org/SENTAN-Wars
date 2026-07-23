@@ -4,6 +4,7 @@
 #include <memory>
 #include <debug/DebugEntryManager.h>
 #include <debug/DebugMeasure.h>
+#include <system/EventListener.h>
 
 class SentanWars : public Hagine::Framework
 {
@@ -31,4 +32,5 @@ public: // メンバ関数
 private:
     DebugEntryManager* pDebugEntryManager_ = nullptr;
     std::unique_ptr<DebugMeasure> pDebugMeasure_ = nullptr;
+    EventListener* pEventListener_ = nullptr;
 };

@@ -15,6 +15,8 @@ public:
     WaveCountHudView();
     void Update() override;
 
+    void SetWaveCount(uint32_t count) { pNumericView_->SetNumber(count); }
+
 private:
     void InitializeFlexContainer();
     void InitializeNumericView();

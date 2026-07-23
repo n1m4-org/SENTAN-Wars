@@ -1,34 +1,36 @@
 #include "Utility/Scene/SceneManager.h"
 #include "GameScene.h"
-#include"Utility/Scene/SceneRegistry.h"
+#include "Utility/Scene/SceneRegistry.h"
 #include "Character/Enemy/EnemyManager.h"
 #include <Frame.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
 using namespace Hagine;
-void GameScene::Initialize() {
-	/// ===================================================
-	/// 初期化
-	/// ===================================================
-	BaseScene::Initialize();
-	vp_.Initialize();
-	pLightGroup_->LoadLightData("GameLight");
-	pObjectManager_->LoadAll("GameScene");
+void GameScene::Initialize()
+{
+    /// ===================================================
+    /// 初期化
+    /// ===================================================
+    BaseScene::Initialize();
+    vp_.Initialize();
+    pLightGroup_->LoadLightData("GameLight");
+    pObjectManager_->LoadAll("GameScene");
 
-	debugCamera_ = std::make_unique<DebugCamera>();
-	debugCamera_->Initialize(&vp_);
+    debugCamera_ = std::make_unique<DebugCamera>();
+    debugCamera_->Initialize(&vp_);
 
-	// playerの初期化
-	player_ = std::make_unique<Player>();
-	player_->Init("Player");
+    // playerの初期化
+    player_ = std::make_unique<Player>();
+    player_->Init("Player");
 
-	pObjectManager_->RegisterExternal(player_.get());
+    pObjectManager_->RegisterExternal(player_.get());
 
-	pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp) {
-		pSpriteManager_->DrawAll();
-		pObjectManager_->Draw(vp);
-		});
+    pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
+    {
+        pSpriteManager_->DrawAll();
+        pObjectManager_->Draw(vp);
+    });
 
 	// 敵マネージャの初期化
 	pEnemyManager_ = std::make_unique<EnemyManager>();
@@ -40,8 +42,8 @@ void GameScene::Initialize() {
 	pWaveDirector_->SetEnemyManager(pEnemyManager_.get());
 	pWaveDirector_->Initialize();
 
-	// フォローカメラの初期化
-	this->InitializeFollowCamera(player_->GetWorldTransform());
+    // フォローカメラの初期化
+    this->InitializeFollowCamera(player_->GetWorldTransform());
 
 	// 移動と体の向きをカメラ基準にする
 	// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
@@ -64,10 +66,11 @@ void GameScene::Finalize() {
 	BaseScene::Finalize();
 }
 
-void GameScene::Update() {
-	/// ===================================================
-	/// 更新処理
-	/// ===================================================
+void GameScene::Update()
+{
+    /// ===================================================
+    /// 更新処理
+    /// ===================================================
 
 	// クリアタイムの計測
 	if (isTimerRunning_) {
@@ -79,25 +82,30 @@ void GameScene::Update() {
 	pEnemyManager_->Update();
 	pWaveDirector_->Update();
 
-	pHudManager_->Update();
+    pHudManager_->Update();
 
-	// カメラの更新
-	UpdateCamera();
+    // カメラの更新
+    UpdateCamera();
 
-	// シーン切り替えの更新
-	ChangeScene();
+    // シーン切り替えの更新
+    ChangeScene();
+
+    // HUDの更新
+    this->UpdateHud();
 }
 
-void GameScene::Draw() {
-	/// ===================================================
-	/// 描画処理
-	/// ===================================================
+void GameScene::Draw()
+{
+    /// ===================================================
+    /// 描画処理
+    /// ===================================================
 }
 
-void GameScene::DrawForOffScreen() {
-	/// ===================================================
-	/// オフスクリーン描画処理
-	/// ===================================================
+void GameScene::DrawForOffScreen()
+{
+    /// ===================================================
+    /// オフスクリーン描画処理
+    /// ===================================================
 }
 
 void GameScene::AddSceneSetting() {
@@ -117,47 +125,61 @@ void GameScene::AddSceneSetting() {
 #endif // _DEBUG
 }
 
-void GameScene::AddObjectSetting() {
-	/// ===================================================
-	/// オブジェクト設定（デバッグ）
-	/// ===================================================
+void GameScene::AddObjectSetting()
+{
+    /// ===================================================
+    /// オブジェクト設定（デバッグ）
+    /// ===================================================
 }
 
-void GameScene::AddParticleSetting() {
-	/// ===================================================
-	/// パーティクル設定（デバッグ）
-	/// ===================================================
+void GameScene::AddParticleSetting()
+{
+    /// ===================================================
+    /// パーティクル設定（デバッグ）
+    /// ===================================================
 }
 
 void GameScene::InitializeFollowCamera(const Hagine::WorldTransform* pTarget)
 {
-	pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
-	pFollowCamera_->Initialize(pWinApp_);
-	pFollowCamera_->SetTarget(pTarget);
+    pFollowCamera_ = std::make_unique<FollowCamera>(vp_);
+    pFollowCamera_->Initialize(pWinApp_);
+    pFollowCamera_->SetTarget(pTarget);
 }
 
-void GameScene::UpdateCamera() {
-	/// ===================================================
-	/// カメラ更新
-	/// ===================================================
-	if (debugCamera_->GetActive()) {
-		debugCamera_->Update();
-	} else {
-		vp_.UpdateMatrix();
-	}
+void GameScene::UpdateCamera()
+{
+    /// ===================================================
+    /// カメラ更新
+    /// ===================================================
+    if (debugCamera_->GetActive())
+    {
+        debugCamera_->Update();
+    }
+    else
+    {
+        vp_.UpdateMatrix();
+    }
 }
 
-void GameScene::ChangeScene() {
-	/// ===================================================
-	/// シーン切り替え
-	/// ===================================================
+void GameScene::ChangeScene()
+{
+    /// ===================================================
+    /// シーン切り替え
+    /// ===================================================
 }
 
 void GameScene::InitializeHudManager()
 {
-	pHudManager_ = std::make_unique<HudManager>();
-	pHpHudView_ = pHudManager_->CreateView<HpHudView>();
-	pWaveCountHudView_ = pHudManager_->CreateView<WaveCountHudView>();
+    pHudManager_ = std::make_unique<HudManager>();
+    pHpHudView_ = pHudManager_->CreateView<HpHudView>();
+    pWaveCountHudView_ = pHudManager_->CreateView<WaveCountHudView>();
+    pRemainEnemyCountHudView_ = pHudManager_->CreateView<RemainingEnemyCountHudView>();
+}
+
+void GameScene::UpdateHud()
+{
+    pWaveCountHudView_->SetWaveCount(pWaveDirector_->GetCurrentWaveIndex() + 1);
+    pRemainEnemyCountHudView_->SetRemainingCount(pEnemyManager_->GetTotalRemainingEnemyCount());
 }
 
 void GameScene::StopClearTime() {

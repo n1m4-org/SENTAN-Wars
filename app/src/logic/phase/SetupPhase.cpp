@@ -20,7 +20,7 @@ void SetupPhase::Exit()
 
 void SetupPhase::Update()
 {
-
+    pWarpHole_->Update();
 }
 
 void SetupPhase::Draw()
