@@ -14,6 +14,7 @@ class ViewProjection;
 class ComponentContainer;
 class AttackStateComponent;
 class JumpComponent;
+class MoveComponent;
 
 /// SENTANを装備したときに配られる情報
 /// 受け取る側が個々のSENTANの種類を知らなくても扱えるよう、まとめて渡す
@@ -39,9 +40,10 @@ class WeaponComponent : public Component {
     /// container : 解禁したコンポーネントの追加先
     /// attackState : 攻撃コンポーネント同士で共有する状態
     /// jump : ジャンプの振る舞い（回数を増やすSENTANが使う）
+    /// move : 移動の振る舞い（攻撃中に速度を鈍らせるSENTANが使う）
     WeaponComponent(Hagine::BaseObject *owner, ComponentContainer *container, AttackStateComponent *attackState,
-                    JumpComponent *jump)
-        : owner_(owner), container_(container), attackState_(attackState), jump_(jump) {}
+                    JumpComponent *jump, MoveComponent *move)
+        : owner_(owner), container_(container), attackState_(attackState), jump_(jump), move_(move) {}
 
     void Init() override;
 
@@ -64,6 +66,7 @@ class WeaponComponent : public Component {
     ComponentContainer *container_ = nullptr;     // 解禁した振る舞いの追加先
     AttackStateComponent *attackState_ = nullptr; // 攻撃コンポーネントが共有する状態
     JumpComponent *jump_ = nullptr;               // ジャンプの振る舞い
+    MoveComponent *move_ = nullptr;               // 移動の振る舞い
 
     // 武器本体（このコンポーネントが所有）。Forkは1本だけ
     std::unique_ptr<Fork> fork_ = nullptr;

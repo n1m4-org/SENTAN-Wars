@@ -155,6 +155,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="src\Component\Attack\DrillRushAttack.cpp" />
     <ClCompile Include="src\Component\Attack\ComboAttack.cpp" />
     <ClCompile Include="src\Component\Attack\SlashFlurryAttack.cpp" />
+    <ClCompile Include="src\Component\Attack\SpinAttack.cpp" />
     <ClCompile Include="src\Component\Attack\NormalAttack.cpp" />
     <ClCompile Include="src\Character\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="src\logic\phase\PhaseDirector.cpp" />
@@ -270,6 +271,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="src\Component\Attack\DrillRushAttack.h" />
     <ClInclude Include="src\Component\Attack\ComboAttack.h" />
     <ClInclude Include="src\Component\Attack\SlashFlurryAttack.h" />
+    <ClInclude Include="src\Component\Attack\SpinAttack.h" />
     <ClInclude Include="src\Character\Player\Sentan\SentanContext.h" />
     <ClInclude Include="src\Component\Attack\AttackStateComponent.h" />
     <ClInclude Include="src\Component\Attack\NormalAttack.h" />

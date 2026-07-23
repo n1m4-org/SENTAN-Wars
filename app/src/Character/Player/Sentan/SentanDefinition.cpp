@@ -3,6 +3,7 @@
 #include "Component/Attack/ComboAttack.h"
 #include "Component/Attack/DrillRushAttack.h"
 #include "Component/Attack/SlashFlurryAttack.h"
+#include "Component/Attack/SpinAttack.h"
 #include "Component/DoubleJumpComponent.h"
 
 namespace {
@@ -21,6 +22,7 @@ constexpr SentanDefinition kSentanDefinitions[] = {
     {SentanId::Sentan2, nullptr, &CreateSentanComponent<DoubleJumpComponent>, {0.3f, 0.3f, 0.3f}}, // 二段ジャンプ
     {SentanId::Sentan3, nullptr, &CreateSentanComponent<ComboAttack>, {0.3f, 0.3f, 0.3f}},         // 3段コンボ
     {SentanId::Sentan4, nullptr, &CreateSentanComponent<SlashFlurryAttack>, {0.3f, 0.3f, 0.3f}},   // 連続斬撃
+    {SentanId::Sentan5, nullptr, &CreateSentanComponent<SpinAttack>, {0.3f, 0.3f, 0.3f}},          // 回転攻撃
 };
 
 } // namespace

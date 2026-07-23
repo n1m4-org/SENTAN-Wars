@@ -52,7 +52,7 @@ void Player::Init(const std::string className) {
     JumpComponent *jump = AddComponent<JumpComponent>(GetWorldTransform());
 
     // 武器コンポーネント（Forkを持ち、装備したSENTANの振る舞いを追加する）
-    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState, jump);
+    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState, jump, move_);
 
     // 通常攻撃コンポーネント（SENTANが無くても常に使えるので最初から持つ）
     const SentanContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState, jump};
@@ -61,7 +61,7 @@ void Player::Init(const std::string className) {
     // TODO: 準備フェーズができたら、そこで取得したSENTANをEquipSentanで装備する
     //       今は動作確認のため仮で装備している
     //       装備を知りたい物は、ここより前に weapon->AddEquipCallback() で登録しておく
-    weapon->EquipSentan(SentanId::Sentan4);
+    weapon->EquipSentan(SentanId::Sentan5);
     weapon->EquipSentan(SentanId::Sentan2);
 
     FlushPendingComponents();
