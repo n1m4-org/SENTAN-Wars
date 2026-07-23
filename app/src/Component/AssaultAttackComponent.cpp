@@ -1,8 +1,22 @@
 #include "AssaultAttackComponent.h"
 #include "Frame/Frame.h"
 #include <3d/Object/Base/BaseObjectManager.h>
+#ifdef _DEBUG
+#include <utility/debug/imgui/ImGuizmoManager.h>
+#endif
 
 using namespace Hagine;
+
+AssaultAttackComponent::~AssaultAttackComponent()
+{
+	if (AoEObject_)
+	{
+		#ifdef _DEBUG
+		ImGuizmoManager::GetInstance()->RemoveTarget(AoEObject_->GetName());
+		#endif
+		BaseObjectManager::GetInstance()->UnregisterExternal(AoEObject_.get());
+	}
+}
 
 void AssaultAttackComponent::Init(const std::string& ownerName)
 {

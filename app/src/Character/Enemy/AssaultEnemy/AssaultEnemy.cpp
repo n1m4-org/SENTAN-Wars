@@ -1,13 +1,23 @@
 #include "AssaultEnemy.h"
 #include <3d/Object/Base/BaseObjectManager.h>
+#ifdef _DEBUG
+#include <utility/debug/imgui/ImGuizmoManager.h>
+#endif
 
 using namespace Hagine;
 
 AssaultEnemy::~AssaultEnemy()
 {
-	if (bulletObject_ && !bulletObject_->GetColliders().empty())
+	if (bulletObject_)
 	{
-		AttackRegistry::Unregister(bulletObject_->GetColliders()[0].get());
+		if (!bulletObject_->GetColliders().empty())
+		{
+			AttackRegistry::Unregister(bulletObject_->GetColliders()[0].get());
+		}
+		#ifdef _DEBUG
+		ImGuizmoManager::GetInstance()->RemoveTarget(bulletObject_->GetName());
+		#endif
+		BaseObjectManager::GetInstance()->UnregisterExternal(bulletObject_.get());
 	}
 }
 

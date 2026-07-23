@@ -16,6 +16,9 @@ void LeapBoss::UniqueInit()
 	auto* col = AddCylinderCollider(GetName() + "_LeapBossCollider");
 	col->AddCollisionMask("Player");
 	SetResolveCollision(true);
+	col->SetRadius(scale_);
+	col->SetHeight(scale_ * 2.0f);
+	col->SetInward(false);
 }
 
 void LeapBoss::UniqueUpdate()
