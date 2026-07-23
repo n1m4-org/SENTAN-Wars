@@ -121,6 +121,8 @@ protected:
 	// 攻撃レジストリ登録トラッキング用
 	bool isAttackRegistered_ = false;
 
-	Hagine::ParticleCSEmitter* hitEffect_ = nullptr;
+	// ヒットエフェクトを出す高さ（体の半径の何倍を中心から上へずらすか）
+	// 中心に出すと体に埋もれて見えないため、上端あたりへ持ち上げる
+	static constexpr float kHitEffectHeightRate_ = 0.8f;
 };
 

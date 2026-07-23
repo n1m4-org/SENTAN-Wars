@@ -9,6 +9,7 @@
 #include "collider/ColliderBase.h"
 #include "Component/MoveComponent.h"
 #include "Component/WeaponComponent.h"
+#include "audio/SoundPlayer.h"
 #include "common/FieldBounds.h"
 using namespace Hagine;
 
@@ -53,6 +54,15 @@ void Player::Init(const std::string className) {
 
     // 攻撃コンポーネントが共有する状態（攻撃の同時発動を防ぐ）
     AttackStateComponent *attackState = AddComponent<AttackStateComponent>();
+
+    // 武器を振った音を鳴らす
+    // 判定が開くのは刃が動き始める瞬間なので、どの攻撃でもここが「振った」タイミングになる
+    // （個々の攻撃コンポーネントは音を知らないままでいられる）
+    attackState->AddHitWindowCallback([](bool isOpen, const HitWindow &) {
+        if (isOpen) {
+            SoundPlayer::GetInstance()->PlaySwing();
+        }
+    });
 
     // 移動コンポーネント（基準カメラは、カメラができてからSetReferenceCameraで渡される）
     move_ = AddComponent<MoveComponent>(GetWorldTransform());
