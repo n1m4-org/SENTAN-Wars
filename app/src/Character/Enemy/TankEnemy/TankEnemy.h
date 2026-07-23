@@ -5,6 +5,9 @@
 class TankEnemy
 	: public BaseEnemy
 {
+public:
+	bool IsAttacking() const override;
+
 private:
 	void UniqueInit() override;
 

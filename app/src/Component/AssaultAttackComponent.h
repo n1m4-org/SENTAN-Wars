@@ -29,7 +29,8 @@ public:
         : transform_(transform), attackRange_(attackRange), attackTransform_(attackTransform), target_(target), radius_(radius)
     {}
 
-    void Init() override;
+    void Init() override { Init("AssaultEnemy"); }
+    void Init(const std::string& ownerName);
 
     void Update() override;
 

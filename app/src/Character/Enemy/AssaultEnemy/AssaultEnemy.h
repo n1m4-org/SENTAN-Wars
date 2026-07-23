@@ -10,6 +10,8 @@ class AssaultEnemy
 public:
 	virtual ~AssaultEnemy();
 
+	bool IsAttacking() const override;
+
 private:
 	void UniqueInit() override;
 

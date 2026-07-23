@@ -61,6 +61,9 @@ public:
 	/// <param name="attackInfo">攻撃情報</param>
 	virtual void TakeDamage(const AttackInfo& attackInfo);
 
+	/// 攻撃中かどうかを取得する
+	virtual bool IsAttacking() const;
+
 	/// HPゲッター
 	float GetHp() const { return currentHp_; }
 	float GetMaxHp() const { return maxHp_; }
