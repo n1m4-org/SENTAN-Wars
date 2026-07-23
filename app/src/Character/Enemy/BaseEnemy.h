@@ -5,6 +5,7 @@
 #include "Component/AttributeComponent.h"
 #include "Component/Attack/AttackInfo.h"
 #include "Character/Enemy/EnemyParameterManager.h"
+#include <Particle/gpu/ParticleCSEmitter.h>
 
 
 class BaseEnemy
@@ -74,6 +75,9 @@ protected:
 	virtual void OnHit(Hagine::ColliderBase* other);
 	void SetTypeParameter(EnemyType type);
 
+	/// 指定位置にヒットエフェクトを出す（プレイヤーの攻撃を受けたとき）
+	void SpawnHitEffect(const Hagine::Vector3& position);
+
 	/// <summary>
 	/// 固有初期化処理
 	/// </summary>
@@ -116,5 +120,7 @@ protected:
 
 	// 攻撃レジストリ登録トラッキング用
 	bool isAttackRegistered_ = false;
+
+	Hagine::ParticleCSEmitter* hitEffect_ = nullptr;
 };
 

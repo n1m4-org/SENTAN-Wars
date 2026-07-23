@@ -60,19 +60,31 @@ void Player::Init(const std::string className) {
     JumpComponent *jump = AddComponent<JumpComponent>(GetWorldTransform());
 
     // 武器コンポーネント（Forkを持ち、装備したSENTANの振る舞いを追加する）
-    WeaponComponent *weapon = AddComponent<WeaponComponent>(this, this, attackState, jump, move_);
+    // SENTANの装備を取り次ぐために覚えておく
+    weapon_ = AddComponent<WeaponComponent>(this, this, attackState, jump, move_);
 
     // 通常攻撃コンポーネント（SENTANが無くても常に使えるので最初から持つ）
-    const SentanContext normalAttackContext{GetWorldTransform(), weapon->GetFork(), attackState, jump, move_};
+    const SentanContext normalAttackContext{GetWorldTransform(), weapon_->GetFork(), attackState, jump, move_};
     AddComponent<NormalAttack>(normalAttackContext);
 
-    // TODO: 準備フェーズができたら、そこで取得したSENTANをEquipSentanで装備する
-    //       今は動作確認のため仮で装備している
-    //       装備を知りたい物は、ここより前に weapon->AddEquipCallback() で登録しておく
-    weapon->EquipSentan(SentanId::Sentan1);
-    weapon->EquipSentan(SentanId::Sentan3);
+    // SENTANはここでは装備しない
+    // 何を付けるかは準備フェーズなど外側が決めるので、Player::EquipSentan で渡してもらう
+    // （装備を知りたい物は、装備より前に weapon_->AddEquipCallback() で登録しておく）
 
     FlushPendingComponents();
+}
+
+bool Player::EquipSentan(SentanId id) {
+    return weapon_ ? weapon_->EquipSentan(id) : false;
+}
+
+size_t Player::GetSentanCount() const {
+    const Fork *fork = weapon_ ? weapon_->GetFork() : nullptr;
+    return fork ? fork->GetSentanCount() : 0;
+}
+
+size_t Player::GetMaxSentanCount() {
+    return Fork::kMaxSentanCount;
 }
 
 void Player::SetReferenceCamera(const ViewProjection *camera) {
