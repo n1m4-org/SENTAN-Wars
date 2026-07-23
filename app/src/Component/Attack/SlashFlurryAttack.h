@@ -76,7 +76,7 @@ class SlashFlurryAttack : public Component {
     // 1振りあたりの攻撃力。6振り当てきると36で、コンボ3段と同じ総量になる
     GameParameter(float, atk_, 6.0f);
     // 判定の広さ（武器の形の何倍か）。速く振り回すので広め
-    GameParameter(float, hitScale_, 3.5f);
+    GameParameter(float, hitScale_, 5.5f);
     GameParameter(int, swingCount_, 6); // 振る回数
 
     // 斬りの軌道：この2つの角度（度）の間を1振りごとに往復する

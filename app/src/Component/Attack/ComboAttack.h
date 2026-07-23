@@ -102,7 +102,7 @@ class ComboAttack : public Component {
     GameParameter(float, atk2_, 10.0f);
     GameParameter(float, atk3_, 18.0f); // 締めなので一番重い
     // 判定の広さ（武器の形の何倍か）。薙ぐように斬るので広め
-    GameParameter(float, hitScale_, 3.5f);
+    GameParameter(float, hitScale_, 5.5f);
 
     // 1段目：袈裟斬り（右上から左下へ斜めに斬り下ろす）
     GameParameter(Hagine::Vector3, windupAngles1_, (Hagine::Vector3{-55.0f, 50.0f, -55.0f}));

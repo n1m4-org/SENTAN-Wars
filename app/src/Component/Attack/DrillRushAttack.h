@@ -82,13 +82,13 @@ class DrillRushAttack : public Component {
     // 攻撃力。1発しか当たらない代わりに重い（Normal敵20を一撃、Tank50を2発）
     GameParameter(float, atk_, 25.0f);
     // 判定の広さ（武器の形の何倍か）。回しながら突っ込むので一番広い
-    GameParameter(float, hitScale_, 4.0f);
+    GameParameter(float, hitScale_, 6.0f);
     // 倒しきったときの各軸の回転角（度）：X=前方へ倒す
     GameParameter(Hagine::Vector3, tiltAngles_, (Hagine::Vector3{-90.0f, 0.0f, 0.0f}));
     // 引ききったときの構えからのズレ：Z=マイナスで後方へ引く
     GameParameter(Hagine::Vector3, pullOffset_, (Hagine::Vector3{0.0f, 0.0f, -1.5f}));
     GameParameter(float, tiltFrame_, 10.0f);   // 倒しながら引ききるまでのフレーム数
-    GameParameter(float, spinUpFrame_, 12.0f); // 突進に入る前に回し始めるフレーム数
+    GameParameter(float, spinUpFrame_, 30.0f); // 突進に入る前の溜め（狙いを定める間・回し始めながら待つ）
     GameParameter(float, spinSpeed_, 45.0f);   // 自転の速さ（1フレームあたりの度数）
     // 突進中に武器を突き出す量：Z=前方へ突き出す
     GameParameter(Hagine::Vector3, thrustOffset_, (Hagine::Vector3{0.0f, 0.0f, 2.5f}));

@@ -6,6 +6,7 @@
 
 class Fork;
 class AttackStateComponent;
+class MoveComponent;
 
 /// 通常攻撃
 /// SENTANを持っていなくても常に使えるので、Playerが最初から持っている唯一の攻撃
@@ -14,7 +15,10 @@ class NormalAttack : public Component {
   public:
     /// 攻撃に必要な物はまとめて受け取る
     explicit NormalAttack(const SentanContext &context)
-        : weapon_(context.weapon), attackState_(context.attackState) {}
+        : weapon_(context.weapon), attackState_(context.attackState), move_(context.move) {}
+
+    /// 攻撃中に消えても、移動の速度を戻しておく
+    ~NormalAttack() override;
 
     void Update() override;
 
@@ -45,6 +49,9 @@ class NormalAttack : public Component {
     /// フェーズの経過フレームから進行度(0.0〜1.0)を求める
     float CalcPhaseRate(float phaseFrame) const;
 
+    /// 移動の速度倍率を設定する（moveが無くても安全に呼べる）
+    void SetMoveSpeedScale(float scale);
+
   private:
     // GameParameterの登録先となるデバッグ
     EnableDebug("NormalAttack");
@@ -52,6 +59,7 @@ class NormalAttack : public Component {
     // ==== 挿入された依存（所有はしない・参照するだけ） ====
     Fork *weapon_ = nullptr;                      // 振る武器
     AttackStateComponent *attackState_ = nullptr; // 攻撃中フラグの共有先
+    MoveComponent *move_ = nullptr;               // 任意：攻撃中に移動を鈍らせる相手
 
     // ==== 状態 ====
     Phase phase_ = Phase::Idle; // 現在のフェーズ
@@ -61,7 +69,9 @@ class NormalAttack : public Component {
     // 攻撃力。SENTANが無くても常に使えるので控えめ（Normal敵20を2発）
     GameParameter(float, atk_, 10.0f);
     // 判定の広さ（武器の形の何倍か）。突きなので、当てやすさは控えめ
-    GameParameter(float, hitScale_, 2.5f);
+    GameParameter(float, hitScale_, 4.0f);
+    // 攻撃中の移動速度の倍率（1.0で普段どおり、0.0で足が止まる）
+    GameParameter(float, moveSpeedScale_, 0.4f);
     // 倒しきったときの各軸の回転角（度）：X=前方へ倒す / Z=軸まわりにひねる
     GameParameter(Hagine::Vector3, tiltAngles_, (Hagine::Vector3{-90.0f, 0.0f, 0.0f}));
     // 引ききったときの構えからのズレ：Z=マイナスで後方へ引く
