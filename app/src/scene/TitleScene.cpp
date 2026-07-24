@@ -59,17 +59,24 @@ void TitleScene::Update()
 	vp_.UpdateMatrix();
 }
 
+void TitleScene::ChangeScene()
+{
+	if (pInput_->TriggerKey(DIK_SPACE)) {
+		pSceneManager_->NextSceneReservation("GAME");
+	}
+}
+
 void TitleScene::InitializeSprites()
 {
 	static constexpr const char* kLogo = "common/logo_580x160.png";
 	static constexpr const char* kStartKey = "common/space_485x120.png";
 	static constexpr const char* kPrompt = "prompt/start_163x53.png";
 	/// TODO: Vector4をconstexprにする
-	static const Vector4 kWhite = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+		static const Vector4 kWhite = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	pContainerArea_ = std::make_unique<Sprite>();
 	pContainerArea_->Initialize("debug/white1x1.png", {}, { 0.0f, 0.0f, 0.0f, 0.5f }, {});
-	
+
 	/// ロゴ (タイトル)
 	{
 		auto& sprite = GetSprite(SpriteName::Logo);

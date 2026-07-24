@@ -126,6 +126,11 @@ private:
     /// </summary>
 	void UpdateCamera();
 
+	/// <summary>
+   /// シーン遷移を実行
+   /// </summary>
+	void ChangeScene();
+
 private:
 	/// ===================================================
 	/// private variants
