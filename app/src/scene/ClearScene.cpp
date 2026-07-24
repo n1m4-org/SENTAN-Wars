@@ -101,6 +101,8 @@ void ClearScene::Update()
 	this->UpdateCamera();
 	clearTimeView_.Update();
 	rankingView_.Update(deltaTime);
+
+	ChangeScene();
 }
 
 void ClearScene::UpdateDirection(float deltaTime)
