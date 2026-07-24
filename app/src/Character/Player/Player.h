@@ -34,6 +34,10 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     /// 装備するとそのSENTANの振る舞いが増える（Forkに付くのは最大2つ・超えるとfalse）
     bool EquipSentan(SentanId id);
 
+    /// 装備中のSENTANを全部外す
+    /// 外したSENTANの振る舞いはコンポーネントごと消えるため、選び直しの前に呼ぶ
+    void UnequipAllSentan();
+
     /// 装備中のSENTANの数
     size_t GetSentanCount() const;
 
@@ -47,6 +51,10 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     /// 生成済みのコンポーネントを追加して所有する（追加時にInitが呼ばれる）
     /// 更新中に追加されても壊れないよう、実際の登録は次の更新の頭で行う
     Component *AddComponent(std::unique_ptr<Component> component) override;
+
+    /// 追加したコンポーネントを外して破棄する
+    /// 更新中に外されても壊れないよう、実際の破棄は次の更新の頭で行う
+    void RemoveComponent(Component *component) override;
 
   private:
     /// コンポーネントを生成して登録する
@@ -64,6 +72,9 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     /// 追加待ちのコンポーネントを登録する
     void FlushPendingComponents();
 
+    /// 破棄待ちのコンポーネントを取り除く
+    void FlushRemovedComponents();
+
   private:
     // 移動コンポーネント（所有はcomponents_・カメラを後から渡すために覚えておく）
     MoveComponent *move_ = nullptr;
@@ -79,4 +90,7 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
 
     // 追加待ちのコンポーネント（更新中の追加でcomponents_を壊さないためのもの）
     std::vector<std::unique_ptr<Component>> pendingComponents_;
+
+    // 破棄待ちのコンポーネント（更新中の破棄でcomponents_を壊さないためのもの）
+    std::vector<Component *> removedComponents_;
 };

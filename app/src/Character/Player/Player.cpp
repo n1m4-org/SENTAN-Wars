@@ -89,6 +89,12 @@ bool Player::EquipSentan(SentanId id) {
     return weapon_ ? weapon_->EquipSentan(id) : false;
 }
 
+void Player::UnequipAllSentan() {
+    if (weapon_) {
+        weapon_->UnequipAllSentan();
+    }
+}
+
 size_t Player::GetSentanCount() const {
     const Fork *fork = weapon_ ? weapon_->GetFork() : nullptr;
     return fork ? fork->GetSentanCount() : 0;
@@ -128,6 +134,16 @@ Component *Player::AddComponent(std::unique_ptr<Component> component) {
     return raw;
 }
 
+void Player::RemoveComponent(Component *component) {
+    if (!component) {
+        return;
+    }
+
+    // 実際に消すのは次の更新の頭
+    // 更新中に消すと、回している最中のcomponents_が動いてしまう
+    removedComponents_.emplace_back(component);
+}
+
 void Player::FlushPendingComponents() {
     for (auto &component : pendingComponents_) {
         components_.emplace_back(std::move(component));
@@ -135,7 +151,28 @@ void Player::FlushPendingComponents() {
     pendingComponents_.clear();
 }
 
+void Player::FlushRemovedComponents() {
+    if (removedComponents_.empty()) {
+        return;
+    }
+
+    for (Component *removed : removedComponents_) {
+        std::erase_if(components_, [removed](const std::unique_ptr<Component> &component) {
+            return component.get() == removed;
+        });
+        // 登録される前に外された場合もあるので、待ち行列からも消す
+        std::erase_if(pendingComponents_, [removed](const std::unique_ptr<Component> &component) {
+            return component.get() == removed;
+        });
+    }
+
+    removedComponents_.clear();
+}
+
 void Player::Update() {
+    // 前フレームまでに外されたコンポーネントをここで破棄する（追加より先）
+    FlushRemovedComponents();
+
     // 前フレームまでに追加されたコンポーネントをここで登録する
     FlushPendingComponents();
 

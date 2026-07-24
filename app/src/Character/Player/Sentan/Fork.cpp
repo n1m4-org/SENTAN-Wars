@@ -93,6 +93,24 @@ Sentan *Fork::AttachSentan(SentanId id) {
     return raw;
 }
 
+void Fork::DetachAllSentan() {
+    for (auto &sentan : sentans_) {
+        // 攻撃情報はコライダーのアドレスで引かれるため、消える前に外しておく
+        if (BodyColliderComponent *collider = sentan->GetCollider()) {
+            collider->SetEnabled(false);
+            if (ColliderBase *raw = collider->GetCollider()) {
+                AttackRegistry::Unregister(raw);
+            }
+        }
+
+        // 親の子リストからも抜けておく
+        // デストラクタでは外れないため、残すとForkが消えたSENTANを指したままになる
+        sentan->DetachParent();
+    }
+
+    sentans_.clear();
+}
+
 void Fork::Update() {
     // 構えに攻撃モーションのズレを足したものが、今フレームの位置と回転になる
     if (transform_) {

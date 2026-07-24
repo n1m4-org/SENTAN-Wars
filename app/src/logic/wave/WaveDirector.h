@@ -56,13 +56,24 @@ public:
     /// <param name="enemyManager"></param>
     void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
 
+    /// <summary>
+    /// 準備フェーズでSENTANを装備させる相手を設定する
+    /// </summary>
+    /// <remarks>最初のウェーブにも渡すため、Initializeより前に呼ぶ</remarks>
+    void SetPlayer(Player* player) { pPlayer_ = player; }
+
 private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
 
     EnemyManager* pEnemyManager_ = nullptr;
+    Player* pPlayer_ = nullptr;
     bool isGameCleared_ = false;
     int bossDefeatCount_ = 0;
+
+    // このウェーブの終了処理をもう通したか
+    // 準備フェーズで待つ間もウェーブの終了は成立し続けるため、1回だけ通すのに使う
+    bool isWaveFinishHandled_ = false;
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;

@@ -71,7 +71,9 @@ public:
 	bool IsAllEnemiesDefeated() const { return enemies_.empty() && spawnQueue_.empty(); }
 
 	/// ウェーブプリセットの取得 (ウェーブ番号に応じた緩やかな難易度動的スケーリング)
-	WaveData GetWavePreset(size_t index) const;
+	/// ボスウェーブかどうかは呼び出し側（フェーズ）が知っているので受け取る
+	/// ここで独自に判定すると、ウェーブの区切り方を変えたときに食い違う
+	WaveData GetWavePreset(size_t index, bool isBossWave) const;
 
 private:
 	void SpawnEnemy(EnemyType type);

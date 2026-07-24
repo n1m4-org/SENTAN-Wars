@@ -41,7 +41,10 @@ public:
         return &instance;
     }
 
-	const EnemyParameter& GetEnemyParameter(EnemyType type) const
+	// 戻り値は値で返す
+	// ここで作るEnemyParameterはその場限りのものなので、参照で返すと
+	// 呼び出し元が消えた領域を読むことになる（種族ごとの値が壊れる）
+	EnemyParameter GetEnemyParameter(EnemyType type) const
 	{
 		switch (type)
 		{

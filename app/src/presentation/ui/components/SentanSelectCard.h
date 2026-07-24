@@ -9,13 +9,21 @@ class SentanSelectCard
 {
 public:
     SentanSelectCard(SentanId sentanId);
+    ~SentanSelectCard();
+
     void Update(bool isSelected);
 
     void SetPosition(const Hagine::Vector2& position);
 
     Hagine::Vector2 GetSize() const { return pCardBg_->GetSize(); }
 
+    /// 選び終えたカードにする（もう選べないことを見て分かるようにする）
+    void SetTaken(bool isTaken) { isTaken_ = isTaken; }
+
 private:
+    // アイコンをカードの内側に収めるときの余白（ピクセル）
+    static constexpr float kIconPadding_ = 16.0f;
+
     inline static const char* GetPath(SentanId id)
     {
         if (id == SentanId::Sentan1) return Path::Image::SentanBoots;
@@ -29,6 +37,7 @@ private:
     void InitializeSprites();
 
     SentanId sentanId_;
+    bool isTaken_ = false;
     std::unique_ptr<Hagine::Sprite> pCardBg_;
     std::unique_ptr<Hagine::Sprite> pIcon_;
     std::unique_ptr<Hagine::Sprite> pName_;

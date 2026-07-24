@@ -41,6 +41,8 @@ void GameScene::Initialize()
 	// ウェーブディレクターの初期化
 	pWaveDirector_ = std::make_unique<WaveDirector>();
 	pWaveDirector_->SetEnemyManager(pEnemyManager_.get());
+	// 準備フェーズで選んだSENTANの装備先（最初のウェーブにも渡るようInitializeより前に）
+	pWaveDirector_->SetPlayer(player_.get());
 	pWaveDirector_->Initialize();
 
     // フォローカメラの初期化

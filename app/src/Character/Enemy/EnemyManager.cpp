@@ -26,10 +26,10 @@ void EnemyManager::Init()
 
 }
 
-WaveData EnemyManager::GetWavePreset(size_t index) const
+WaveData EnemyManager::GetWavePreset(size_t index, bool isBossWave) const
 {
-	// ボスウェーブ（4の倍数でインデックス 3, 7, 11...）の場合
-	if (index % 4 == 3)
+	// ボスウェーブの場合
+	if (isBossWave)
 	{
 		return WaveData{ 500, 0.0f, 0.0f, 0.0f, 0.0f, 1.5f, AttributeType::Blue, true, EnemyType::LeapBoss };
 	}
@@ -90,6 +90,11 @@ void EnemyManager::StartWave(const WaveData& waveData)
 		auto checkAndAdd = [&](EnemyType type, float weight)
 			{
 				int cost = EnemyParameterManager::GetInstance()->GetEnemyParameter(type).cost;
+				// コストが0以下だと残りが減らず、いくらでも敵を積み続けてしまう
+				if (cost <= 0)
+				{
+					return;
+				}
 				if (cost <= remainingCost && weight > 0.0f)
 				{
 					affordableTypes.push_back(type);
