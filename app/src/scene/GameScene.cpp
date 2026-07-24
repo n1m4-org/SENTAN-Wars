@@ -197,7 +197,10 @@ void GameScene::UpdateHud()
 {
     pWaveCountHudView_->SetWaveCount(pWaveDirector_->GetCurrentWaveIndex() + 1);
     pRemainEnemyCountHudView_->SetRemainingCount(pEnemyManager_->GetTotalRemainingEnemyCount());
-    
+
+    // プレイヤーの実HPをバーに反映する（被弾するとここ経由でバーが減る）
+    pHpHudView_->SetMaxHP(player_->GetMaxHp());
+    pHpHudView_->SetHP(player_->GetHp());
 }
 
 void GameScene::CheckDeviceLost() {

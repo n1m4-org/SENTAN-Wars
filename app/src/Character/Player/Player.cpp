@@ -36,10 +36,11 @@ void Player::Init(const std::string className) {
 
     // 当たったらダメージを受ける
     // 攻撃力はAttackRegistryから引くので、相手が何の敵かは知らなくてよい
-    // 攻撃中でない敵には攻撃情報が無いため、ぶつかっただけでは減らない
+    // 敵は生きている間ずっと攻撃情報を登録しているので、攻撃中(EnemyBullet)でも
+    // ただの接触(Enemy)でもダメージを受ける。被弾直後の無敵はHealthComponentが見る
     body->AddHitCallback([health](ColliderBase *other) {
         const std::string& tag = other->GetTag();
-        if (tag == "EnemyBullet") 
+        if (tag == "Enemy" || tag == "EnemyBullet")
         {
             if (const AttackInfo* attackInfo = AttackRegistry::Get(other))
             {
