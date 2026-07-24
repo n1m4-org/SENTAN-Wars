@@ -25,6 +25,14 @@ public:
     /// 選ぶ枚数を選び終えたか（閉じるタイミングを外が決められるようにする）
     bool IsDecided() const { return decidedCount_ >= pickCount_; }
 
+    /// 表示を消す（実体は残す）
+    /// スプライトはGPUリソースを持つため、選び終えた場で壊すと
+    /// 直前のフレームの描画コマンドが解放済みのメモリを読みに行く
+    void Close();
+
+    /// 表示を消した後か
+    bool IsClosed() const { return isClosed_; }
+
 private:
     /// index の次に選べるカードを探す（無ければ index をそのまま返す）
     uint32_t FindSelectableIndex(uint32_t index) const;
@@ -44,6 +52,9 @@ private:
 
     // すでに選んだカードかどうか（同じカードを選び直せないようにする）
     std::array<bool, 3> isTaken_{};
+
+    // 表示を消した後か
+    bool isClosed_ = false;
 
     // 決定を知らせる先
     DecideCallback onDecideCallback_ = nullptr;

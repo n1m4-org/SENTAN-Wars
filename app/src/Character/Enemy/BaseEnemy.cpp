@@ -172,15 +172,22 @@ void BaseEnemy::Update()
 
 	UniqueUpdateEnd();
 
-	// 攻撃中（EnemyBulletタグ設定時）の AttackRegistry 自動同期処理
+	// AttackRegistry への攻撃情報の自動同期処理
+	// 生きている間は常に登録しておく（攻撃中の判定だけでなく、ぶつかっただけでも
+	// プレイヤーがダメージを受けられるようにするため）。死んだら外す。
 	if (!GetColliders().empty())
 	{
-		if (GetColliders()[0]->GetTag() == "EnemyBullet")
+		if (!isDead_)
 		{
 			if (!isAttackRegistered_)
 			{
 				AttackRegistry::Register(GetColliders()[0].get(), GetAttackInfo());
 				isAttackRegistered_ = true;
+			}
+			else
+			{
+				// power が ImGui で変わっても追従できるよう、毎フレーム最新にしておく
+				AttackRegistry::Register(GetColliders()[0].get(), GetAttackInfo());
 			}
 		}
 		else

@@ -24,7 +24,23 @@ SentanSelect::SentanSelect(uint32_t pickCount)
 
 SentanSelect::~SentanSelect()
 {
+    this->Close();
+}
+
+void SentanSelect::Close()
+{
+    if (isClosed_) return;
+    isClosed_ = true;
+
+    // 描画リストから外すだけ。スプライトの実体は持ち主が消えるときに壊れる
     Hagine::SpriteManager::GetInstance()->UnregisterExternal(pSpriteWindow_.get());
+    for (auto &card : cards_)
+    {
+        if (card)
+        {
+            card->Unregister();
+        }
+    }
 }
 
 void SentanSelect::Update()

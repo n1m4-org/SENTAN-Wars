@@ -2,6 +2,7 @@
 #include "Component/Attack/AttackInfo.h"
 #include "type/Quaternion.h"
 #include <string>
+#include <vector>
 using namespace Hagine;
 
 Fork::~Fork() {
@@ -106,12 +107,22 @@ void Fork::DetachAllSentan() {
         // 親の子リストからも抜けておく
         // デストラクタでは外れないため、残すとForkが消えたSENTANを指したままになる
         sentan->DetachParent();
+
+        // ここでは壊さない
+        // 直前のフレームの描画コマンドがまだこのSENTANのリソースを参照している
+        pendingDeleteSentans_.emplace_back(PendingDeleteSentan{std::move(sentan), kSentanDeleteDelayFrames});
     }
 
     sentans_.clear();
 }
 
 void Fork::Update() {
+    // 外したSENTANは、GPUが描き終わったころに壊す
+    std::erase_if(pendingDeleteSentans_, [](PendingDeleteSentan &pending) {
+        pending.delayFrames--;
+        return pending.delayFrames <= 0;
+    });
+
     // 構えに攻撃モーションのズレを足したものが、今フレームの位置と回転になる
     if (transform_) {
         transform_->translation_ = basePosition_ + motionOffset_;
