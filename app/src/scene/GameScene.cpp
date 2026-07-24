@@ -4,6 +4,9 @@
 #include "Character/Enemy/EnemyManager.h"
 #include <Frame.h>
 #include <logic/EquippedSentanCache.h>
+#include <base/DirectXCommon.h>
+#include <Debug/log/Logger.h>
+#include <cstdio>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -80,6 +83,11 @@ void GameScene::Update()
 	if (isTimerRunning_) {
 		clearTimer_ += Frame::DeltaTime();
 	}
+
+	// GPUデバイスが落ちていないか見張る
+	// 描画に使われているリソースを解放してしまうとデバイスが失われ、
+	// 以後のリソース確保が全部失敗する（落ちるのは次に何かを作ったところになるため）
+	this->CheckDeviceLost();
 
 	pFollowCamera_->Update();
 
@@ -190,6 +198,33 @@ void GameScene::UpdateHud()
     pWaveCountHudView_->SetWaveCount(pWaveDirector_->GetCurrentWaveIndex() + 1);
     pRemainEnemyCountHudView_->SetRemainingCount(pEnemyManager_->GetTotalRemainingEnemyCount());
     
+}
+
+void GameScene::CheckDeviceLost() {
+	/// ===================================================
+	/// GPUデバイスが失われていないかの確認
+	/// ===================================================
+	if (isDeviceLostReported_) {
+		return;
+	}
+
+	ID3D12Device* pDevice = DirectXCommon::GetInstance()->GetDevice().Get();
+	if (!pDevice) {
+		return;
+	}
+
+	const HRESULT reason = pDevice->GetDeviceRemovedReason();
+	if (SUCCEEDED(reason)) {
+		return;
+	}
+
+	isDeviceLostReported_ = true;
+
+	// 失われた瞬間のウェーブ番号まで残しておくと、どの処理が壊したか絞り込める
+	char message[256]{};
+	std::snprintf(message, sizeof(message), "GPU device lost. reason=0x%08X wave=%u",
+		static_cast<unsigned int>(reason), pWaveDirector_ ? pWaveDirector_->GetCurrentWaveIndex() + 1 : 0);
+	Logger::Info(message);
 }
 
 void GameScene::StopClearTime() {

@@ -24,6 +24,9 @@ void WaveDirector::Initialize()
 
 void WaveDirector::Update()
 {
+    // 破棄待ちの後始末は、現在のウェーブが無くても進める必要がある
+    this->UpdatePendingDeleteWaves();
+
     if (!pCurrentWave_)
     {
         return;
@@ -53,8 +56,7 @@ void WaveDirector::Update()
         if (targetBossDefeatCount_ > 0 && bossDefeatCount_ >= targetBossDefeatCount_)
         {
             isGameCleared_ = true;
-            pCurrentWave_->Exit();
-            pCurrentWave_.reset();
+            this->RetireCurrentWave();
             return;
         }
     }
@@ -104,12 +106,33 @@ void WaveDirector::RegisterOnChange()
     #endif // _DEBUG
 }
 
+void WaveDirector::RetireCurrentWave()
+{
+    if (!pCurrentWave_)
+    {
+        return;
+    }
+
+    // 先に表示や登録を落としてから、破棄は後回しにする
+    pCurrentWave_->Exit();
+    pendingDeleteWaves_.emplace_back(PendingDeleteWave{std::move(pCurrentWave_), kWaveDeleteDelayFrames});
+    pCurrentWave_.reset();
+}
+
+void WaveDirector::UpdatePendingDeleteWaves()
+{
+    std::erase_if(pendingDeleteWaves_, [](PendingDeleteWave &pending)
+    {
+        pending.delayFrames--;
+        return pending.delayFrames <= 0;
+    });
+}
+
 void WaveDirector::ChangeWaveByIndex(uint32_t index)
 {
-    if (pCurrentWave_)
-    {
-        pCurrentWave_->Exit();
-    }
+    // 前のウェーブはここでは壊さない
+    // フェーズが持っているスプライトなどを、GPUがまだ前フレームの描画で使っている
+    this->RetireCurrentWave();
 
     waveIndex_ = index;
 

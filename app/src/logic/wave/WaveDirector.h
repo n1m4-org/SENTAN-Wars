@@ -3,6 +3,7 @@
 #include "WaveType.h"
 #include <debug/GameParameter.h>
 #include <memory>
+#include <vector>
 #include <system/EventSubscription.h>
 
 
@@ -66,6 +67,12 @@ private:
     std::unique_ptr<IWave> CreateWave(WaveType type);
     void RegisterOnChange();
 
+    /// 現在のウェーブを終了させ、破棄待ちへ回す
+    void RetireCurrentWave();
+
+    /// 破棄待ちのウェーブを、GPUが描き終わったころに壊す
+    void UpdatePendingDeleteWaves();
+
     EnemyManager* pEnemyManager_ = nullptr;
     Player* pPlayer_ = nullptr;
     bool isGameCleared_ = false;
@@ -77,6 +84,23 @@ private:
 
     // 現在のウェーブ
     std::unique_ptr<IWave> pCurrentWave_;
+
+    /// 終わったウェーブの遅延破棄用
+    /// ウェーブはフェーズを持ち、フェーズはスプライトなどのGPUリソースを持っている
+    /// 切り替えた場で壊すと、直前のフレームの描画コマンドが解放済みのメモリを読みに行き、
+    /// 以後のリソース確保が全部失敗するようになる
+    /// （EnemyManagerが敵を15フレーム置いてから解放しているのと同じ理由）
+    struct PendingDeleteWave
+    {
+        std::unique_ptr<IWave> wave;
+        int delayFrames = 0;
+    };
+
+    // GPUが描き終わるのを待つフレーム数
+    static constexpr int kWaveDeleteDelayFrames = 15;
+
+    // 破棄待ちのウェーブ（Exit済みなので更新も描画もされない）
+    std::vector<PendingDeleteWave> pendingDeleteWaves_;
 
     // ワープホールの確認イベントの購読ハンドル
     EventSubscription subWarpConfirm_;

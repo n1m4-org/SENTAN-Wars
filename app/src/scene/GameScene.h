@@ -105,6 +105,16 @@ private:
     /// </summary>
     void UpdateHud();
 
+    /// <summary>
+    /// GPUデバイスが失われていないか確認し、失われていたら一度だけログに残す
+    /// </summary>
+    /// <remarks>
+    /// デバイスが失われると以後のリソース確保が全部失敗し、
+    /// 実際に落ちるのは「次に何かを作ったところ」になるため原因が追いにくい。
+    /// いつ失われたかを記録して、原因のフレームを特定できるようにする。
+    /// </remarks>
+    void CheckDeviceLost();
+
 private:
     /// ===================================================
     /// private variants
@@ -125,4 +135,7 @@ private:
     // クリアタイム計測
     float clearTimer_ = 0.0f;      // 計測中の経過時間（秒）
     bool isTimerRunning_ = false;  // 計測中フラグ
+
+    // デバイス消失を report 済みか（毎フレーム同じログを出さないため）
+    bool isDeviceLostReported_ = false;
 };
