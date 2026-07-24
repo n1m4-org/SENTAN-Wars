@@ -152,6 +152,12 @@
     <ClCompile Include="src\presentation\ui\ClearTimeView.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\ui\components\SentanSelectCard.cpp">
+      <Filter>src\presentation\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\ui\components\SentanSelectInput.cpp">
+      <Filter>src\presentation\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="src\presentation\ui\HpHudView.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
@@ -165,6 +171,9 @@
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
     <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\ui\SentanSelect.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp">
@@ -200,11 +209,6 @@
     <ClCompile Include="src\utility\strutl.cpp">
       <Filter>src\utility</Filter>
     </ClCompile>
-    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h" />
-    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.cpp" />
-    <ClCompile Include="src\presentation\ui\components\SentanSelectCard.cpp" />
-    <ClCompile Include="src\presentation\ui\components\SentanSelectInput.cpp" />
-    <ClCompile Include="src\presentation\ui\SentanSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -300,6 +304,9 @@
     <Filter Include="src\Character\Player\Sentan">
       <UniqueIdentifier>{bc2b108f-4a4a-46f5-87f2-17827145131a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\presentation\ui\components">
+      <UniqueIdentifier>{e940d7b2-3d64-49c8-85e0-c43b3b953eb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\common\ColliderTag.h">
@@ -386,6 +393,9 @@
     <ClInclude Include="src\framework\SentanWars.h">
       <Filter>src\framework</Filter>
     </ClInclude>
+    <ClInclude Include="src\logic\EquippedSentanCache.h">
+      <Filter>src\logic</Filter>
+    </ClInclude>
     <ClInclude Include="src\logic\phase\BattlePhase.h">
       <Filter>src\logic\phase</Filter>
     </ClInclude>
@@ -409,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="src\logic\phase\SetupPhase.h">
       <Filter>src\logic\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="src\logic\SentanRandomPicker.h">
+      <Filter>src\logic</Filter>
     </ClInclude>
     <ClInclude Include="src\logic\wave\BossWave.h">
       <Filter>src\logic\wave</Filter>
@@ -452,6 +465,12 @@
     <ClInclude Include="src\presentation\ui\ClearTimeView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
+    <ClInclude Include="src\presentation\ui\components\SentanSelectCard.h">
+      <Filter>src\presentation\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\ui\components\SentanSelectInput.h">
+      <Filter>src\presentation\ui\components</Filter>
+    </ClInclude>
     <ClInclude Include="src\presentation\ui\HpHudView.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
@@ -462,6 +481,9 @@
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
     <ClInclude Include="src\presentation\ui\ResultFrame.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\presentation\ui\SentanSelect.h">
       <Filter>src\presentation\ui</Filter>
     </ClInclude>
     <ClInclude Include="src\presentation\ui\WaveCountHudView.h">
@@ -575,11 +597,5 @@
     <ClInclude Include="src\Character\Enemy\BaseEnemy.h">
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\utility\vecutl.h" />
-    <ClInclude Include="src\presentation\ui\SentanSelect.h" />
-    <ClInclude Include="src\presentation\ui\components\SentanSelectCard.h" />
-    <ClInclude Include="src\presentation\ui\components\SentanSelectInput.h" />
-    <ClInclude Include="src\logic\SentanRandomPicker.h" />
-    <ClInclude Include="src\logic\EquippedSentanCache.h" />
   </ItemGroup>
 </Project>
