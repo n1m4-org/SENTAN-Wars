@@ -17,12 +17,14 @@ namespace {
 /// 今はどれも仮のCube（2×2×2）で、Forkが 0.3 倍で装着するので 0.3 が実寸ぴったりになる
 /// モデルを差し替えたら、その形に合わせてここだけ書き換える
 constexpr SentanDefinition kSentanDefinitions[] = {
-    // id                 modelPath  createComponent                                   colliderSize
-    {SentanId::Sentan1, nullptr, &CreateSentanComponent<DrillRushAttack>, {0.3f, 0.3f, 0.3f}},     // 突進
-    {SentanId::Sentan2, nullptr, &CreateSentanComponent<DoubleJumpComponent>, {0.3f, 0.3f, 0.3f}}, // 二段ジャンプ
-    {SentanId::Sentan3, nullptr, &CreateSentanComponent<ComboAttack>, {0.3f, 0.3f, 0.3f}},         // 3段コンボ
-    {SentanId::Sentan4, nullptr, &CreateSentanComponent<SlashFlurryAttack>, {0.3f, 0.3f, 0.3f}},   // 連続斬撃
-    {SentanId::Sentan5, nullptr, &CreateSentanComponent<SpinAttack>, {0.3f, 0.3f, 0.3f}},          // 回転攻撃
+    // modelPath は Assets/models からの相対パス（Fork.obj と同じ書き方）
+    // ファイル名だけだと見つからず、頂点0個のモデルになってリソース作成で落ちる
+    // id                 modelPath                                    createComponent                                   colliderSize
+    {SentanId::Sentan1, "Character/player/Sentan/Dril.obj", &CreateSentanComponent<DrillRushAttack>, {0.3f, 0.3f, 0.3f}},        // 突進
+    {SentanId::Sentan2, "Character/player/Sentan/Double.obj", &CreateSentanComponent<DoubleJumpComponent>, {0.3f, 0.3f, 0.3f}},  // 二段ジャンプ
+    {SentanId::Sentan3, "Character/player/Sentan/Triple.obj", &CreateSentanComponent<ComboAttack>, {0.3f, 0.3f, 0.3f}},          // 3段コンボ
+    {SentanId::Sentan4, "Character/player/Sentan/Boots.obj", &CreateSentanComponent<SlashFlurryAttack>, {0.3f, 0.3f, 0.3f}},     // 連続斬撃
+    {SentanId::Sentan5, "Character/player/Sentan/Rotate.obj", &CreateSentanComponent<SpinAttack>, {0.3f, 0.3f, 0.3f}},           // 回転攻撃
 };
 
 } // namespace

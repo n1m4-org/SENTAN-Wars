@@ -108,4 +108,18 @@ class Fork : public Hagine::BaseObject {
 
     // くっついているSENTAN
     std::vector<std::unique_ptr<Sentan>> sentans_;
+
+    /// 外したSENTANの遅延破棄用
+    /// SENTANはGPUリソースを持つBaseObjectなので、描画に使われている間に壊すと
+    /// GPUが解放済みのメモリを読みに行く（EnemyManagerが同じ理由で遅延削除している）
+    struct PendingDeleteSentan {
+        std::unique_ptr<Sentan> sentan;
+        int delayFrames = 0;
+    };
+
+    // GPUが描き終わるのを待つフレーム数
+    static constexpr int kSentanDeleteDelayFrames = 15;
+
+    // 破棄待ちのSENTAN（外した時点でsentans_からは抜けているので描画も更新もされない）
+    std::vector<PendingDeleteSentan> pendingDeleteSentans_;
 };

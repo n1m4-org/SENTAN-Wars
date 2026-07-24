@@ -42,14 +42,15 @@ void SetupPhase::Exit()
 void SetupPhase::Update()
 {
     // SENTANを選び終わるまではポータルへ進めない（選ばずに次のウェーブへ行けてしまわないようにする）
-    if (pSentanSelect_)
+    if (pSentanSelect_ && !pSentanSelect_->IsClosed())
     {
         pSentanSelect_->Update();
 
         if (pSentanSelect_->IsDecided())
         {
-            // 選択ウィンドウを閉じる（登録したスプライトはデストラクタで外れる）
-            pSentanSelect_.reset();
+            // 表示を消すだけで、実体はこのフェーズが終わるまで残す
+            // 選び終えた場で壊すと、直前のフレームの描画コマンドが解放済みのスプライトを読みに行く
+            pSentanSelect_->Close();
         }
         return;
     }

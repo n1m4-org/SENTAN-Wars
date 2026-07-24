@@ -12,6 +12,11 @@ SentanSelectCard::SentanSelectCard(SentanId sentanId) : sentanId_(sentanId)
 SentanSelectCard::~SentanSelectCard()
 {
     // 描画リストは持ち主を所有しないので、消える前に自分で外す
+    this->Unregister();
+}
+
+void SentanSelectCard::Unregister()
+{
     auto sm = Hagine::SpriteManager::GetInstance();
     sm->UnregisterExternal(pIcon_.get());
     sm->UnregisterExternal(pCardBg_.get());

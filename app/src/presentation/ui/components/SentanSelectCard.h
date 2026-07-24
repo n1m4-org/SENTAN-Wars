@@ -20,6 +20,10 @@ public:
     /// 選び終えたカードにする（もう選べないことを見て分かるようにする）
     void SetTaken(bool isTaken) { isTaken_ = isTaken; }
 
+    /// 描画リストから外す（実体は残す）
+    /// 何度呼んでも問題ない
+    void Unregister();
+
 private:
     // アイコンをカードの内側に収めるときの余白（ピクセル）
     static constexpr float kIconPadding_ = 16.0f;

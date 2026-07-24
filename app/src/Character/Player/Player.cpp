@@ -48,9 +48,9 @@ void Player::Init(const std::string className) {
         }
     });
 
-    // 死んだらこれ以上当たらないようにする
+    // HPが尽きた後もダメージはHealthComponent側で止まるため、ここで判定は切らない
+    // 判定を切ると体そのものが無くなり、ポータルなど「触れたか」を見ている物にも当たらなくなる
     // TODO: ゲームオーバーの流れができたら、ここから知らせる
-    health->AddDeathCallback([body]() { body->SetEnabled(false); });
 
     // 攻撃コンポーネントが共有する状態（攻撃の同時発動を防ぐ）
     AttackStateComponent *attackState = AddComponent<AttackStateComponent>();
