@@ -18,9 +18,9 @@ void SentanWars::Initialize() {
 
     // 最初のシーンを予約（シーンは REGISTER_SCENE で自己登録済み）
 #ifdef _DEBUG
-    pSceneManager_->NextSceneReservation("GAME");
+    pSceneManager_->NextSceneReservation("TITLE");
 #else
-    pSceneManager_->NextSceneReservation("GAME");
+    pSceneManager_->NextSceneReservation("TITLE");
 #endif // _DEBUG
     // -----------------------
 
