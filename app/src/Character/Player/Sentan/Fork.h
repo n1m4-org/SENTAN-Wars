@@ -28,6 +28,10 @@ class Fork : public Hagine::BaseObject {
     /// SENTANをくっつける（最大2つまで）
     Sentan *AttachSentan(SentanId id);
 
+    /// くっついているSENTANを全部外す
+    /// 選び直しのたびに丸ごと付け替えるため、1本ずつ外す口は用意していない
+    void DetachAllSentan();
+
     /// 攻撃モーション用の追加オフセット（構え位置からのズレ）
     /// 攻撃コンポーネントが毎フレーム設定する
     void SetMotionOffset(const Hagine::Vector3 &offset) { motionOffset_ = offset; }

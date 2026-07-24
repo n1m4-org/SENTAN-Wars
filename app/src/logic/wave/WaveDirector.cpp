@@ -24,34 +24,44 @@ void WaveDirector::Initialize()
 
 void WaveDirector::Update()
 {
-    if (pCurrentWave_)
+    if (!pCurrentWave_)
     {
-        pCurrentWave_->Update();
+        return;
+    }
 
-        // ウェーブが終了（敵が全滅等）したら
-        if (pCurrentWave_->IsWaveFinished())
+    pCurrentWave_->Update();
+
+    // ウェーブが終了（敵が全滅等）していなければ何もしない
+    if (!pCurrentWave_->IsWaveFinished())
+    {
+        return;
+    }
+
+    // 準備フェーズで待っている間もウェーブの終了は成立し続けるので、終わった瞬間だけ通す
+    if (isWaveFinishHandled_)
+    {
+        return;
+    }
+    isWaveFinishHandled_ = true;
+
+    // ボスウェーブが完了した場合、ボス討伐カウントをインクリメント
+    if (this->GetWaveType(waveIndex_) == WaveType::Boss)
+    {
+        bossDefeatCount_++;
+
+        // 目標のボス討伐数に達した場合、ゲームクリア
+        if (targetBossDefeatCount_ > 0 && bossDefeatCount_ >= targetBossDefeatCount_)
         {
-            // ボスウェーブが完了した場合、ボス討伐カウントをインクリメント
-            if (this->GetWaveType(waveIndex_) == WaveType::Boss)
-            {
-                bossDefeatCount_++;
-
-                // 目標のボス討伐数に達した場合、ゲームクリア
-                if (targetBossDefeatCount_ > 0 && bossDefeatCount_ >= targetBossDefeatCount_)
-                {
-                    isGameCleared_ = true;
-                    if (pCurrentWave_)
-                    {
-                        pCurrentWave_->Exit();
-                        pCurrentWave_.reset();
-                    }
-                    return;
-                }
-            }
-
-            this->ChangeToNextWave();
+            isGameCleared_ = true;
+            pCurrentWave_->Exit();
+            pCurrentWave_.reset();
+            return;
         }
     }
+
+    // 次のウェーブへは自動で進まず、準備フェーズ（ポータルとSENTAN選択）に入る
+    // ポータルに入るとWarpConfirmが飛び、Initializeで登録した購読側が次のウェーブへ切り替える
+    pCurrentWave_->BeginSetupPhase();
 }
 
 WaveType WaveDirector::GetWaveType(uint32_t waveIndex) const
@@ -102,11 +112,16 @@ void WaveDirector::ChangeWaveByIndex(uint32_t index)
     }
 
     waveIndex_ = index;
+
+    // 新しいウェーブはまだ終わっていないので、終了時の処理を受け付け直す
+    isWaveFinishHandled_ = false;
+
     WaveType nextWaveType = this->GetWaveType(index);
     pCurrentWave_ = this->CreateWave(nextWaveType);
 
     WaveContext ctx;
     ctx.waveIndex = index;
     ctx.enemyManager = pEnemyManager_;
+    ctx.player = pPlayer_;
     pCurrentWave_->Enter(ctx);
 }

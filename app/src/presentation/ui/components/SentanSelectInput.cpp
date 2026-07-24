@@ -26,7 +26,8 @@ SentanSelectInput::Result SentanSelectInput::Update()
         }
     }
 
-    bool isConfirmed = pInput_->TriggerKey(DIK_RETURN) || pInput_->TriggerKey(DIK_F);
+    // 決定はSpace（Fはポータルに入るのに使うので分けている）
+    bool isConfirmed = pInput_->TriggerKey(DIK_SPACE);
 
     return { selectedIndex_, isConfirmed };
 }

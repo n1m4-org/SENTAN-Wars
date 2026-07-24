@@ -12,6 +12,7 @@
 // GeneralWaveやBossWaveなどのウェーブクラスが使用する
 
 class EnemyManager;
+class Player;
 
 class PhaseDirector
 {
@@ -38,14 +39,19 @@ public:
     void SetEnemyManager(EnemyManager* enemyManager) { pEnemyManager_ = enemyManager; }
     void SetWaveIndex(uint32_t waveIndex) { waveIndex_ = waveIndex; }
 
+    /// 準備フェーズでSENTANを装備させる相手を渡す
+    void SetPlayer(Player* player) { pPlayer_ = player; }
+
 private:
     std::unique_ptr<IPhase> CreatePhase(PhaseType type);
     void RegisterOnChange();
     void RegisterCustomGuiFunctions();
 
-    PhaseType currentPhaseType_;
+    // 遷移の可否は現在のフェーズで決まるので、初期値を入れておく（Noneからはどこへでも入れる）
+    PhaseType currentPhaseType_ = PhaseType::None;
     std::unique_ptr<IPhase> pCurrentPhase_;
     EnemyManager* pEnemyManager_ = nullptr;
+    Player* pPlayer_ = nullptr;
     uint32_t waveIndex_ = 0;
 
     std::unique_ptr<PhaseTransitionValidator> pTransitionValidator_;

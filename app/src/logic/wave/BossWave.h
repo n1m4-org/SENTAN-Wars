@@ -18,6 +18,9 @@ public:
     void Draw() override;
 
 
+    void BeginSetupPhase() override;
+
+
     bool IsWaveFinished() const override;
 
 

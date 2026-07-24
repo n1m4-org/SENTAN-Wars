@@ -67,13 +67,16 @@ void SentanWars::Update() {
     }
     imGuiManager_->ShowMainUI(offscreen_.get());
 
-    // イベントのディスパッチ
-    pEventListener_->Dispatch();
-
     pDebugEntryManager_->ImGui();
 
     imGuiManager_->End();
 #endif // _DEBUG
+
+    // イベントのディスパッチ
+    // Publishは積むだけなので、ここを通らないとウェーブ切り替えなどが動かない
+    // （デバッグ表示とは関係がないので_DEBUGの外で回す）
+    pEventListener_->Dispatch();
+
 #ifndef _DEBUG
     pInput_->UpdateRay(*pSceneManager_->GetBaseScene()->GetViewProjection(), {Vector2(0, 0), Vector2(winApp_->GetClientWidth(), winApp_->GetClientHeight())}, 10000.0f);
 #endif // _DEBUG

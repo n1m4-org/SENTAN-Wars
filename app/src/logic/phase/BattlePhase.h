@@ -25,7 +25,7 @@ public:
         OutputDebugStringA("BattlePhase::Enter\n");
         if (pEnemyManager_)
         {
-            const WaveData& waveData = pEnemyManager_->GetWavePreset(waveIndex_);
+            const WaveData waveData = pEnemyManager_->GetWavePreset(waveIndex_, false);
             pEnemyManager_->StartWave(waveData);
         }
     }

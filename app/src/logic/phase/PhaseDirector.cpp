@@ -54,7 +54,7 @@ std::unique_ptr<IPhase> PhaseDirector::CreatePhase(PhaseType type)
     switch (type)
     {
     case PhaseType::Setup:
-        return std::make_unique<SetupPhase>();
+        return std::make_unique<SetupPhase>(pPlayer_);
         break;
     case PhaseType::Battle:
         {

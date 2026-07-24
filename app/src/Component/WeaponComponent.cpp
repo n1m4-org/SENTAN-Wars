@@ -3,6 +3,7 @@
 #include "Character/Player/Sentan/SentanContext.h"
 #include "Component/Attack/AttackStateComponent.h"
 #include "Component/ComponentContainer.h"
+#include "Component/MoveComponent.h"
 
 using namespace Hagine;
 
@@ -59,6 +60,9 @@ bool WeaponComponent::EquipSentan(SentanId id) {
             move_,
         };
         unlockedComponent = container_->AddComponent(definition.createComponent(context));
+        if (unlockedComponent) {
+            unlockedComponents_.emplace_back(unlockedComponent);
+        }
     }
 
     // 装備し終えてから知らせる（受け取った側がSentanや解禁された振る舞いを触れる状態にしておく）
@@ -68,6 +72,34 @@ bool WeaponComponent::EquipSentan(SentanId id) {
     }
 
     return true;
+}
+
+void WeaponComponent::UnequipAllSentan() {
+    // SENTANが解禁していた振る舞いを消す
+    // 装備していない攻撃はコンポーネントとして存在しなくなるので、出しようがなくなる
+    if (container_) {
+        for (Component *unlocked : unlockedComponents_) {
+            container_->RemoveComponent(unlocked);
+        }
+    }
+    unlockedComponents_.clear();
+
+    // Forkから外す（当たり判定と攻撃情報もここで片付く）
+    if (fork_) {
+        fork_->DetachAllSentan();
+    }
+
+    // 攻撃の途中で外されると、攻撃中のまま戻らなくなる
+    // 誰が出していた攻撃かは分からないので、まとめて元の状態へ戻す
+    if (attackState_) {
+        attackState_->EndAttack();
+    }
+    if (fork_) {
+        fork_->SetAttackColliderEnabled(false);
+    }
+    if (move_) {
+        move_->SetSpeedScale(1.0f);
+    }
 }
 
 void WeaponComponent::Draw(const ViewProjection &viewProjection) {

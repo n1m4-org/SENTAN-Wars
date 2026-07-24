@@ -53,6 +53,10 @@ class WeaponComponent : public Component {
     /// Forkにくっつけ、そのSENTANの振る舞いを解禁する（装備できなければfalse）
     bool EquipSentan(SentanId id);
 
+    /// 装備中のSENTANを全部外す
+    /// SENTANが解禁した振る舞いはコンポーネントごと破棄されるので、外した攻撃は存在しなくなる
+    void UnequipAllSentan();
+
     /// SENTANを装備したときの通知先を追加する
     /// 装備より前に登録しておくこと（過去の装備は遡って通知されない）
     void AddEquipCallback(EquipCallback callback);
@@ -73,4 +77,7 @@ class WeaponComponent : public Component {
 
     // 装備を知りたい相手の通知先（誰が聞いているかはこちらから知らない）
     std::vector<EquipCallback> equipCallbacks_;
+
+    // SENTANが解禁した振る舞い（所有はcontainer_側・外すときに消すために覚えておく）
+    std::vector<Component *> unlockedComponents_;
 };

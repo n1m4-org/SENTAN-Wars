@@ -4,6 +4,8 @@
 #include <common/ResourcePath.h>
 #include <utility/ViewportUnits.hpp>
 #include <SpriteManager.h>
+#include <Character/Player/Player.h>
+#include <logic/EquippedSentanCache.h>
 
 
 void SetupPhase::Enter()
@@ -16,7 +18,17 @@ void SetupPhase::Enter()
         EventListener::GetInstance()->Publish<Event::WarpConfirm>();
     });
 
-    pSentanSelect_ = std::make_unique<SentanSelect>();
+    if (pPlayer_)
+    {
+        // 準備フェーズのたびに装備を丸ごと選び直すので、まず今の装備を外す
+        // 外したSENTANの振る舞いはコンポーネントごと消えるため、前の攻撃は残らない
+        pPlayer_->UnequipAllSentan();
+        EquippedSentanCache::GetInstance()->Reset();
+
+        // 上限のぶんだけ選ばせる
+        pSentanSelect_ = std::make_unique<SentanSelect>(static_cast<uint32_t>(Player::GetMaxSentanCount()));
+        pSentanSelect_->SetOnDecideCallback([this](SentanId id) { this->EquipSelectedSentan(id); });
+    }
 
     // スプライトの初期化
     this->InitializeSprite();
@@ -29,9 +41,20 @@ void SetupPhase::Exit()
 
 void SetupPhase::Update()
 {
-    pWarpHole_->Update();
+    // SENTANを選び終わるまではポータルへ進めない（選ばずに次のウェーブへ行けてしまわないようにする）
+    if (pSentanSelect_)
+    {
+        pSentanSelect_->Update();
 
-    pSentanSelect_->Update();
+        if (pSentanSelect_->IsDecided())
+        {
+            // 選択ウィンドウを閉じる（登録したスプライトはデストラクタで外れる）
+            pSentanSelect_.reset();
+        }
+        return;
+    }
+
+    pWarpHole_->Update();
 
     auto sm = Hagine::SpriteManager::GetInstance();
 
@@ -44,6 +67,21 @@ void SetupPhase::Update()
         sm->UnregisterExternal(pPrompt_.get());
     }
 
+}
+
+void SetupPhase::EquipSelectedSentan(SentanId id)
+{
+    if (!pPlayer_)
+    {
+        return;
+    }
+
+    // 装備できたときだけ「持っている」ことにする
+    // 上限に達していると付かないので、持っていない物が選択肢から外れてしまわないようにする
+    if (pPlayer_->EquipSentan(id))
+    {
+        EquippedSentanCache::GetInstance()->RecordEquippedSentan(id);
+    }
 }
 
 void SetupPhase::Draw()
