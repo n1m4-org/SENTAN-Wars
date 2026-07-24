@@ -193,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h" />
     <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.cpp" />
+    <ClCompile Include="src\presentation\ui\components\SentanSelectCard.cpp" />
+    <ClCompile Include="src\presentation\ui\components\SentanSelectInput.cpp" />
+    <ClCompile Include="src\presentation\ui\SentanSelect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -555,5 +558,10 @@
       <Filter>src\Character\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\vecutl.h" />
+    <ClInclude Include="src\presentation\ui\SentanSelect.h" />
+    <ClInclude Include="src\presentation\ui\components\SentanSelectCard.h" />
+    <ClInclude Include="src\presentation\ui\components\SentanSelectInput.h" />
+    <ClInclude Include="src\logic\SentanRandomPicker.h" />
+    <ClInclude Include="src\logic\EquippedSentanCache.h" />
   </ItemGroup>
 </Project>

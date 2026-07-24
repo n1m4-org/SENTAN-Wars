@@ -5,12 +5,16 @@ namespace Path::Image
     inline constexpr const char* kDebugMeasure = "measure_2px.png";
     inline constexpr const char* kLogo = "common/logo_580x160.png";
     inline constexpr const char* kStartKey = "common/space_485x120.png";
-    inline constexpr const char* kPrompt = "prompt/start_163x53.png";
+    inline constexpr const char* StartPrompt = "prompt/start_163x53.png";
+    inline constexpr const char* NextWavePrompt = "prompt/next_wave_prompt.png";
     inline constexpr const char* Hp = "hud/HP_53x25.png";
     inline constexpr const char* Bar = "hud/Bar_296x16.png";
     inline constexpr const char* BarRed = "hud/BarRed_296x16.png";
     inline constexpr const char* Remaining = "hud/remaining.png";
     inline constexpr const char* EnemyUnit = "hud/enemy_unit.png";
+    inline constexpr const char* Card = "sentan_select/card.png";
+    inline constexpr const char* CardBg = "sentan_select/card_bg.png";
+    inline constexpr const char* SelectWindow = "sentan_select/window.png";
     inline constexpr const char* Numbers[10] = {
         "common/0_25x25.png",
         "common/1_10x25.png",
@@ -36,6 +40,12 @@ namespace Path::Image
         "common/8_25x25.png",
         "common/9_25x25.png"
     };
+
+    inline constexpr const char* SentanBoots = "common/boots.png";
+    inline constexpr const char* SentanDouble = "common/double.png";
+    inline constexpr const char* SentanDril = "common/dril.png";
+    inline constexpr const char* SentanRotate = "common/rotate.png";
+    inline constexpr const char* SentanTriple = "common/triple.png";
 
     inline constexpr const char* Wave = "common/wave_100x25.png";
     inline constexpr const char* Colon = "common/colon_25x25.png";

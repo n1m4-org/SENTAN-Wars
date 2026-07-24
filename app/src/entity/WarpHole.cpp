@@ -37,7 +37,7 @@ void WarpHole::InitializeCollider()
     // SphereColliderを作成し、ワープホールの位置に設定
     pCollider_ = std::make_unique<Hagine::SphereCollider>();
     pCollider_->SetName("WarpHole");
-    pCollider_->SetRadius(1.0f); // ワープホールの半径を設定
+    pCollider_->SetRadius(2.0f); // ワープホールの半径を設定
     pCollider_->SetPositionGetter([this] { return kPosition_; });
 
     // タグを設定し、プレイヤーとの衝突を検知するためのマスクを追加

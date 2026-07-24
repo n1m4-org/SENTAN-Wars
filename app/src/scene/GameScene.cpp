@@ -3,6 +3,7 @@
 #include "Utility/Scene/SceneRegistry.h"
 #include "Character/Enemy/EnemyManager.h"
 #include <Frame.h>
+#include <logic/EquippedSentanCache.h>
 
 REGISTER_SCENE("GAME", GameScene)
 
@@ -63,6 +64,7 @@ void GameScene::Finalize() {
 	/// ===================================================
 	this->StopClearTime();
 	pEnemyManager_->Finalize();
+    EquippedSentanCache::GetInstance()->Reset();
 	BaseScene::Finalize();
 }
 
@@ -166,6 +168,11 @@ void GameScene::ChangeScene()
     /// ===================================================
     /// シーン切り替え
     /// ===================================================
+    if (pWaveDirector_->IsGameCleared())
+    {
+        this->StopClearTime();
+        pSceneManager_->NextSceneReservation("CLEAR");
+    }
 }
 
 void GameScene::InitializeHudManager()
@@ -180,6 +187,7 @@ void GameScene::UpdateHud()
 {
     pWaveCountHudView_->SetWaveCount(pWaveDirector_->GetCurrentWaveIndex() + 1);
     pRemainEnemyCountHudView_->SetRemainingCount(pEnemyManager_->GetTotalRemainingEnemyCount());
+    
 }
 
 void GameScene::StopClearTime() {
