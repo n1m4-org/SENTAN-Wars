@@ -5,6 +5,7 @@
 #include <SpriteManager.h>
 #include <utility/SpriteUnregisterer.h>
 #include <audio/SoundPlayer.h>
+#include"utility/Scene/SceneManager.h"
 
 
 REGISTER_SCENE("TITLE", TitleScene)
@@ -57,6 +58,8 @@ void TitleScene::Update()
 	this->UpdateStartKeyColor();
 
 	vp_.UpdateMatrix();
+
+	ChangeScene();
 }
 
 void TitleScene::ChangeScene()
@@ -72,7 +75,7 @@ void TitleScene::InitializeSprites()
 	static constexpr const char* kStartKey = "common/space_485x120.png";
 	static constexpr const char* kPrompt = "prompt/start_163x53.png";
 	/// TODO: Vector4をconstexprにする
-		static const Vector4 kWhite = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+	static const Vector4 kWhite = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	pContainerArea_ = std::make_unique<Sprite>();
 	pContainerArea_->Initialize("debug/white1x1.png", {}, { 0.0f, 0.0f, 0.0f, 0.5f }, {});
