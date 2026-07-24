@@ -2,6 +2,7 @@
 #include <functional>
 #include <collider/CollisionManager.h>
 #include <Particle/gpu/ParticleCSSpawner.h>
+#include <audio/SoundPlayer.h>
 #include <common/ColliderTag.h>
 #include <Input.h>
 #include <utility/vecutl.h>
@@ -25,7 +26,13 @@ void WarpHole::Update()
     // プレイヤーがワープホール内にいる場合、Fキーが押されたらコールバックを呼び出す
     if (isPlayerInsize_ && Hagine::Input::GetInstance()->TriggerKey(DIK_F))
     {
-        onEnterCallback_();
+        SoundPlayer::GetInstance()->PlayPortal();
+
+        // 入ったときに何をするかは外から渡される（渡されていなければ音だけ鳴らす）
+        if (onEnterCallback_)
+        {
+            onEnterCallback_();
+        }
     }
 }
 

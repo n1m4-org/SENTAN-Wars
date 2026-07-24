@@ -91,7 +91,7 @@ class SpinAttack : public Component {
     // 攻撃力。周りをまとめて薙ぐぶん1発は軽い（2周で24）
     GameParameter(float, atk_, 12.0f);
     // 判定の広さ（武器の形の何倍か）。薙ぎ払いなので広め
-    GameParameter(float, hitScale_, 3.5f);
+    GameParameter(float, hitScale_, 5.5f);
     // 回転中の移動速度の倍率（1.0で普段どおり、0.0で足が止まる）
     GameParameter(float, moveSpeedScale_, 0.4f);
 

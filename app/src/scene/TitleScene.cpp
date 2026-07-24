@@ -4,6 +4,7 @@
 #include <utility/ViewportUnits.hpp>
 #include <SpriteManager.h>
 #include <utility/SpriteUnregisterer.h>
+#include <audio/SoundPlayer.h>
 
 
 REGISTER_SCENE("TITLE", TitleScene)
@@ -12,15 +13,20 @@ using namespace Hagine;
 
 void TitleScene::Initialize()
 {
-
-	pDrawSystem_->Register("Test_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
-		{
-			pSpriteManager_->DrawAll();
-			pObjectManager_->Draw(vp);
-		});
-
 	// シーン共通の初期化処理
 	BaseScene::Initialize();
+	vp_.Initialize("ClearCamera");
+	pLightGroup_->LoadLightData("GameLight");
+	pObjectManager_->LoadAll("GameScene");
+	pDrawSystem_->Register("Title_PreDraw", DrawLayer::PreEffect, [this](const ViewProjection& vp)
+		{
+			pObjectManager_->Draw(vp);
+		});
+	pDrawSystem_->Register("Title_PostDraw", DrawLayer::PostEffect, [this](const ViewProjection& vp)
+		{
+			pSpriteManager_->DrawAll();
+		});
+
 
 	// スプライトの生成と初期化
 	this->InitializeSprites();
@@ -49,6 +55,8 @@ void TitleScene::Update()
 	pContainerArea_->SetSize(containerBox_.size);
 
 	this->UpdateStartKeyColor();
+
+	vp_.UpdateMatrix();
 }
 
 void TitleScene::InitializeSprites()
@@ -61,7 +69,7 @@ void TitleScene::InitializeSprites()
 
 	pContainerArea_ = std::make_unique<Sprite>();
 	pContainerArea_->Initialize("debug/white1x1.png", {}, { 0.0f, 0.0f, 0.0f, 0.5f }, {});
-
+	
 	/// ロゴ (タイトル)
 	{
 		auto& sprite = GetSprite(SpriteName::Logo);
@@ -113,6 +121,12 @@ void TitleScene::InitializeFlexContainer()
 
 void TitleScene::UpdateStartKeyColor()
 {
+	// 押した瞬間だけ決定音を鳴らす（押しっぱなしで鳴り続けないようトリガーで見る）
+	if (pInput_->TriggerKey(DIK_SPACE))
+	{
+		SoundPlayer::GetInstance()->PlayDecision();
+	}
+
 	if (pInput_->PushKey(DIK_SPACE))
 	{
 		this->GetSprite(SpriteName::StartKey)->SetColor({ 0.7f, 0.7f, 0.7f });

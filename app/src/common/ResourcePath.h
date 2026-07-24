@@ -53,3 +53,28 @@ namespace Path::Image
     inline constexpr const char* ClearTime = "common/ClearTime_500x90.png";
     inline constexpr const char* kWhite1x1 = "debug/white1x1.png";
 }
+
+namespace Path::Sound
+{
+    /// BGM (ループ再生)
+    inline constexpr const char* Bgm = "BGM_2.mp3";
+
+    /// 決定音
+    inline constexpr const char* Decision = "decision.mp3";
+
+    /// ポータルに入ったときの音
+    inline constexpr const char* Portal = "portal.mp3";
+
+    /// 武器を振ったときの音 (この中から1つ選んで鳴らす)
+    inline constexpr const char* Swings[] = {
+        "swing_1.mp3",
+        "swing_2.mp3",
+        "swing_3.wav"
+    };
+
+    /// 攻撃がヒットしたときの音 (この中から1つ選んで鳴らす)
+    inline constexpr const char* AttackHits[] = {
+        "attack_1.mp3",
+        "attack_2.mp3"
+    };
+}

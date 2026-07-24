@@ -52,6 +52,9 @@
     <ClCompile Include="src\debug\DebugMeasure.cpp">
       <Filter>src\debug</Filter>
     </ClCompile>
+    <ClCompile Include="src\audio\SoundPlayer.cpp">
+      <Filter>src\audio</Filter>
+    </ClCompile>
     <ClCompile Include="src\entity\WarpHole.cpp">
       <Filter>src\entity</Filter>
     </ClCompile>
@@ -158,6 +161,12 @@
     <ClCompile Include="src\presentation\ui\ResultFrame.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
+    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.cpp">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\presentation\ui\RemainingEnemyCountHudView.h">
+      <Filter>src\presentation\ui</Filter>
+    </ClCompile>
     <ClCompile Include="src\presentation\ui\WaveCountHudView.cpp">
       <Filter>src\presentation\ui</Filter>
     </ClCompile>
@@ -200,6 +209,9 @@
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{364c2752-119b-4ae6-9957-1d00e70254c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\audio">
+      <UniqueIdentifier>{7c1a5e64-3f0b-4a2d-9c58-2b6d4f8a1e93}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Character">
       <UniqueIdentifier>{09cea8ca-e766-478a-9f9e-b933874bc239}</UniqueIdentifier>
@@ -356,6 +368,9 @@
     <ClInclude Include="src\debug\GameParameter.h">
       <Filter>src\debug</Filter>
     </ClInclude>
+    <ClInclude Include="src\audio\SoundPlayer.h">
+      <Filter>src\audio</Filter>
+    </ClInclude>
     <ClInclude Include="src\entity\WarpHole.h">
       <Filter>src\entity</Filter>
     </ClInclude>
@@ -489,6 +504,9 @@
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\strutl.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility\vecutl.h">
       <Filter>src\utility</Filter>
     </ClInclude>
     <ClInclude Include="src\utility\ViewportUnits.hpp">

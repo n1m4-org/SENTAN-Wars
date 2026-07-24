@@ -1,5 +1,6 @@
 #pragma once
 #include "3d/Object/Base/BaseObject.h"
+#include "Character/Player/Sentan/SentanDefinition.h"
 #include "Component/Component.h"
 #include "Component/ComponentContainer.h"
 #include <memory>
@@ -12,6 +13,8 @@
 ///
 /// SENTANの装備で攻撃が増えるため、実行中にもコンポーネントを追加できる
 class MoveComponent;
+class HealthComponent;
+class WeaponComponent;
 
 class Player : public Hagine::BaseObject, public ComponentContainer {
   public:
@@ -20,6 +23,22 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
     /// 移動と体の向きの基準にするカメラを設定する
     /// 渡さないとワールド軸で動くため、カメラを回すと画面の向きと合わなくなる
     void SetReferenceCamera(const Hagine::ViewProjection *camera);
+
+    /// HPのgetter
+    float GetHp() const;
+    float GetMaxHp() const;
+
+    bool IsDead() const;
+
+    /// SENTANを装備する
+    /// 装備するとそのSENTANの振る舞いが増える（Forkに付くのは最大2つ・超えるとfalse）
+    bool EquipSentan(SentanId id);
+
+    /// 装備中のSENTANの数
+    size_t GetSentanCount() const;
+
+    /// 装備できる最大数
+    static size_t GetMaxSentanCount();
 
     void Update() override;
 
@@ -48,6 +67,12 @@ class Player : public Hagine::BaseObject, public ComponentContainer {
   private:
     // 移動コンポーネント（所有はcomponents_・カメラを後から渡すために覚えておく）
     MoveComponent *move_ = nullptr;
+
+    // HPコンポーネント（所有はcomponents_・HPを取り次ぐために覚えておく）
+    HealthComponent *health_ = nullptr;
+
+    // 武器コンポーネント（所有はcomponents_・SENTANの装備を取り次ぐために覚えておく）
+    WeaponComponent *weapon_ = nullptr;
 
     // 振る舞いコンポーネント群（Playerが所有）
     std::vector<std::unique_ptr<Component>> components_;

@@ -1,11 +1,42 @@
 #include "BaseEnemy.h"
 #include <3d/Object/Base/BaseObjectManager.h>
+#include <3d/Particle/gpu/ParticleCSSpawner.h>
+#include <Debug/log/Logger.h>
 #include "Frame/Frame.h"
+#include "audio/SoundPlayer.h"
+#include "common/FieldBounds.h"
 #ifdef _DEBUG
 #include <debug/imgui/ImGuizmoManager.h>
 #endif
 
 using namespace Hagine;
+
+namespace {
+/// ヒットエフェクト用のエミッターを1つだけ用意して、全ての敵で使い回す
+///
+/// 敵ごとに持つと粒子バッファ（1体あたり最大5000粒子）が敵の数だけ確保され、
+/// 毎フレームのコンピュートも敵の数だけ走ってしまう。
+/// 出す位置は当てた瞬間に動かせばよいので、実体は1つで足りる。
+/// シーン遷移で破棄されるため、生きていなければ取り直す
+ParticleCSEmitter *AcquireHitEffectEmitter()
+{
+    static ParticleCSEmitter *pEmitter = nullptr;
+
+    ParticleCSSpawner *pSpawner = ParticleCSSpawner::GetInstance();
+    if (pSpawner->IsAlive(pEmitter))
+    {
+        return pEmitter;
+    }
+
+    pEmitter = pSpawner->Spawn("hitEffect");
+    if (pEmitter)
+    {
+        // 当てた瞬間だけ出したいので、自動発生は切って EmitOnce で1回ずつ出す
+        pEmitter->SetAuto(false);
+    }
+    return pEmitter;
+}
+} // namespace
 
 BaseEnemy::~BaseEnemy()
 {
@@ -133,6 +164,12 @@ void BaseEnemy::Update()
 
 	transform_->translation_.y = (std::max)(transform_->translation_.y, 0.0f); // 地面より下に行かないようにする
 
+	// フィールドの範囲外に出られないようにする
+	// 位置は体の中心なので、体の半径ぶん内側で止めないと半身がはみ出す
+	// 敵はSphereモデルなので、ワールドスケールがそのまま体の半径になる
+	const Vector3 bodyScale = GetWorldScale();
+	FieldBounds::Clamp(transform_->translation_, (std::max)(bodyScale.x, bodyScale.z));
+
 	UniqueUpdateEnd();
 
 	// 攻撃中（EnemyBulletタグ設定時）の AttackRegistry 自動同期処理
@@ -201,16 +238,45 @@ void BaseEnemy::OnHit(ColliderBase* other)
 	if (!other || isDead_) return;
 
 	const std::string& tag = other->GetTag();
+	// [調査用ログ] OnHitが呼ばれているか・どのタグと当たったか
+	Hagine::Logger::Info("BaseEnemy::OnHit tag=" + tag);
+
 	// プレイヤーの攻撃タグに対してのみダメージ処理を行う
 	if (tag == "PlayerAttack" || tag == "PlayerBullet") // プレイヤーの攻撃タグを入れる
 	{
 		// AttackRegistry に登録された攻撃情報を検索
 		if (const AttackInfo* info = AttackRegistry::Get(other))
 		{
+			// 無敵時間中は当たらなかったのと同じなので、演出も出さない
+			if (invincibilityTimer_ > 0.0f)
+			{
+				return;
+			}
+
+			// 当たった位置にヒットエフェクトを出し、ヒット音を鳴らす
+			SpawnHitEffect(transform_->translation_);
+			SoundPlayer::GetInstance()->PlayAttackHit();
 			TakeDamage(*info);
 			return;
 		}
 	}
+}
+
+void BaseEnemy::SpawnHitEffect(const Vector3& position)
+{
+	// 全ての敵で1つのエミッターを使い回す（当てた敵の位置へ動かしてから出す）
+	ParticleCSEmitter* pEffect = AcquireHitEffectEmitter();
+	if (!pEffect)
+	{
+		return;
+	}
+
+	// 敵の中心に埋もれて見えないので、体の上端あたりへ出す
+	Vector3 spawnPosition = position;
+	spawnPosition.y += GetWorldScale().y * kHitEffectHeightRate_;
+
+	pEffect->SetTranslate(spawnPosition);
+	pEffect->EmitOnce();
 }
 
 void BaseEnemy::SetTypeParameter(EnemyType type)
