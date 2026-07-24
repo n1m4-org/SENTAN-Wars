@@ -71,7 +71,7 @@ void ClearScene::Initialize()
 	rankingView_.Update(0.0f);
 
 	pOffScreen_->LoadData("ClearScenePostEffect");
-	
+
 }
 
 void ClearScene::Finalize()
@@ -250,6 +250,13 @@ void ClearScene::UpdateCamera()
 		debugCamera_->Update();
 	} else {
 		vp_.UpdateMatrix();
+	}
+}
+
+void ClearScene::ChangeScene()
+{
+	if (pInput_->TriggerKey(DIK_SPACE)) {
+		pSceneManager_->NextSceneReservation("TITLE");
 	}
 }
 

@@ -58,6 +58,11 @@ public:
     /// </summary>
     void AddParticleSetting() override {};
 
+    /// <summary>
+   /// シーン遷移を実行
+   /// </summary>
+    void ChangeScene();
+
 private:
     enum class SpriteName { Logo, StartKey, Prompt, kSize };
     static constexpr float kPromptScale_ = 0.55f;
